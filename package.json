@@ -1,5 +1,5 @@
 {
-  "name": "my_project",
+  "name": "codio",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "css-tree": "^1.0.0-alpha.29",
+    "gonzales-pe": "^4.2.4",
+    "js-beautify": "^1.10.0",
+    "query-ast": "^1.0.2",
     "react": "^16.8.6",
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^6.0.0",
@@ -19,7 +23,8 @@
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "scss-parser": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
