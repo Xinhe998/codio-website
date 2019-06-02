@@ -8,7 +8,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body',
   hash: true,
   favicon: `${__dirname}/public/favicon.ico`,
-  title: '專題',
+  title: 'Codio',
 });
 
 module.exports = {
