@@ -42,6 +42,8 @@ import 'codemirror/addon/comment/comment';
 
 import './index.scss';
 
+import { Hook, Console, Decode } from 'console-feed';
+
 
 const csstree = require('css-tree');
 const gonzales = require('gonzales-pe');
@@ -55,17 +57,39 @@ class Home extends Component {
     this.state = {
       html: '<div>hello</div>',
       css: 'body{color: red}.text {font-size: 200px;}',
-      js: 'var a=13264;let b="eeffe";',
+      js: 'console.log("helloworld");console.log(123)',
+      logs: [],
     };
   }
 
   componentDidMount() {
+    Hook(window.console, (log) => {
+      this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
+    }, true);
+    eval(this.state.js);
     this.runCode();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.runCode();
   }
+
+  // componentDidUpdate() {
+  //   this.runCode();
+  // }
+
+  // componentWillReceiveProps(props, state) {
+  //   let newLog;
+  //   if (props.logs !== state.logs) {
+  //     Hook(window.console, (log) => {
+  //       newLog = Decode(log);
+  //     }, true);
+  //     return {
+  //       logs: [...state.logs, newLog],
+  //     };
+  //   }
+  //   return null;
+  // }
 
   runCode = () => {
     const { html, css, js } = this.state;
@@ -185,6 +209,12 @@ class Home extends Component {
     this.selectAll(cm);
     this.autoFormatRange(cm, cm.getCursor(true), cm.getCursor(false), lang);
     cm.setCursor(cursor_line, cursor_ch);
+    this.setState({ logs: [] }, () => {
+      Hook(window.console, (log) => {
+        this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
+      }, true);
+      eval(this.state.js);
+    });
   };
 
   render() {
@@ -251,15 +281,19 @@ class Home extends Component {
                 mode: 'javascript',
                 ...codeMirrorOptions,
               }}
-              onChange={e => this.setState({ js: e })}
+              onChange={(e) => {
+                this.setState({ js: e });
+              }}
             />
           </div>
         </section>
+        <div style={{ backgroundColor: '#242424' }}>
+          <Console logs={this.state.logs} variant="dark" />
+        </div>
         <section className="result">
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
-        <section className="consoleBox">
-        </section>
+        
       </div>
     );
   }
