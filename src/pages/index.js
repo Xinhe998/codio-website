@@ -77,7 +77,7 @@ class Home extends Component {
     const { html, css, js } = this.state;
     const ast = csstree.parse(css, {
       onParseError(error) {
-        // console.log(error.formattedMessage);
+        // console.error(error.formattedMessage);
       },
     });
     // console.log(csstree.generate(ast));
@@ -194,12 +194,38 @@ class Home extends Component {
     this.updateConsole();
   };
 
+  autoComplete = (cm, lang) => {
+    let codeMirror;
+    const hintOptions = {
+      disableKeywords: true,
+      completeSingle: false,
+      completeOnSingleClick: true,
+      closeOnUnfocus: true,
+    };
+    switch (lang || cm.getMode().name) {
+    case 'htmlmixed':
+      codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
+      break;
+    case 'css':
+      codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
+      break;
+    case 'javascript':
+      codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
+      break;
+    default:
+      break;
+    }
+  }
+
   printConsole = () => {
     const { js } = this.state;
     try {
       Hook(window.console, (log) => {
         this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
-      }, true);
+      });
       eval(js);
       this.runCode();
     } catch (e) {
@@ -212,8 +238,8 @@ class Home extends Component {
     const updatedLogs = [];
     try {
       Hook(window.console, (log) => {
-        updatedLogs.push(log);
-      }, true);
+        updatedLogs.push(Decode(log));
+      });
       this.setState({ logs: updatedLogs });
       eval(js);
       this.runCode();
@@ -232,6 +258,7 @@ class Home extends Component {
           cm.foldCode(cm.getCursor());
         },
         'Ctrl-E': cm => this.autoFormat(cm),
+        'Ctrl-H': cm => this.autoComplete(cm),
       },
       theme: 'material',
       foldGutter: true,
@@ -260,7 +287,12 @@ class Home extends Component {
                 mode: 'htmlmixed',
                 ...codeMirrorOptions,
               }}
-              onChange={e => this.setState({ html: e })}
+              onChange={(e, changeObj) => {
+                this.setState({ html: e });
+                if (JSON.stringify(changeObj.text) !== '[""]' && JSON.stringify(changeObj.text) !== '["",""]' && JSON.stringify(changeObj.text) !== '["  "]' && JSON.stringify(changeObj.text) !== '[">","","</div>"]') {
+                  this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
+                }
+              }}
             />
           </div>
           <div className="code-editor css-code">
@@ -273,7 +305,12 @@ class Home extends Component {
                 mode: 'css',
                 ...codeMirrorOptions,
               }}
-              onChange={e => this.setState({ css: e })}
+              onChange={(e, changeObj) => {
+                this.setState({ css: e });
+                if (JSON.stringify(changeObj.text) !== '[";"]' && JSON.stringify(changeObj.text) !== '[""]' && JSON.stringify(changeObj.text) !== '["",""]' && JSON.stringify(changeObj.text) !== '["{"]' && JSON.stringify(changeObj.text) !== '["}"]' && JSON.stringify(changeObj.text) !== '["{}"]') {
+                  this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
+                }
+              }}
             />
           </div>
           <div className="code-editor js-code">
@@ -286,8 +323,11 @@ class Home extends Component {
                 mode: 'javascript',
                 ...codeMirrorOptions,
               }}
-              onChange={(e) => {
+              onChange={(e, changeObj) => {
                 this.setState({ js: e });
+                if (JSON.stringify(changeObj.text) !== '[";"]' && JSON.stringify(changeObj.text) !== '[""]' && JSON.stringify(changeObj.text) !== '[" "]' && JSON.stringify(changeObj.text) !== '["",""]') {
+                  this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
+                }
               }}
             />
           </div>
