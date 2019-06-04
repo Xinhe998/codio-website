@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
@@ -55,41 +56,22 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      html: '<div>hello</div>',
-      css: 'body{color: red}.text {font-size: 200px;}',
+      html: '<div class="mainCard"> <div class="mainCard__avatar"> <img src="https://xinhehsu.com/static/avatar-3f92f31dcd841228b8baa3d69862e600.jpg" alt="avatar"/> </div><div class="mainCard__title">Hello, I am Xinhe.</div><div class="mainCard__desc"> Hi, I am Xinhe Hsu (許歆荷).<br/> This is Codio website. </div><div class="mainCard__actions"> <a> Click me </a> </div></div>',
+      css: 'body{background: #F7F8FF; display: flex; justify-content: center;}.mainCard{display: flex; justify-content: center; border-radius: 10px; background: #fff; box-shadow: 0px 30px 99px rgba(108, 108, 108, 0.1); flex-direction: column; text-align: center; padding: 30px 80px; margin-top: 30px;}.mainCard__avatar{position: relative; border: 2px #f4f4fa; background: #f4f4fa; border-radius: 100%; width: 140px; height: 140px; margin: 0 auto;}.mainCard__avatar img{width: 150px; height: 150px; clip-path: circle(65px at center); -webkit-clip-path: circle(65px at center); vertical-align: middle; padding: 5px; margin: -9.5px;}.mainCard__title{font-weight: 500; font-size: 15px; color: #3c3c3c; margin: 20px 0;}.mainCard__desc{font-weight: 300; font-size: 12px; color: #3c3c3c; margin: 10px 0; line-height: 1.5;}.mainCard__actions{display: flex; flex-direction: column; margin: 10px 0;}.mainCard__actions a{height: 44px; border-radius: 3px; background: #3c3c3c; color: #fff; font-weight: normal; font-size: 15px; margin: 10px 0; text-decoration: none; line-height: 2.8;}',
       js: 'console.log("helloworld");console.log(123)',
       logs: [],
     };
   }
 
   componentDidMount() {
-    Hook(window.console, (log) => {
-      this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
-    }, true);
-    eval(this.state.js);
-    this.runCode();
+    this.printConsole();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.runCode();
+    if (prevState.js !== this.state.js) {
+      this.updateConsole();
+    }
   }
-
-  // componentDidUpdate() {
-  //   this.runCode();
-  // }
-
-  // componentWillReceiveProps(props, state) {
-  //   let newLog;
-  //   if (props.logs !== state.logs) {
-  //     Hook(window.console, (log) => {
-  //       newLog = Decode(log);
-  //     }, true);
-  //     return {
-  //       logs: [...state.logs, newLog],
-  //     };
-  //   }
-  //   return null;
-  // }
 
   runCode = () => {
     const { html, css, js } = this.state;
@@ -209,13 +191,36 @@ class Home extends Component {
     this.selectAll(cm);
     this.autoFormatRange(cm, cm.getCursor(true), cm.getCursor(false), lang);
     cm.setCursor(cursor_line, cursor_ch);
-    this.setState({ logs: [] }, () => {
+    this.updateConsole();
+  };
+
+  printConsole = () => {
+    const { js } = this.state;
+    try {
       Hook(window.console, (log) => {
         this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
       }, true);
-      eval(this.state.js);
-    });
+      eval(js);
+      this.runCode();
+    } catch (e) {
+      console.error(e);
+    }
   };
+
+  updateConsole = () => {
+    const { js } = this.state;
+    const updatedLogs = [];
+    try {
+      Hook(window.console, (log) => {
+        updatedLogs.push(log);
+      }, true);
+      this.setState({ logs: updatedLogs });
+      eval(js);
+      this.runCode();
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   render() {
     const { html, js, css } = this.state;
@@ -293,7 +298,6 @@ class Home extends Component {
         <section className="result">
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
-        
       </div>
     );
   }
