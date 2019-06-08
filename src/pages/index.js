@@ -63,9 +63,11 @@ class Home extends Component {
       js: 'console.log("helloworld");console.log(123)',
       logs: [],
     };
-    this.delayHtmlOnChange = _.debounce(this.htmlEditorOnChange, 3000);
-    this.delayCssOnChange = _.debounce(this.cssEditorOnChange, 3000);
-    this.delayJsOnChange = _.debounce(this.jsEditorOnChange, 3000);
+    this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
+    this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
+    this.delayJsOnChange = _.throttle(this.jsEditorOnChange, 3000, {
+      leading: false,
+    });
   }
 
   componentDidMount() {
@@ -73,12 +75,14 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevState.js !== this.state.js) {
+      this.updateConsole();
+    }
     if (
-      prevState.js !== this.state.js ||
       prevState.css !== this.state.css ||
       prevState.html !== this.state.html
     ) {
-      this.updateConsole();
+      this.runCode();
     }
   }
 
@@ -254,6 +258,7 @@ class Home extends Component {
         updatedLogs.push(Decode(log));
       });
       this.setState({ logs: updatedLogs });
+      window.alert = function() {};
       eval(js);
       this.runCode();
     } catch (e) {
