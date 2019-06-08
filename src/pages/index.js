@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
+import _ from 'lodash';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -45,7 +46,6 @@ import './index.scss';
 
 import { Hook, Console, Decode } from 'console-feed';
 
-
 const csstree = require('css-tree');
 const gonzales = require('gonzales-pe');
 const beautify_js = require('js-beautify'); // also available under "js" export
@@ -56,11 +56,16 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      html: '<div class="mainCard"> <div class="mainCard__avatar"> <img src="https://xinhehsu.com/static/avatar-3f92f31dcd841228b8baa3d69862e600.jpg" alt="avatar"/> </div><div class="mainCard__title">Hello, I am Xinhe.</div><div class="mainCard__desc"> Hi, I am Xinhe Hsu (許歆荷).<br/> This is Codio website. </div><div class="mainCard__actions"> <a> Click me </a> </div></div>',
-      css: 'body{background: #F7F8FF; display: flex; justify-content: center;}.mainCard{display: flex; justify-content: center; border-radius: 10px; background: #fff; box-shadow: 0px 30px 99px rgba(108, 108, 108, 0.1); flex-direction: column; text-align: center; padding: 30px 80px; margin-top: 30px;}.mainCard__avatar{position: relative; border: 2px #f4f4fa; background: #f4f4fa; border-radius: 100%; width: 140px; height: 140px; margin: 0 auto;}.mainCard__avatar img{width: 150px; height: 150px; clip-path: circle(65px at center); -webkit-clip-path: circle(65px at center); vertical-align: middle; padding: 5px; margin: -9.5px;}.mainCard__title{font-weight: 500; font-size: 15px; color: #3c3c3c; margin: 20px 0;}.mainCard__desc{font-weight: 300; font-size: 12px; color: #3c3c3c; margin: 10px 0; line-height: 1.5;}.mainCard__actions{display: flex; flex-direction: column; margin: 10px 0;}.mainCard__actions a{height: 44px; border-radius: 3px; background: #3c3c3c; color: #fff; font-weight: normal; font-size: 15px; margin: 10px 0; text-decoration: none; line-height: 2.8;}',
+      html:
+        '<div class="mainCard"> <div class="mainCard__avatar"> <img src="https://xinhehsu.com/static/avatar-3f92f31dcd841228b8baa3d69862e600.jpg" alt="avatar"/> </div><div class="mainCard__title">Hello, I am Xinhe.</div><div class="mainCard__desc"> Hi, I am Xinhe Hsu (許歆荷).<br/> This is Codio website. </div><div class="mainCard__actions"> <a> Click me </a> </div></div>',
+      css:
+        'body{background: #F7F8FF; display: flex; justify-content: center;}.mainCard{display: flex; justify-content: center; border-radius: 10px; background: #fff; box-shadow: 0px 30px 99px rgba(108, 108, 108, 0.1); flex-direction: column; text-align: center; padding: 30px 80px; margin-top: 30px;}.mainCard__avatar{position: relative; border: 2px #f4f4fa; background: #f4f4fa; border-radius: 100%; width: 140px; height: 140px; margin: 0 auto;}.mainCard__avatar img{width: 150px; height: 150px; clip-path: circle(65px at center); -webkit-clip-path: circle(65px at center); vertical-align: middle; padding: 5px; margin: -9.5px;}.mainCard__title{font-weight: 500; font-size: 15px; color: #3c3c3c; margin: 20px 0;}.mainCard__desc{font-weight: 300; font-size: 12px; color: #3c3c3c; margin: 10px 0; line-height: 1.5;}.mainCard__actions{display: flex; flex-direction: column; margin: 10px 0;}.mainCard__actions a{height: 44px; border-radius: 3px; background: #3c3c3c; color: #fff; font-weight: normal; font-size: 15px; margin: 10px 0; text-decoration: none; line-height: 2.8;}',
       js: 'console.log("helloworld");console.log(123)',
       logs: [],
     };
+    this.delayHtmlOnChange = _.debounce(this.htmlEditorOnChange, 3000);
+    this.delayCssOnChange = _.debounce(this.cssEditorOnChange, 3000);
+    this.delayJsOnChange = _.debounce(this.jsEditorOnChange, 3000);
   }
 
   componentDidMount() {
@@ -68,7 +73,11 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.js !== this.state.js) {
+    if (
+      prevState.js !== this.state.js ||
+      prevState.css !== this.state.css ||
+      prevState.html !== this.state.html
+    ) {
       this.updateConsole();
     }
   }
@@ -113,7 +122,7 @@ class Home extends Component {
     document.close();
   };
 
-  selectAll = (cm) => {
+  selectAll = cm => {
     cm.execCommand('selectAll');
   };
 
@@ -123,55 +132,59 @@ class Home extends Component {
     const lines = 0;
     cm.operation(() => {
       switch (lang || outer.name) {
-      case 'htmlmixed':
-        cm.replaceRange(beautify_html(text, {
-          indent_size: 2,
-          html: {
-            end_with_newline: true,
-            js: {
+        case 'htmlmixed':
+          cm.replaceRange(
+            beautify_html(text, {
               indent_size: 2,
-            },
-            css: {
-              indent_size: 2,
-            },
-          },
-          css: {
-            indent_size: 2,
-          },
-          js: {
-            'preserve-newlines': true,
-          },
-        }), from, to);
-        break;
-      case 'css':
-        cm.replaceRange(
-          beautify_css(text, {
-            indent_size: 4,
-            html: {
-              end_with_newline: true,
-              js: {
-                indent_size: 2,
+              html: {
+                end_with_newline: true,
+                js: {
+                  indent_size: 2,
+                },
+                css: {
+                  indent_size: 2,
+                },
               },
               css: {
                 indent_size: 2,
               },
-            },
-            css: {
-              indent_size: 2,
-            },
-            js: {
-              'preserve-newlines': true,
-            },
-          }),
-          from,
-          to,
-        );
-        break;
-      case 'javascript':
-        cm.replaceRange(beautify_js(text), from, to);
-        break;
-      default:
-        break;
+              js: {
+                'preserve-newlines': true,
+              },
+            }),
+            from,
+            to,
+          );
+          break;
+        case 'css':
+          cm.replaceRange(
+            beautify_css(text, {
+              indent_size: 4,
+              html: {
+                end_with_newline: true,
+                js: {
+                  indent_size: 2,
+                },
+                css: {
+                  indent_size: 2,
+                },
+              },
+              css: {
+                indent_size: 2,
+              },
+              js: {
+                'preserve-newlines': true,
+              },
+            }),
+            from,
+            to,
+          );
+          break;
+        case 'javascript':
+          cm.replaceRange(beautify_js(text), from, to);
+          break;
+        default:
+          break;
       }
       for (
         let cur = from.line + 1, end = from.line + lines;
@@ -203,27 +216,27 @@ class Home extends Component {
       closeOnUnfocus: true,
     };
     switch (lang || cm.getMode().name) {
-    case 'htmlmixed':
-      codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
-      break;
-    case 'css':
-      codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
-      break;
-    case 'javascript':
-      codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
-      break;
-    default:
-      break;
+      case 'htmlmixed':
+        codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
+        break;
+      case 'css':
+        codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
+        break;
+      case 'javascript':
+        codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
+        break;
+      default:
+        break;
     }
-  }
+  };
 
   printConsole = () => {
     const { js } = this.state;
     try {
-      Hook(window.console, (log) => {
+      Hook(window.console, log => {
         this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
       });
       eval(js);
@@ -237,7 +250,7 @@ class Home extends Component {
     const { js } = this.state;
     const updatedLogs = [];
     try {
-      Hook(window.console, (log) => {
+      Hook(window.console, log => {
         updatedLogs.push(Decode(log));
       });
       this.setState({ logs: updatedLogs });
@@ -246,7 +259,45 @@ class Home extends Component {
     } catch (e) {
       console.error(e);
     }
-  }
+  };
+
+  jsEditorOnChange = (e, changeObj) => {
+    this.setState({ js: e });
+    if (
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '[" "]' &&
+      JSON.stringify(changeObj.text) !== '["",""]'
+    ) {
+      this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
+    }
+  };
+
+  cssEditorOnChange = (e, changeObj) => {
+    this.setState({ css: e });
+    if (
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["{"]' &&
+      JSON.stringify(changeObj.text) !== '["}"]' &&
+      JSON.stringify(changeObj.text) !== '["{}"]'
+    ) {
+      this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
+    }
+  };
+
+  htmlEditorOnChange = (e, changeObj) => {
+    this.setState({ html: e });
+    if (
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["  "]' &&
+      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+    ) {
+      this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
+    }
+  };
 
   render() {
     const { html, js, css } = this.state;
@@ -254,7 +305,7 @@ class Home extends Component {
       autoCloseBrackets: true,
       autoCloseTags: true,
       extraKeys: {
-        'Ctrl-Q': (cm) => {
+        'Ctrl-Q': cm => {
           cm.foldCode(cm.getCursor());
         },
         'Ctrl-E': cm => this.autoFormat(cm),
@@ -276,10 +327,17 @@ class Home extends Component {
     };
     return (
       <div className="App">
-        <section className="playground">
+        <div className="playground">
           <div className="code-editor html-code">
             <div className="editor-header">HTML</div>
-            <button type="button" onClick={() => this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')}>Format</button>
+            <button
+              type="button"
+              onClick={() =>
+                this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')
+              }
+            >
+              Format
+            </button>
             <CodeMirror
               ref="htmlEditor"
               value={html}
@@ -288,16 +346,20 @@ class Home extends Component {
                 ...codeMirrorOptions,
               }}
               onChange={(e, changeObj) => {
-                this.setState({ html: e });
-                if (JSON.stringify(changeObj.text) !== '[""]' && JSON.stringify(changeObj.text) !== '["",""]' && JSON.stringify(changeObj.text) !== '["  "]' && JSON.stringify(changeObj.text) !== '[">","","</div>"]') {
-                  this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
-                }
+                this.delayHtmlOnChange(e, changeObj);
               }}
             />
           </div>
           <div className="code-editor css-code">
             <div className="editor-header">CSS</div>
-            <button type="button" onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')}>Format</button>
+            <button
+              type="button"
+              onClick={() =>
+                this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+              }
+            >
+              Format
+            </button>
             <CodeMirror
               ref="cssEditor"
               value={css}
@@ -306,16 +368,20 @@ class Home extends Component {
                 ...codeMirrorOptions,
               }}
               onChange={(e, changeObj) => {
-                this.setState({ css: e });
-                if (JSON.stringify(changeObj.text) !== '[";"]' && JSON.stringify(changeObj.text) !== '[""]' && JSON.stringify(changeObj.text) !== '["",""]' && JSON.stringify(changeObj.text) !== '["{"]' && JSON.stringify(changeObj.text) !== '["}"]' && JSON.stringify(changeObj.text) !== '["{}"]') {
-                  this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
-                }
+                this.delayCssOnChange(e, changeObj);
               }}
             />
           </div>
           <div className="code-editor js-code">
             <div className="editor-header">JavaScript</div>
-            <button type="button" onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')}>Format</button>
+            <button
+              type="button"
+              onClick={() =>
+                this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+              }
+            >
+              Format
+            </button>
             <CodeMirror
               ref="jsEditor"
               value={js}
@@ -324,20 +390,17 @@ class Home extends Component {
                 ...codeMirrorOptions,
               }}
               onChange={(e, changeObj) => {
-                this.setState({ js: e });
-                if (JSON.stringify(changeObj.text) !== '[";"]' && JSON.stringify(changeObj.text) !== '[""]' && JSON.stringify(changeObj.text) !== '[" "]' && JSON.stringify(changeObj.text) !== '["",""]') {
-                  this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
-                }
+                this.delayJsOnChange(e, changeObj);
               }}
             />
           </div>
-        </section>
+        </div>
         <div style={{ backgroundColor: '#242424' }}>
           <Console logs={this.state.logs} variant="dark" />
         </div>
-        <section className="result">
+        <div className="result">
           <iframe title="result" className="iframe" ref="iframe" />
-        </section>
+        </div>
       </div>
     );
   }
