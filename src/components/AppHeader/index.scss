@@ -8,8 +8,6 @@
   display: flex;
   align-items: center;
   color: #ffffff;
-  overflow: hidden;
-  
 }
 
 .AppHeader__tablist {
@@ -17,6 +15,7 @@
   display: flex;
   align-items: flex-end;
   margin: 0;
+  overflow: hidden;
   li {
     height: 25px;
     min-width: 50px;

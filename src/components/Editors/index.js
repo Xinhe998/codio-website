@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
-import { Hook, Console, Decode } from 'console-feed';
+import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
