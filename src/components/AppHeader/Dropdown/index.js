@@ -16,7 +16,7 @@ const Dropdown = ({
         className="Dropdown__button"
         onClick={() => swichOptionHandler(!isOpen)}
       >
-        <img className="Dropdown__button__icon" src={icon} />
+        <img className="Dropdown__button__icon" src={icon} alt="Dropdown__button" />
       </button>
       {isOpen ? (
         <div className="Dropdown__tooltip">

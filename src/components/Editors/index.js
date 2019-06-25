@@ -4,11 +4,9 @@ import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
 import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
-
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as action from '../../actions';
-
 import TabPanel from '../TabPanel';
 import ConsoleBox from '../ConsoleBox';
 
@@ -127,7 +125,7 @@ class Editors extends Component {
     document.close();
   };
 
-  selectAll = cm => {
+  selectAll = (cm) => {
     cm.execCommand('selectAll');
   };
 
@@ -137,59 +135,59 @@ class Editors extends Component {
     const lines = 0;
     cm.operation(() => {
       switch (lang || outer.name) {
-        case 'htmlmixed':
-          cm.replaceRange(
-            beautify_html(text, {
+      case 'htmlmixed':
+        cm.replaceRange(
+          beautify_html(text, {
+            indent_size: 2,
+            html: {
+              end_with_newline: true,
+              js: {
+                indent_size: 2,
+              },
+              css: {
+                indent_size: 2,
+              },
+            },
+            css: {
               indent_size: 2,
-              html: {
-                end_with_newline: true,
-                js: {
-                  indent_size: 2,
-                },
-                css: {
-                  indent_size: 2,
-                },
+            },
+            js: {
+              'preserve-newlines': true,
+            },
+          }),
+          from,
+          to,
+        );
+        break;
+      case 'css':
+        cm.replaceRange(
+          beautify_css(text, {
+            indent_size: 4,
+            html: {
+              end_with_newline: true,
+              js: {
+                indent_size: 2,
               },
               css: {
                 indent_size: 2,
               },
-              js: {
-                'preserve-newlines': true,
-              },
-            }),
-            from,
-            to,
-          );
-          break;
-        case 'css':
-          cm.replaceRange(
-            beautify_css(text, {
-              indent_size: 4,
-              html: {
-                end_with_newline: true,
-                js: {
-                  indent_size: 2,
-                },
-                css: {
-                  indent_size: 2,
-                },
-              },
-              css: {
-                indent_size: 2,
-              },
-              js: {
-                'preserve-newlines': true,
-              },
-            }),
-            from,
-            to,
-          );
-          break;
-        case 'javascript':
-          cm.replaceRange(beautify_js(text), from, to);
-          break;
-        default:
-          break;
+            },
+            css: {
+              indent_size: 2,
+            },
+            js: {
+              'preserve-newlines': true,
+            },
+          }),
+          from,
+          to,
+        );
+        break;
+      case 'javascript':
+        cm.replaceRange(beautify_js(text), from, to);
+        break;
+      default:
+        break;
       }
       for (
         let cur = from.line + 1, end = from.line + lines;
@@ -221,27 +219,27 @@ class Editors extends Component {
       closeOnUnfocus: true,
     };
     switch (lang || cm.getMode().name) {
-      case 'htmlmixed':
-        codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
-        codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
-        break;
-      case 'css':
-        codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
-        codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
-        break;
-      case 'javascript':
-        codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
-        codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
-        break;
-      default:
-        break;
+    case 'htmlmixed':
+      codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
+      break;
+    case 'css':
+      codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
+      break;
+    case 'javascript':
+      codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
+      break;
+    default:
+      break;
     }
   };
 
   printConsole = () => {
     const { js } = this.props.editor;
     try {
-      Hook(window.console, log => {
+      Hook(window.console, (log) => {
         this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
       });
       eval(js);
@@ -255,12 +253,12 @@ class Editors extends Component {
     const { js } = this.props.editor;
     const updatedLogs = [];
     try {
-      Hook(window.console, log => {
+      Hook(window.console, (log) => {
         updatedLogs.push(Decode(log));
       });
       this.setState({ logs: updatedLogs });
       this.props.addLogs(updatedLogs);
-      window.alert = function() {};
+      window.alert = function () {}; // 讓alert不要執行兩次
       eval(js);
       this.runCode();
     } catch (e) {
@@ -271,10 +269,10 @@ class Editors extends Component {
   jsEditorOnChange = (e, changeObj) => {
     this.props.addJavascript(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]' &&
-      JSON.stringify(changeObj.text) !== '[""]' &&
-      JSON.stringify(changeObj.text) !== '[" "]' &&
-      JSON.stringify(changeObj.text) !== '["",""]'
+      JSON.stringify(changeObj.text) !== '[";"]'
+      && JSON.stringify(changeObj.text) !== '[""]'
+      && JSON.stringify(changeObj.text) !== '[" "]'
+      && JSON.stringify(changeObj.text) !== '["",""]'
     ) {
       this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
     }
@@ -283,12 +281,12 @@ class Editors extends Component {
   cssEditorOnChange = (e, changeObj) => {
     this.props.addCss(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]' &&
-      JSON.stringify(changeObj.text) !== '[""]' &&
-      JSON.stringify(changeObj.text) !== '["",""]' &&
-      JSON.stringify(changeObj.text) !== '["{"]' &&
-      JSON.stringify(changeObj.text) !== '["}"]' &&
-      JSON.stringify(changeObj.text) !== '["{}"]'
+      JSON.stringify(changeObj.text) !== '[";"]'
+      && JSON.stringify(changeObj.text) !== '[""]'
+      && JSON.stringify(changeObj.text) !== '["",""]'
+      && JSON.stringify(changeObj.text) !== '["{"]'
+      && JSON.stringify(changeObj.text) !== '["}"]'
+      && JSON.stringify(changeObj.text) !== '["{}"]'
     ) {
       this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
     }
@@ -297,10 +295,10 @@ class Editors extends Component {
   htmlEditorOnChange = (e, changeObj) => {
     this.props.addHtml(e);
     if (
-      JSON.stringify(changeObj.text) !== '[""]' &&
-      JSON.stringify(changeObj.text) !== '["",""]' &&
-      JSON.stringify(changeObj.text) !== '["  "]' &&
-      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+      JSON.stringify(changeObj.text) !== '[""]'
+      && JSON.stringify(changeObj.text) !== '["",""]'
+      && JSON.stringify(changeObj.text) !== '["  "]'
+      && JSON.stringify(changeObj.text) !== '[">","","</div>"]'
     ) {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
@@ -312,7 +310,7 @@ class Editors extends Component {
       autoCloseBrackets: true,
       autoCloseTags: true,
       extraKeys: {
-        'Ctrl-Q': cm => {
+        'Ctrl-Q': (cm) => {
           cm.foldCode(cm.getCursor());
         },
         'Ctrl-E': cm => this.autoFormat(cm),
@@ -341,8 +339,7 @@ class Editors extends Component {
               <button
                 type="button"
                 className="formatBtn"
-                onClick={() =>
-                  this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')
+                onClick={() => this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')
                 }
               >
                 Format
@@ -368,8 +365,7 @@ class Editors extends Component {
               <button
                 type="button"
                 className="formatBtn"
-                onClick={() =>
-                  this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+                onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
                 }
               >
                 Format
@@ -399,8 +395,7 @@ class Editors extends Component {
               <button
                 type="button"
                 className="formatBtn"
-                onClick={() =>
-                  this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+                onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
                 }
               >
                 Format

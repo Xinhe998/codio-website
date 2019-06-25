@@ -1,7 +1,7 @@
 body {
   margin: 0 auto;
-  background-color: #2a2f42;
-  color: #ffffff;
+  background-color: $codio-darkblue;
+  color: $white;
   overflow: hidden;
 }
 
@@ -12,11 +12,11 @@ body {
 
 /** custom theme **/ 
 .cm-s-one-dark.CodeMirror {
-  background: #2a2f42;
+  background: $codio-darkblue;
 }
 
 .cm-s-one-dark .CodeMirror-gutter, .cm-s-one-dark .CodeMirror-gutters {
-  background-color: #2a2f42 !important;
+  background-color: $codio-darkblue !important;
 }
 
 .cm-s-one-dark .CodeMirror-linenumber, .cm-s-one-dark .CodeMirror-linenumbers {

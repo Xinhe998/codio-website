@@ -30,7 +30,7 @@
   border-radius: 10px;
   background-color: #3597ec;
   border: none;
-  color: #ffffff;
+  color: $white;
   padding: 10px 20px;
   outline: 0;
   cursor: pointer;
@@ -51,7 +51,7 @@
   line-height: 1.19;
   letter-spacing: normal;
   text-align: left;
-  color: #ffffff;
+  color: $white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

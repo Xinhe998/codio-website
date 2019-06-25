@@ -38,7 +38,6 @@ module.exports = {
     'react/jsx-indent-props': ['error', 2],
     'no-console': 'off',
     'no-plusplus': 'off',
-    'prettier/prettier': 'error',
     'react/require-default-props': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
     'react/forbid-prop-types': 'off',
