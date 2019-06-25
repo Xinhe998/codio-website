@@ -1,4 +1,32 @@
-.result iframe {
-  width: 100%;
-  height: 500px;
+body {
+  margin: 0 auto;
+  background-color: #2a2f42;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.AppContent {
+  height: calc(100vh - 70px);
+  margin-top: 60px;
+}
+
+/** custom theme **/ 
+.cm-s-one-dark.CodeMirror {
+  background: #2a2f42;
+}
+
+.cm-s-one-dark .CodeMirror-gutter, .cm-s-one-dark .CodeMirror-gutters {
+  background-color: #2a2f42 !important;
+}
+
+.cm-s-one-dark .CodeMirror-linenumber, .cm-s-one-dark .CodeMirror-linenumbers {
+  color: rgba(255, 255, 255, 0.56) !important;
+}
+
+.cm-s-one-dark .CodeMirror-lines {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.cm-s-one-dark .CodeMirror-foldmarker, .cm-s-one-dark .CodeMirror-foldgutter, .cm-s-one-dark .CodeMirror-foldgutter-open, .cm-s-one-dark .CodeMirror-foldgutter-folded {
+  color: rgba(255, 255, 255, 0.56) !important;
 }

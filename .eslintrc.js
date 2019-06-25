@@ -8,7 +8,7 @@ module.exports = {
       generators: false,
       objectLiteralDuplicateProperties: false,
       experimentalObjectRestSpread: true,
-    }
+    },
   },
   parser: 'babel-eslint',
   plugins: ['import', 'react', 'jsx-a11y'],
@@ -36,7 +36,15 @@ module.exports = {
     'react/jsx-indent': ['error', 2],
     // Indent props with 2 spaces
     'react/jsx-indent-props': ['error', 2],
-    'no-console': 'off'
+    'no-console': 'off',
+    'no-plusplus': 'off',
+    'prettier/prettier': 'error',
+    'react/require-default-props': 'off',
+    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+    'react/forbid-prop-types': 'off',
+    'react/prefer-stateless-function': 'off',
+    'react/sort-comp': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
   settings: {},
   env: {

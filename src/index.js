@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import App from './pages';
+import '../styles/main.scss';
 
 import storeFs from './reducers/store';
 
 const store = createStore(storeFs,
-  // eslint-disable-next-line no-underscore-dangle
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(

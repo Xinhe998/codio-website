@@ -1,0 +1,40 @@
+.AppHeader {
+  background: #383e55;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  overflow: hidden;
+  
+}
+
+.AppHeader__tablist {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+  li {
+    height: 25px;
+    min-width: 50px;
+    display: inline-block;
+    position: relative;
+    bottom: -1px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    list-style: none;
+    padding: 6px 12px;
+    margin-right: 9.8px;
+    cursor: pointer;
+    background: #537091;
+    text-align: center;
+    outline: 0;
+    &[aria-selected="true"] {
+      background: #2a2f42;
+    }
+  }
+}

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "codemirror-colorpicker": "^1.9.50",
     "console-feed": "^2.8.8",
     "css-tree": "^1.0.0-alpha.29",
     "gonzales-pe": "^4.2.4",

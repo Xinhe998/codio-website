@@ -1,0 +1,58 @@
+.playground {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.react-tabs__tab-panel {
+  flex-basis: 60%;
+  width: 60%;
+}
+
+.result {
+  flex-basis: 40%;
+  iframe {
+    width: 100%;
+    height: calc(100vh - 70px);
+    border: none;
+  }
+}
+
+.code-editor {
+  height: 100%;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  box-sizing: border-box;
+}
+
+.formatBtn {
+  border-radius: 10px;
+  background-color: #3597ec;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  outline: 0;
+  cursor: pointer;
+}
+.ReactCodeMirror {
+  height: calc(100% - 25px);
+}
+.CodeMirror {
+  height: inherit;
+}
+
+.editor-header {
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
