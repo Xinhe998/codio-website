@@ -1,0 +1,12 @@
+.resizer {
+  position: relative;
+}
+.handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 999;
+}
