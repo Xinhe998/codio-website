@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux';
-
-const initialState = {
+const editorInitialState = {
   html:
         '<div class="mainCard"> <div class="mainCard__avatar"> <img src="http://image.coolapk.com/apk_logo/2017/0323/E69CAAE6A087E9A298-7-for-134190-o_1bbtjhbd81t7q1t6otvli4ft7oq-uid-797034.png" alt="avatar"/> </div><div class="mainCard__title">Hello, I am Xinhe.</div><div class="mainCard__desc"> Hi, I am Xinhe Hsu (許歆荷).<br/> This is Codio website. </div><div class="mainCard__actions"> <a> Click me </a> </div></div>',
   css:
@@ -9,7 +7,7 @@ const initialState = {
   logs: '',
 };
 
-function dealEditor(state = initialState, action) {
+export default function (state = editorInitialState, action) {
   switch (action.type) {
   case 'ADD_HTML': {
     return Object.assign({}, state, { html: action.payload });
@@ -27,9 +25,3 @@ function dealEditor(state = initialState, action) {
     return state;
   }
 }
-
-const storeFs = combineReducers({
-  editor: dealEditor,
-});
-
-export default storeFs;

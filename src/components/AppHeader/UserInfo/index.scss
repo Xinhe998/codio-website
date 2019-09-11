@@ -1,0 +1,14 @@
+.userinfo {
+  display: flex;
+  margin-left: auto;
+  height: 100%;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+  img {
+    user-select: none;
+    -webkit-user-drag: none;
+    width: 20px;
+    border: none;
+  }
+}

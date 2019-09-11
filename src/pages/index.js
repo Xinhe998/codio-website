@@ -29,6 +29,8 @@ class Home extends Component {
         <AppHeader
           currentActiveTab={this.state.currentActiveTab}
           handleTabClick={this.handleTabClick}
+          isDropdownVisible
+          isTabVisible
         />
         <div className="AppContent">
           <Editors currentActiveTab={this.state.currentActiveTab} />

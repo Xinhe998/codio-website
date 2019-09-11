@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
+    "calidators": "^3.0.2",
     "codemirror-colorpicker": "^1.9.50",
     "console-feed": "^2.8.8",
     "css-tree": "^1.0.0-alpha.29",
@@ -27,6 +29,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "scss-parser": "^1.0.3"
   },
   "devDependencies": {

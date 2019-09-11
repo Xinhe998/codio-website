@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
+import notAuth from '../../../assets/user-solid.svg';
 
 class UserInfo extends Component {
   constructor() {
@@ -12,8 +13,8 @@ class UserInfo extends Component {
 
   render() {
     return (
-      <div>
-
+      <div className="userinfo">
+        <img src={notAuth} />
       </div>
     );
   }

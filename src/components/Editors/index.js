@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import * as action from '../../actions';
 import TabPanel from '../TabPanel';
 import ConsoleBox from '../ConsoleBox';
+import Resizer from '../Resizer';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -70,6 +71,7 @@ class Editors extends Component {
     this.delayJsOnChange = _.throttle(this.jsEditorOnChange, 3000, {
       leading: false,
     });
+    this.sidebarWidth = 0.6;
   }
 
   componentDidMount() {
@@ -304,6 +306,20 @@ class Editors extends Component {
     }
   };
 
+  handleResize = (diff) => {
+    let elementNewWidth = 0;
+    elementNewWidth = this.sidebarWidth - diff;
+    // elementNewWidth = Math.round(elementNewWidth * 10000) / 10000;
+    console.log(elementNewWidth);
+    this.sidebarWidth = elementNewWidth;
+  };
+
+  handleResizeStart = () => {};
+
+  handleResizeEnd = () => {
+    console.log('resize end');
+  };
+
   render() {
     const { html, css, js } = this.props.editor;
     const codeMirrorOptions = {
@@ -330,9 +346,20 @@ class Editors extends Component {
       styleActiveLine: true,
       tabSize: 2,
     };
+    const leftStyle = {
+      width: `${this.sidebarWidth * 100}%`,
+      minWidth: '1%',
+    };
+    const rightStyle = {
+      width: `${(1 - this.sidebarWidth) * 100}%`,
+      minWidth: '1%',
+    };
     return (
       <div className="playground">
-        <TabPanel selected={this.props.currentActiveTab == 'html'}>
+        <TabPanel
+          selected={this.props.currentActiveTab === 'html'}
+          style={leftStyle}
+        >
           <div className="code-editor html-code">
             <div className="editor-header">
               <span className="editor-header-title">HTML</span>
@@ -358,7 +385,10 @@ class Editors extends Component {
             />
           </div>
         </TabPanel>
-        <TabPanel selected={this.props.currentActiveTab == 'css'}>
+        <TabPanel
+          selected={this.props.currentActiveTab === 'css'}
+          style={leftStyle}
+        >
           <div className="code-editor css-code">
             <div className="editor-header">
               <span className="editor-header-title">CSS</span>
@@ -388,7 +418,10 @@ class Editors extends Component {
             />
           </div>
         </TabPanel>
-        <TabPanel selected={this.props.currentActiveTab == 'js'}>
+        <TabPanel
+          selected={this.props.currentActiveTab === 'js'}
+          style={leftStyle}
+        >
           <div className="code-editor js-code">
             <div className="editor-header">
               <span className="editor-header-title">JavaScript</span>
@@ -415,14 +448,25 @@ class Editors extends Component {
             />
           </div>
         </TabPanel>
-        <TabPanel selected={this.props.currentActiveTab == 'logs'}>
+        <TabPanel
+          selected={this.props.currentActiveTab === 'logs'}
+          style={leftStyle}
+        >
           <div className="code-editor logs-code">
             <div className="editor-header">Console</div>
             <ConsoleBox logs={this.state.logs} />
           </div>
         </TabPanel>
-        <div className="result">
-          <iframe title="result" className="iframe" ref="iframe" />
+
+        <div className="result" style={rightStyle}>
+          {/* <Resizer
+            direction="x"
+            onResizeStart={this.handleResizeStart}
+            onResize={this.handleResize}
+            onResizeEnd={this.handleResizeEnd}
+          > */}
+            <iframe title="result" className="iframe" ref="iframe" />
+          {/* </Resizer> */}
         </div>
       </div>
     );
