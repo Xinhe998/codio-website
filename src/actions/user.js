@@ -8,7 +8,7 @@ export const login = (payload) => {
     axios
       .post(URL, { m_account: payload.id, m_pasword: payload.password })
       .then(res => dispatch({ type: 'LOGIN_SUCCESS', res }))
-      .catch(err => dispatch({ type: 'LOGIN_ERROR', err }));
+      .catch(err => dispatch({ type: 'LOGIN_FAILED', err }));
   };
 };
 

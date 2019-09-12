@@ -9,6 +9,7 @@ const userInitialState = {
   m_address: '',
   role_no: '',
   isLoading: false,
+  errorMsg: null,
 };
 
 export default function (state = userInitialState, action) {
@@ -28,7 +29,7 @@ export default function (state = userInitialState, action) {
       : state;
   }
   case 'LOGIN_FAILED':
-    return { err: 'Login Failed', isLoading: false };
+    return { ...state, errorMsg: 'Login Failed', isLoading: false };
   default:
     return state;
   }
