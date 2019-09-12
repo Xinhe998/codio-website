@@ -9,6 +9,7 @@ import storeFs from './reducers';
 import '../styles/main.scss';
 import App from './pages';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 const store = createStore(
   storeFs,
@@ -26,6 +27,7 @@ ReactDOM.render(
       <div>
         <Route exact path="/" component={App} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </div>
     </BrowserRouter>

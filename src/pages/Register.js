@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { isRequired } from 'calidators';
+import { isRequired, isEqual } from 'calidators';
 import action from '../actions';
 
 import AppHeader from '../components/AppHeader';
@@ -9,17 +9,22 @@ import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 
 import './index.scss';
-import './Login.scss';
+import './Register.scss';
 
 import mockup from '../assets/smartmockups_jxfuqv8i.jpg';
 
-const Login = (props) => {
+const Register = (props) => {
   const [id, setID] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [currentActiveTab, setCurrentActiveTab] = useState('');
 
   const emailValidator = isRequired({ message: '請輸入帳號' })(id);
   const passwordValidator = isRequired({ message: '請輸入密碼' })(password);
+  const nameValidator = isRequired({ message: '請輸入使用者名稱' })(name);
+  const confirmPasswordValidator1 = isRequired({ message: '請輸入確認密碼' })(confirmPassword);
+  const confirmPasswordValidator2 = isEqual({ message: '請輸入確認密碼', password })(confirmPassword);
 
   const loginHandler = () => {
     const loginData = {
@@ -29,24 +34,35 @@ const Login = (props) => {
     props.login(loginData);
   };
   return (
-    <div className="Login">
+    <div className="Register">
       <AppHeader
         currentActiveTab={currentActiveTab}
         isDropdownVisible={false}
         isTabVisible={false}
       />
       <div className="AppContent">
+        <div
+          className="photo-section"
+          style={{ backgroundImage: `url(${mockup})` }}
+        />
         <div className="form-section">
-          <p className="title">登入</p>
+          <p className="title">註冊</p>
           <p className="extrainfo">
-            還沒有帳號嗎？
-            <a href="register">點我註冊</a>
+            有帳號了嗎？
+            <a href="register">點我登入</a>
           </p>
           <TextInput
             title="帳號"
             text={id}
             showHint={false}
             onChange={e => setID(e.target.value)}
+            required
+          />
+          <TextInput
+            title="使用者名稱"
+            text={name}
+            showHint={false}
+            onChange={e => setName(e.target.value)}
             required
           />
           <TextInput
@@ -57,20 +73,23 @@ const Login = (props) => {
             onChange={e => setPassword(e.target.value)}
             required
           />
+          <TextInput
+            title="確認密碼"
+            text={confirmPassword}
+            type="password"
+            showHint={false}
+            onChange={e => setConfirmPassword(e.target.value)}
+            required
+          />
           <Button
-            className="login_btn"
-            text="登入"
-            type="primary"
+            className="next_btn"
+            text="下一步"
+            type="link"
             size="small"
             onClick={loginHandler}
             disabled={emailValidator || passwordValidator}
           />
-          <Button className="github_login_btn" text="Github 登入" type="outline" size="small" />
         </div>
-        <div
-          className="photo-section"
-          style={{ backgroundImage: `url(${mockup})` }}
-        />
       </div>
     </div>
   );
@@ -84,5 +103,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     action,
-  )(Login),
+  )(Register),
 );
