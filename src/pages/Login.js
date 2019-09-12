@@ -17,7 +17,6 @@ import mockup from '../assets/smartmockups_jxfuqv8i.jpg';
 const Login = (props) => {
   const [id, setID] = useState('');
   const [password, setPassword] = useState('');
-  const [currentActiveTab, setCurrentActiveTab] = useState('');
 
   const emailValidator = isRequired({ message: '請輸入帳號' })(id);
   const passwordValidator = isRequired({ message: '請輸入密碼' })(password);
@@ -32,7 +31,6 @@ const Login = (props) => {
   return (
     <div className="Login">
       <AppHeader
-        currentActiveTab={currentActiveTab}
         isDropdownVisible={false}
         isTabVisible={false}
       />
@@ -66,14 +64,14 @@ const Login = (props) => {
             onChange={e => setPassword(e.target.value)}
             required
           />
-          <Button className="forget_password_btn" text="忘記密碼？" type="link" />
+          <Button className="forget_password_btn" text="忘記密碼？" type="link" theme="red" />
           <Button
             className="login_btn"
             text="登入"
             type="primary"
             size="small"
             onClick={loginHandler}
-            disabled={emailValidator || passwordValidator}
+            disabled={emailValidator !== null || passwordValidator !== null}
           />
           <Button className="github_login_btn" text="Github 登入" type="outline" size="small" />
         </div>

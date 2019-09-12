@@ -10,11 +10,26 @@ class Button extends Component {
   }
 
   render() {
-    const { text, size, type, shape, onClick, disabled, className } = this.props;
+    const {
+      text,
+      size,
+      type,
+      shape,
+      onClick,
+      disabled,
+      className,
+      theme,
+    } = this.props;
     return (
       <button
         type="button"
-        className={classNames(className, size, `type_${type}`, shape || `shape_${shape}`)}
+        className={classNames(
+          className,
+          size,
+          `type_${type}`,
+          shape ? `shape_${shape}` : null,
+          theme ? `theme_${theme}` : null,
+        )}
         onClick={onClick}
         disabled={disabled}
       >
@@ -33,6 +48,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  theme: PropTypes.string,
 };
 
 Button.defaultProps = {

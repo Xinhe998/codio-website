@@ -42,9 +42,9 @@
     width: 50%;
     background: $white;
     box-sizing: border-box;
-    padding: 50px 100px;
+    padding: 20px 100px 50px;
     .textinput {
-      padding: 5px 0;
+      padding: 15px 0;
     }
   }
   .photo-section {
@@ -57,5 +57,11 @@
   }
   .login_btn {
     margin-top: auto !important;
+  }
+  .next_btn {
+    width: 100%;
+    text-align: right;
+    font-size: 18px;
+    margin: 10px 0;
   }
 }

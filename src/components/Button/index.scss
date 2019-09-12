@@ -30,8 +30,26 @@ button {
     border: none;
     color: #ec5252;
     &:disabled {
-      color: #707070;
       cursor: not-allowed;
+    }
+
+    &.theme_red {
+      color: #ec5252;
+      &:disabled {
+        color: #FFE0E0;
+        &:hover {
+          color: #ec5252;
+        }
+      }
+    }
+    &.theme_blue {
+      color: #3597ec;
+      &:disabled {
+        color: rgba(53, 151, 236, 0.65);;
+        &:hover {
+          color: #3597ec;
+        }
+      }
     }
   }
 
