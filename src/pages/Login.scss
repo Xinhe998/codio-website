@@ -5,6 +5,21 @@
     flex-direction: row;
     height: calc(100vh - 60px);
   }
+  .error-message {
+    color: #ec5252;
+    border-radius: 5px;
+    background-color: #fcd7d7;
+    padding: 10px;
+    line-height: 1.33;
+    font-size: 14px;
+    margin: 0 0 5px;
+    svg {
+      width: 15px;
+      height: 15px;
+      vertical-align: middle;
+      margin: 0 5px;
+    }
+  }
   .title {
     font-size: 24px;
     font-weight: 500;
@@ -42,9 +57,9 @@
     width: 50%;
     background: $white;
     box-sizing: border-box;
-    padding: 50px 100px;
+    padding: 10px 100px 50px;
     .textinput {
-      padding: 15px 0;
+      padding: 10px 0;
     }
   }
   .photo-section {
@@ -57,5 +72,10 @@
   }
   .login_btn {
     margin-top: auto !important;
+  }
+  .forget_password_btn {
+    text-align: right;
+    font-size: 14px;
+    padding: 0;
   }
 }

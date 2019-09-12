@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
+import { IoIosCloseCircle } from 'react-icons/io';
 import action from '../actions';
 
 import AppHeader from '../components/AppHeader';
@@ -26,7 +27,7 @@ const Login = (props) => {
       id,
       password,
     };
-    props.login(loginData);
+    props.login(loginData, props.history);
   };
   return (
     <div className="Login">
@@ -42,6 +43,14 @@ const Login = (props) => {
             還沒有帳號嗎？
             <a href="register">點我註冊</a>
           </p>
+          {props.user.errorMsg
+            ? (
+              <div className="error-message">
+                <IoIosCloseCircle />
+              帳號或密碼有誤，請重新再輸入一次
+              </div>
+            )
+            : null}
           <TextInput
             title="帳號"
             text={id}
@@ -57,6 +66,7 @@ const Login = (props) => {
             onChange={e => setPassword(e.target.value)}
             required
           />
+          <Button className="forget_password_btn" text="忘記密碼？" type="link" />
           <Button
             className="login_btn"
             text="登入"

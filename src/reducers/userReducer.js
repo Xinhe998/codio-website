@@ -15,7 +15,7 @@ const userInitialState = {
 export default function (state = userInitialState, action) {
   switch (action.type) {
   case 'LOGIN_REQUEST': {
-    return { ...state, isLoading: true };
+    return { ...state, isLoading: true, errorMsg: null };
   }
   case 'LOGIN_SUCCESS': {
     const {
@@ -24,7 +24,11 @@ export default function (state = userInitialState, action) {
     } = action.res;
     return status === 200
       ? {
-        ...state, isLoading: false, token, ...member,
+        ...state,
+        isLoading: false,
+        token,
+        ...member,
+        errorMsg: null,
       }
       : state;
   }

@@ -49,7 +49,7 @@ const Register = (props) => {
           <p className="title">註冊</p>
           <p className="extrainfo">
             有帳號了嗎？
-            <a href="register">點我登入</a>
+            <a href="login">點我登入</a>
           </p>
           <TextInput
             title="帳號"

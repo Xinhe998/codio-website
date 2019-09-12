@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import './index.scss';
 import notAuth from '../../../assets/user-solid.svg';
 
-class UserInfo extends Component {
-  constructor() {
-    super();
-    this.state = {
+const UserInfo = withRouter(({ history }) => (
+  <div
+    className="userinfo"
+    onClick={() => {
+      history.push('/login');
+    }}
+  >
+    <img src={notAuth} />
+  </div>
+));
 
-    };
-  }
-
-  render() {
-    return (
-      <div className="userinfo">
-        <img src={notAuth} />
-      </div>
-    );
-  }
-}
-
-UserInfo.propTypes = {
-};
-
-UserInfo.defaultProps = {
-};
 export default UserInfo;

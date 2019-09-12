@@ -37,7 +37,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   text: '',
-  size: 'small',
+  size: '',
   type: 'primary',
 };
 export default Button;
