@@ -64,7 +64,7 @@ const Login = (props) => {
             onChange={e => setPassword(e.target.value)}
             required
           />
-          <Button className="forget_password_btn" text="忘記密碼？" type="link" theme="red" />
+          {/* <Button className="forget_password_btn" text="忘記密碼？" type="link" theme="red" /> */}
           <Link
             to={{
               pathname: '/forget_password',

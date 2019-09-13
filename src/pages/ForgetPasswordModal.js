@@ -11,18 +11,24 @@ import Modal from '../components/Modal';
 import './index.scss';
 import './ForgetPassword.scss';
 
-const ForgetPasswordModal = ({ location }) => {
+const ForgetPasswordModal = ({ location, history }) => {
   const { state = {} } = location;
   const { modal } = state;
   const [email, setEmail] = useState('');
   const emailValidator = isRequired({ message: '請輸入E-mail' })(email);
   const emailValidator2 = isEmail({ message: '請輸入正確的Email' })(email);
 
+  const handleForgetPassword = () => {
+    props.forgetPassword(email, history);
+  };
+
   return modal ? (
     <Modal
       isOpen
       title="忘記密碼"
-      onClose={() => {}}
+      onClose={() => {
+        history.goBack();
+      }}
       shouldCloseOnEsc
       showControlBtn={false}
     >
@@ -40,7 +46,7 @@ const ForgetPasswordModal = ({ location }) => {
         text="送出"
         type="primary"
         size="small"
-        onClick={() => {}}
+        onClick={handleForgetPassword}
         disabled={emailValidator !== null || emailValidator2 !== null}
       />
     </Modal>
