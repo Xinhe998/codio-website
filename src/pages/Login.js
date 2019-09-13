@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -65,6 +65,15 @@ const Login = (props) => {
             required
           />
           <Button className="forget_password_btn" text="忘記密碼？" type="link" theme="red" />
+          <Link
+            to={{
+              pathname: '/forget_password',
+              state: { modal: true },
+            }}
+            className="forget_password_btn"
+          >
+            忘記密碼？
+          </Link>
           <Button
             className="login_btn"
             text="登入"

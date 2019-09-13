@@ -1,6 +1,7 @@
 button {
   cursor: pointer;
   outline: 0;
+  box-sizing: border-box;
   transition: all .5s;
 
   &.type_primary {
