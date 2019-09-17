@@ -6,7 +6,7 @@ export const login = (payload, history) => {
   return (dispatch) => {
     dispatch({ type: 'LOGIN_REQUEST', payload });
     axios
-      .post(URL, { m_account: payload.id, m_pasword: payload.password })
+      .post(URL, { m_account: payload.id, m_password: payload.password })
       .then((res) => {
         dispatch({ type: 'LOGIN_SUCCESS', res });
         history.push('/');
@@ -22,7 +22,7 @@ export const register = (payload, history) => {
     axios
       .post(URL, {
         m_account: payload.id,
-        m_pasword: payload.password,
+        m_password: payload.password,
         m_name: payload.name,
         m_birthday: payload.birth,
         m_phone: payload.phone,
@@ -33,6 +33,22 @@ export const register = (payload, history) => {
         history.push('/login');
       })
       .catch(err => dispatch({ type: 'REGISTER_FAILED', err }));
+  };
+};
+
+export const forgetPassword = (payload, history) => {
+  const URL = API.forget_password;
+  return (dispatch) => {
+    dispatch({ type: 'FORGET_PASSWORD_REQUEST', payload });
+    axios
+      .post(URL, {
+        m_account: payload,
+      })
+      .then((res) => {
+        dispatch({ type: 'FORGET_PASSWORD_SUCCESS', res });
+        history.goBack();
+      })
+      .catch(err => dispatch({ type: 'FORGET_PASSWORD_FAILED', err }));
   };
 };
 

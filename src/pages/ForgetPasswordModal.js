@@ -11,7 +11,7 @@ import Modal from '../components/Modal';
 import './index.scss';
 import './ForgetPassword.scss';
 
-const ForgetPasswordModal = ({ location, history }) => {
+const ForgetPasswordModal = ({ location, history, forgetPassword }) => {
   const { state = {} } = location;
   const { modal } = state;
   const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const ForgetPasswordModal = ({ location, history }) => {
   const emailValidator2 = isEmail({ message: '請輸入正確的Email' })(email);
 
   const handleForgetPassword = () => {
-    props.forgetPassword(email, history);
+    forgetPassword(email, history);
   };
 
   return modal ? (
