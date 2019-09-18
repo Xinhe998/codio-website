@@ -12,6 +12,7 @@ const Modal = ({
   isOpen,
   title,
   shouldCloseOnEsc,
+  shouldCloseOnClickOutside,
   showControlBtn,
   cancelBtnText,
   confirmBtnText,
@@ -21,7 +22,7 @@ const Modal = ({
   history
 }) => {
   const modalRef = useRef();
-  useClickOutside(isOpen, modalRef, onClose);
+  if (shouldCloseOnClickOutside) useClickOutside(isOpen, modalRef, onClose);
   if (shouldCloseOnEsc) useEscCloseModal(onClose);
   return isOpen ? (
     <div className="Modal Modal__backdrop">
@@ -63,6 +64,7 @@ Modal.propTypes = {
   title: PropTypes.string,
   isOpen: PropTypes.bool,
   shouldCloseOnEsc: PropTypes.bool,
+  shouldCloseOnClickOutside: PropTypes.bool,
   showControlBtn: PropTypes.bool,
   cancelBtnText: PropTypes.string,
   confirmBtnText: PropTypes.string,

@@ -30,6 +30,7 @@ const ForgetPasswordModal = ({ location, history, forgetPassword }) => {
         history.goBack();
       }}
       shouldCloseOnEsc
+      shouldCloseOnClickOutside
       showControlBtn={false}
     >
       <p>請輸入當時註冊的信箱來接收一個暫時的密碼</p>
