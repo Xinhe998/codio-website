@@ -21,13 +21,16 @@ class TextInput extends Component {
       showHint,
       hintType,
       hintText,
+      onFocus,
+      onBlur,
+      icon,
     } = this.props;
     return (
       <div
         className={classNames(
           'textinput',
           required ? 'required' : null,
-          showHint ? (hintType || null) : null,
+          showHint ? hintType || null : null,
         )}
       >
         <span className="textinput__title">{title}</span>
@@ -36,12 +39,13 @@ class TextInput extends Component {
           value={text}
           placeholder={placeholder}
           onChange={e => onChange(e)}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
+        <div className="textinput__icon">{icon}</div>
         {showHint ? (
           <span className="textinput__hint">
-            <span className="hinttext">
-              {hintText}
-            </span>
+            <span className="hinttext">{hintText}</span>
             {hintType === 'error' ? <IoIosWarning /> : null}
             {hintType === 'ok' ? <IoIosCheckmarkCircle /> : null}
           </span>
@@ -61,10 +65,15 @@ TextInput.propTypes = {
   hintText: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  icon: PropTypes.any,
 };
 
 TextInput.defaultProps = {
   type: 'text',
   text: '',
+  onBlur: null,
+  onFocus: null,
 };
 export default TextInput;

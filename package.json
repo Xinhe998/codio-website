@@ -17,6 +17,7 @@
     "codemirror-colorpicker": "^1.9.50",
     "console-feed": "^2.8.8",
     "css-tree": "^1.0.0-alpha.29",
+    "date-fns": "^2.2.1",
     "gonzales-pe": "^4.2.4",
     "js-beautify": "^1.10.0",
     "lodash": "^4.17.11",

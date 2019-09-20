@@ -16,6 +16,7 @@ $phone-media: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 .Modal__wrapper {
   background-color: #ffffff;
