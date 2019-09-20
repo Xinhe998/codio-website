@@ -24,6 +24,9 @@
     &:disabled {
       background-color: #e4e4e4;
     }
+    &::placeholder {
+      color: #e4e4e4;
+    }
   }
 
   &.required {
