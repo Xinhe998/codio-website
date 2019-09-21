@@ -26,7 +26,7 @@ const CreateProject = ({ history }) => {
   const [projectTemplate, setProjectTemplate] = useState(['']);
 
   const projectTitleValidator = isRequired({ message: '請輸入專案標題' })(projectTitle);
-  const handleSelectProjectTemplate = template => {
+  const handleSelectProjectTemplate = (template) => {
     const index = projectTemplate.indexOf(template);
     if (index !== -1) {
       setProjectTemplate(projectTemplate.filter(item => item !== template));
