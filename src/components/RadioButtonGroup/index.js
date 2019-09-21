@@ -8,7 +8,7 @@ const RadioButtonGroup = ({ title, options, required, name, defaultChecked }) =>
   useEffect(() => {
     // 預設勾選
     setRadioValue(options[defaultChecked - 1]);
-  });
+  }, []);
   return (
     <div className={cx('radioButtonGroup', required ? 'required' : null)}>
       <span className="radioButtonGroup__title">{title}</span>
