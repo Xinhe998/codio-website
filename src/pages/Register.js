@@ -129,13 +129,6 @@ const Register = (props) => {
           ) : null}
           {currentStep === 2 ? (
             <form>
-              {/* <TextInput
-                title="生日"
-                text={birth}
-                showHint={false}
-                onChange={e => setBirth(e.target.value)}
-                required
-              /> */}
               <DateInput
                 title="生日"
                 placeholder="dd/mm/yyyy"
