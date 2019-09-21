@@ -1,0 +1,29 @@
+.CreateProject {
+  .Modal__content {
+    padding: 0;
+  }
+  .Modal__wrapper {
+    width: 100%;
+  }
+  .createProjectForm {
+    display: flex;
+    // padding: 30px 50px 50px;
+    .textinput {
+      margin: 20px 0;
+    }
+  }
+  .createProjectForm__information {
+    flex: 1;
+    padding: 20px 50px 50px;
+    border-right: 1px solid #e4e4e4;
+  }
+  .createProjectForm__template {
+    flex: 1;
+    padding: 20px 50px 50px;
+  }
+  p.createProjectForm__information__title,
+  p.createProjectForm__template__title {
+    color: #000000;
+    margin: 20px 0 40px;
+  }
+}
