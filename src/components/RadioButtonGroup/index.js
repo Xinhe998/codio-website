@@ -1,10 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './index.scss';
 
-const RadioButtonGroup = ({ title, options, required, name }) => {
+const RadioButtonGroup = ({ title, options, required, name, defaultChecked }) => {
   const [radioValue, setRadioValue] = useState('');
+  useEffect(() => {
+    // 預設勾選
+    setRadioValue(options[defaultChecked - 1]);
+  });
   return (
     <div className={cx('radioButtonGroup', required ? 'required' : null)}>
       <span className="radioButtonGroup__title">{title}</span>
@@ -39,11 +43,13 @@ RadioButtonGroup.propTypes = {
   options: PropTypes.array,
   required: PropTypes.bool,
   name: PropTypes.string,
+  defaultChecked: PropTypes.number,
 };
 
 RadioButtonGroup.defaultProps = {
   title: '',
   name: '',
   options: [],
+  defaultChecked: 1,
 };
 export default RadioButtonGroup;
