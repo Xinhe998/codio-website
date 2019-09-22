@@ -21,7 +21,7 @@ export const createProject = (payload, history) => {
     axios(postData)
       .then((res) => {
         dispatch({ type: 'CREATE_PROJECT_SUCCESS', res });
-        history.push(`/p/${payload.m_no}`);
+        history.push(`/p/${res.data.mp_no}`);
       })
       .catch(err => {
         console.log(err);
