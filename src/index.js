@@ -17,6 +17,7 @@ import Register from './pages/Register';
 import ForgetPasswordModal from './pages/ForgetPasswordModal';
 import ForgetPassword from './pages/ForgetPassword';
 import CreateProject from './pages/CreateProject';
+import PrivateRoute from './pages/PrivateRoute';
 
 import usePrevious from './hooks/usePrevious';
 
@@ -49,9 +50,8 @@ const CodioSwitch = ({ location }) => {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
-        <Route path="/create_project" component={CreateProject} />
+        <PrivateRoute path="/create_project" component={CreateProject} />
         <Route path="/p/:id" component={App} />
-        {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}
     </>
