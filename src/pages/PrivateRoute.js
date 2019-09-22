@@ -2,8 +2,10 @@ import React from 'react';
 import {
   Route,
   Redirect,
+  Link,
   BrowserRouter as Router,
 } from 'react-router-dom';
+import Login from './Login';
 
 const PrivateRoute = ({ component, ...rest }) => {
   const userData = window.localStorage.getItem('persist:root');
@@ -13,17 +15,16 @@ const PrivateRoute = ({ component, ...rest }) => {
     <Route
       {...rest}
       exact
-      render={props =>
-        isAuthed ? (
-          <div>{React.createElement(component, props)}</div>
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: props.location },
-            }}
-          />
-        )
+      render={props => (isAuthed ? (
+        <div>{React.createElement(component, props)}</div>
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: { from: props.location },
+          }}
+        />
+      ))
       }
     />
   );
