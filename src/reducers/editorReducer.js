@@ -8,8 +8,6 @@
 // };
 
 const editorInitialState = {
-  project_id: '',
-  project_title: '',
   html: '',
   css: '',
   js: '',

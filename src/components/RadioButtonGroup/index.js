@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './index.scss';
 
-const RadioButtonGroup = ({ title, options, required, name, defaultChecked }) => {
-  const [radioValue, setRadioValue] = useState('');
-  useEffect(() => {
-    // 預設勾選
-    setRadioValue(options[defaultChecked - 1]);
-  }, []);
+const RadioButtonGroup = ({ title, options, required, name, value, onChange }) => {
   return (
     <div className={cx('radioButtonGroup', required ? 'required' : null)}>
       <span className="radioButtonGroup__title">{title}</span>
@@ -18,7 +13,7 @@ const RadioButtonGroup = ({ title, options, required, name, defaultChecked }) =>
             key={option}
             className={cx(
               'radioButtonGroup__option',
-              option === radioValue && 'checked',
+              option === value && 'checked',
             )}
           >
             {option}
@@ -27,8 +22,8 @@ const RadioButtonGroup = ({ title, options, required, name, defaultChecked }) =>
               id={option}
               value={option}
               name={name}
-              checked={radioValue === option}
-              onChange={e => setRadioValue(e.target.value)}
+              checked={value === option}
+              onChange={e => onChange(e.target.value)}
             />
             <span className="checkmark" />
           </label>
@@ -43,13 +38,14 @@ RadioButtonGroup.propTypes = {
   options: PropTypes.array,
   required: PropTypes.bool,
   name: PropTypes.string,
-  defaultChecked: PropTypes.number,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 RadioButtonGroup.defaultProps = {
   title: '',
   name: '',
   options: [],
-  defaultChecked: 1,
+  value: '',
 };
 export default RadioButtonGroup;

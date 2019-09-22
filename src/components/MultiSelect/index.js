@@ -36,10 +36,10 @@ const renderDropDown = (options, optionOnClick) => {
   return <ul className="MultiSelect__dropdown">{DropdownOptions}</ul>;
 };
 
-const MultiSelect = ({ title, options }) => {
+const MultiSelect = ({ title, options, selectedItems, onChange }) => {
   const [newInput, setNewInput] = useState('');
   const [currentOptions, setCurrentOptions] = useState(options);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  // const [selectedOptions, setSelectedOptions] = useState([]);
   const [isInputOnFocus, setIsInputOnFocus] = useState(false);
   const MultiSelectRef = useRef();
   const MultiSelectInputRef = useRef();
@@ -50,15 +50,15 @@ const MultiSelect = ({ title, options }) => {
 
   // 點dropdown裡的選項
   const optionOnClick = (option) => {
-    setSelectedOptions([option, ...selectedOptions]);
+    onChange([option, ...selectedItems]);
     setCurrentOptions(currentOptions.filter(item => item !== option));
   };
 
   // 點tag的叉叉
   const selectedOptionOnClick = (index, text) => {
-    const tempOptions = selectedOptions;
+    const tempOptions = selectedItems;
     tempOptions.splice(index, 1);
-    setSelectedOptions(tempOptions);
+    onChange(tempOptions);
     setCurrentOptions([text, ...currentOptions]);
     setIsInputOnFocus(true);
   };
@@ -78,7 +78,7 @@ const MultiSelect = ({ title, options }) => {
         )}
         onClick={() => MultiSelectInputRef.current.focus()}
       >
-        {selectedOptions.length ? renderSelectedTags(selectedOptions, selectedOptionOnClick) : null}
+        {selectedItems.length ? renderSelectedTags(selectedItems, selectedOptionOnClick) : null}
         <input
           className="MultiSelect__input"
           value={newInput}
