@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,37 +9,24 @@ import AppFooter from '../components/AppFooter';
 import * as action from '../actions';
 import './index.scss';
 
-class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentActiveTab: 'html',
-    };
-  }
+const Home = () => {
+  const [currentActiveTab, setCurrentActiveTab] = useState('html');
 
-  handleTabClick = (target) => {
-    this.setState({
-      currentActiveTab: target,
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <AppHeader
-          currentActiveTab={this.state.currentActiveTab}
-          handleTabClick={this.handleTabClick}
-          isDropdownVisible
-          isTabVisible
-        />
-        <div className="AppContent">
-          <Editors currentActiveTab={this.state.currentActiveTab} />
-        </div>
-        <AppFooter />
+  return (
+    <div className="App">
+      <AppHeader
+        currentActiveTab={currentActiveTab}
+        handleTabClick={target => setCurrentActiveTab(target)}
+        isDropdownVisible
+        isTabVisible
+      />
+      <div className="AppContent">
+        <Editors currentActiveTab={currentActiveTab} />
       </div>
-    );
-  }
-}
+      <AppFooter />
+    </div>
+  );
+};
 
 const mapStateToProps = store => ({
   editor: store.editor,

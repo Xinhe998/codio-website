@@ -9,7 +9,7 @@ export const login = (payload, history) => {
       .post(URL, { m_account: payload.id, m_password: payload.password })
       .then((res) => {
         dispatch({ type: 'LOGIN_SUCCESS', res });
-        history.push('/');
+        history.push('/create_project');
       })
       .catch(err => dispatch({ type: 'LOGIN_FAILED', err }));
   };

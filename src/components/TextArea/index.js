@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { IoIosWarning, IoIosCheckmarkCircle } from 'react-icons/io';
+import useAutoSize from '../../hooks/useAutoSize';
 import './index.scss';
 
 const TextInput = ({
@@ -11,38 +11,30 @@ const TextInput = ({
   title,
   onChange,
   required,
-  showHint,
-  hintType,
-  hintText,
   onFocus,
   onBlur,
   icon,
 }) => {
+  const textareaRef = useRef();
+  useAutoSize(textareaRef);
   return (
     <div
       className={classNames(
         'textinput',
         required ? 'required' : null,
-        showHint ? hintType || null : null,
       )}
     >
       <span className="textinput__title">{title}</span>
-      <input
+      <textarea
         type={type}
         value={text}
         placeholder={placeholder}
         onChange={e => onChange(e)}
         onFocus={onFocus}
         onBlur={onBlur}
+        ref={textareaRef}
       />
       <div className="textinput__icon">{icon}</div>
-      {showHint ? (
-        <span className="textinput__hint">
-          <span className="hinttext">{hintText}</span>
-          {hintType === 'error' ? <IoIosWarning /> : null}
-          {hintType === 'ok' ? <IoIosCheckmarkCircle /> : null}
-        </span>
-      ) : null}
     </div>
   );
 };
@@ -52,9 +44,6 @@ TextInput.propTypes = {
   type: PropTypes.string,
   text: PropTypes.string,
   placeholder: PropTypes.string,
-  showHint: PropTypes.bool,
-  hintType: PropTypes.string,
-  hintText: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   onBlur: PropTypes.func,

@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgetPasswordModal from './pages/ForgetPasswordModal';
 import ForgetPassword from './pages/ForgetPassword';
+import CreateProject from './pages/CreateProject';
+
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
 
@@ -37,6 +39,7 @@ const CodioSwitch = ({ location }) => {
         <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
         <Route path="/admin" component={Admin} />
+        <Route path="/create_project" component={CreateProject} />
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}

@@ -1,0 +1,132 @@
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+$pc-media: 960px;
+$pad-media: 760px;
+$phone-media: 480px;
+
+.icon {
+  font-family: 'Material Icons', serif;
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+/* Calendar */
+
+.calendar {
+  display: block;
+  user-select: none;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  border: solid 1px var(--very-light-pink);
+  background-color: #ffffff;
+  padding: 10px 20px;
+  position: absolute;
+  z-index: 100;
+  width: 300px;
+}
+
+.calendar .header {
+  display: flex;
+  justify-content: flex-end;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 115%;
+  padding: 0.2em 0;
+  color: #707070;
+  .icon {
+    cursor: pointer;
+    transition: 0.5s ease-out;
+    margin: 0 10px;
+    background: #ec5252;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 5px;
+    &:hover {
+      // color: var(--main-blue);
+    }
+  }
+  .col-start {
+    margin-right: auto;
+  }
+}
+
+.calendar .days {
+  display: flex;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #707070;
+  font-size: 70%;
+  padding: 0.5em 0;
+  .col-center {
+    flex-basis: calc(100% / 7);
+    width: calc(100% / 7);
+    text-align: center;
+    color: #2a2f42;
+  }
+}
+
+.calendar .body {
+  color: #707070;
+  .selected {
+    span {
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      background-color: #ffe0e0;
+      color: #ec5252;
+    }
+  }
+  .row {
+    display: flex;
+  }
+  .cell {
+    position: relative;
+    height: 2.2em;
+    overflow: hidden;
+    cursor: pointer;
+    span {
+      transition: all 0.5s;
+      border-radius: 50%;
+    }
+    &:not(.selected):hover {
+      span {
+        background: #e4e4e4;
+      }
+    }
+    .number {
+      font-size: 82.5%;
+      line-height: 2.2;
+      width: 27px;
+      height: 27px;
+      @media screen and (max-width: $pad-media) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  .disabled {
+    color: #e4e4e4;
+    pointer-events: none;
+  }
+  .col {
+    display: flex;
+    flex-grow: 0;
+    flex-basis: calc(100% / 7);
+    width: calc(100% / 7);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

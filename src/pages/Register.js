@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  isRequired, isEqual, isEmail, hasChar, hasDigit,
+  isRequired, isEqual, isEmail, isNumber, hasDigit,
 } from 'calidators';
 import action from '../actions';
 
 import AppHeader from '../components/AppHeader';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
+import DateInput from '../components/DateInput';
 
 import './index.scss';
 import './Register.scss';
@@ -21,15 +22,16 @@ const Register = (props) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [currentStep, setCurrentStep] = useState(1);
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [birth, setBirth] = useState('');
+  const [birth, setBirth] = useState(new Date());
   const [address, setAddress] = useState('');
+  const [isBirthOnFocus, setIsBirthOnFocus] = useState(false);
 
   const idValidator = isRequired({ message: '請輸入帳號' })(id);
+  const emailValidator = isEmail({ message: 'Email格式錯誤' })(id);
   const passwordValidator1 = isRequired({ message: '請輸入密碼' })(password);
-  const passwordValidator2 = hasChar({ message: '密碼需包含英文及數字' })(password)
-    && hasDigit({ message: '密碼需包含英文及數字' })(password);
+  const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(password);
+  const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(password);
   const nameValidator = isRequired({ message: '請輸入使用者名稱' })(name);
   const confirmPasswordValidator1 = isRequired({ message: '請輸入確認密碼' })(
     confirmPassword,
@@ -38,21 +40,18 @@ const Register = (props) => {
     message: '確認密碼不一致，請重新輸入',
     value: password,
   })(confirmPassword);
-  const emailValidator = isEmail({ message: '請輸入正確的Email' })(email);
 
   const handleRegister = () => {
     const registerData = {
       id,
       password,
       name,
-      email,
       phone,
       birth,
       address,
     };
     props.register(registerData, props.history);
   };
-
   return (
     <div className="Register">
       <AppHeader isDropdownVisible={false} isTabVisible={false} />
@@ -69,18 +68,14 @@ const Register = (props) => {
           </p>
           {currentStep === 1 ? (
             <form>
+              
               <TextInput
                 title="帳號"
                 text={id}
-                showHint={false}
+                showHint={id !== '' && !(idValidator !== null || emailValidator !== null)}
+                hintType="ok"
+                placeholder="請輸入您的E-mail"
                 onChange={e => setID(e.target.value)}
-                required
-              />
-              <TextInput
-                title="使用者名稱"
-                text={name}
-                showHint={false}
-                onChange={e => setName(e.target.value)}
                 required
               />
               <TextInput
@@ -88,8 +83,8 @@ const Register = (props) => {
                 text={password}
                 type="password"
                 hintType="error"
-                showHint={password !== '' && passwordValidator2 !== null}
-                hintText={passwordValidator2}
+                showHint={password !== '' && (passwordValidator2 === null || passwordValidator3 !== null)}
+                hintText={passwordValidator3}
                 onChange={e => setPassword(e.target.value)}
                 required
               />
@@ -105,6 +100,15 @@ const Register = (props) => {
                 onChange={e => setConfirmPassword(e.target.value)}
                 required
               />
+              <TextInput
+                title="姓名"
+                text={name}
+                hintType="error"
+                showHint={name !== '' && nameValidator !== null}
+                hintText={nameValidator}
+                onChange={e => setName(e.target.value)}
+                required
+              />
               <Button
                 className="next_btn"
                 text="下一步"
@@ -114,7 +118,8 @@ const Register = (props) => {
                 disabled={
                   idValidator !== null
                   || passwordValidator1 !== null
-                  || passwordValidator2 !== null
+                  || passwordValidator2 === null
+                  || passwordValidator3 !== null
                   || nameValidator !== null
                   || confirmPasswordValidator1 !== null
                   || confirmPasswordValidator2 !== null
@@ -124,20 +129,17 @@ const Register = (props) => {
           ) : null}
           {currentStep === 2 ? (
             <form>
-              <TextInput
-                title="E-mail"
-                text={email}
-                showHint={emailValidator === null}
-                hintType="ok"
-                onChange={e => setEmail(e.target.value)}
-                required
-              />
-              <TextInput
+              <DateInput
                 title="生日"
-                text={birth}
-                showHint={false}
-                onChange={e => setBirth(e.target.value)}
+                placeholder="dd/mm/yyyy"
+                defaultDate={birth}
+                onSelect={setBirth}
+                disabledPastDate={false}
+                isOpenDatePicker={isBirthOnFocus}
+                onFocus={() => setIsBirthOnFocus(true)}
+                switchHandler={setIsBirthOnFocus}
                 required
+                // onBlur={() => setIsBirthOnFocus(false)}
               />
               <TextInput
                 title="聯絡電話"
@@ -158,12 +160,14 @@ const Register = (props) => {
                 size="small"
                 onClick={handleRegister}
                 disabled={
-                  emailValidator
-                  || passwordValidator1
-                  || passwordValidator2
-                  || nameValidator
-                  || confirmPasswordValidator1
-                  || confirmPasswordValidator2
+                  idValidator !== null
+                  || passwordValidator1 !== null
+                  || passwordValidator2 === null
+                  || passwordValidator3 !== null
+                  || nameValidator !== null
+                  || birth === ''
+                  || confirmPasswordValidator1 !== null
+                  || confirmPasswordValidator2 !== null
                 }
               />
             </form>
