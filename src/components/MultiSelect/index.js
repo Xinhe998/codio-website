@@ -21,19 +21,30 @@ const renderSelectedTags = (selectedOptions, selectedOptionOnClick) => {
   return <ul className="MultiSelect__tags">{tags.reverse()}</ul>;
 };
 
-const renderDropDown = (options, optionOnClick) => {
+const renderDropDown = (options, optionOnClick, newInput) => {
   const DropdownOptions = [];
-  options.map((option, index) => {
+  if (options.length) {
+    options.map((option, index) => {
+      DropdownOptions.push(
+        <li
+          key={`dropdownOption_${option}`}
+          onClick={() => optionOnClick(option)}
+        >
+          {option}
+        </li>,
+      );
+    });
+  } else if (newInput) {
     DropdownOptions.push(
-      <li
-        key={`dropdownOption_${option}`}
-        onClick={() => optionOnClick(option)}
-      >
-        {option}
+      <li onClick={() => optionOnClick(newInput)}>
+          建立「
+        {newInput}
+          」類別
       </li>,
     );
-  });
-  return <ul className="MultiSelect__dropdown">{DropdownOptions}</ul>;
+  }
+
+  return DropdownOptions.length && <ul className="MultiSelect__dropdown">{DropdownOptions}</ul>;
 };
 
 const MultiSelect = ({ title, options, selectedItems, onChange }) => {
@@ -44,14 +55,15 @@ const MultiSelect = ({ title, options, selectedItems, onChange }) => {
   const MultiSelectRef = useRef();
   const MultiSelectInputRef = useRef();
 
-  const searchResult = currentOptions.filter(
-    d => d.toLowerCase().includes(newInput.toLowerCase()),
+  const searchResult = currentOptions.filter(d =>
+    d.toLowerCase().includes(newInput.toLowerCase()),
   );
 
   // 點dropdown裡的選項
-  const optionOnClick = (option) => {
+  const optionOnClick = option => {
     onChange([option, ...selectedItems]);
     setCurrentOptions(currentOptions.filter(item => item !== option));
+    setNewInput('');
   };
 
   // 點tag的叉叉
@@ -78,7 +90,9 @@ const MultiSelect = ({ title, options, selectedItems, onChange }) => {
         )}
         onClick={() => MultiSelectInputRef.current.focus()}
       >
-        {selectedItems.length ? renderSelectedTags(selectedItems, selectedOptionOnClick) : null}
+        {selectedItems.length
+          ? renderSelectedTags(selectedItems, selectedOptionOnClick)
+          : null}
         <input
           className="MultiSelect__input"
           value={newInput}
@@ -94,7 +108,7 @@ const MultiSelect = ({ title, options, selectedItems, onChange }) => {
           size={newInput.length < 20 ? newInput.length + 2 : 20}
         />
       </div>
-      {isInputOnFocus && renderDropDown(searchResult, optionOnClick)}
+      {isInputOnFocus && renderDropDown(searchResult, optionOnClick, newInput)}
     </div>
   );
 };

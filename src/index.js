@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { PersistGate } from 'redux-persist/integration/react';
 import thunk from 'redux-thunk';
 import storeFs from './reducers';
 
@@ -17,8 +20,15 @@ import CreateProject from './pages/CreateProject';
 
 import usePrevious from './hooks/usePrevious';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, storeFs);
+
 const store = createStore(
-  storeFs,
+  persistedReducer,
   compose(
     applyMiddleware(thunk),
     // eslint-disable-next-line no-underscore-dangle
@@ -26,6 +36,8 @@ const store = createStore(
       window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
+
+const persistor = persistStore(store);
 
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
@@ -38,6 +50,7 @@ const CodioSwitch = ({ location }) => {
         <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
         <Route path="/create_project" component={CreateProject} />
+        <Route path="/p/:id" component={App} />
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}
@@ -51,9 +64,11 @@ CodioSwitch.propTypes = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Route component={CodioSwitch} />
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <Route component={CodioSwitch} />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root'),
 );
