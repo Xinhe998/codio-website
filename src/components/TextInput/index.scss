@@ -1,3 +1,5 @@
+@import '../../../styles/main.scss';
+
 .textinput {
   display: flex;
   flex-direction: column;
@@ -8,8 +10,8 @@
   input {
     min-height: 40px;
     border-radius: 5px;
-    border: solid 1px #e4e4e4;
-    background-color: #ffffff;
+    border: solid 1px $gray;
+    background-color: $white;
     outline: 0;
     max-width: 50vw;
     box-sizing: border-box;
@@ -19,10 +21,10 @@
     margin: 0;
     transition: all .5s;
     &:focus {
-      border: solid 1px #3597ec;
+      border: solid 1px $blue;
     }
     &:disabled {
-      background-color: #e4e4e4;
+      background-color: $gray;
     }
   }
 
@@ -30,7 +32,7 @@
     .textinput__title {
       &::after {
         content: '*';
-        color: #ec5252;
+        color: $codio-pink;
         font-size: 15px;
         padding: 0 5px;
         font-weight: normal;
@@ -45,7 +47,7 @@
 
   &.error {
     input {
-      border: solid 1px #ec5252;
+      border: solid 1px $codio-pink;
       padding-right: 250px;
     }
     .textinput__hint {
@@ -54,7 +56,7 @@
       right: 15px;
       font-size: 12px;
       margin: 5px 0;
-      color: #ec5252;
+      color: $codio-pink;
       .hinttext {
         vertical-align: middle;
       }
@@ -69,7 +71,7 @@
 
   &.ok {
     input {
-      border: solid 1px #6cd073;
+      border: solid 1px $green;
       padding-right: 50px;
     }
     .textinput__hint {
@@ -78,7 +80,7 @@
       right: 15px;
       font-size: 14px;
       margin: 5px 0;
-      color: #6cd073;
+      color: $green;
       .hinttext {
         vertical-align: middle;
       }

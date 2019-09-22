@@ -1,0 +1,32 @@
+@import '../../../styles/main.scss';
+
+.Layout {
+  width: 1920px;
+  display: flex;
+
+  .Layout__sidebar {
+    background-color: $codio-darkblue;
+    color: $white;
+    width: 10%;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .Layout__content {
+    width: 90%;
+    background-color: $background-color;
+    height: 100vh;
+    position: relative;
+
+    .Layout__bg {
+      position: absolute;
+      bottom: 0;
+      background-color: $white;
+      width: 50%;
+      height: 90%;
+      justify-content: center;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
+  }
+}

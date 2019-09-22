@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import ForgetPasswordModal from './pages/ForgetPasswordModal';
 import ForgetPassword from './pages/ForgetPassword';
 import usePrevious from './hooks/usePrevious';
+import Admin from './pages/Admin';
 
 const store = createStore(
   storeFs,
@@ -35,6 +36,7 @@ const CodioSwitch = ({ location }) => {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
+        <Route path="/admin" component={Admin} />
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}

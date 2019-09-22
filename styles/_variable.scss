@@ -6,12 +6,24 @@ $font-l: $font-s * 5;
 //color system
 $white: #ffffff;
 $black: #333333;
+$gray:#e4e4e4;
+$light-gray:#f7f7f7;
+$dark-gray:#707070;
+$blue:#3597ec;
+$green:#6cd073;
+$pink:#ffe0e0;
+
 $codio-blue: #537091;
 $codio-darkblue: #2a2f42;
+$codio-pink: #ec5252;
+
 
 
 //font
-$font-family-base: "Ubuntu", "PingFangTC", "微軟正黑體", "sans-serif";
+$font-family-base: "Ubuntu",
+"PingFangTC",
+"微軟正黑體",
+"sans-serif";
 $bold: 500;
 $semibold: 600;
 $min_bold: 300;
@@ -38,3 +50,6 @@ $modal-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 $modal-title-font-size: 24px;
 $modal-title-color: #000000;
 $modal-header-background-color: #f5f7fb;
+
+//background-color
+$background-color:#f5f7fb;

@@ -1,3 +1,5 @@
+@import '../../../styles/main.scss';
+
 button {
   cursor: pointer;
   outline: 0;
@@ -5,23 +7,25 @@ button {
   transition: all .5s;
 
   &.type_primary {
-    background-color: #3597ec;
-    color: #ffffff;
+    background-color: $blue;
+    color: $white;
     border: none;
+
     &:disabled {
-      background-color: #e4e4e4;
-      color: #707070;
+      background-color: $gray;
+      color: $dark-gray;
       cursor: not-allowed;
     }
   }
 
   &.type_outline {
     background-color: none;
-    color: #3597ec;
-    border: 2px solid #3597ec;
+
+    // color: #3597ec;
+    // border: 2px solid #3597ec;
     &:disabled {
-      color: #e4e4e4;
-      border: 2px solid #e4e4e4;
+      color: $gray;
+      border: 2px solid $gray;
       cursor: not-allowed;
     }
   }
@@ -29,28 +33,64 @@ button {
   &.type_link {
     background-color: none;
     border: none;
-    color: #ec5252;
+    color: $codio-pink;
+
     &:disabled {
       cursor: not-allowed;
     }
 
     &.theme_red {
-      color: #ec5252;
+      color: $codio-pink;
+      border: 2px solid $codio-pink;
+
       &:disabled {
-        color: #FFE0E0;
+        color: $pink;
+
         &:hover {
-          color: #ec5252;
+          color: $codio-pink;
         }
       }
     }
+
     &.theme_blue {
-      color: #3597ec;
+      color: $blue;
+      border: 2px solid $blue;
+
       &:disabled {
-        color: rgba(53, 151, 236, 0.65);;
+        color: rgba(53, 151, 236, 0.65);
+        ;
+
         &:hover {
-          color: #3597ec;
+          color: $blue;
         }
       }
+    }
+
+    &.theme_green {
+      color: $green;
+      border: 2px solid $green;
+
+      &:disabled {
+        color: rgba(53, 151, 236, 0.65);
+        ;
+
+        &:hover {
+          color: $green;
+        }
+      }
+    }
+    &.theme_white {
+      // color: $green;
+      // border: 2px solid $green;
+
+      // &:disabled {
+      //   color: rgba(53, 151, 236, 0.65);
+      //   ;
+
+      //   &:hover {
+      //     color: $green;
+      //   }
+      // }
     }
   }
 
@@ -68,5 +108,13 @@ button {
     border-radius: 10px;
     font-size: 24px;
     margin: 10px 0;
+  }
+
+  &.shape_square {
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: none;
+
   }
 }
