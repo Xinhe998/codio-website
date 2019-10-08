@@ -3,6 +3,7 @@
 $pc-media: 960px;
 $pad-media: 760px;
 $phone-media: 480px;
+
 .Modal__backdrop {
   position: fixed;
   top: 0;
@@ -18,6 +19,7 @@ $phone-media: 480px;
   justify-content: center;
   z-index: 100;
 }
+
 .Modal__wrapper {
   background-color: #ffffff;
   border-radius: 10px;
@@ -27,32 +29,44 @@ $phone-media: 480px;
   overflow: hidden;
   transition: all 0.5s;
   transform: scale(0.5);
-  -webkit-animation: ScaleUp 0.3s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: ScaleUp 0.3s; /* Firefox < 16 */
-  -ms-animation: ScaleUp 0.3s; /* Internet Explorer */
-  -o-animation: ScaleUp 0.3s; /* Opera < 12.1 */
+  -webkit-animation: ScaleUp 0.3s;
+  /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: ScaleUp 0.3s;
+  /* Firefox < 16 */
+  -ms-animation: ScaleUp 0.3s;
+  /* Internet Explorer */
+  -o-animation: ScaleUp 0.3s;
+  /* Opera < 12.1 */
   animation: ScaleUp 0.3s;
   animation-fill-mode: forwards;
+
   @media screen and (max-width: $pad-media) {
     width: 100%;
   }
 }
+
 .closing .Modal__wrapper {
-  -webkit-animation: ScaleDown 0.3s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: ScaleDown 0.3s; /* Firefox < 16 */
-  -ms-animation: ScaleDown 0.3s; /* Internet Explorer */
-  -o-animation: ScaleDown 0.3s; /* Opera < 12.1 */
+  -webkit-animation: ScaleDown 0.3s;
+  /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: ScaleDown 0.3s;
+  /* Firefox < 16 */
+  -ms-animation: ScaleDown 0.3s;
+  /* Internet Explorer */
+  -o-animation: ScaleDown 0.3s;
+  /* Opera < 12.1 */
   animation: ScaleDown 0.3s;
   animation-fill-mode: forwards;
 }
+
 .Modal__content {
   height: calc(100% - 108px);
   transition: all 0.5s;
-  padding: 30px 50px 50px;
+  padding: 30px 80px;
 }
+
 .Modal__title {
   height: 54px;
-  padding: 15px 20px 15px 50px;
+  padding: 15px 20px 15px 80px;
   display: flex;
   align-items: center;
   user-select: none;
@@ -60,6 +74,7 @@ $phone-media: 480px;
   line-height: 1.1;
   color: $modal-title-color;
   background-color: $modal-header-background-color;
+
   svg {
     width: 30px;
     height: 30px;
@@ -68,11 +83,43 @@ $phone-media: 480px;
     color: #3597ec;
   }
 }
+
 .Modal__button-group {
-  height: 54px;
   display: flex;
-  user-select: none;
-  box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  margin-top: 30px;
+
+  .Modal__button-group__cancel {
+    width: 45%;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+    background-color: none;
+    color: #3597ec;
+    border: 2px solid #3597ec;
+    &:disabled {
+      color: $gray;
+      border: 2px solid $gray;
+      cursor: not-allowed;
+    }
+  }
+
+  .Modal__button-group__confirm {
+    width: 45%;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+    background-color: $blue;
+    color: $white;
+    border: none;
+    &:disabled {
+      background-color: $gray;
+      color: $dark-gray;
+      cursor: not-allowed;
+    }
+  }
 }
 
 @keyframes ScaleUp {
@@ -80,6 +127,7 @@ $phone-media: 480px;
     transition: transform 300ms ease-in;
     transform: scale(0.5);
   }
+
   to {
     transform: scale(1);
   }
@@ -90,6 +138,7 @@ $phone-media: 480px;
     transition: transform 300ms ease-in;
     transform: scale(1);
   }
+
   to {
     transform: scale(0.5);
   }

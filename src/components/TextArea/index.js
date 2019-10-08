@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import useAutoSize from '../../hooks/useAutoSize';
 import './index.scss';
 
-const TextInput = ({
+const TextArea = ({
   type,
   placeholder,
   text,
@@ -26,6 +26,7 @@ const TextInput = ({
     >
       <span className="textinput__title">{title}</span>
       <textarea
+        className="textarea"
         type={type}
         value={text}
         placeholder={placeholder}
@@ -34,12 +35,11 @@ const TextInput = ({
         onBlur={onBlur}
         ref={textareaRef}
       />
-      <div className="textinput__icon">{icon}</div>
     </div>
   );
 };
 
-TextInput.propTypes = {
+TextArea.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   text: PropTypes.string,
@@ -48,13 +48,12 @@ TextInput.propTypes = {
   required: PropTypes.bool,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  icon: PropTypes.any,
 };
 
-TextInput.defaultProps = {
+TextArea.defaultProps = {
   type: 'text',
   text: '',
   onBlur: null,
   onFocus: null,
 };
-export default TextInput;
+export default TextArea;

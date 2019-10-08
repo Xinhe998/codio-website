@@ -4,7 +4,7 @@
   box-sizing: border-box;
   transition: all .5s;
   position: relative;
-  
+
   textarea {
     border-radius: 5px;
     border: solid 1px #e4e4e4;
@@ -15,17 +15,20 @@
     max-height: 80px;
     box-sizing: border-box;
     padding: 4px 11px;
-    color: rgba(0,0,0,0.65);
+    color: rgba(0, 0, 0, 0.65);
     position: relative;
     margin: 0;
     transition: all .5s;
     resize: none;
+
     &:focus {
       border: solid 1px #3597ec;
     }
+
     &:disabled {
       background-color: #e4e4e4;
     }
+
     &::placeholder {
       color: #e4e4e4;
     }
@@ -53,6 +56,7 @@
       border: solid 1px #ec5252;
       padding-right: 250px;
     }
+
     .textinput__hint {
       position: absolute;
       top: calc(100% / 2);
@@ -60,9 +64,11 @@
       font-size: 12px;
       margin: 5px 0;
       color: #ec5252;
+
       .hinttext {
         vertical-align: middle;
       }
+
       svg {
         width: 20px;
         height: 20px;
@@ -77,6 +83,7 @@
       border: solid 1px #6cd073;
       padding-right: 50px;
     }
+
     .textinput__hint {
       position: absolute;
       top: calc(100% / 2);
@@ -84,9 +91,11 @@
       font-size: 14px;
       margin: 3px 0;
       color: #6cd073;
+
       .hinttext {
         vertical-align: middle;
       }
+
       svg {
         width: 20px;
         height: 20px;
@@ -107,15 +116,4 @@
   text-align: left;
   color: #263238;
   margin-bottom: 7px;
-}
-
-.textinput__icon {
-  position: absolute;
-  top: calc(100% / 2);
-  right: 15px;
-  svg {
-    width: 18px;
-    height: 18px;
-    color: #ec5252;
-  }
 }

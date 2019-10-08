@@ -1,0 +1,18 @@
+@import '../../../styles/main.scss';
+
+.filter_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.filter_dropDown {
+    position: absolute;
+    right: 18px;
+    width: 100px;
+    background-color: $white;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}

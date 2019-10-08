@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch,PrivateRoute } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -20,6 +20,7 @@ import CreateProject from './pages/CreateProject';
 import PrivateRoute from './pages/PrivateRoute';
 
 import usePrevious from './hooks/usePrevious';
+import Admin from './pages/Admin';
 
 const persistConfig = {
   key: 'root',
@@ -50,8 +51,10 @@ const CodioSwitch = ({ location }) => {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
+        <Route path="/admin" component={Admin} />
         <PrivateRoute path="/create_project" component={CreateProject} />
         <Route path="/p/:id" component={App} />
+        {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}
     </>

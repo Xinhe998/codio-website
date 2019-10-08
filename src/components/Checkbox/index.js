@@ -5,10 +5,13 @@ import './index.scss';
 
 const Checkbox = ({ text, checked, name, onChange }) => {
   return (
-    <label className="checkbox">
-      <input type="checkbox" checked={checked} name={name} onChange={onChange} />
-      <span className="checkmark" />
-    </label>
+    <div>
+      <label className="checkbox">
+        <input type="checkbox" checked={checked} name={name} onChange={onChange} />
+        <span className="text">{text}</span>
+        <span className="checkmark" />
+      </label>
+    </div>
   );
 };
 

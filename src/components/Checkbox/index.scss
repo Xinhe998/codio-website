@@ -1,5 +1,5 @@
 .checkbox {
-  display: block;
+  display: flex;
   border-radius: 5px;
   position: relative;
   padding-left: 35px;
@@ -10,6 +10,9 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.text{
+  font-size: 14px;
 }
 
 /* Hide the browser's default checkbox */
