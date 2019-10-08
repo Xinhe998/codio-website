@@ -21,9 +21,12 @@ export const createProject = (payload, history) => {
     axios(postData)
       .then((res) => {
         dispatch({ type: 'CREATE_PROJECT_SUCCESS', res });
-        history.push('/');
+        history.push(`/p/${res.data.mp_no}`);
       })
-      .catch(err => dispatch({ type: 'CREATE_PROJECT_FAILED', err }));
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: 'CREATE_PROJECT_FAILED', err });
+      });
   };
 };
 

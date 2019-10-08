@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter, Link, Switch, Route } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -21,6 +21,9 @@ const Login = (props) => {
   const emailValidator = isRequired({ message: '請輸入帳號' })(id);
   const passwordValidator = isRequired({ message: '請輸入密碼' })(password);
 
+  const userData = window.localStorage.getItem('persist:root');
+  const isAuthed = userData && JSON.parse(JSON.parse(userData).user).token;
+
   const loginHandler = () => {
     const loginData = {
       id,
@@ -28,7 +31,7 @@ const Login = (props) => {
     };
     props.login(loginData, props.history);
   };
-  return (
+  return !isAuthed ? (
     <div className="Login">
       <AppHeader
         isDropdownVisible={false}
@@ -90,7 +93,7 @@ const Login = (props) => {
         />
       </div>
     </div>
-  );
+  ) : <Redirect to="/" />;
 };
 
 const mapStateToProps = store => ({
