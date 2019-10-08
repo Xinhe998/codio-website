@@ -16,6 +16,7 @@ const TextInput = ({
   hintText,
   onFocus,
   onBlur,
+  disabled,
   icon,
 }) => {
   return (
@@ -34,6 +35,7 @@ const TextInput = ({
         onChange={e => onChange(e)}
         onFocus={onFocus}
         onBlur={onBlur}
+        disabled={disabled}
       />
       <div className="textinput__icon">{icon}</div>
       {showHint ? (
@@ -59,6 +61,7 @@ TextInput.propTypes = {
   required: PropTypes.bool,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  disabled:PropTypes.bool,
   icon: PropTypes.any,
 };
 
@@ -67,5 +70,6 @@ TextInput.defaultProps = {
   text: '',
   onBlur: null,
   onFocus: null,
+  disabled: false
 };
 export default TextInput;

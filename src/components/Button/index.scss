@@ -16,26 +16,57 @@ button {
       color: $dark-gray;
       cursor: not-allowed;
     }
+
+    &.theme_red {
+      background-color: $codio-pink;
+      border: 2px solid $codio-pink;
+
+      &:disabled {
+        color: $pink;
+
+        &:hover {
+          color: $codio-pink;
+        }
+      }
+    }
+
+    &.theme_blue {
+      background-color: $blue;
+      border: 2px solid $blue;
+
+      &:disabled {
+        color: rgba(53, 151, 236, 0.65);
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+
+    &.theme_white {
+      background-color: $white;
+      color: $codio-pink;
+
+      // &:disabled {
+      //   color: rgba(53, 151, 236, 0.65);
+      //   ;
+
+      //   &:hover {
+      //     color: $green;
+      //   }
+      // }
+    }
   }
 
   &.type_outline {
     background-color: none;
 
-    // color: #3597ec;
-    // border: 2px solid #3597ec;
+    color: #3597ec;
+    border: 2px solid #3597ec;
+
     &:disabled {
       color: $gray;
       border: 2px solid $gray;
-      cursor: not-allowed;
-    }
-  }
-
-  &.type_link {
-    background-color: none;
-    border: none;
-    color: $codio-pink;
-
-    &:disabled {
       cursor: not-allowed;
     }
 
@@ -58,42 +89,56 @@ button {
 
       &:disabled {
         color: rgba(53, 151, 236, 0.65);
-        ;
 
         &:hover {
           color: $blue;
         }
       }
     }
+  }
 
-    &.theme_green {
-      color: $green;
-      border: 2px solid $green;
+
+  &.type_link {
+    background-color: none;
+    border: none;
+    color: $codio-pink;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &.theme_red {
+      color: $codio-pink;
 
       &:disabled {
-        color: rgba(53, 151, 236, 0.65);
-        ;
+        color: $pink;
 
         &:hover {
-          color: $green;
+          color: $codio-pink;
         }
       }
     }
-    &.theme_white {
-      // color: $green;
-      // border: 2px solid $green;
 
-      // &:disabled {
-      //   color: rgba(53, 151, 236, 0.65);
-      //   ;
+    &.theme_blue {
+      color: $blue;
 
-      //   &:hover {
-      //     color: $green;
-      //   }
-      // }
+      &:disabled {
+        color: rgba(53, 151, 236, 0.65);
+
+        &:hover {
+          color: $blue;
+        }
+      }
     }
   }
 
+  &.min {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 10px 0;
+  }
   &.small {
     width: 100%;
     height: 45px;
@@ -113,6 +158,7 @@ button {
   &.shape_square {
     width: 30px;
     height: 30px;
+    border-radius: 3px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     border: none;
 

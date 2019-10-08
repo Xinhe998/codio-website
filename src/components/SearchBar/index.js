@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { IoIosClose } from 'react-icons/io';
+import { FaSearch } from 'react-icons/fa';
 import action from '../../actions';
 
 import Button from '../Button';
@@ -10,26 +10,22 @@ import TextInput from '../TextInput';
 import './index.scss';
 
 
-const SearchBar = () => (
+const SearchBar = () => {
+  const [text, setText] = useState('');
+  return (
 
-  <div className="searchBar">
-    <TextInput
-      className="searchBar_input" 
-      type="text"
-      placeholder="搜尋會員"
-      // text={}
-      // onChange={}
+    <div className="searchBar">
+      <TextInput
+        className="searchBar_input"
+        type="text"
+        placeholder="搜尋會員"
+        text={text}
+        onChange={e => setText(e.target.value)}
+        icon={<FaSearch />}
       />
-    <Button
-      className="searchBar_btn"
-      type="primary"
-      size="small"
-      theme="red"
-      shape="square"
-    />
-  </div>
-
-);
+    </div>
+  );
+};
 
 // SearchBar.propTypes = {
 

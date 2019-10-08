@@ -6,26 +6,30 @@
   box-sizing: border-box;
   transition: all .5s;
   position: relative;
-  
+
   input {
     min-height: 40px;
     border-radius: 5px;
     border: solid 1px $gray;
     background-color: $white;
     outline: 0;
-    max-width: 50vw;
+    max-width: 100%;
     box-sizing: border-box;
     padding: 4px 11px;
-    color: rgba(0,0,0,0.65);
+    color: rgba(0, 0, 0, 0.65);
     position: relative;
     margin: 0;
     transition: all .5s;
+    color: black;
+
     &:focus {
       border: solid 1px $blue;
     }
+
     &:disabled {
       background-color: $gray;
     }
+
     &::placeholder {
       color: #e4e4e4;
     }
@@ -53,6 +57,7 @@
       border: solid 1px $codio-pink;
       padding-right: 250px;
     }
+
     .textinput__hint {
       position: absolute;
       top: calc(100% / 2);
@@ -60,9 +65,11 @@
       font-size: 12px;
       margin: 5px 0;
       color: $codio-pink;
+
       .hinttext {
         vertical-align: middle;
       }
+
       svg {
         width: 20px;
         height: 20px;
@@ -77,6 +84,7 @@
       border: solid 1px $green;
       padding-right: 50px;
     }
+
     .textinput__hint {
       position: absolute;
       top: calc(100% / 2);
@@ -84,9 +92,11 @@
       font-size: 14px;
       margin: 3px 0;
       color: $green;
+
       .hinttext {
         vertical-align: middle;
       }
+
       svg {
         width: 20px;
         height: 20px;
@@ -105,17 +115,21 @@
   line-height: 1.14;
   letter-spacing: normal;
   text-align: left;
-  color: #263238;
+  color: $black;
   margin-bottom: 7px;
 }
 
 .textinput__icon {
   position: absolute;
-  top: calc(100% / 2);
-  right: 15px;
+  top: calc(50% / 2);
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   svg {
     width: 18px;
     height: 18px;
-    color: #ec5252;
+    color: $white;
   }
 }

@@ -1,23 +1,14 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
-import mockup from '../../assets/smartmockups_jxfuqv8i.jpg';
+import logo from '../../assets/codio_logo1.svg';
+
 
 const Layout = ({
   userImg,
   userName,
   list,
-  // isOpen,
-  // title,
-  // shouldCloseOnEsc,
-  // shouldCloseOnClickOutside,
-  // showControlBtn,
-  // cancelBtnText,
-  // confirmBtnText,
-  // onClose,
-  // Confirm,
   children,
-  // history
 }) => {
   const LayoutRef = useRef();
   return (
@@ -27,15 +18,20 @@ const Layout = ({
         <div className="Layout__sidebar">
           <div
             className="logo"
-            style={{ backgroundImage: `url(${mockup})` }}
+            style={{
+              backgroundImage: `url(${logo})`, width: '40%', height: '20%', backgroundRepeat: 'no-repeat', marginBottom: 20,
+            }}
           />
           <div
-            className="user-img"
-            style={{ backgroundImage: `url(${userImg})` }}
+            className="user_img"
+            style={{
+              backgroundImage: `url(${userImg})`,
+            }}
           />
-          <h2 className="user-name">{userName}</h2>
+          <h2 className="user_name">{userName}</h2>
           <ul>
             <li>{list}</li>
+            <li className="logout">登出</li>
           </ul>
         </div>
         <div className="Layout__content">
@@ -46,10 +42,15 @@ const Layout = ({
   );
 };
 Layout.propTypes = {
+  userImg: PropTypes.string,
+  userName: PropTypes.string,
+  list: PropTypes.array,
   children: PropTypes.node,
 };
 
 Layout.defaultProps = {
+  userName: '',
+  list: [],
   children: null,
 };
 

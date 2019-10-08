@@ -1,55 +1,62 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { IoIosClose } from 'react-icons/io';
 import action from '../../actions';
-import Button from '../../components/Button';
+import TextArea from '../TextArea';
+import Button from '../Button';
 import './index.scss';
 
+const UserList = ({
+  userNumber,
+  userImg,
+  userName,
+  userType,
+}) => {
+  const [text, setText] = useState('');
 
-const UserList = () => {
   return (
 
     <React.Fragment className="user">
-      <td className="user_number">1</td>
-      <td className="user_name">1</td>
-      <td className="user_operation">
-        <Button
-          className="user_btn"
-          text="查看"
-          type="outline"
-          size="small"
-          theme="green"
+      <td className="user_number">{userNumber}</td>
+      <td className="user_info">
+        <div className="user_img">{userImg}</div>
+        <div className="user_name">
+          <h5>{userName}</h5>
+          <span className="user_type">{userType}</span>
+        </div>
+      </td>
+      <td className="user_msg">
+        <TextArea
+          text={text}
+          onChange={e => setText(e.target.value)}
         />
+      </td>
+      <td className="user_operation">
         <Button
           className="user_btn"
           text="編輯"
           type="outline"
-          size="small"
+          size="min"
           theme="blue"
         />
-        <Button
-          className="user_btn"
-          text="停用"
-          type="outline"
-          size="small"
-          theme="red"
-        />
       </td>
-      <td><hr /></td>
-    </React.Fragment>
 
+    </React.Fragment>
   );
 };
 
-// UserList.propTypes = {
+UserList.propTypes = {
+  userNumber: PropTypes.number,
+  userImg: PropTypes.string,
+  userName: PropTypes.string,
+  userType: PropTypes.string,
+};
 
-// };
-
-// UserList.defaultProps = {
-
-// };
+UserList.defaultProps = {
+  userName: '',
+  userType: '一般',
+};
 
 const mapStateToProps = store => ({
   user: store.user,

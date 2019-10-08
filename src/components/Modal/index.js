@@ -16,6 +16,7 @@ const Modal = ({
   showControlBtn,
   cancelBtnText,
   confirmBtnText,
+  disabled,
   onClose,
   Confirm,
   children,
@@ -36,25 +37,29 @@ const Modal = ({
             }}
           />
         </div>
-        <div className="Modal__content">{children}</div>
-        {showControlBtn ? (
-          <div className="Modal__button-group">
-            <button
-              type="button"
-              className="Modal__button-group__cancel"
-              onClick={onClose}
-            >
-              {cancelBtnText}
-            </button>
-            <button
-              type="button"
-              className="Modal__button-group__confirm"
-              onClick={Confirm}
-            >
-              {confirmBtnText}
-            </button>
-          </div>
-        ) : null}
+        <div className="Modal__content">
+          {children}
+          {showControlBtn ? (
+            <div className="Modal__button-group">
+              <button
+                type="button"
+                className="Modal__button-group__cancel"
+                onClick={onClose}
+              >
+                {cancelBtnText}
+              </button>
+              <button
+                type="button"
+                className="Modal__button-group__confirm"
+                onClick={Confirm}
+                disabled={disabled}
+              >
+                {confirmBtnText}
+
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   ) : null;
@@ -69,6 +74,7 @@ Modal.propTypes = {
   cancelBtnText: PropTypes.string,
   confirmBtnText: PropTypes.string,
   onClose: PropTypes.func,
+  disabled: PropTypes.bool,
   Confirm: PropTypes.func,
   children: PropTypes.node,
 };

@@ -19,6 +19,7 @@ class Button extends Component {
       disabled,
       className,
       theme,
+      icon,
     } = this.props;
     return (
       <button
@@ -34,6 +35,7 @@ class Button extends Component {
         disabled={disabled}
       >
         {text}
+        {icon}
       </button>
     );
   }

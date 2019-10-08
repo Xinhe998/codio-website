@@ -1,14 +1,6 @@
 @import '../../../styles/main.scss';
 
 .searchBar {
-  
-  .searchBar_input {
-    position: relative;
-  }
-
-  .searchBar_btn {
-    position: absolute;
-    top:0;
-    right: 0px
-  }
+  width: 30%;
+  margin:0 10px;
 }
