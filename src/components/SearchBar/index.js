@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import { FaSearch } from 'react-icons/fa';
 import action from '../../actions';
 
-import Button from '../Button';
 import TextInput from '../TextInput';
 import './index.scss';
 
 
-const SearchBar = () => {
+const SearchBar = ({ placeholder }) => {
   const [text, setText] = useState('');
   return (
 
@@ -18,7 +17,7 @@ const SearchBar = () => {
       <TextInput
         className="searchBar_input"
         type="text"
-        placeholder="搜尋會員"
+        placeholder={placeholder}
         text={text}
         onChange={e => setText(e.target.value)}
         icon={<FaSearch />}
@@ -27,13 +26,13 @@ const SearchBar = () => {
   );
 };
 
-// SearchBar.propTypes = {
+SearchBar.propTypes = {
+  placeholder: PropTypes.string,
+};
 
-// };
-
-// SearchBar.defaultProps = {
-
-// };
+SearchBar.defaultProps = {
+  placeholder: '',
+};
 
 const mapStateToProps = store => ({
   user: store.user,

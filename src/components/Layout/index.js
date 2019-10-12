@@ -30,7 +30,15 @@ const Layout = ({
           />
           <h2 className="user_name">{userName}</h2>
           <ul>
-            <li>{list}</li>
+            {
+              list.map((item, index) => {
+                return (
+                <li key={index}>{item}</li>
+                );
+              })
+
+            }
+
             <li className="logout">登出</li>
           </ul>
         </div>

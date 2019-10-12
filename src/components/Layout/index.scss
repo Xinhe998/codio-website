@@ -52,18 +52,5 @@
     background-color: $background-color;
     height: 100vh;
     position: relative;
-
-    .Layout__bg {
-      position: absolute;
-      bottom: 0;
-      left: 6%;
-      background-color: $white;
-      width: 50%;
-      height: 85%;
-      justify-content: center;
-      border-radius: 10px 10px 0 0;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-      padding: 20px;
-    }
   }
 }
