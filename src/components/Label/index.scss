@@ -1,0 +1,19 @@
+.label {
+  padding: 3px;
+  border-radius: 5px;
+  width: 40px;
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+
+  &.dark {
+    background: #3597ec;
+    color: white;
+  }
+
+  &.light {
+    background: #e8f0fb;
+    color: #3597ec;
+  }
+}

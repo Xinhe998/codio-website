@@ -1,13 +1,13 @@
 @import '../../../styles/main.scss';
 
-.filter_btn {
+.resumeBtn_btn {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.filter_dropDown {
+.resumeBtn_dropDown {
     position: absolute;
     right: 18px;
     width: 100px;

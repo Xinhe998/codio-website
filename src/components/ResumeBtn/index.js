@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { FaFilter } from 'react-icons/fa';
+import { FaAlignLeft } from 'react-icons/fa';
 import action from '../../actions';
 import Button from '../Button';
 import useClickOutside from '../../hooks/useClickOutside';
@@ -10,7 +10,7 @@ import useEscCloseModal from '../../hooks/useEscCloseModal';
 import './index.scss';
 
 
-const Filter = ({
+const ResumeBtn = ({
   isOpen,
   shouldCloseOnEsc,
   shouldCloseOnClickOutside,
@@ -19,26 +19,26 @@ const Filter = ({
   children,
   history,
 }) => {
-  const filterRef = useRef();
-  if (shouldCloseOnClickOutside) useClickOutside(isOpen, filterRef, onClose);
+  const resumeBtnRef = useRef();
+  if (shouldCloseOnClickOutside) useClickOutside(isOpen, resumeBtnRef, onClose);
   if (shouldCloseOnEsc) useEscCloseModal(onClose);
   return (
-    <div className="filter">
+    <div className="resumeBtn">
       <Button
-        className="filter_btn"
+        className="resumeBtn_btn"
         type="primary"
         size="small"
         theme="white"
         shape="square"
-        icon={<FaFilter />}
+        icon={<FaAlignLeft />}
         onClick={onClick}
       />
-      {isOpen ? <div className="filter_dropDown" ref={filterRef}>{children}</div> : null}
+      {isOpen ? <div className="resumeBtn_dropDown" ref={resumeBtnRef}>{children}</div> : null}
     </div>
   );
 };
 
-Filter.propTypes = {
+ResumeBtn.propTypes = {
   isOpen: PropTypes.bool,
   shouldCloseOnEsc: PropTypes.bool,
   shouldCloseOnClickOutside: PropTypes.bool,
@@ -47,7 +47,7 @@ Filter.propTypes = {
   children: PropTypes.node,
 };
 
-Filter.defaultProps = {
+ResumeBtn.defaultProps = {
   isOpen: false,
   shouldCloseOnEsc: true,
   onClose: null,
@@ -62,5 +62,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     action,
-  )(Filter),
+  )(ResumeBtn),
 );

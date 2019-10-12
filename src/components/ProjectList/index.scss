@@ -1,0 +1,64 @@
+.project_list {
+  padding: 10px;
+  padding-left: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  border: solid 2px #e4e4e4;
+  border-left: 8px solid #2a2f42;
+  position: relative;
+  cursor: pointer;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    font-size: 22px;
+  }
+
+  .ellipsis_icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #e4e4e4;
+  }
+  .project_dropDown{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 10px;
+    z-index: 99;
+    width: 15%;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+  }
+
+  .project_description {
+    color: #707070;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .likes {
+    width: 30px;
+    height: 30px;
+    background-color: #ffe0e0;
+    border-radius: 50%;
+    position: relative;
+    align-self: flex-end;
+
+    .heart_icon {
+      color: #ec5252;
+      width: 18px;
+      height: 15px;
+      position: absolute;
+      top: calc(50% / 2);
+      right: 6px;
+    }
+    .likes_number{
+      color: #ec5252;
+    }
+  }
+
+}

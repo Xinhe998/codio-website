@@ -23,11 +23,11 @@ const Admin = (props) => {
   const [id, setID] = useState('');
   const [password, setPassword] = useState('');
 
-  const [userName, setUserName] = useState(['Alice', 'Xinhe']);
+  const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理']);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [selectValue,setSelectValue]= useState('');
+  const [selectValue, setSelectValue] = useState('');
   const optionData = [
     { value: '25', label: '25' },
     { value: '35', label: '35' },
@@ -64,8 +64,7 @@ const Admin = (props) => {
         userName={userName}
         list={list}
       >
-
-        <div className="main_section">
+        <div className="add_user">
           <Button
             className="add_user_btn"
             text="新增角色"
@@ -74,21 +73,25 @@ const Admin = (props) => {
             theme="red"
             onClick={addChar}
           />
+        </div>
 
+        <div className="main_section">
           <div className="user_management">
             <div className="user_tool">
               <div className="display_number">
                 顯示
                 <Select
                   value={selectValue}
-                  // name
-                  // onChange
-                  // options
+                // name
+                // onChange
+                // options
                 />
                 筆
               </div>
 
-              <SearchBar />
+              <SearchBar
+                placeholder="搜尋會員"
+              />
               <Filter
                 isOpen={isFilterOpen}
                 onClick={() => { setIsFilterOpen(true); }}

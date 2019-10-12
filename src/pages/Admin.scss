@@ -3,6 +3,20 @@
 .Admin {
   color: $black;
 
+  .main_section {
+    position: absolute;
+    bottom: 0;
+    left: 6%;
+    background-color: white;
+    width: 50%;
+    height: 80%;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+
+  }
+
   .Modal__wrapper {
     width: 60%;
   }
@@ -32,9 +46,19 @@
     }
   }
 
-  .add_user_btn {
-    width: 12%;
+  .add_user {
+    display: flex;
+    justify-content: space-around;
+
+    .add_user_btn {
+      width: 6%;
+      position: absolute;
+      right: 42%;
+      top: 3%;
+    }
   }
+
+
 
   .cancel_btn {
     width: 45%;

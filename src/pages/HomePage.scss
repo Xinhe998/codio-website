@@ -1,0 +1,80 @@
+.home_page {
+  color: black;
+
+  .user_profile {
+    position: absolute;
+    left: 6%;
+
+    span {
+      margin-right: 20px;
+
+      svg{
+        margin-right: 10px;
+      }
+    }
+  }
+
+
+.add_project_btn {
+  width: 5%;
+  position: absolute;
+  right: 42%;
+  top: 24%;
+}
+}
+
+.main_section {
+  position: absolute;
+  bottom: 0;
+  left: 6%;
+  background-color: white;
+  width: 50%;
+  height: 60%;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  padding: 20px;
+}
+
+.tool {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+
+  .textinput__icon {
+    background-color: #ec5252;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  .filter {
+    margin-right: 10px;
+  }
+
+  hr {
+    margin: 15px 0px;
+    border: 1px solid #f7f7f7;
+    ;
+  }
+}
+
+.resumeBtn span {
+  display: block;
+  line-height: 2;
+  cursor: pointer;
+}
+
+.resumeBtn span:hover {
+  color: #3597ec;
+}
+
+.project_dropDown span{
+  display: block;
+  line-height: 2;
+  cursor: pointer;
+}
+.project_dropDown span:hover{
+  color: #3597ec;
+}

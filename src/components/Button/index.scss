@@ -19,7 +19,6 @@ button {
 
     &.theme_red {
       background-color: $codio-pink;
-      border: 2px solid $codio-pink;
 
       &:disabled {
         color: $pink;
@@ -32,7 +31,6 @@ button {
 
     &.theme_blue {
       background-color: $blue;
-      border: 2px solid $blue;
 
       &:disabled {
         color: rgba(53, 151, 236, 0.65);
