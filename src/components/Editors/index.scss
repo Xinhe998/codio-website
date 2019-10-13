@@ -5,6 +5,22 @@
   height: 100%;
 }
 
+.titlebar {
+  height: 50px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  input {
+    border: transparent;
+    background: none;
+    outline: 0;
+    color: $blue;
+    font-size: $font-m;
+    line-height: 1.19;
+  }
+}
+
 .react-tabs__tab-panel {
   // flex-basis: 60%;
   // width: 60%;
@@ -12,7 +28,7 @@
 
 .result {
   // flex-basis: 40%;
-  background: white;
+  background: $white;
   iframe {
     width: 100%;
     height: calc(100vh - 70px);
@@ -28,14 +44,12 @@
   box-sizing: border-box;
 }
 
-.formatBtn {
-  border-radius: 10px;
-  background-color: #3597ec;
-  border: none;
-  color: $white;
-  padding: 10px 20px;
-  outline: 0;
-  cursor: pointer;
+.titlebar_btnGroup {
+  margin-left: auto !important;
+  button {
+    margin-left: 6px;
+    cursor: pointer;
+  }
 }
 .ReactCodeMirror {
   height: calc(100% - 25px);

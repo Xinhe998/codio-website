@@ -157,8 +157,12 @@ button {
     width: 30px;
     height: 30px;
     border-radius: 3px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     border: none;
-
+    box-sizing: border-box;
+    padding: 5px;
+    transition: all .5s;
+    &:hover {
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
   }
 }

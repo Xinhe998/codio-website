@@ -2,33 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TabList from '../TabList';
 import Tab from '../Tab';
-import Dropdown from './Dropdown';
 import UserInfo from './UserInfo';
 import logo from '../../assets/codio_logo.png';
-import eclipse from '../../assets/ellipsis-h-solid.svg';
 import './index.scss';
 
 class AppHeader extends Component {
   constructor() {
     super();
     this.state = {
-      isDropdownOpen: false,
     };
   }
 
-  switchDropdown = isOpen => {
-    this.setState({
-      isDropdownOpen: isOpen,
-    });
-  };
-
   render() {
-    const dropdownOptions = [
-      '新增專案',
-      '儲存此專案',
-      '刪除此專案',
-      '分享此專案',
-    ];
     return (
       <header className="AppHeader">
         <div className="AppHeader__logo-wrap">
@@ -66,14 +51,6 @@ class AppHeader extends Component {
             </Tab>
           </TabList>
         ) : null}
-        {this.props.isDropdownVisible ? (
-          <Dropdown
-            icon={eclipse}
-            options={dropdownOptions}
-            isOpen={this.state.isDropdownOpen}
-            swichOptionHandler={this.switchDropdown}
-          />
-        ) : null}
         <UserInfo />
       </header>
     );
@@ -83,7 +60,6 @@ AppHeader.propTypes = {
   currentActiveTab: PropTypes.string,
   handleTabClick: PropTypes.func,
   isTabVisible: PropTypes.bool,
-  isDropdownVisible: PropTypes.bool,
 };
 AppHeader.defaultProps = {
   currentActiveTab: 'html',

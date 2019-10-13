@@ -17,7 +17,6 @@ const Home = () => {
       <AppHeader
         currentActiveTab={currentActiveTab}
         handleTabClick={target => setCurrentActiveTab(target)}
-        isDropdownVisible
         isTabVisible
       />
       <div className="AppContent">
