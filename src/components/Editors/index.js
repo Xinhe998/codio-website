@@ -6,7 +6,7 @@ import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as action from '../../actions';
+import action from '../../actions';
 import TabPanel from '../TabPanel';
 import ConsoleBox from '../ConsoleBox';
 import Resizer from '../Resizer';
@@ -475,6 +475,7 @@ class Editors extends Component {
 
 const mapStateToProps = store => ({
   editor: store.editor,
+  user: store.user,
 });
 export default withRouter(
   connect(
