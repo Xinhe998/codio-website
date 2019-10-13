@@ -61,8 +61,8 @@ const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
 
 class Editors extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       logs: [],
     };

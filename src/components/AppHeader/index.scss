@@ -38,3 +38,13 @@
     }
   }
 }
+
+.AppHeader__logo-wrap {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-left: 20px;
+  img {
+    height: 100%;
+  }
+}

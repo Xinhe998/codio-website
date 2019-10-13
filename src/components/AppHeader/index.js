@@ -4,6 +4,7 @@ import TabList from '../TabList';
 import Tab from '../Tab';
 import Dropdown from './Dropdown';
 import UserInfo from './UserInfo';
+import logo from '../../assets/codio_logo.png';
 import eclipse from '../../assets/ellipsis-h-solid.svg';
 import './index.scss';
 
@@ -30,7 +31,9 @@ class AppHeader extends Component {
     ];
     return (
       <header className="AppHeader">
-        <div className="AppHeader__logo-wrap">LOGO</div>
+        <div className="AppHeader__logo-wrap">
+          <img className="codio_logo" src={logo} />
+        </div>
         {this.props.isTabVisible ? (
           <TabList className="AppHeader__tablist">
             <Tab
