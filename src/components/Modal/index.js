@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IoIosClose } from 'react-icons/io';
@@ -20,21 +21,20 @@ const Modal = ({
   onClose,
   Confirm,
   children,
-  history
+  history,
+  className,
 }) => {
   const modalRef = useRef();
   if (shouldCloseOnClickOutside) useClickOutside(isOpen, modalRef, onClose);
   if (shouldCloseOnEsc) useEscCloseModal(onClose);
   return isOpen ? (
-    <div className="Modal Modal__backdrop">
+    <div className={classNames(className, 'Modal', 'Modal__backdrop')}>
       <div className="Modal__wrapper" ref={modalRef}>
         <div className="Modal__title">
           {title}
           <IoIosClose
             className="close_btn"
-            onClick={() => {
-              history.goBack();
-            }}
+            onClick={onClose}
           />
         </div>
         <div className="Modal__content">
@@ -55,7 +55,6 @@ const Modal = ({
                 disabled={disabled}
               >
                 {confirmBtnText}
-
               </button>
             </div>
           ) : null}

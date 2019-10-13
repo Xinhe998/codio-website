@@ -50,3 +50,38 @@
     height: 100%;
   }
 }
+
+.AppHeader__btnGroup {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  .shareBtn {
+    color: $blue;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}
+
+.shareModal {
+  .textinput {
+    margin: 30px 0 !important;
+  }
+  p {
+    color: $black !important;
+  }
+  .Modal__wrapper {
+    width: 350px;
+  }
+  .Modal__content {
+    padding: 30px 40px;
+  }
+  .radioButtonGroup {
+    margin-bottom: 80px;
+  }
+  .radioButtonGroup__option {
+    margin-bottom: 20px;
+    display: block;
+  }
+}
