@@ -576,6 +576,38 @@ class Editors extends Component {
           selected={this.props.currentActiveTab === 'logs'}
           style={leftStyle}
         >
+          <div className="titlebar">
+            <input
+              className="titlebar_input"
+              value={this.state.project_title}
+              aria-expanded="false"
+              aria-busy="false"
+              aria-owns="titlebar"
+              aria-haspopup="true"
+              placeholder=""
+              size={
+                this.state.project_title.length < 20
+                  ? this.state.project_title.length * 2
+                  : 20
+              }
+            />
+            <Dropdown
+              icon={<IoIosArrowDown />}
+              options={dropdownOptions}
+              isOpen={this.state.isDropdownOpen}
+              swichOptionHandler={this.switchDropdown}
+            />
+            <div className="titlebar_btnGroup">
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="splitBtn"
+                icon={<MdCompare />}
+              />
+            </div>
+          </div>
           <div className="code-editor logs-code">
             <div className="editor-header">Console</div>
             <ConsoleBox logs={this.state.logs} />

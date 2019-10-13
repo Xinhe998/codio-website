@@ -3,12 +3,16 @@ body {
   margin: 0 auto;
   background-color: $codio-darkblue;
   color: $white;
+}
+
+.App {
   overflow: hidden;
 }
 
 .AppContent {
   height: calc(100vh - 70px);
   margin-top: 60px;
+  overflow: hidden;
 }
 
 /** custom theme **/ 
