@@ -89,6 +89,11 @@
     justify-content: flex-end;
     margin-bottom: 80px;
 
+    .display_number {
+      display: flex;
+      align-items: baseline;
+    }
+
     .filter_dropDown .filter_title {
       color: $dark-gray;
     }
@@ -104,5 +109,10 @@
     hr {
       border: 1px solid $light-gray;
     }
+  }
+
+  .total {
+    text-align: right;
+    display: block;
   }
 }

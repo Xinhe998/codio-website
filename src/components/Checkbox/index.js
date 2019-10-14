@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import './index.scss';
 
 const Checkbox = ({ text, checked, name, onChange }) => {
@@ -9,7 +8,7 @@ const Checkbox = ({ text, checked, name, onChange }) => {
       <label className="checkbox">
         <input type="checkbox" checked={checked} name={name} onChange={onChange} />
         <span className="text">{text}</span>
-        <span className="checkmark" />
+        <span className="checkMark" />
       </label>
     </div>
   );
@@ -17,14 +16,14 @@ const Checkbox = ({ text, checked, name, onChange }) => {
 
 Checkbox.propTypes = {
   text: PropTypes.string,
-  checked: PropTypes.bool,
+  checked: PropTypes.array,
   name: PropTypes.string,
   onChange: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
   text: '',
-  checked: false,
+  checked: [],
   name: '',
 };
 export default Checkbox;

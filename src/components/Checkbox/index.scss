@@ -25,7 +25,7 @@
 }
 
 /* Create a custom checkbox */
-.checkmark {
+.checkMark {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,24 +37,24 @@
 }
 
 /* When the checkbox is checked, add a blue background */
-.checkbox input:checked ~ .checkmark {
+.checkbox input:checked ~ .checkMark {
   background-color: #3597ec;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
+/* Create the checkMark/indicator (hidden when not checked) */
+.checkMark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
-.checkbox input:checked ~ .checkmark:after {
+/* Show the checkMark when checked */
+.checkbox input:checked ~ .checkMark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
-.checkbox .checkmark:after {
+/* Style the checkMark/indicator */
+.checkbox .checkMark:after {
   left: 6px;
   top: 2px;
   width: 5px;
