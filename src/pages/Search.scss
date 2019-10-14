@@ -30,6 +30,7 @@
     }
   }
   .projectList {
+    position: relative;
     display: flex;
     background: $white;
     padding: 0 100px 50px;
@@ -61,7 +62,8 @@
     background-size: 10px;
     padding: 5px;
   }
-  .swiper-wrapper {
-    padding: 0 100px;
+  .swiper-container {
+    width: 80%;
+    position: unset !important;
   }
 }
