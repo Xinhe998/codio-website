@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.506" height="56.007" viewBox="0 0 46.506 56.007">
+    <defs>
+        <style>
+            .cls-1{fill:#ffda89}.cls-2{filter:url(#bookmark-solid)}
+        </style>
+        <filter id="bookmark-solid" width="46.506" height="56.007" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="3"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g class="cls-2">
+        <path id="bookmark-solid-2" d="M0 38.007V3.563A3.563 3.563 0 0 1 3.563 0h21.379a3.563 3.563 0 0 1 3.563 3.563v34.444l-14.252-8.314z" class="cls-1" data-name="bookmark-solid" transform="translate(9 6)"/>
+    </g>
+</svg>

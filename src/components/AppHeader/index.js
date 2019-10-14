@@ -1,88 +1,118 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import TabList from '../TabList';
 import Tab from '../Tab';
-import Dropdown from './Dropdown';
 import UserInfo from './UserInfo';
-import eclipse from '../../assets/ellipsis-h-solid.svg';
+import logo from '../../assets/codio_logo.png';
+import Modal from '../Modal';
+import TextInput from '../TextInput';
+import RadioButtonGroup from '../RadioButtonGroup';
+import { MdShare } from 'react-icons/md';
 import './index.scss';
 
-class AppHeader extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isDropdownOpen: false,
-    };
-  }
-
-  switchDropdown = isOpen => {
-    this.setState({
-      isDropdownOpen: isOpen,
-    });
-  };
-
-  render() {
-    const dropdownOptions = [
-      '新增專案',
-      '儲存此專案',
-      '刪除此專案',
-      '分享此專案',
-    ];
-    return (
-      <header className="AppHeader">
-        <div className="AppHeader__logo-wrap">LOGO</div>
-        {this.props.isTabVisible ? (
-          <TabList className="AppHeader__tablist">
-            <Tab
-              selected={this.props.currentActiveTab === 'html'}
-              tabIndex="0"
-              handleTabClick={() => this.props.handleTabClick('html')}
-            >
-              HTML
-            </Tab>
-            <Tab
-              selected={this.props.currentActiveTab === 'css'}
-              tabIndex="1"
-              handleTabClick={() => this.props.handleTabClick('css')}
-            >
-              CSS
-            </Tab>
-            <Tab
-              selected={this.props.currentActiveTab === 'js'}
-              tabIndex="2"
-              handleTabClick={() => this.props.handleTabClick('js')}
-            >
-              JS
-            </Tab>
-            <Tab
-              selected={this.props.currentActiveTab === 'logs'}
-              tabIndex="3"
-              handleTabClick={() => this.props.handleTabClick('logs')}
-            >
-              Console
-            </Tab>
-          </TabList>
-        ) : null}
-        {this.props.isDropdownVisible ? (
-          <Dropdown
-            icon={eclipse}
-            options={dropdownOptions}
-            isOpen={this.state.isDropdownOpen}
-            swichOptionHandler={this.switchDropdown}
+const AppHeader = ({
+  currentActiveTab,
+  handleTabClick,
+  isTabVisible,
+  isShareBtnVisible,
+}) => {
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [permission, setPermission] = useState('編輯');
+  const permissionOptions = ['編輯', '檢視'];
+  const ShareUrlInputRef = useRef();
+  return (
+    <header className="AppHeader">
+      <div className="AppHeader__logo-wrap">
+        <img className="codio_logo" src={logo} alt="codio_logo" />
+      </div>
+      {isTabVisible ? (
+        <TabList className="AppHeader__tablist">
+          <Tab
+            selected={currentActiveTab === 'html'}
+            tabIndex="0"
+            handleTabClick={() => handleTabClick('html')}
+          >
+            HTML
+          </Tab>
+          <Tab
+            selected={currentActiveTab === 'css'}
+            tabIndex="1"
+            handleTabClick={() => handleTabClick('css')}
+          >
+            CSS
+          </Tab>
+          <Tab
+            selected={currentActiveTab === 'js'}
+            tabIndex="2"
+            handleTabClick={() => handleTabClick('js')}
+          >
+            JS
+          </Tab>
+          <Tab
+            selected={currentActiveTab === 'logs'}
+            tabIndex="3"
+            handleTabClick={() => handleTabClick('logs')}
+          >
+            Console
+          </Tab>
+        </TabList>
+      ) : null}
+      <div className="AppHeader__btnGroup">
+        {isShareBtnVisible ? (
+          <MdShare
+            className="shareBtn"
+            onClick={() => setIsShareModalOpen(true)}
           />
         ) : null}
+        {isShareBtnVisible ? (
+          <Modal
+            isOpen={isShareModalOpen}
+            className="shareModal"
+            title="與他人共用"
+            onClose={() => setIsShareModalOpen(false)}
+            shouldCloseOnEsc
+            shouldCloseOnClickOutside
+            showControlBtn
+            confirmBtnText="儲存"
+            cancelBtnText="取消"
+          >
+            <TextInput
+              text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+              showPostBtn
+              postBtnText="複製連結"
+              ref={ShareUrlInputRef}
+              postBtnOnClick={() => {
+                ShareUrlInputRef.current.select();
+                document.execCommand('copy');
+              }}
+              readonly
+            />
+            <p>知道連結的人可以</p>
+            <RadioButtonGroup
+              name="permission"
+              options={permissionOptions}
+              value={permission}
+              onChange={setPermission}
+            />
+          </Modal>
+        ) : null}
         <UserInfo />
-      </header>
-    );
-  }
-}
+      </div>
+    </header>
+  );
+};
+
 AppHeader.propTypes = {
   currentActiveTab: PropTypes.string,
   handleTabClick: PropTypes.func,
   isTabVisible: PropTypes.bool,
-  isDropdownVisible: PropTypes.bool,
+  isShareBtnVisible: PropTypes.bool,
 };
+
 AppHeader.defaultProps = {
   currentActiveTab: 'html',
+  isTabVisible: false,
+  isShareBtnVisible: false,
 };
+
 export default AppHeader;

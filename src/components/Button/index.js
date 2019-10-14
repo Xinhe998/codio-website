@@ -46,7 +46,7 @@ Button.propTypes = {
   size: PropTypes.string,
   type: PropTypes.string,
   shape: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,

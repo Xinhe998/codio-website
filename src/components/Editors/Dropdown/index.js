@@ -16,7 +16,7 @@ const Dropdown = ({
         className="Dropdown__button"
         onClick={() => swichOptionHandler(!isOpen)}
       >
-        <img className="Dropdown__button__icon" src={icon} alt="Dropdown__button" />
+        {icon}
       </button>
       {isOpen ? (
         <div className="Dropdown__tooltip">
@@ -44,14 +44,13 @@ const Dropdown = ({
   );
 };
 Dropdown.propTypes = {
-  icon: PropTypes.string,
+  icon: PropTypes.object,
   options: PropTypes.array,
   swichOptionHandler: PropTypes.func,
   isOpen: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
-  icon: '',
   options: [],
   swichOptionHandler: null,
   isOpen: false,

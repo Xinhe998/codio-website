@@ -6,10 +6,15 @@ import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as action from '../../actions';
+import { IoIosArrowDown } from 'react-icons/io';
+import action from '../../actions';
 import TabPanel from '../TabPanel';
 import ConsoleBox from '../ConsoleBox';
+import Button from '../Button';
+import Dropdown from './Dropdown';
 import Resizer from '../Resizer';
+
+import { MdCompare, MdFormatAlignLeft } from 'react-icons/md';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -61,10 +66,12 @@ const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
 
 class Editors extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       logs: [],
+      project_title: '專案名稱',
+      isDropdownOpen: false,
     };
     this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
     this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
@@ -320,6 +327,12 @@ class Editors extends Component {
     console.log('resize end');
   };
 
+  switchDropdown = (isOpen) => {
+    this.setState({
+      isDropdownOpen: isOpen,
+    });
+  };
+
   render() {
     const { html, css, js } = this.props.editor;
     const codeMirrorOptions = {
@@ -354,23 +367,66 @@ class Editors extends Component {
       width: `${(1 - this.sidebarWidth) * 100}%`,
       minWidth: '1%',
     };
+    const dropdownOptions = [
+      '新增專案',
+      '儲存此專案',
+      '刪除此專案',
+      '分享此專案',
+    ];
     return (
       <div className="playground">
         <TabPanel
           selected={this.props.currentActiveTab === 'html'}
           style={leftStyle}
         >
+          <div className="titlebar">
+            <input
+              className="titlebar_input"
+              value={this.state.project_title}
+              aria-expanded="false"
+              aria-busy="false"
+              aria-owns="titlebar"
+              aria-haspopup="true"
+              placeholder=""
+              size={
+                this.state.project_title.length < 20
+                  ? this.state.project_title.length * 2
+                  : 20
+              }
+              onChange={(e) => {
+                this.setState({ project_title: e.target.value });
+              }}
+            />
+            <Dropdown
+              icon={<IoIosArrowDown />}
+              options={dropdownOptions}
+              isOpen={this.state.isDropdownOpen}
+              swichOptionHandler={this.switchDropdown}
+            />
+            <div className="titlebar_btnGroup">
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="splitBtn"
+                icon={<MdCompare />}
+              />
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="formatBtn"
+                icon={<MdFormatAlignLeft />}
+                onClick={() => this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')
+                }
+              />
+            </div>
+          </div>
           <div className="code-editor html-code">
             <div className="editor-header">
               <span className="editor-header-title">HTML</span>
-              <button
-                type="button"
-                className="formatBtn"
-                onClick={() => this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')
-                }
-              >
-                Format
-              </button>
             </div>
             <CodeMirror
               ref="htmlEditor"
@@ -389,17 +445,51 @@ class Editors extends Component {
           selected={this.props.currentActiveTab === 'css'}
           style={leftStyle}
         >
+          <div className="titlebar">
+            <input
+              className="titlebar_input"
+              value={this.state.project_title}
+              aria-expanded="false"
+              aria-busy="false"
+              aria-owns="titlebar"
+              aria-haspopup="true"
+              placeholder=""
+              size={
+                this.state.project_title.length < 20
+                  ? this.state.project_title.length * 2
+                  : 20
+              }
+            />
+            <Dropdown
+              icon={<IoIosArrowDown />}
+              options={dropdownOptions}
+              isOpen={this.state.isDropdownOpen}
+              swichOptionHandler={this.switchDropdown}
+            />
+            <div className="titlebar_btnGroup">
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="splitBtn"
+                icon={<MdCompare />}
+              />
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="formatBtn"
+                icon={<MdFormatAlignLeft />}
+                onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+                }
+              />
+            </div>
+          </div>
           <div className="code-editor css-code">
             <div className="editor-header">
               <span className="editor-header-title">CSS</span>
-              <button
-                type="button"
-                className="formatBtn"
-                onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
-                }
-              >
-                Format
-              </button>
             </div>
 
             <CodeMirror
@@ -422,17 +512,51 @@ class Editors extends Component {
           selected={this.props.currentActiveTab === 'js'}
           style={leftStyle}
         >
+          <div className="titlebar">
+            <input
+              className="titlebar_input"
+              value={this.state.project_title}
+              aria-expanded="false"
+              aria-busy="false"
+              aria-owns="titlebar"
+              aria-haspopup="true"
+              placeholder=""
+              size={
+                this.state.project_title.length < 20
+                  ? this.state.project_title.length * 2
+                  : 20
+              }
+            />
+            <Dropdown
+              icon={<IoIosArrowDown />}
+              options={dropdownOptions}
+              isOpen={this.state.isDropdownOpen}
+              swichOptionHandler={this.switchDropdown}
+            />
+            <div className="titlebar_btnGroup">
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="splitBtn"
+                icon={<MdCompare />}
+              />
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="formatBtn"
+                icon={<MdFormatAlignLeft />}
+                onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+                }
+              />
+            </div>
+          </div>
           <div className="code-editor js-code">
             <div className="editor-header">
               <span className="editor-header-title">JavaScript</span>
-              <button
-                type="button"
-                className="formatBtn"
-                onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
-                }
-              >
-                Format
-              </button>
             </div>
 
             <CodeMirror
@@ -452,6 +576,38 @@ class Editors extends Component {
           selected={this.props.currentActiveTab === 'logs'}
           style={leftStyle}
         >
+          <div className="titlebar">
+            <input
+              className="titlebar_input"
+              value={this.state.project_title}
+              aria-expanded="false"
+              aria-busy="false"
+              aria-owns="titlebar"
+              aria-haspopup="true"
+              placeholder=""
+              size={
+                this.state.project_title.length < 20
+                  ? this.state.project_title.length * 2
+                  : 20
+              }
+            />
+            <Dropdown
+              icon={<IoIosArrowDown />}
+              options={dropdownOptions}
+              isOpen={this.state.isDropdownOpen}
+              swichOptionHandler={this.switchDropdown}
+            />
+            <div className="titlebar_btnGroup">
+              <Button
+                type="primary"
+                size="small"
+                theme="red"
+                shape="square"
+                className="splitBtn"
+                icon={<MdCompare />}
+              />
+            </div>
+          </div>
           <div className="code-editor logs-code">
             <div className="editor-header">Console</div>
             <ConsoleBox logs={this.state.logs} />
@@ -465,7 +621,7 @@ class Editors extends Component {
             onResize={this.handleResize}
             onResizeEnd={this.handleResizeEnd}
           > */}
-            <iframe title="result" className="iframe" ref="iframe" />
+          <iframe title="result" className="iframe" ref="iframe" />
           {/* </Resizer> */}
         </div>
       </div>
@@ -475,6 +631,7 @@ class Editors extends Component {
 
 const mapStateToProps = store => ({
   editor: store.editor,
+  user: store.user,
 });
 export default withRouter(
   connect(

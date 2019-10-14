@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
-import logo from '../../assets/codio_logo1.svg';
+import logo from '../../assets/codio_logo.svg';
 
 
 const Layout = ({

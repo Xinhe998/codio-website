@@ -8,7 +8,7 @@
   z-index: 99;
   display: flex;
   align-items: center;
-  color: var($white);
+  color: $white;
 }
 
 .AppHeader__tablist {
@@ -17,6 +17,8 @@
   align-items: flex-end;
   margin: 0;
   overflow: hidden;
+  font-size: 14px;
+  line-height: 1.8;
   li {
     height: 25px;
     min-width: 50px;
@@ -36,5 +38,50 @@
     &[aria-selected="true"] {
       background: $codio-darkblue;
     }
+  }
+}
+
+.AppHeader__logo-wrap {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-left: 20px;
+  img {
+    height: 100%;
+  }
+}
+
+.AppHeader__btnGroup {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  .shareBtn {
+    color: $blue;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}
+
+.shareModal {
+  .textinput {
+    margin: 30px 0 !important;
+  }
+  p {
+    color: $black !important;
+  }
+  .Modal__wrapper {
+    width: 350px;
+  }
+  .Modal__content {
+    padding: 30px 40px;
+  }
+  .radioButtonGroup {
+    margin-bottom: 80px;
+  }
+  .radioButtonGroup__option {
+    margin-bottom: 20px;
+    display: block;
   }
 }
