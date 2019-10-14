@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { IoIosEye, IoIosHeart } from 'react-icons/io';
 
 import './index.scss';
-import bookmark from '../../assets/bookmark-solid.svg';
 
 const ProjectCard = ({
   img,
@@ -38,5 +38,15 @@ const ProjectCard = ({
     </div>
   </div>
 );
+
+ProjectCard.propTypes = {
+  title: PropTypes.string,
+  img: PropTypes.string,
+  avatar: PropTypes.string,
+  viewCount: PropTypes.string,
+  likeCount: PropTypes.string,
+  showPlace: PropTypes.bool,
+  place: PropTypes.string,
+};
 
 export default ProjectCard;

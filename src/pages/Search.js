@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IoMdSearch } from 'react-icons/io';
+import Swiper from 'react-id-swiper';
 import action from '../actions';
 
 import AppHeader from '../components/AppHeader';
@@ -11,11 +12,20 @@ import Button from '../components/Button';
 
 import './index.scss';
 import './Search.scss';
+import 'react-id-swiper/lib/styles/scss/swiper.scss';
 
 import mockup from '../assets/smartmockups_jxfuqv8i.jpg';
 
 const Search = () => {
   const [searchText, setSearchText] = useState('');
+  const sliderSettings = {
+    slidesPerView: 3,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  };
   return (
     <div className="Search">
       <AppHeader isTabVisible={false} isShareBtnVisible={false} />
@@ -35,34 +45,64 @@ const Search = () => {
           />
         </div>
         <h2>本週排行</h2>
-        <div className="projectList">
-          <ProjectCard
-            title="todolist"
-            img={mockup}
-            avatar="https://avatars3.githubusercontent.com/u/29070256?s=460&v=4"
-            viewCount="1300"
-            likeCount="560"
-            showPlace
-            place="1"
-          />
-          <ProjectCard
-            title="todolist"
-            img={mockup}
-            avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
-            viewCount="1300"
-            likeCount="560"
-            showPlace
-            place="2"
-          />
-          <ProjectCard
-            title="todolist"
-            img={mockup}
-            avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
-            viewCount="1300"
-            likeCount="560"
-            showPlace
-            place="3"
-          />
+        <div className="projectList carouselList">
+          <Swiper {...sliderSettings}>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars3.githubusercontent.com/u/29070256?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+                showPlace
+                place="1"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+                showPlace
+                place="2"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+                showPlace
+                place="3"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+                showPlace
+                place="4"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+                showPlace
+                place="5"
+              />
+            </div>
+          </Swiper>
         </div>
         <h2>已追蹤</h2>
         <div className="projectList">

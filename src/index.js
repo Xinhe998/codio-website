@@ -47,7 +47,7 @@ const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
   const isModal = !!(location.state && location.state.modal && previousLocation);
   return (
-    <>
+    <BrowserRouter>
       <Switch location={isModal ? previousLocation : location}>
         <Route exact path="/" component={App} />
         <Route path="/login" component={Login} />
@@ -61,7 +61,7 @@ const CodioSwitch = ({ location }) => {
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}
-    </>
+    </BrowserRouter>
   );
 };
 

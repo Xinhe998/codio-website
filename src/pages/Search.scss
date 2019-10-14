@@ -37,4 +37,31 @@
     backdrop-filter: blur(30px);
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   }
+  .carouselList {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .swiper-button-next {
+    background-color: #2a2f42;
+    background-image: url('../assets/chevron-right-solid.svg');
+    position: absolute;
+    right: 0;
+    background-size: 10px;
+    padding: 5px;
+  }
+  .swiper-button-disabled {
+    display: none;
+  }
+  .swiper-button-prev {
+    background-color: #2a2f42;
+    background-image: url('../assets/chevron-right-solid.svg');
+    transform: scaleX(-1);
+    position: absolute;
+    left: 0;
+    background-size: 10px;
+    padding: 5px;
+  }
+  .swiper-wrapper {
+    padding: 0 100px;
+  }
 }
