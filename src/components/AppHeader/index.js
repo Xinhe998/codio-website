@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import TabList from '../TabList';
 import Tab from '../Tab';
 import UserInfo from './UserInfo';
@@ -99,6 +100,19 @@ const AppHeader = ({
       </div>
     </header>
   );
+};
+
+AppHeader.propTypes = {
+  currentActiveTab: PropTypes.string,
+  handleTabClick: PropTypes.func,
+  isTabVisible: PropTypes.bool,
+  isShareBtnVisible: PropTypes.bool,
+};
+
+AppHeader.defaultProps = {
+  currentActiveTab: 'html',
+  isTabVisible: false,
+  isShareBtnVisible: false,
 };
 
 export default AppHeader;

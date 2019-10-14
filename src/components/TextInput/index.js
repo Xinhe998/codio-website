@@ -5,26 +5,29 @@ import { IoIosWarning, IoIosCheckmarkCircle } from 'react-icons/io';
 import Button from '../Button';
 import './index.scss';
 
-const TextInput = React.forwardRef(({
-  type,
-  placeholder,
-  text,
-  title,
-  onChange,
-  required,
-  showHint,
-  hintType,
-  hintText,
-  onFocus,
-  onBlur,
-  disabled,
-  icon,
-  showPostBtn,
-  postBtnText,
-  postBtnOnClick,
-  readonly
-}, ref) => {
-  return (
+const TextInput = React.forwardRef(
+  (
+    {
+      type,
+      placeholder,
+      text,
+      title,
+      onChange,
+      required,
+      showHint,
+      hintType,
+      hintText,
+      onFocus,
+      onBlur,
+      disabled,
+      icon,
+      showPostBtn,
+      postBtnText,
+      postBtnOnClick,
+      readonly,
+    },
+    ref,
+  ) => (
     <div
       className={classNames(
         'textinput',
@@ -46,7 +49,14 @@ const TextInput = React.forwardRef(({
       />
       <div className="textinput__icon">{icon}</div>
       {showPostBtn ? (
-        <Button className="textinput__postBtn" type="primary" size="small" theme="blue" text={postBtnText} onClick={postBtnOnClick} />
+        <Button
+          className="textinput__postBtn"
+          type="primary"
+          size="small"
+          theme="blue"
+          text={postBtnText}
+          onClick={postBtnOnClick}
+        />
       ) : null}
       {showHint ? (
         <span className="textinput__hint">
@@ -56,8 +66,8 @@ const TextInput = React.forwardRef(({
         </span>
       ) : null}
     </div>
-  );
-});
+  ),
+);
 
 TextInput.propTypes = {
   title: PropTypes.string,
