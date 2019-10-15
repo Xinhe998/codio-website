@@ -9,6 +9,7 @@ import AppHeader from '../components/AppHeader';
 import TextInput from '../components/TextInput';
 import ProjectCard from '../components/ProjectCard';
 import Button from '../components/Button';
+import SearchAlert from '../components/SearchAlert';
 
 import './index.scss';
 import './Search.scss';
@@ -45,6 +46,7 @@ const Search = () => {
             shape="square"
           />
         </div>
+        <SearchAlert text="沒有關於 “React TodoList” 的結果" />
         <h2>本週排行</h2>
         <div className="projectList carouselList">
           <Swiper {...sliderSettings}>
