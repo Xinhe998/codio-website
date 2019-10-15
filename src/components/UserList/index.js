@@ -20,7 +20,7 @@ const UserList = ({
     <React.Fragment className="user">
       <td className="user_number">{userNumber}</td>
       <td className="user_info">
-        <div className="user_img">{userImg}</div>
+        <img className="user_img" src={userImg} alt="會員圖片" />
         <div className="user_name">
           <h5>{userName}</h5>
           <span className="user_type">{userType}</span>

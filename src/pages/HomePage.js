@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 
@@ -25,8 +25,20 @@ const HomePage = (props) => {
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState([]);
   const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
   const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
+  const [number, setNumber] = useState(0);
+
+  const handleSelectCheckbox = (choice) => {
+    const index = isChecked.indexOf(choice);
+    if (index !== -1) {
+      setIsChecked(isChecked.filter(item => item !== choice));
+    } else {
+      setIsChecked([choice, ...isChecked]);
+    }
+  };
+
   const loginHandler = () => {
     const loginData = {
       id,
@@ -56,7 +68,7 @@ const HomePage = (props) => {
           type="primary"
           size="small"
           theme="red"
-          onClick={() => history.push('/create_project')}
+          onClick={() => props.history.push('/create_project')}
         />
         <div className="main_section">
 
@@ -75,30 +87,30 @@ const HomePage = (props) => {
               <hr />
               <Checkbox
                 text="私人"
-                // checked={isChecked}
-                name="member_checkbox"
-              // onChange={setIsChecked}
+                checked={isChecked.indexOf('私人') !== -1}
+                name="private_checkbox"
+                onChange={() => { handleSelectCheckbox('私人'); }}
               />
               <Checkbox
                 text="公用"
-                // checked={isChecked}
-                name="member_checkbox"
-              // onChange={setIsChecked}
+                checked={isChecked.indexOf('公用') !== -1}
+                name="public_checkbox"
+                onChange={() => { handleSelectCheckbox('公用'); }}
               />
 
               <span className="filter_title">排序</span>
               <hr />
               <Checkbox
                 text="新到舊"
-                // checked={isChecked}
-                name="member_checkbox"
-              // onChange={setIsChecked}
+                checked={isChecked.indexOf('新到舊') !== -1}
+                name="new_checkbox"
+                onChange={() => { handleSelectCheckbox('新到舊'); }}
               />
               <Checkbox
                 text="舊到新"
-                // checked={isChecked}
-                name="member_checkbox"
-              // onChange={setIsChecked}
+                checked={isChecked.indexOf('舊到新') !== -1}
+                name="old_checkbox"
+                onChange={() => { handleSelectCheckbox('舊到新'); }}
               />
             </Filter>
             <ResumeBtn
@@ -121,14 +133,14 @@ const HomePage = (props) => {
             onClose={() => { setIsProjectDropDownOpen(false); }}
             shouldCloseOnClickOutside
             shouldCloseOnEsc
-            // onDoubleClick={}
+            number={number}
+            onDoubleClick={() => { setNumber(number + 1); }}
           >
             <span>編輯描述</span>
             <span>編輯程式碼</span>
             <span>分享</span>
             <span>設定</span>
             <span style={{ color: '#ec5252' }}>刪除</span>
-            <div>123</div>
           </ProjectList>
         </div>
       </Layout>

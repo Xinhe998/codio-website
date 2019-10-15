@@ -21,7 +21,8 @@
     top: 15px;
     color: #e4e4e4;
   }
-  .project_dropDown{
+
+  .project_dropDown {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -40,25 +41,33 @@
     text-overflow: ellipsis;
   }
 
-  .likes {
-    width: 30px;
-    height: 30px;
-    background-color: #ffe0e0;
-    border-radius: 50%;
-    position: relative;
-    align-self: flex-end;
+  .like {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
-    .heart_icon {
-      color: #ec5252;
-      width: 18px;
-      height: 15px;
-      position: absolute;
-      top: calc(50% / 2);
-      right: 6px;
+    .heart {
+      width: 30px;
+      height: 30px;
+      background-color: #ffe0e0;
+      border-radius: 50%;
+      position: relative;
+      margin-right: 5px;
+
+      .heart_icon {
+        color: #ec5252;
+        width: 18px;
+        height: 15px;
+        position: absolute;
+        top: calc(50% / 2);
+        right: 6px;
+      }
     }
-    .likes_number{
-      color: #ec5252;
-    }
+  }
+
+  .likes_number {
+    color: #ec5252;
   }
 
 }
