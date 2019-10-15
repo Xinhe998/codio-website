@@ -37,6 +37,18 @@ stories.addDecorator(StoryRouter()).add('type: outline', () => (
   </Provider>
 ));
 
+stories.addDecorator(StoryRouter()).add('type: link', () => (
+  <Provider store={store}>
+    <Button
+      className="my_btn"
+      text="Button"
+      type="link"
+      onClick={action('clicked')}
+      disabled={false}
+    />
+  </Provider>
+));
+
 stories.addDecorator(StoryRouter()).add('size: large', () => (
   <Provider store={store}>
     <Button
