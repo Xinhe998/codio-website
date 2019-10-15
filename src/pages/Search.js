@@ -21,6 +21,7 @@ const Search = () => {
   const sliderSettings = {
     slidesPerView: 3,
     spaceBetween: 20,
+    grabCursor: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -151,6 +152,9 @@ const Search = () => {
             viewCount="1300"
             likeCount="560"
           />
+        </div>
+        <div className="loadmore_btn_wrapper">
+          <Button type="link" text="顯示更多..." theme="blue" />
         </div>
       </div>
     </div>
