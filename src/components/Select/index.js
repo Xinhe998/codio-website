@@ -11,31 +11,32 @@ const Select = ({
   required,
   options,
 }) => (
-    <div className="select">
-      <div className={classNames(
-        'select-title',
-        required ? 'required' : null,
-      )}
-      >
-        {title}
-      </div>
-      <div className="custom-select">
-        <div className="custom-select-value">{value}</div>
-        <select
-          name={name}
-          onChange={e => onChange(e)}
-        >
-
-
-
-
-
-
-
-        </select>
-      </div>
+  <div className="select">
+    <div className={classNames(
+      'select-title',
+      required ? 'required' : null,
+    )}
+    >
+      {title}
     </div>
-  );
+    <div className="custom-select">
+      <div className="custom-select-value">{value}</div>
+      <select
+        name={name}
+        onChange={e => onChange(e)}
+      >
+        {
+          options.map((item, index) => {
+            if (value === item.value) {
+              return <option selected value={item.value} key={index}>{item.label}</option>;
+            }
+            return <option value={item.value} key={index}>{item.label}</option>;
+          })
+        }
+      </select>
+    </div>
+  </div>
+);
 
 Select.propTypes = {
   title: PropTypes.string,
@@ -53,12 +54,3 @@ Select.defaultProps = {
   options: [],
 };
 export default Select;
-
-
-
-// { options }.map((item) => {
-//   if (value === item.value) {
-//     return <option selected value={item.value}>{item.label}</option>;
-//   }
-//   return <option value={item.value}>{item.label}</option>;
-// })

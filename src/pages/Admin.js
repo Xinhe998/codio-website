@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  withRouter, Link, Switch, Route,
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 import action from '../actions';
@@ -27,8 +25,8 @@ const Admin = (props) => {
   const [list, setList] = useState(['會員管理']);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [selectValue, setSelectValue] = useState('');
-  const optionData = [
+  const [selectValue, setSelectValue] = useState('25');
+  const options = [
     { value: '25', label: '25' },
     { value: '35', label: '35' },
   ];
@@ -38,13 +36,21 @@ const Admin = (props) => {
   const charNameValidator = isRequired({ message: '請輸入角色名稱' })(
     charName,
   );
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState([]);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [charType, setCharType] = useState('');
   const charTypeValidator = isRequired({ message: '請輸入會員角色' })(
     charType,
   );
+  const handleSelectCheckbox = (choice) => {
+    const index = isChecked.indexOf(choice);
+    if (index !== -1) {
+      setIsChecked(isChecked.filter(item => item !== choice));
+    } else {
+      setIsChecked([choice, ...isChecked]);
+    }
+  };
   const loginHandler = () => {
     const loginData = {
       id,
@@ -82,9 +88,9 @@ const Admin = (props) => {
                 顯示
                 <Select
                   value={selectValue}
-                // name
-                // onChange
-                // options
+                  name="select_page"
+                  // onChange={}
+                  options={options}
                 />
                 筆
               </div>
@@ -103,9 +109,15 @@ const Admin = (props) => {
                 <hr />
                 <Checkbox
                   text="一般"
-                  checked={isChecked}
+                  checked={isChecked.indexOf('一般') !== -1}
                   name="member_checkbox"
-                  onChange={setIsChecked}
+                  onChange={() => { handleSelectCheckbox('一般'); }}
+                />
+                <Checkbox
+                  text="VIP"
+                  checked={isChecked.indexOf('VIP') !== -1}
+                  name="member_checkbox"
+                  onChange={() => { handleSelectCheckbox('VIP'); }}
                 />
               </Filter>
             </div>
@@ -121,10 +133,10 @@ const Admin = (props) => {
               <tbody>
                 <tr>
                   <UserList
-                  // userNumber={0}
-                  // userImg=""
-                  // userName=""
-                  // userType=""
+                    userNumber={0}
+                    userImg={userImg}
+                    userName="Alice"
+                    userType="一般"
                   />
                 </tr>
                 <tr>
@@ -133,7 +145,7 @@ const Admin = (props) => {
               </tbody>
             </table>
 
-            <span>總共人數：</span>
+            <span className="total">總共人數：</span>
           </div>
 
         </div>
@@ -195,9 +207,9 @@ const Admin = (props) => {
         <Checkbox
           title="角色權限"
           text="作品集"
-          checked={isChecked}
+          checked={isChecked.indexOf('作品集') !== -1}
           name="char_checkbox"
-          onChange={setIsChecked}
+          onChange={() => { handleSelectCheckbox('作品集'); }}
         />
       </Modal>
 

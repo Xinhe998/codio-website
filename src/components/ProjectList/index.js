@@ -19,7 +19,7 @@ const ProjectList = ({
   projectDescription,
   onDoubleClick,
   children,
-  context,
+  number,
 }) => {
   const dropDownRef = useRef();
   if (shouldCloseOnClickOutside) useClickOutside(isOpen, dropDownRef, onClose);
@@ -40,13 +40,14 @@ const ProjectList = ({
 
       />
       <p className="project_description">{projectDescription}</p>
-      <div className="likes">
-        <FaHeart
-          className="heart_icon"
-          onDoubleClick={onDoubleClick}
-        >
-          <div className="likes_number">{context}</div>
-        </FaHeart>
+      <div className="like">
+        <div className="heart">
+          <FaHeart
+            className="heart_icon"
+            onClick={onDoubleClick}
+          />
+        </div>
+        <div className="likes_number">{number}</div>
       </div>
 
     </div>
@@ -63,7 +64,7 @@ ProjectList.propTypes = {
   projectDescription: PropTypes.string,
   onDoubleClick: PropTypes.func,
   children: PropTypes.node,
-  context: PropTypes.node,
+  number: PropTypes.number,
 };
 
 ProjectList.defaultProps = {
@@ -73,7 +74,7 @@ ProjectList.defaultProps = {
   onClose: null,
   projectDescription: '',
   children: null,
-  context: null,
+  number: 0,
 };
 
 const mapStateToProps = store => ({
