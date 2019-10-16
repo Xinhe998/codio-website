@@ -1,4 +1,8 @@
-const API_URL = require('./project_config').api.url;
+if (process.env.NODE_ENV === 'production') {
+  var { API_URL } = process.env;
+} else {
+  var API_URL = require('./project_config').api.url;
+}
 
 module.exports = {
   register: `${API_URL}/register/register`,
