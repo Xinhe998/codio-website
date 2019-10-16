@@ -1,4 +1,4 @@
-if (process.env.NETLIFY) {
+if (process.env.NETLIFY === 'true') {
   var { API_URL } = process.env;
 } else {
   var API_URL = require('./project_config').api.url;
