@@ -1,4 +1,6 @@
 version: 2.1 # use CircleCI 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     working_directory: ~/codio-website # directory where steps will run
@@ -32,6 +34,8 @@ jobs: # a collection of steps
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: coverage
           prefix: coverage
+      - codecov/upload:
+          file: coverage
       - run: sudo apt-get update && sudo apt-get install -y python-dev
       - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
       - run: sudo python get-pip.py
