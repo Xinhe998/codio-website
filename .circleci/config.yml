@@ -36,6 +36,7 @@ jobs: # a collection of steps
           prefix: coverage
       - codecov/upload:
           file: coverage
+          token: 'e50f85c6-56d5-40b7-8c2d-1a44d96cd9e8'
       - run: sudo apt-get update && sudo apt-get install -y python-dev
       - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
       - run: sudo python get-pip.py
