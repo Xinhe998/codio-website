@@ -27,7 +27,7 @@ jobs: # a collection of steps
           command: npm run coverage
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: ./coverage/clover.xml
+          path: ./junit.xml
           prefix: tests
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: coverage
