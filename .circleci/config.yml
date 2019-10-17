@@ -29,9 +29,9 @@ jobs: # a collection of steps
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
-          path: reports/junit
+          path: ./junit.xml
       - store_artifacts:
-          path: reports/junit
+          path: ./junit.xml
       - run: # run coverage report
           name: code-coverage
           command: npm run coverage
