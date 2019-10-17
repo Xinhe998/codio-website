@@ -22,12 +22,6 @@ jobs: # a collection of steps
       - run: # run tests
           name: test
           command: npm test
-      - run:
-          name: "JavaScript Test Suite"
-          # yarn here makes sure we are using the local jest binary
-          command: yarn jest -- --ci --testResultsProcessor="jest-junit"
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
           path: ./test-results
       - store_artifacts:
@@ -35,15 +29,9 @@ jobs: # a collection of steps
       - run: # run coverage report
           name: code-coverage
           command: npm run coverage
-      # - store_artifacts: # special step to save test results as as artifact
-      #     # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-      #     path: ./junit.xml
-      #     prefix: tests
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: coverage
           prefix: coverage
-      # - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-      #     path: ./junit.xml
       - run: sudo apt-get update && sudo apt-get install -y python-dev
       - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
       - run: sudo python get-pip.py
