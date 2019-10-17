@@ -8,7 +8,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "coverage": "yarn run test -- --coverage",
     "build": "webpack --mode production",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "deploy": "npm run build && aws s3 sync build/ s3://codio-website --delete"
   },
   "author": "",
   "license": "ISC",

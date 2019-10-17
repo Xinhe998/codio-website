@@ -1,7 +1,7 @@
 version: 2.1 # use CircleCI 2.1
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    working_directory: / # directory where steps will run
+    working_directory: ~/codio-website # directory where steps will run
     docker: # run the steps with Docker
       - image: circleci/node:10.16.3 # ...with this image as the primary container; this is where all `steps` will run
     steps: # a collection of executable commands
@@ -34,3 +34,10 @@ jobs: # a collection of steps
           prefix: coverage
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results.xml
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+      - run: aws --version
+      - run: aws s3 ls
+      - run: npm run deploy
