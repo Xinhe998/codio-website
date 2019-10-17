@@ -54,7 +54,7 @@ describe('AppHeader', function() {
       expect(wrapper).toMatchSnapshot();
     });
     it('should find div', async () => {
-      expect(testComp.find('.AppHeader123'));
+      expect(testComp.find('.123'));
     });
     // 測試icon
     // it('should render icon', () => {
