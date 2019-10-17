@@ -9,7 +9,7 @@
     "coverage": "yarn run test -- --coverage",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "deploy": "npm run build && aws s3 sync build/ s3://codio-website --delete"
+    "deploy": "npm run build && aws s3 sync dist/ s3://codio-website --delete"
   },
   "author": "",
   "license": "ISC",
