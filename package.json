@@ -9,7 +9,8 @@
     "coverage": "yarn run test -- --coverage",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "deploy": "npm run build && aws s3 sync dist/ s3://codio-website --delete"
+    "deploy": "npm run build && aws s3 sync dist/ s3://codio-website --delete",
+    "test-ci": "JEST_JUNIT_OUTPUT=\"reports/junit/js-test-results.xml\" jest --maxWorkers=2 --ci"
   },
   "author": "",
   "license": "ISC",
@@ -84,7 +85,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "jest": {
-    "reporters": [ "default", "jest-junit" ],
+    "reporters": ["jest-junit"],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
@@ -93,7 +94,6 @@
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
     ],
     "testEnvironment": "jsdom",
-    "testResultsProcessor": "jest-junit",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
@@ -114,8 +114,8 @@
   },
   "jest-junit": {
     "suiteName": "jest tests",
-    "outputDirectory": ".",
-    "outputName": "junit.xml",
+    "outputDirectory": "./test-results/jest",
+    "outputName": "results.xml",
     "classNameTemplate": "{classname}-{title}",
     "titleTemplate": "{classname}-{title}",
     "ancestorSeparator": " › ",
