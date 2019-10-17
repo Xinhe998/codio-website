@@ -62,6 +62,7 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "8.0.4",
     "babel-polyfill": "^6.26.0",
+    "codecov.io": "^0.1.6",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^2.1.0",
     "enzyme": "^3.9.0",
@@ -85,7 +86,10 @@
     "webpack-dev-server": "^3.1.14"
   },
   "jest": {
-    "reporters": ["default","jest-junit"],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
