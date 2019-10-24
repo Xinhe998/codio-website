@@ -1,5 +1,8 @@
 import { addParameters, configure } from '@storybook/react';
 import { themes } from '@storybook/theming';
+const registerRequireContextHook = require('babel-plugin-require-context-hook/register')
+
+registerRequireContextHook();
 addParameters({
     options: {
       name: 'Codio',

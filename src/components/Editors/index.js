@@ -1,6 +1,7 @@
 /* eslint-disable no-eval */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
 import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
@@ -628,7 +629,9 @@ class Editors extends Component {
     );
   }
 }
-
+Editors.propTypes = {
+  currentActiveTab: PropTypes.string,
+};
 const mapStateToProps = store => ({
   editor: store.editor,
   user: store.user,
