@@ -4,11 +4,13 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { shallow, configure, render } from 'enzyme';
+import { shallow, configure, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import AppHeader from '../index';
 
 import storeFs from '../../../reducers';
+
+import userInfoImg from '../../../assets/user-solid.svg';
 
 const store = createStore(storeFs);
 
@@ -17,9 +19,15 @@ configure({ adapter: new Adapter() });
 
 describe('AppHeader', function() {
   let testComp;
+
   beforeEach(() => {
     jest.resetModules();
-    this.params = {};
+    this.params = {
+      currentActiveTab: 'html',
+      handleTabClick: jest.fn(),
+      isTabVisible: true,
+      isShareBtnVisible: true,
+    };
 
     this.makeSubject = () => {
       const {
@@ -29,14 +37,14 @@ describe('AppHeader', function() {
         isShareBtnVisible,
       } = this.params;
 
-      testComp = shallow(
+      testComp = mount(
         <Router>
           <Provider store={store}>
             <AppHeader
-              currentActiveTab="html"
-              handleTabClick={() => {}}
-              isTabVisible
-              isShareBtnVisible
+              currentActiveTab={currentActiveTab}
+              handleTabClick={handleTabClick}
+              isTabVisible={isTabVisible}
+              isShareBtnVisible={isShareBtnVisible}
             />
           </Provider>
         </Router>,
@@ -56,27 +64,20 @@ describe('AppHeader', function() {
     it('should find div', async () => {
       expect(testComp.find('.AppHeader'));
     });
-    // 測試icon
-    // it('should render icon', () => {
-    //   expect(testComp.find('img').prop('src')).toEqual(filter);
-    // });
-    // // 測試text
-    // it('should render text', () => {
-    //   expect(testComp.find('.Dropdown__button').text()).toEqual('Test:option1');
-    // });
-    // // 測試按下 button 會觸發 swichOptionHandler
-    // it('test click event', () => {
-    //   testComp.find('button').simulate('click');
-    //   expect(this.params.swichOptionHandler.mock.calls.length).toEqual(1);
-    // });
-    // 測試按下選項
-    // it('test click event', () => {
-    //   testComp
-    //     .find('.Dropdown__tooltip__list__option')
-    //     .at(0)
-    //     .simulate('click');
-    //   expect(this.params.swichOptionHandler.mock.calls.length).toEqual(1);
-    //   expect(this.params.handleClickDispatch.mock.calls.length).toEqual(1);
-    // });
+    // 測試 UserInfo
+    it('should render UserInfo icon', () => {
+      expect(testComp.find('.userinfo').find('img').prop('src')).toEqual(userInfoImg);
+    });
+    // 測試 ShareBtn，按下會打開 Modal
+    it('should render ShareBtn icon', () => {
+      expect(testComp.find('.shareBtn'));
+      testComp.find('.shareBtn').first().simulate('click');
+      expect(testComp.find('.shareModal'));
+    });
+    // 測試按下 tab 會觸發 swichOptionHandler
+    it('test handleTabClick', () => {
+      testComp.find('li').at(2).simulate('click');
+      expect(this.params.handleTabClick.mock.calls.length).toEqual(1);
+    });
   });
 });
