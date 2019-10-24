@@ -54,10 +54,6 @@ describe('DatePicker', function() {
     beforeEach(() => {
       this.subject = this.makeSubject();
     });
-    it('should be same as snapshot', async () => {
-      const wrapper = render(await testComp);
-      expect(wrapper).toMatchSnapshot();
-    });
     it('should find className', async () => {
       expect(testComp.find('.header'));
     });
