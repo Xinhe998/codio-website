@@ -31,7 +31,7 @@ initialize {
               "attribs": Object {
                 "placeholder": "DateInput_Placeholder",
                 "type": "text",
-                "value": "2019/10/24",
+                "value": "2019/10/25",
               },
               "children": Array [],
               "name": "input",
@@ -138,7 +138,7 @@ initialize {
             "attribs": Object {
               "placeholder": "DateInput_Placeholder",
               "type": "text",
-              "value": "2019/10/24",
+              "value": "2019/10/25",
             },
             "children": Array [],
             "name": "input",
@@ -325,7 +325,7 @@ initialize {
               "attribs": Object {
                 "placeholder": "DateInput_Placeholder",
                 "type": "text",
-                "value": "2019/10/24",
+                "value": "2019/10/25",
               },
               "children": Array [],
               "name": "input",

@@ -328,7 +328,7 @@ exports[`Storyshots DateInput default 1`] = `
       placeholder="dd/mm/yyyy"
       readOnly={false}
       type="text"
-      value="2019/10/24"
+      value="2019/10/25"
     />
     <div
       className="textinput__icon"
@@ -695,7 +695,7 @@ exports[`Storyshots DateInput default 1`] = `
           </span>
         </div>
         <div
-          className="col cell selected"
+          className="col cell "
           onClick={[Function]}
         >
           <span
@@ -705,7 +705,7 @@ exports[`Storyshots DateInput default 1`] = `
           </span>
         </div>
         <div
-          className="col cell "
+          className="col cell selected"
           onClick={[Function]}
         >
           <span

@@ -23,7 +23,7 @@ describe('DateInput', function () {
   beforeEach(() => {
     jest.resetModules();
     this.params = {
-      defaultDate: new Date(),
+      defaultDate: new Date('2019/10/25'),
       onSelect: jest.fn(),
       disabledPastDate: true,
       title: 'DateInput',
