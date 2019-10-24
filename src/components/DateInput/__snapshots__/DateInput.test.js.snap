@@ -1,0 +1,432 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateInput when it has complete data should be same as snapshot 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "class": "DateInput",
+    },
+    "children": Array [
+      Object {
+        "attribs": Object {
+          "class": "textinput required",
+        },
+        "children": Array [
+          Object {
+            "attribs": Object {
+              "class": "textinput__title",
+            },
+            "children": Array [
+              Object {
+                "data": "DateInput",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "span",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "placeholder": "DateInput_Placeholder",
+                "type": "text",
+                "value": "2019/10/24",
+              },
+              "children": Array [],
+              "name": "input",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "textinput__icon",
+                },
+                "children": Array [
+                  Object {
+                    "attribs": Object {
+                      "fill": "currentColor",
+                      "height": "1em",
+                      "stroke": "currentColor",
+                      "stroke-width": "0",
+                      "viewBox": "0 0 512 512",
+                      "width": "1em",
+                      "xmlns": "http://www.w3.org/2000/svg",
+                    },
+                    "children": Array [
+                      Object {
+                        "attribs": Object {
+                          "d": "M368.005 272h-96v96h96v-96zm-32-208v32h-160V64h-48v32h-24.01c-22.002 0-40 17.998-40 40v272c0 22.002 17.998 40 40 40h304.01c22.002 0 40-17.998 40-40V136c0-22.002-17.998-40-40-40h-24V64h-48zm72 344h-304.01V196h304.01v212z",
+                        },
+                        "children": Array [],
+                        "name": "path",
+                        "namespace": "http://www.w3.org/2000/svg",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "tag",
+                        "x-attribsNamespace": Object {
+                          "d": undefined,
+                        },
+                        "x-attribsPrefix": Object {
+                          "d": undefined,
+                        },
+                      },
+                    ],
+                    "name": "svg",
+                    "namespace": "http://www.w3.org/2000/svg",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "fill": undefined,
+                      "height": undefined,
+                      "stroke": undefined,
+                      "stroke-width": undefined,
+                      "viewBox": undefined,
+                      "width": undefined,
+                      "xmlns": "http://www.w3.org/2000/xmlns/",
+                    },
+                    "x-attribsPrefix": Object {
+                      "fill": undefined,
+                      "height": undefined,
+                      "stroke": undefined,
+                      "stroke-width": undefined,
+                      "viewBox": undefined,
+                      "width": undefined,
+                      "xmlns": "",
+                    },
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "placeholder": undefined,
+                "type": undefined,
+                "value": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "placeholder": undefined,
+                "type": undefined,
+                "value": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "placeholder": "DateInput_Placeholder",
+              "type": "text",
+              "value": "2019/10/24",
+            },
+            "children": Array [],
+            "name": "input",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "class": "textinput__icon",
+              },
+              "children": Array [
+                Object {
+                  "attribs": Object {
+                    "fill": "currentColor",
+                    "height": "1em",
+                    "stroke": "currentColor",
+                    "stroke-width": "0",
+                    "viewBox": "0 0 512 512",
+                    "width": "1em",
+                    "xmlns": "http://www.w3.org/2000/svg",
+                  },
+                  "children": Array [
+                    Object {
+                      "attribs": Object {
+                        "d": "M368.005 272h-96v96h96v-96zm-32-208v32h-160V64h-48v32h-24.01c-22.002 0-40 17.998-40 40v272c0 22.002 17.998 40 40 40h304.01c22.002 0 40-17.998 40-40V136c0-22.002-17.998-40-40-40h-24V64h-48zm72 344h-304.01V196h304.01v212z",
+                      },
+                      "children": Array [],
+                      "name": "path",
+                      "namespace": "http://www.w3.org/2000/svg",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "tag",
+                      "x-attribsNamespace": Object {
+                        "d": undefined,
+                      },
+                      "x-attribsPrefix": Object {
+                        "d": undefined,
+                      },
+                    },
+                  ],
+                  "name": "svg",
+                  "namespace": "http://www.w3.org/2000/svg",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "fill": undefined,
+                    "height": undefined,
+                    "stroke": undefined,
+                    "stroke-width": undefined,
+                    "viewBox": undefined,
+                    "width": undefined,
+                    "xmlns": "http://www.w3.org/2000/xmlns/",
+                  },
+                  "x-attribsPrefix": Object {
+                    "fill": undefined,
+                    "height": undefined,
+                    "stroke": undefined,
+                    "stroke-width": undefined,
+                    "viewBox": undefined,
+                    "width": undefined,
+                    "xmlns": "",
+                  },
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "class": "textinput__title",
+              },
+              "children": Array [
+                Object {
+                  "data": "DateInput",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "span",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "placeholder": undefined,
+              "type": undefined,
+              "value": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "placeholder": undefined,
+              "type": undefined,
+              "value": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "class": "textinput__icon",
+            },
+            "children": Array [
+              Object {
+                "attribs": Object {
+                  "fill": "currentColor",
+                  "height": "1em",
+                  "stroke": "currentColor",
+                  "stroke-width": "0",
+                  "viewBox": "0 0 512 512",
+                  "width": "1em",
+                  "xmlns": "http://www.w3.org/2000/svg",
+                },
+                "children": Array [
+                  Object {
+                    "attribs": Object {
+                      "d": "M368.005 272h-96v96h96v-96zm-32-208v32h-160V64h-48v32h-24.01c-22.002 0-40 17.998-40 40v272c0 22.002 17.998 40 40 40h304.01c22.002 0 40-17.998 40-40V136c0-22.002-17.998-40-40-40h-24V64h-48zm72 344h-304.01V196h304.01v212z",
+                    },
+                    "children": Array [],
+                    "name": "path",
+                    "namespace": "http://www.w3.org/2000/svg",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "d": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "d": undefined,
+                    },
+                  },
+                ],
+                "name": "svg",
+                "namespace": "http://www.w3.org/2000/svg",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "fill": undefined,
+                  "height": undefined,
+                  "stroke": undefined,
+                  "stroke-width": undefined,
+                  "viewBox": undefined,
+                  "width": undefined,
+                  "xmlns": "http://www.w3.org/2000/xmlns/",
+                },
+                "x-attribsPrefix": Object {
+                  "fill": undefined,
+                  "height": undefined,
+                  "stroke": undefined,
+                  "stroke-width": undefined,
+                  "viewBox": undefined,
+                  "width": undefined,
+                  "xmlns": "",
+                },
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "placeholder": "DateInput_Placeholder",
+                "type": "text",
+                "value": "2019/10/24",
+              },
+              "children": Array [],
+              "name": "input",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "textinput__title",
+                },
+                "children": Array [
+                  Object {
+                    "data": "DateInput",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "span",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "placeholder": undefined,
+                "type": undefined,
+                "value": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "placeholder": undefined,
+                "type": undefined,
+                "value": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+        ],
+        "name": "div",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+    ],
+    "name": "div",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;
