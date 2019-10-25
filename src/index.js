@@ -12,17 +12,17 @@ import storeFs from './reducers';
 
 import '../styles/main.scss';
 import App from './pages/Index';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import ForgetPasswordModal from './pages/ForgetPassword/ForgetPasswordModal';
-import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
-import CreateProject from './pages/CreateProject/CreateProject';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ForgetPassword from './pages/ForgetPassword';
+import ForgetPasswordModal from './pages/ForgetPasswordModal';
+import CreateProject from './pages/CreateProject';
 import PrivateRoute from './pages/PrivateRoute';
-import HomePage from './pages/HomePage/HomePage';
-import Search from './pages/Search/Search';
+import HomePage from './pages/HomePage';
+import Search from './pages/Search';
 
 import usePrevious from './hooks/usePrevious';
-import Admin from './pages/Admin/Admin';
+import Admin from './pages/Admin';
 
 const persistConfig = {
   key: 'root',
