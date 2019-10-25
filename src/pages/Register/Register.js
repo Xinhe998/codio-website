@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import {
   isRequired, isEqual, isEmail, isNumber, hasDigit,
 } from 'calidators';
-import action from '../actions';
+import action from '../../actions';
 
-import AppHeader from '../components/AppHeader';
-import TextInput from '../components/TextInput';
-import Button from '../components/Button';
-import DateInput from '../components/DateInput';
+import AppHeader from '../../components/AppHeader';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
+import DateInput from '../../components/DateInput';
 
-import './index.scss';
+import '../Index/index.scss';
 import './Register.scss';
 
-import mockup from '../assets/smartmockups_jxfuqv8i.jpg';
+import mockup from '../../assets/smartmockups_jxfuqv8i.jpg';
 
 const Register = (props) => {
   const [id, setID] = useState('');

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import AppHeader from '../components/AppHeader';
-import Editors from '../components/Editors';
-import AppFooter from '../components/AppFooter';
+import AppHeader from '../../components/AppHeader';
+import Editors from '../../components/Editors';
+import AppFooter from '../../components/AppFooter';
 
-import * as action from '../actions';
+import * as action from '../../actions';
 import './index.scss';
 
 const Home = () => {

@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
-import action from '../actions';
+import action from '../../actions';
 
-import Layout from '../components/Layout';
-import Button from '../components/Button';
-import TextInput from '../components/TextInput';
-import Checkbox from '../components/Checkbox';
-import Select from '../components/Select';
-import Modal from '../components/Modal';
-import UserList from '../components/UserList';
-import SearchBar from '../components/SearchBar';
-import Filter from '../components/Filter';
+import Layout from '../../components/Layout';
+import Button from '../../components/Button';
+import TextInput from '../../components/TextInput';
+import Checkbox from '../../components/Checkbox';
+import Select from '../../components/Select';
+import Modal from '../../components/Modal';
+import UserList from '../../components/UserList';
+import SearchBar from '../../components/SearchBar';
+import Filter from '../../components/Filter';
 
 import './Admin.scss';
-import userImg from '../assets/userImg.png';
+import userImg from '../../assets/userImg.png';
 
 const Admin = (props) => {
   const [id, setID] = useState('');

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired, isEmail } from 'calidators';
-import action from '../actions';
+import action from '../../actions';
 
-import TextInput from '../components/TextInput';
-import Button from '../components/Button';
-import Modal from '../components/Modal';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
-import './index.scss';
+import '../Index/index.scss';
 import './ForgetPassword.scss';
 
 const ForgetPasswordModal = ({ location, history, forgetPassword }) => {

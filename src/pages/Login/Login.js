@@ -3,16 +3,16 @@ import { withRouter, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 import { IoIosCloseCircle } from 'react-icons/io';
-import action from '../actions';
+import action from '../../actions';
 
-import AppHeader from '../components/AppHeader';
-import TextInput from '../components/TextInput';
-import Button from '../components/Button';
+import AppHeader from '../../components/AppHeader';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
 
-import './index.scss';
+import '../Index/index.scss';
 import './Login.scss';
 
-import mockup from '../assets/smartmockups_jxfuqv8i.jpg';
+import mockup from '../../assets/smartmockups_jxfuqv8i.jpg';
 
 const Login = (props) => {
   const [id, setID] = useState('');

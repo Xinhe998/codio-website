@@ -1,4 +1,4 @@
-@import '../../styles/main.scss';
+@import "../../../styles/main.scss";
 
 .Search {
   background: white;
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('../assets/search_banner.png');
+    background: url('../../assets/search_banner.png');
     background-position-y: 40%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -44,7 +44,7 @@
   }
   .swiper-button-next {
     background-color: #2a2f42;
-    background-image: url('../assets/chevron-right-solid.svg');
+    background-image: url('../../assets/chevron-right-solid.svg');
     position: absolute;
     right: 0;
     background-size: 10px;
@@ -55,7 +55,7 @@
   }
   .swiper-button-prev {
     background-color: #2a2f42;
-    background-image: url('../assets/chevron-right-solid.svg');
+    background-image: url('../../assets/chevron-right-solid.svg');
     transform: scaleX(-1);
     position: absolute;
     left: 0;

@@ -1,33 +1,9 @@
-.Modal__content {
-  p {
-    color: #ec5252;
-  }
-  .textinput {
-    margin: 40px 0;
-  }
-}
-
-@import '../../styles/main.scss';
-.ForgetPassword {
+@import "../../../styles/main.scss";
+.Register {
   .AppContent {
     display: flex;
     flex-direction: row;
     height: calc(100vh - 60px);
-  }
-  .error-message {
-    color: #ec5252;
-    border-radius: 5px;
-    background-color: #fcd7d7;
-    padding: 10px;
-    line-height: 1.33;
-    font-size: 14px;
-    margin: 0 0 5px;
-    svg {
-      width: 15px;
-      height: 15px;
-      vertical-align: middle;
-      margin: 0 5px;
-    }
   }
   .title {
     font-size: 24px;
@@ -49,9 +25,15 @@
     line-height: 1.2;
     letter-spacing: normal;
     text-align: left;
-    color: #ec5252;
+    color: #000000;
     box-sizing: border-box;
     padding: 0 0 20px;
+    a {
+      color: #ec5252;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 10px;
+    }
   }
   .form-section {
     display: flex;
@@ -60,7 +42,7 @@
     width: 50%;
     background: $white;
     box-sizing: border-box;
-    padding: 10px 100px 50px;
+    padding: 20px 100px 50px;
     .textinput {
       padding: 10px 0;
     }
@@ -73,7 +55,13 @@
     background-position: right;
     background-position-x: -200px;
   }
-  .submit_btn {
+  .login_btn {
     margin-top: auto !important;
+  }
+  .next_btn {
+    width: 100%;
+    text-align: right;
+    font-size: 18px;
+    margin: 10px 0;
   }
 }

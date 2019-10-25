@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { withRouter, } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 
-import action from '../actions';
-import Layout from '../components/Layout';
-import UserInfo from '../components/UserInfo';
-import Button from '../components/Button';
-import SearchBar from '../components/SearchBar';
-import Filter from '../components/Filter';
-import ResumeBtn from '../components/ResumeBtn';
-import ProjectList from '../components/ProjectList';
-import Checkbox from '../components/Checkbox';
-import userImg from '../assets/userImg.png';
+import action from '../../actions';
+import Layout from '../../components/Layout';
+import UserInfo from '../../components/UserInfo';
+import Button from '../../components/Button';
+import SearchBar from '../../components/SearchBar';
+import Filter from '../../components/Filter';
+import ResumeBtn from '../../components/ResumeBtn';
+import ProjectList from '../../components/ProjectList';
+import Checkbox from '../../components/Checkbox';
+import userImg from '../../assets/userImg.png';
 
 import './HomePage.scss';
 

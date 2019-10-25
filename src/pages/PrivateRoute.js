@@ -5,7 +5,7 @@ import {
   Link,
   BrowserRouter as Router,
 } from 'react-router-dom';
-import Login from './Login';
+import Login from './Login/Login';
 
 const PrivateRoute = ({ component, ...rest }) => {
   const userData = window.localStorage.getItem('persist:root');

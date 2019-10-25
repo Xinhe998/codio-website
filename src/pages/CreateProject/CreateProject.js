@@ -3,20 +3,20 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 
-import Index from './index';
-import TextInput from '../components/TextInput';
-import TextArea from '../components/TextArea';
-import Modal from '../components/Modal';
-import MultiSelect from '../components/MultiSelect';
-import RadioButtonGroup from '../components/RadioButtonGroup';
-import Checkbox from '../components/Checkbox';
-import Button from '../components/Button';
+import Index from '../index';
+import TextInput from '../../components/TextInput';
+import TextArea from '../../components/TextArea';
+import Modal from '../../components/Modal';
+import MultiSelect from '../../components/MultiSelect';
+import RadioButtonGroup from '../../components/RadioButtonGroup';
+import Checkbox from '../../components/Checkbox';
+import Button from '../../components/Button';
 
-import action from '../actions';
-import './index.scss';
+import action from '../../actions';
+import '../Index/index.scss';
 import './CreateProject.scss';
-import boostrapImg from '../assets/bootstrap.svg';
-import htmlImg from '../assets/html.svg';
+import boostrapImg from '../../assets/bootstrap.svg';
+import htmlImg from '../../assets/html.svg';
 
 const CreateProject = (props) => {
   const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];

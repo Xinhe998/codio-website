@@ -3,19 +3,19 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IoMdSearch } from 'react-icons/io';
 import Swiper from 'react-id-swiper';
-import action from '../actions';
+import action from '../../actions';
 
-import AppHeader from '../components/AppHeader';
-import TextInput from '../components/TextInput';
-import ProjectCard from '../components/ProjectCard';
-import Button from '../components/Button';
-import SearchAlert from '../components/SearchAlert';
+import AppHeader from '../../components/AppHeader';
+import TextInput from '../../components/TextInput';
+import ProjectCard from '../../components/ProjectCard';
+import Button from '../../components/Button';
+import SearchAlert from '../../components/SearchAlert';
 
-import './index.scss';
+import '../Index/index.scss';
 import './Search.scss';
 import 'react-id-swiper/lib/styles/scss/swiper.scss';
 
-import mockup from '../assets/smartmockups_jxfuqv8i.jpg';
+import mockup from '../../assets/smartmockups_jxfuqv8i.jpg';
 
 const Search = () => {
   const [searchText, setSearchText] = useState('');
