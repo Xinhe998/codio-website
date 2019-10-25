@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 
-import Index from '../index';
+import Index from '../Index/index';
 import TextInput from '../../components/TextInput';
 import TextArea from '../../components/TextArea';
 import Modal from '../../components/Modal';
