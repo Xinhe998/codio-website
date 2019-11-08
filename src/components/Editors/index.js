@@ -8,14 +8,13 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
+import { MdCompare, MdFormatAlignLeft } from 'react-icons/md';
 import action from '../../actions';
 import TabPanel from '../TabPanel';
 import ConsoleBox from '../ConsoleBox';
 import Button from '../Button';
 import Dropdown from './Dropdown';
 import Resizer from '../Resizer';
-
-import { MdCompare, MdFormatAlignLeft } from 'react-icons/md';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -72,6 +71,7 @@ class Editors extends Component {
       project_title: '專案名稱',
       isDropdownOpen: false,
       editorWidth: 650,
+      projectTitleInputSize: 0,
     };
     this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
     this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
@@ -82,6 +82,7 @@ class Editors extends Component {
 
   componentDidMount() {
     this.printConsole();
+    this.autoSizeInput(this.state.project_title);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -316,6 +317,31 @@ class Editors extends Component {
     });
   };
 
+  autoSizeInput = (text) => {
+    let inputSize = 0;
+    if (text.length > 0) {
+      for (let i = 0; i < text.length; i++) {
+        if (
+          /^[A-Za-z0-9]*$/.test(text.charAt(i)) ||
+          /[.!?\\-]/.test(text.charAt(i)) ||
+          text.charAt(i) === ' '
+        ) {
+          // number
+          inputSize++;
+        } else {
+          inputSize += 2;
+        }
+      }
+      this.setState({
+        projectTitleInputSize: inputSize,
+      });
+    } else {
+      this.setState({
+        projectTitleInputSize: 1,
+      });
+    }
+  };
+
   render() {
     const { html, css, js } = this.props.editor;
     const codeMirrorOptions = {
@@ -365,13 +391,10 @@ class Editors extends Component {
                 aria-owns="titlebar"
                 aria-haspopup="true"
                 placeholder=""
-                size={
-                  this.state.project_title.length < 20
-                    ? this.state.project_title.length * 2
-                    : 20
-                }
+                size={this.state.projectTitleInputSize}
                 onChange={e => {
                   this.setState({ project_title: e.target.value });
+                  this.autoSizeInput(e.target.value);
                 }}
               />
               <Dropdown
@@ -433,11 +456,7 @@ class Editors extends Component {
                 aria-owns="titlebar"
                 aria-haspopup="true"
                 placeholder=""
-                size={
-                  this.state.project_title.length < 20
-                    ? this.state.project_title.length * 2
-                    : 20
-                }
+                size={this.state.projectTitleInputSize}
               />
               <Dropdown
                 icon={<IoIosArrowDown />}
@@ -591,7 +610,9 @@ class Editors extends Component {
         </Resizer>
         <div
           className="result"
-          style={{ width: `calc(${window.innerWidth}px - ${this.state.editorWidth}px)` }}
+          style={{
+            width: `calc(${window.innerWidth}px - ${this.state.editorWidth}px)`,
+          }}
         >
           <iframe title="result" className="iframe" ref="iframe" />
         </div>
