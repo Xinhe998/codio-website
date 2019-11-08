@@ -706,7 +706,7 @@ exports[`Storyshots Resizer default 1`] = `
   className="resizer"
   style={
     Object {
-      "width": "NaN%",
+      "width": "undefinedpx",
     }
   }
 >
@@ -728,7 +728,7 @@ exports[`Storyshots Resizer default 1`] = `
     onMouseUp={[Function]}
     style={
       Object {
-        "left": "NaN%",
+        "left": "calc(undefinedpx - 9px)",
       }
     }
   />
