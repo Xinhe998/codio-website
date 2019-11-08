@@ -60,8 +60,6 @@ import 'codemirror-colorpicker';
 
 import './index.scss';
 
-const csstree = require('css-tree');
-const gonzales = require('gonzales-pe');
 const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
@@ -73,13 +71,13 @@ class Editors extends Component {
       logs: [],
       project_title: '專案名稱',
       isDropdownOpen: false,
+      editorWidth: 0.6,
     };
     this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
     this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
     this.delayJsOnChange = _.throttle(this.jsEditorOnChange, 3000, {
       leading: false,
     });
-    this.sidebarWidth = 0.6;
   }
 
   componentDidMount() {
@@ -98,14 +96,6 @@ class Editors extends Component {
 
   runCode = () => {
     const { html, css, js } = this.props.editor;
-    // const ast = csstree.parse(css, {
-    //   onParseError(error) {
-    //     // console.error(error.formattedMessage);
-    //   },
-    // });
-    // console.log(csstree.generate(ast));
-    // const parseTree = gonzales.parse(css, { syntax: 'scss' });
-    // console.log('!!!', parseTree.toString());
 
     const { iframe } = this.refs;
     const document = iframe.contentDocument;
@@ -135,7 +125,7 @@ class Editors extends Component {
     document.close();
   };
 
-  selectAll = (cm) => {
+  selectAll = cm => {
     cm.execCommand('selectAll');
   };
 
@@ -145,59 +135,59 @@ class Editors extends Component {
     const lines = 0;
     cm.operation(() => {
       switch (lang || outer.name) {
-      case 'htmlmixed':
-        cm.replaceRange(
-          beautify_html(text, {
-            indent_size: 2,
-            html: {
-              end_with_newline: true,
-              js: {
-                indent_size: 2,
+        case 'htmlmixed':
+          cm.replaceRange(
+            beautify_html(text, {
+              indent_size: 2,
+              html: {
+                end_with_newline: true,
+                js: {
+                  indent_size: 2,
+                },
+                css: {
+                  indent_size: 2,
+                },
               },
               css: {
                 indent_size: 2,
               },
-            },
-            css: {
-              indent_size: 2,
-            },
-            js: {
-              'preserve-newlines': true,
-            },
-          }),
-          from,
-          to,
-        );
-        break;
-      case 'css':
-        cm.replaceRange(
-          beautify_css(text, {
-            indent_size: 4,
-            html: {
-              end_with_newline: true,
               js: {
-                indent_size: 2,
+                'preserve-newlines': true,
+              },
+            }),
+            from,
+            to,
+          );
+          break;
+        case 'css':
+          cm.replaceRange(
+            beautify_css(text, {
+              indent_size: 4,
+              html: {
+                end_with_newline: true,
+                js: {
+                  indent_size: 2,
+                },
+                css: {
+                  indent_size: 2,
+                },
               },
               css: {
                 indent_size: 2,
               },
-            },
-            css: {
-              indent_size: 2,
-            },
-            js: {
-              'preserve-newlines': true,
-            },
-          }),
-          from,
-          to,
-        );
-        break;
-      case 'javascript':
-        cm.replaceRange(beautify_js(text), from, to);
-        break;
-      default:
-        break;
+              js: {
+                'preserve-newlines': true,
+              },
+            }),
+            from,
+            to,
+          );
+          break;
+        case 'javascript':
+          cm.replaceRange(beautify_js(text), from, to);
+          break;
+        default:
+          break;
       }
       for (
         let cur = from.line + 1, end = from.line + lines;
@@ -229,27 +219,27 @@ class Editors extends Component {
       closeOnUnfocus: true,
     };
     switch (lang || cm.getMode().name) {
-    case 'htmlmixed':
-      codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
-      break;
-    case 'css':
-      codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
-      break;
-    case 'javascript':
-      codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
-      break;
-    default:
-      break;
+      case 'htmlmixed':
+        codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
+        break;
+      case 'css':
+        codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
+        break;
+      case 'javascript':
+        codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
+        break;
+      default:
+        break;
     }
   };
 
   printConsole = () => {
     const { js } = this.props.editor;
     try {
-      Hook(window.console, (log) => {
+      Hook(window.console, log => {
         this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
       });
       eval(js);
@@ -263,12 +253,12 @@ class Editors extends Component {
     const { js } = this.props.editor;
     const updatedLogs = [];
     try {
-      Hook(window.console, (log) => {
+      Hook(window.console, log => {
         updatedLogs.push(Decode(log));
       });
       this.setState({ logs: updatedLogs });
       this.props.addLogs(updatedLogs);
-      window.alert = function () {}; // 讓alert不要執行兩次
+      window.alert = function() {}; // 讓alert不要執行兩次
       eval(js);
       this.runCode();
     } catch (e) {
@@ -279,10 +269,10 @@ class Editors extends Component {
   jsEditorOnChange = (e, changeObj) => {
     this.props.addJavascript(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]'
-      && JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '[" "]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '[" "]' &&
+      JSON.stringify(changeObj.text) !== '["",""]'
     ) {
       this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
     }
@@ -291,12 +281,12 @@ class Editors extends Component {
   cssEditorOnChange = (e, changeObj) => {
     this.props.addCss(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]'
-      && JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
-      && JSON.stringify(changeObj.text) !== '["{"]'
-      && JSON.stringify(changeObj.text) !== '["}"]'
-      && JSON.stringify(changeObj.text) !== '["{}"]'
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["{"]' &&
+      JSON.stringify(changeObj.text) !== '["}"]' &&
+      JSON.stringify(changeObj.text) !== '["{}"]'
     ) {
       this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
     }
@@ -305,32 +295,24 @@ class Editors extends Component {
   htmlEditorOnChange = (e, changeObj) => {
     this.props.addHtml(e);
     if (
-      JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
-      && JSON.stringify(changeObj.text) !== '["  "]'
-      && JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["  "]' &&
+      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
     ) {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
   };
 
-  handleResize = (diff) => {
-    let elementNewWidth = 0;
-    elementNewWidth = this.sidebarWidth - diff;
-    // elementNewWidth = Math.round(elementNewWidth * 10000) / 10000;
-    console.log(elementNewWidth);
-    this.sidebarWidth = elementNewWidth;
-  };
-
-  handleResizeStart = () => {};
-
-  handleResizeEnd = () => {
-    console.log('resize end');
-  };
-
-  switchDropdown = (isOpen) => {
+  switchDropdown = isOpen => {
     this.setState({
       isDropdownOpen: isOpen,
+    });
+  };
+
+  editorWidthOnChange = width => {
+    this.setState({
+      editorWidth: width,
     });
   };
 
@@ -340,7 +322,7 @@ class Editors extends Component {
       autoCloseBrackets: true,
       autoCloseTags: true,
       extraKeys: {
-        'Ctrl-Q': (cm) => {
+        'Ctrl-Q': cm => {
           cm.foldCode(cm.getCursor());
         },
         'Ctrl-E': cm => this.autoFormat(cm),
@@ -360,14 +342,6 @@ class Editors extends Component {
       styleActiveLine: true,
       tabSize: 2,
     };
-    const leftStyle = {
-      width: `${this.sidebarWidth * 100}%`,
-      minWidth: '1%',
-    };
-    const rightStyle = {
-      width: `${(1 - this.sidebarWidth) * 100}%`,
-      minWidth: '1%',
-    };
     const dropdownOptions = [
       '新增專案',
       '儲存此專案',
@@ -376,254 +350,250 @@ class Editors extends Component {
     ];
     return (
       <div className="playground">
-        <TabPanel
-          selected={this.props.currentActiveTab === 'html'}
-          style={leftStyle}
+        <Resizer
+          direction="x"
+          elementWidth={this.state.editorWidth}
+          widthOnChange={this.editorWidthOnChange}
         >
-          <div className="titlebar">
-            <input
-              className="titlebar_input"
-              value={this.state.project_title}
-              aria-expanded="false"
-              aria-busy="false"
-              aria-owns="titlebar"
-              aria-haspopup="true"
-              placeholder=""
-              size={
-                this.state.project_title.length < 20
-                  ? this.state.project_title.length * 2
-                  : 20
-              }
-              onChange={(e) => {
-                this.setState({ project_title: e.target.value });
-              }}
-            />
-            <Dropdown
-              icon={<IoIosArrowDown />}
-              options={dropdownOptions}
-              isOpen={this.state.isDropdownOpen}
-              swichOptionHandler={this.switchDropdown}
-            />
-            <div className="titlebar_btnGroup">
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="splitBtn"
-                icon={<MdCompare />}
+          <TabPanel selected={this.props.currentActiveTab === 'html'}>
+            <div className="titlebar">
+              <input
+                className="titlebar_input"
+                value={this.state.project_title}
+                aria-expanded="false"
+                aria-busy="false"
+                aria-owns="titlebar"
+                aria-haspopup="true"
+                placeholder=""
+                size={
+                  this.state.project_title.length < 20
+                    ? this.state.project_title.length * 2
+                    : 20
+                }
+                onChange={e => {
+                  this.setState({ project_title: e.target.value });
+                }}
               />
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="formatBtn"
-                icon={<MdFormatAlignLeft />}
-                onClick={() => this.autoFormat(this.refs.htmlEditor.codeMirror, 'htmlmixed')
+              <Dropdown
+                icon={<IoIosArrowDown />}
+                options={dropdownOptions}
+                isOpen={this.state.isDropdownOpen}
+                swichOptionHandler={this.switchDropdown}
+              />
+              <div className="titlebar_btnGroup">
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="splitBtn"
+                  icon={<MdCompare />}
+                />
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="formatBtn"
+                  icon={<MdFormatAlignLeft />}
+                  onClick={() =>
+                    this.autoFormat(
+                      this.refs.htmlEditor.codeMirror,
+                      'htmlmixed',
+                    )
+                  }
+                />
+              </div>
+            </div>
+            <div className="code-editor html-code">
+              <div className="editor-header">
+                <span className="editor-header-title">HTML</span>
+              </div>
+              <CodeMirror
+                ref="htmlEditor"
+                value={html}
+                options={{
+                  mode: 'htmlmixed',
+                  ...codeMirrorOptions,
+                }}
+                onChange={(e, changeObj) => {
+                  this.delayHtmlOnChange(e, changeObj);
+                }}
+              />
+            </div>
+          </TabPanel>
+
+          <TabPanel selected={this.props.currentActiveTab === 'css'}>
+            <div className="titlebar">
+              <input
+                className="titlebar_input"
+                value={this.state.project_title}
+                aria-expanded="false"
+                aria-busy="false"
+                aria-owns="titlebar"
+                aria-haspopup="true"
+                placeholder=""
+                size={
+                  this.state.project_title.length < 20
+                    ? this.state.project_title.length * 2
+                    : 20
                 }
               />
-            </div>
-          </div>
-          <div className="code-editor html-code">
-            <div className="editor-header">
-              <span className="editor-header-title">HTML</span>
-            </div>
-            <CodeMirror
-              ref="htmlEditor"
-              value={html}
-              options={{
-                mode: 'htmlmixed',
-                ...codeMirrorOptions,
-              }}
-              onChange={(e, changeObj) => {
-                this.delayHtmlOnChange(e, changeObj);
-              }}
-            />
-          </div>
-        </TabPanel>
-        <TabPanel
-          selected={this.props.currentActiveTab === 'css'}
-          style={leftStyle}
-        >
-          <div className="titlebar">
-            <input
-              className="titlebar_input"
-              value={this.state.project_title}
-              aria-expanded="false"
-              aria-busy="false"
-              aria-owns="titlebar"
-              aria-haspopup="true"
-              placeholder=""
-              size={
-                this.state.project_title.length < 20
-                  ? this.state.project_title.length * 2
-                  : 20
-              }
-            />
-            <Dropdown
-              icon={<IoIosArrowDown />}
-              options={dropdownOptions}
-              isOpen={this.state.isDropdownOpen}
-              swichOptionHandler={this.switchDropdown}
-            />
-            <div className="titlebar_btnGroup">
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="splitBtn"
-                icon={<MdCompare />}
+              <Dropdown
+                icon={<IoIosArrowDown />}
+                options={dropdownOptions}
+                isOpen={this.state.isDropdownOpen}
+                swichOptionHandler={this.switchDropdown}
               />
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="formatBtn"
-                icon={<MdFormatAlignLeft />}
-                onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+              <div className="titlebar_btnGroup">
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="splitBtn"
+                  icon={<MdCompare />}
+                />
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="formatBtn"
+                  icon={<MdFormatAlignLeft />}
+                  onClick={() =>
+                    this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+                  }
+                />
+              </div>
+            </div>
+            <div className="code-editor css-code">
+              <div className="editor-header">
+                <span className="editor-header-title">CSS</span>
+              </div>
+
+              <CodeMirror
+                ref="cssEditor"
+                value={css}
+                options={{
+                  mode: 'css',
+                  colorpicker: {
+                    type: 'sketch', // or 'sketch',  default type is 'chromedevtool'
+                  },
+                  ...codeMirrorOptions,
+                }}
+                onChange={(e, changeObj) => {
+                  this.delayCssOnChange(e, changeObj);
+                }}
+              />
+            </div>
+          </TabPanel>
+          <TabPanel selected={this.props.currentActiveTab === 'js'}>
+            <div className="titlebar">
+              <input
+                className="titlebar_input"
+                value={this.state.project_title}
+                aria-expanded="false"
+                aria-busy="false"
+                aria-owns="titlebar"
+                aria-haspopup="true"
+                placeholder=""
+                size={
+                  this.state.project_title.length < 20
+                    ? this.state.project_title.length * 2
+                    : 20
                 }
               />
-            </div>
-          </div>
-          <div className="code-editor css-code">
-            <div className="editor-header">
-              <span className="editor-header-title">CSS</span>
-            </div>
-
-            <CodeMirror
-              ref="cssEditor"
-              value={css}
-              options={{
-                mode: 'css',
-                colorpicker: {
-                  type: 'sketch', // or 'sketch',  default type is 'chromedevtool'
-                },
-                ...codeMirrorOptions,
-              }}
-              onChange={(e, changeObj) => {
-                this.delayCssOnChange(e, changeObj);
-              }}
-            />
-          </div>
-        </TabPanel>
-        <TabPanel
-          selected={this.props.currentActiveTab === 'js'}
-          style={leftStyle}
-        >
-          <div className="titlebar">
-            <input
-              className="titlebar_input"
-              value={this.state.project_title}
-              aria-expanded="false"
-              aria-busy="false"
-              aria-owns="titlebar"
-              aria-haspopup="true"
-              placeholder=""
-              size={
-                this.state.project_title.length < 20
-                  ? this.state.project_title.length * 2
-                  : 20
-              }
-            />
-            <Dropdown
-              icon={<IoIosArrowDown />}
-              options={dropdownOptions}
-              isOpen={this.state.isDropdownOpen}
-              swichOptionHandler={this.switchDropdown}
-            />
-            <div className="titlebar_btnGroup">
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="splitBtn"
-                icon={<MdCompare />}
+              <Dropdown
+                icon={<IoIosArrowDown />}
+                options={dropdownOptions}
+                isOpen={this.state.isDropdownOpen}
+                swichOptionHandler={this.switchDropdown}
               />
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="formatBtn"
-                icon={<MdFormatAlignLeft />}
-                onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+              <div className="titlebar_btnGroup">
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="splitBtn"
+                  icon={<MdCompare />}
+                />
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="formatBtn"
+                  icon={<MdFormatAlignLeft />}
+                  onClick={() =>
+                    this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+                  }
+                />
+              </div>
+            </div>
+            <div className="code-editor js-code">
+              <div className="editor-header">
+                <span className="editor-header-title">JavaScript</span>
+              </div>
+
+              <CodeMirror
+                ref="jsEditor"
+                value={js}
+                options={{
+                  mode: 'javascript',
+                  ...codeMirrorOptions,
+                }}
+                onChange={(e, changeObj) => {
+                  this.delayJsOnChange(e, changeObj);
+                }}
+              />
+            </div>
+          </TabPanel>
+          <TabPanel selected={this.props.currentActiveTab === 'logs'}>
+            <div className="titlebar">
+              <input
+                className="titlebar_input"
+                value={this.state.project_title}
+                aria-expanded="false"
+                aria-busy="false"
+                aria-owns="titlebar"
+                aria-haspopup="true"
+                placeholder=""
+                size={
+                  this.state.project_title.length < 20
+                    ? this.state.project_title.length * 2
+                    : 20
                 }
               />
-            </div>
-          </div>
-          <div className="code-editor js-code">
-            <div className="editor-header">
-              <span className="editor-header-title">JavaScript</span>
-            </div>
-
-            <CodeMirror
-              ref="jsEditor"
-              value={js}
-              options={{
-                mode: 'javascript',
-                ...codeMirrorOptions,
-              }}
-              onChange={(e, changeObj) => {
-                this.delayJsOnChange(e, changeObj);
-              }}
-            />
-          </div>
-        </TabPanel>
-        <TabPanel
-          selected={this.props.currentActiveTab === 'logs'}
-          style={leftStyle}
-        >
-          <div className="titlebar">
-            <input
-              className="titlebar_input"
-              value={this.state.project_title}
-              aria-expanded="false"
-              aria-busy="false"
-              aria-owns="titlebar"
-              aria-haspopup="true"
-              placeholder=""
-              size={
-                this.state.project_title.length < 20
-                  ? this.state.project_title.length * 2
-                  : 20
-              }
-            />
-            <Dropdown
-              icon={<IoIosArrowDown />}
-              options={dropdownOptions}
-              isOpen={this.state.isDropdownOpen}
-              swichOptionHandler={this.switchDropdown}
-            />
-            <div className="titlebar_btnGroup">
-              <Button
-                type="primary"
-                size="small"
-                theme="red"
-                shape="square"
-                className="splitBtn"
-                icon={<MdCompare />}
+              <Dropdown
+                icon={<IoIosArrowDown />}
+                options={dropdownOptions}
+                isOpen={this.state.isDropdownOpen}
+                swichOptionHandler={this.switchDropdown}
               />
+              <div className="titlebar_btnGroup">
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="splitBtn"
+                  icon={<MdCompare />}
+                />
+              </div>
             </div>
-          </div>
-          <div className="code-editor logs-code">
-            <div className="editor-header">Console</div>
-            <ConsoleBox logs={this.state.logs} />
-          </div>
-        </TabPanel>
-
-        <div className="result" style={rightStyle}>
-          {/* <Resizer
-            direction="x"
-            onResizeStart={this.handleResizeStart}
-            onResize={this.handleResize}
-            onResizeEnd={this.handleResizeEnd}
-          > */}
+            <div className="code-editor logs-code">
+              <div className="editor-header">Console</div>
+              <ConsoleBox logs={this.state.logs} />
+            </div>
+          </TabPanel>
+        </Resizer>
+        <div
+          className="result"
+          style={{ width: `${(1 - this.state.editorWidth) * 100}%` }}
+        >
           <iframe title="result" className="iframe" ref="iframe" />
-          {/* </Resizer> */}
         </div>
       </div>
     );

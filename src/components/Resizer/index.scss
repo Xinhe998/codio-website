@@ -1,10 +1,11 @@
 .resizer {
-  position: relative;
+  // position: relative;
 }
 .handle {
   position: absolute;
   top: 0;
-  left: 0;
+  // right: 0;
+  background: white;
   width: 15px;
   height: 100%;
   cursor: col-resize;
