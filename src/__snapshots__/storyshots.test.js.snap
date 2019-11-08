@@ -701,6 +701,40 @@ exports[`Storyshots RadioButtonGroup default 1`] = `
 </div>
 `;
 
+exports[`Storyshots Resizer default 1`] = `
+<div
+  className="resizer"
+  style={
+    Object {
+      "width": "NaN%",
+    }
+  }
+>
+  <div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#f0f0f0",
+          "height": "150px",
+        }
+      }
+    >
+      Resize Me
+    </div>
+  </div>
+  <div
+    className="handle"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "left": "NaN%",
+      }
+    }
+  />
+</div>
+`;
+
 exports[`Storyshots SearchAlert default 1`] = `
 <div
   className="SearchAlert"
