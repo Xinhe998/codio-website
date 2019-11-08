@@ -29,6 +29,7 @@
 .result {
   // flex-basis: 40%;
   background: $white;
+  z-index: 10;
   iframe {
     width: 100%;
     height: calc(100vh - 70px);

@@ -6,13 +6,10 @@ class Resizer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startPosition_x: 0,
-      startPosition_y: 0,
-      elWidth: this.props.elementWidth,
-      resizeDiff: 0,
-      windowW: window.innerWidth,
+      startPositionX: 0,
+      startPositionY: 0,
+      isDragging: false,
     };
-    this.resizerRef = React.createRef();
   }
 
   componentWillUnmount() {
@@ -21,62 +18,47 @@ class Resizer extends Component {
   }
 
   handleMouseMove = (e) => {
-    e.preventDefault();
-    const { direction } = this.props;
-    const { startPosition_x, startWidth, windowW, elWidth } = this.state;
-
-    if (direction === 'x') {
-      const startX = startPosition_x; // 起始位置
-      const diff = (startX - e.clientX) / windowW;
-      if (diff !== 0) {
-        this.setState({
-          resizeDiff: diff,
-        });
-        this.props.widthOnChange(startWidth - diff);
+    window.requestAnimationFrame(() => {
+      const { direction, widthOnChange } = this.props;
+      const { startPositionX, startWidth, isDragging } = this.state;
+      if (direction === 'x' && isDragging) {
+        const diff = startPositionX - e.clientX;
+        if (diff !== 0) {
+          widthOnChange(startWidth - diff);
+        }
       }
-    }
+    });
   };
 
   handleMouseUp = (e) => {
-    console.log("onMouseUp");
-    const { startWidth, resizeDiff } = this.state;
-    this.props.widthOnChange(startWidth - resizeDiff);
-    this.updateStartPosition(e);
-    window.removeEventListener('mouseup', this.handleMouseUp);
+    console.log('onMouseUp');
     window.removeEventListener('mousemove', this.handleMouseMove);
+    this.setState({
+      isDragging: false,
+    });
   };
 
   handleMouseDown = (e) => {
-    console.log("onMouseDown");
-    window.removeEventListener('mouseup', this.handleMouseUp);
-    window.removeEventListener('mousemove', this.handleMouseMove);
     const { elementWidth } = this.props;
     e.preventDefault();
     const startWidth = elementWidth;
     this.setState({
       startWidth,
+      startPositionX: e.clientX,
+      isDragging: true,
     });
-    this.updateStartPosition(e);
-    window.addEventListener('mouseup', this.handleMouseUp);
     window.addEventListener('mousemove', this.handleMouseMove);
-  };
-
-  updateStartPosition = (e) => {
-    this.setState({
-      startPosition_x: e.clientX,
-    });
   };
 
   render() {
     const { elementWidth, children } = this.props;
     return (
-      <div className="resizer" ref={this.resizerRef} style={{ width: `${elementWidth * 100}%` }}>
-        <div>
-          {children}
-        </div>
+      <div className="resizer" style={{ width: `${elementWidth}px` }}>
+        {this.state.isDragging ? <div className="drag-overlay" onMouseUp={this.handleMouseUp} /> : null}
+        <div>{children}</div>
         <div
           className="handle"
-          style={{ left: `${elementWidth * 100}%` }}
+          style={{ left: `calc(${elementWidth}px - 9px)` }}
           onMouseDown={e => this.handleMouseDown(e)}
           onMouseUp={e => this.handleMouseUp(e)}
         />
@@ -101,4 +83,5 @@ Resizer.defaultProps = {
   handleClassName: '',
   direction: 'x',
 };
+
 export default Resizer;

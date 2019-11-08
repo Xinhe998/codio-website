@@ -71,7 +71,7 @@ class Editors extends Component {
       logs: [],
       project_title: '專案名稱',
       isDropdownOpen: false,
-      editorWidth: 0.6,
+      editorWidth: 650,
     };
     this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
     this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
@@ -591,7 +591,7 @@ class Editors extends Component {
         </Resizer>
         <div
           className="result"
-          style={{ width: `${(1 - this.state.editorWidth) * 100}%` }}
+          style={{ width: `calc(${window.innerWidth}px - ${this.state.editorWidth}px)` }}
         >
           <iframe title="result" className="iframe" ref="iframe" />
         </div>

@@ -10,7 +10,7 @@ initialize {
       Object {
         "attribs": Object {
           "class": "resizer",
-          "style": "width:60%",
+          "style": "width:650px",
         },
         "children": Array [
           Object {
@@ -12934,7 +12934,7 @@ initialize {
             "next": Object {
               "attribs": Object {
                 "class": "handle",
-                "style": "left:60%",
+                "style": "left:calc(650px - 9px)",
               },
               "children": Array [],
               "name": "div",
@@ -12961,7 +12961,7 @@ initialize {
           Object {
             "attribs": Object {
               "class": "handle",
-              "style": "left:60%",
+              "style": "left:calc(650px - 9px)",
             },
             "children": Array [],
             "name": "div",
@@ -25909,7 +25909,7 @@ initialize {
         "next": Object {
           "attribs": Object {
             "class": "result",
-            "style": "width:40%",
+            "style": "width:calc(1024px - 650px)",
           },
           "children": Array [
             Object {
@@ -25964,7 +25964,7 @@ initialize {
       Object {
         "attribs": Object {
           "class": "result",
-          "style": "width:40%",
+          "style": "width:calc(1024px - 650px)",
         },
         "children": Array [
           Object {
@@ -25996,7 +25996,7 @@ initialize {
         "prev": Object {
           "attribs": Object {
             "class": "resizer",
-            "style": "width:60%",
+            "style": "width:650px",
           },
           "children": Array [
             Object {
@@ -38920,7 +38920,7 @@ initialize {
               "next": Object {
                 "attribs": Object {
                   "class": "handle",
-                  "style": "left:60%",
+                  "style": "left:calc(650px - 9px)",
                 },
                 "children": Array [],
                 "name": "div",
@@ -38947,7 +38947,7 @@ initialize {
             Object {
               "attribs": Object {
                 "class": "handle",
-                "style": "left:60%",
+                "style": "left:calc(650px - 9px)",
               },
               "children": Array [],
               "name": "div",
