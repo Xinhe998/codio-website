@@ -60,6 +60,7 @@ const CreateProject = (props) => {
         showControlBtn={false}
         title="新增專案"
         onClose={() => props.history.push('/')}
+        className="CreateProjectModal"
       >
         <div className="createProjectForm">
           <div className="createProjectForm__information">

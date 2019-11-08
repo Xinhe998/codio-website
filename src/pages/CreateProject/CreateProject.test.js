@@ -37,9 +37,8 @@ describe('CreateProject', function () {
       this.subject = this.makeSubject();
     });
 
-    it('should be same as snapshot', async () => {
-      const wrapper = render(await testComp);
-      expect(wrapper).toMatchSnapshot();
+    it('find div', async () => {
+      expect(testComp.find('.CreateProjectModal'));
     });
   });
 });
