@@ -31,7 +31,6 @@ class Resizer extends Component {
   };
 
   handleMouseUp = (e) => {
-    console.log('onMouseUp');
     window.removeEventListener('mousemove', this.handleMouseMove);
     this.setState({
       isDragging: false,
@@ -54,7 +53,9 @@ class Resizer extends Component {
     const { elementWidth, children } = this.props;
     return (
       <div className="resizer" style={{ width: `${elementWidth}px` }}>
-        {this.state.isDragging ? <div className="drag-overlay" onMouseUp={this.handleMouseUp} /> : null}
+        {this.state.isDragging ? (
+          <div className="drag-overlay" onMouseUp={this.handleMouseUp} />
+        ) : null}
         <div>{children}</div>
         <div
           className="handle"

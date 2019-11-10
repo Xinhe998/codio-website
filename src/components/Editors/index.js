@@ -126,7 +126,7 @@ class Editors extends Component {
     document.close();
   };
 
-  selectAll = cm => {
+  selectAll = (cm) => {
     cm.execCommand('selectAll');
   };
 
@@ -240,7 +240,7 @@ class Editors extends Component {
   printConsole = () => {
     const { js } = this.props.editor;
     try {
-      Hook(window.console, log => {
+      Hook(window.console, (log) => {
         this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }));
       });
       eval(js);
@@ -254,7 +254,7 @@ class Editors extends Component {
     const { js } = this.props.editor;
     const updatedLogs = [];
     try {
-      Hook(window.console, log => {
+      Hook(window.console, (log) => {
         updatedLogs.push(Decode(log));
       });
       this.setState({ logs: updatedLogs });
@@ -305,19 +305,19 @@ class Editors extends Component {
     }
   };
 
-  switchDropdown = isOpen => {
+  switchDropdown = (isOpen) => {
     this.setState({
       isDropdownOpen: isOpen,
     });
   };
 
-  editorWidthOnChange = width => {
+  editorWidthOnChange = (width) => {
     this.setState({
       editorWidth: width,
     });
   };
 
-  autoSizeInput = text => {
+  autoSizeInput = (text) => {
     let inputSize = 0;
     if (text.length > 0) {
       for (let i = 0; i < text.length; i++) {
@@ -348,11 +348,11 @@ class Editors extends Component {
       autoCloseBrackets: true,
       autoCloseTags: true,
       extraKeys: {
-        'Ctrl-Q': cm => {
+        'Ctrl-Q': (cm) => {
           cm.foldCode(cm.getCursor());
         },
-        'Ctrl-E': cm => this.autoFormat(cm),
-        'Ctrl-H': cm => this.autoComplete(cm),
+        'Ctrl-E': (cm) => this.autoFormat(cm),
+        'Ctrl-H': (cm) => this.autoComplete(cm),
       },
       theme: 'one-dark',
       foldGutter: true,
@@ -392,7 +392,7 @@ class Editors extends Component {
                 aria-haspopup="true"
                 placeholder=""
                 size={this.state.projectTitleInputSize}
-                onChange={e => {
+                onChange={(e) => {
                   this.setState({ project_title: e.target.value });
                   this.autoSizeInput(e.target.value);
                 }}
@@ -457,7 +457,7 @@ class Editors extends Component {
                 aria-haspopup="true"
                 placeholder=""
                 size={this.state.projectTitleInputSize}
-                onChange={e => {
+                onChange={(e) => {
                   this.setState({ project_title: e.target.value });
                   this.autoSizeInput(e.target.value);
                 }}
@@ -522,7 +522,7 @@ class Editors extends Component {
                 aria-haspopup="true"
                 placeholder=""
                 size={this.state.projectTitleInputSize}
-                onChange={e => {
+                onChange={(e) => {
                   this.setState({ project_title: e.target.value });
                   this.autoSizeInput(e.target.value);
                 }}
@@ -623,7 +623,7 @@ class Editors extends Component {
 Editors.propTypes = {
   currentActiveTab: PropTypes.string,
 };
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   editor: store.editor,
   user: store.user,
 });
