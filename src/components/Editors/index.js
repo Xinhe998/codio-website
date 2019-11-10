@@ -317,7 +317,7 @@ class Editors extends Component {
     });
   };
 
-  autoSizeInput = (text) => {
+  autoSizeInput = text => {
     let inputSize = 0;
     if (text.length > 0) {
       for (let i = 0; i < text.length; i++) {
@@ -457,6 +457,10 @@ class Editors extends Component {
                 aria-haspopup="true"
                 placeholder=""
                 size={this.state.projectTitleInputSize}
+                onChange={e => {
+                  this.setState({ project_title: e.target.value });
+                  this.autoSizeInput(e.target.value);
+                }}
               />
               <Dropdown
                 icon={<IoIosArrowDown />}
@@ -517,11 +521,11 @@ class Editors extends Component {
                 aria-owns="titlebar"
                 aria-haspopup="true"
                 placeholder=""
-                size={
-                  this.state.project_title.length < 20
-                    ? this.state.project_title.length * 2
-                    : 20
-                }
+                size={this.state.projectTitleInputSize}
+                onChange={e => {
+                  this.setState({ project_title: e.target.value });
+                  this.autoSizeInput(e.target.value);
+                }}
               />
               <Dropdown
                 icon={<IoIosArrowDown />}
@@ -579,11 +583,7 @@ class Editors extends Component {
                 aria-owns="titlebar"
                 aria-haspopup="true"
                 placeholder=""
-                size={
-                  this.state.project_title.length < 20
-                    ? this.state.project_title.length * 2
-                    : 20
-                }
+                size={this.state.projectTitleInputSize}
               />
               <Dropdown
                 icon={<IoIosArrowDown />}
