@@ -108,28 +108,54 @@ const Search = () => {
           </Swiper>
         </div>
         <h2>已追蹤</h2>
-        <div className="projectList">
-          <ProjectCard
-            title="todolist"
-            img={mockup}
-            avatar="https://avatars3.githubusercontent.com/u/29070256?s=460&v=4"
-            viewCount="1300"
-            likeCount="560"
-          />
-          <ProjectCard
-            title="todolist"
-            img={mockup}
-            avatar="https://avatars3.githubusercontent.com/u/29070256?s=460&v=4"
-            viewCount="1300"
-            likeCount="560"
-          />
-          <ProjectCard
-            title="todolist"
-            img={mockup}
-            avatar="https://avatars3.githubusercontent.com/u/29070256?s=460&v=4"
-            viewCount="1300"
-            likeCount="560"
-          />
+        <div className="projectList carouselList">
+          <Swiper {...sliderSettings}>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars3.githubusercontent.com/u/29070256?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+              />
+            </div>
+            <div>
+              <ProjectCard
+                title="todolist"
+                img={mockup}
+                avatar="https://avatars2.githubusercontent.com/u/45359728?s=460&v=4"
+                viewCount="1300"
+                likeCount="560"
+              />
+            </div>
+          </Swiper>
         </div>
         <h2 />
         <div className="projectList">
