@@ -25,6 +25,7 @@ initialize {
                   Object {
                     "attribs": Object {
                       "class": "titlebar",
+                      "style": "width:650px",
                     },
                     "children": Array [
                       Object {
@@ -1581,9 +1582,11 @@ initialize {
                     "type": "tag",
                     "x-attribsNamespace": Object {
                       "class": undefined,
+                      "style": undefined,
                     },
                     "x-attribsPrefix": Object {
                       "class": undefined,
+                      "style": undefined,
                     },
                   },
                   Object {
@@ -1761,6 +1764,7 @@ initialize {
                     "prev": Object {
                       "attribs": Object {
                         "class": "titlebar",
+                        "style": "width:650px",
                       },
                       "children": Array [
                         Object {
@@ -3137,9 +3141,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                     },
                     "type": "tag",
@@ -3285,6 +3291,7 @@ initialize {
                     Object {
                       "attribs": Object {
                         "class": "titlebar",
+                        "style": "width:650px",
                       },
                       "children": Array [
                         Object {
@@ -4841,9 +4848,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                     },
                     Object {
@@ -5021,6 +5030,7 @@ initialize {
                       "prev": Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -6397,9 +6407,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       "type": "tag",
@@ -6485,6 +6497,7 @@ initialize {
                       Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -8041,9 +8054,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       Object {
@@ -8221,6 +8236,7 @@ initialize {
                         "prev": Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -9597,9 +9613,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         "type": "tag",
@@ -9685,6 +9703,7 @@ initialize {
                         Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -11241,9 +11260,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         Object {
@@ -11421,6 +11442,7 @@ initialize {
                           "prev": Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -12797,9 +12819,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           "type": "tag",
@@ -12908,6 +12932,7 @@ initialize {
                     Object {
                       "attribs": Object {
                         "class": "titlebar",
+                        "style": "width:650px",
                       },
                       "children": Array [
                         Object {
@@ -14464,9 +14489,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                     },
                     Object {
@@ -14644,6 +14671,7 @@ initialize {
                       "prev": Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -16020,9 +16048,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       "type": "tag",
@@ -16168,6 +16198,7 @@ initialize {
                       Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -17724,9 +17755,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       Object {
@@ -17904,6 +17937,7 @@ initialize {
                         "prev": Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -19280,9 +19314,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         "type": "tag",
@@ -19368,6 +19404,7 @@ initialize {
                         Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -20924,9 +20961,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         Object {
@@ -21104,6 +21143,7 @@ initialize {
                           "prev": Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -22480,9 +22520,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           "type": "tag",
@@ -22568,6 +22610,7 @@ initialize {
                           Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -24124,9 +24167,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           Object {
@@ -24304,6 +24349,7 @@ initialize {
                             "prev": Object {
                               "attribs": Object {
                                 "class": "titlebar",
+                                "style": "width:650px",
                               },
                               "children": Array [
                                 Object {
@@ -25680,9 +25726,11 @@ initialize {
                               "type": "tag",
                               "x-attribsNamespace": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                               "x-attribsPrefix": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                             },
                             "type": "tag",
@@ -25867,6 +25915,7 @@ initialize {
                     Object {
                       "attribs": Object {
                         "class": "titlebar",
+                        "style": "width:650px",
                       },
                       "children": Array [
                         Object {
@@ -27423,9 +27472,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "class": undefined,
+                        "style": undefined,
                       },
                     },
                     Object {
@@ -27603,6 +27654,7 @@ initialize {
                       "prev": Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -28979,9 +29031,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       "type": "tag",
@@ -29127,6 +29181,7 @@ initialize {
                       Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -30683,9 +30738,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       Object {
@@ -30863,6 +30920,7 @@ initialize {
                         "prev": Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -32239,9 +32297,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         "type": "tag",
@@ -32327,6 +32387,7 @@ initialize {
                         Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -33883,9 +33944,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         Object {
@@ -34063,6 +34126,7 @@ initialize {
                           "prev": Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -35439,9 +35503,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           "type": "tag",
@@ -35527,6 +35593,7 @@ initialize {
                           Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -37083,9 +37150,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           Object {
@@ -37263,6 +37332,7 @@ initialize {
                             "prev": Object {
                               "attribs": Object {
                                 "class": "titlebar",
+                                "style": "width:650px",
                               },
                               "children": Array [
                                 Object {
@@ -38639,9 +38709,11 @@ initialize {
                               "type": "tag",
                               "x-attribsNamespace": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                               "x-attribsPrefix": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                             },
                             "type": "tag",
@@ -38750,6 +38822,7 @@ initialize {
                       Object {
                         "attribs": Object {
                           "class": "titlebar",
+                          "style": "width:650px",
                         },
                         "children": Array [
                           Object {
@@ -40306,9 +40379,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "class": undefined,
+                          "style": undefined,
                         },
                       },
                       Object {
@@ -40486,6 +40561,7 @@ initialize {
                         "prev": Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -41862,9 +41938,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         "type": "tag",
@@ -42010,6 +42088,7 @@ initialize {
                         Object {
                           "attribs": Object {
                             "class": "titlebar",
+                            "style": "width:650px",
                           },
                           "children": Array [
                             Object {
@@ -43566,9 +43645,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "class": undefined,
+                            "style": undefined,
                           },
                         },
                         Object {
@@ -43746,6 +43827,7 @@ initialize {
                           "prev": Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -45122,9 +45204,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           "type": "tag",
@@ -45210,6 +45294,7 @@ initialize {
                           Object {
                             "attribs": Object {
                               "class": "titlebar",
+                              "style": "width:650px",
                             },
                             "children": Array [
                               Object {
@@ -46766,9 +46851,11 @@ initialize {
                             "type": "tag",
                             "x-attribsNamespace": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                             "x-attribsPrefix": Object {
                               "class": undefined,
+                              "style": undefined,
                             },
                           },
                           Object {
@@ -46946,6 +47033,7 @@ initialize {
                             "prev": Object {
                               "attribs": Object {
                                 "class": "titlebar",
+                                "style": "width:650px",
                               },
                               "children": Array [
                                 Object {
@@ -48322,9 +48410,11 @@ initialize {
                               "type": "tag",
                               "x-attribsNamespace": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                               "x-attribsPrefix": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                             },
                             "type": "tag",
@@ -48410,6 +48500,7 @@ initialize {
                             Object {
                               "attribs": Object {
                                 "class": "titlebar",
+                                "style": "width:650px",
                               },
                               "children": Array [
                                 Object {
@@ -49966,9 +50057,11 @@ initialize {
                               "type": "tag",
                               "x-attribsNamespace": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                               "x-attribsPrefix": Object {
                                 "class": undefined,
+                                "style": undefined,
                               },
                             },
                             Object {
@@ -50146,6 +50239,7 @@ initialize {
                               "prev": Object {
                                 "attribs": Object {
                                   "class": "titlebar",
+                                  "style": "width:650px",
                                 },
                                 "children": Array [
                                   Object {
@@ -51522,9 +51616,11 @@ initialize {
                                 "type": "tag",
                                 "x-attribsNamespace": Object {
                                   "class": undefined,
+                                  "style": undefined,
                                 },
                                 "x-attribsPrefix": Object {
                                   "class": undefined,
+                                  "style": undefined,
                                 },
                               },
                               "type": "tag",
