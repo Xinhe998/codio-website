@@ -25,7 +25,7 @@ initialize {
                   Object {
                     "attribs": Object {
                       "class": "logo",
-                      "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                      "style": "background-image:url(codio_logo.svg)",
                     },
                     "children": Array [],
                     "name": "div",
@@ -814,7 +814,7 @@ initialize {
                     "prev": Object {
                       "attribs": Object {
                         "class": "logo",
-                        "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                        "style": "background-image:url(codio_logo.svg)",
                       },
                       "children": Array [],
                       "name": "div",
@@ -1216,7 +1216,7 @@ initialize {
                       "prev": Object {
                         "attribs": Object {
                           "class": "logo",
-                          "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                          "style": "background-image:url(codio_logo.svg)",
                         },
                         "children": Array [],
                         "name": "div",
@@ -1622,7 +1622,7 @@ initialize {
                         "prev": Object {
                           "attribs": Object {
                             "class": "logo",
-                            "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                            "style": "background-image:url(codio_logo.svg)",
                           },
                           "children": Array [],
                           "name": "div",
@@ -60088,7 +60088,7 @@ initialize {
                     Object {
                       "attribs": Object {
                         "class": "logo",
-                        "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                        "style": "background-image:url(codio_logo.svg)",
                       },
                       "children": Array [],
                       "name": "div",
@@ -60877,7 +60877,7 @@ initialize {
                       "prev": Object {
                         "attribs": Object {
                           "class": "logo",
-                          "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                          "style": "background-image:url(codio_logo.svg)",
                         },
                         "children": Array [],
                         "name": "div",
@@ -61279,7 +61279,7 @@ initialize {
                         "prev": Object {
                           "attribs": Object {
                             "class": "logo",
-                            "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                            "style": "background-image:url(codio_logo.svg)",
                           },
                           "children": Array [],
                           "name": "div",
@@ -61685,7 +61685,7 @@ initialize {
                           "prev": Object {
                             "attribs": Object {
                               "class": "logo",
-                              "style": "background-image:url(codio_logo.svg);width:40%;height:20%;background-repeat:no-repeat;margin-bottom:20px",
+                              "style": "background-image:url(codio_logo.svg)",
                             },
                             "children": Array [],
                             "name": "div",
