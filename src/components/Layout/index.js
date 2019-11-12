@@ -3,23 +3,16 @@ import PropTypes from 'prop-types';
 import './index.scss';
 import logo from '../../assets/codio_logo.svg';
 
-
-const Layout = ({
-  userImg,
-  userName,
-  list,
-  children,
-}) => {
+const Layout = ({ userImg, userName, list, children }) => {
   const LayoutRef = useRef();
   return (
     <div className="Layout">
       <div className="Layout" ref={LayoutRef}>
-
         <div className="Layout__sidebar">
           <div
             className="logo"
             style={{
-              backgroundImage: `url(${logo})`, width: '40%', height: '20%', backgroundRepeat: 'no-repeat', marginBottom: 20,
+              backgroundImage: `url(${logo})`,
             }}
           />
           <div
@@ -30,14 +23,9 @@ const Layout = ({
           />
           <h2 className="user_name">{userName}</h2>
           <ul>
-            {
-              list.map((item, index) => {
-                return (
-                <li key={index}>{item}</li>
-                );
-              })
-
-            }
+            {list.map((item, index) => {
+              return <li key={index}>{item}</li>;
+            })}
 
             <li className="logout">登出</li>
           </ul>
