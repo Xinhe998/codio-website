@@ -374,6 +374,10 @@ class Editors extends Component {
       '刪除此專案',
       '分享此專案',
     ];
+
+    const editorWidthStyle = {
+      width: `${this.state.editorWidth}px`,
+    };
     return (
       <div className="playground">
         <Resizer
@@ -382,7 +386,7 @@ class Editors extends Component {
           widthOnChange={this.editorWidthOnChange}
         >
           <TabPanel selected={this.props.currentActiveTab === 'html'}>
-            <div className="titlebar">
+            <div className="titlebar" style={editorWidthStyle}>
               <input
                 className="titlebar_input"
                 value={this.state.project_title}
@@ -447,7 +451,7 @@ class Editors extends Component {
           </TabPanel>
 
           <TabPanel selected={this.props.currentActiveTab === 'css'}>
-            <div className="titlebar">
+            <div className="titlebar" style={editorWidthStyle}>
               <input
                 className="titlebar_input"
                 value={this.state.project_title}
@@ -512,7 +516,7 @@ class Editors extends Component {
             </div>
           </TabPanel>
           <TabPanel selected={this.props.currentActiveTab === 'js'}>
-            <div className="titlebar">
+            <div className="titlebar" style={editorWidthStyle}>
               <input
                 className="titlebar_input"
                 value={this.state.project_title}
@@ -574,7 +578,7 @@ class Editors extends Component {
             </div>
           </TabPanel>
           <TabPanel selected={this.props.currentActiveTab === 'logs'}>
-            <div className="titlebar">
+            <div className="titlebar" style={editorWidthStyle}>
               <input
                 className="titlebar_input"
                 value={this.state.project_title}

@@ -3,6 +3,10 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  .resizer {
+    overflow-y: scroll;
+    position: relative;
+  }
 }
 
 .titlebar {
@@ -11,6 +15,11 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
+  position: fixed;
+  box-sizing: border-box;
+  background: $codio-darkblue;
+  top: $app-header-height;
+  z-index: 10;
   input {
     border: transparent;
     background: none;
@@ -39,10 +48,11 @@
 
 .code-editor {
   height: 100%;
-  padding-top: 25px;
+  padding-top: 70px;
   padding-left: 25px;
   padding-right: 25px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .titlebar_btnGroup {
