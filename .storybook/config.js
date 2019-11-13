@@ -1,5 +1,8 @@
 import { addParameters, configure } from '@storybook/react';
-import { themes } from '@storybook/theming';
+const registerRequireContextHook = require('babel-plugin-require-context-hook/register')
+// import requireContext from 'require-context.macro';
+// const req = requireContext('../src', true, /\.stories\.js$/);
+registerRequireContextHook();
 addParameters({
     options: {
       name: 'Codio',
@@ -8,9 +11,8 @@ addParameters({
           inlineStories: false,
         },
       },
-      // theme: themes.dark,
     },
   });
 
-
+// configure(req, module);
 configure(require.context('../src', true, /\.stories\.js$/), module);

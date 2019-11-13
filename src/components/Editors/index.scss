@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  .resizer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+  }
 }
 
 .titlebar {
@@ -11,6 +16,11 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
+  position: fixed;
+  box-sizing: border-box;
+  background: $codio-darkblue;
+  top: $app-header-height;
+  z-index: 10;
   input {
     border: transparent;
     background: none;
@@ -29,6 +39,7 @@
 .result {
   // flex-basis: 40%;
   background: $white;
+  z-index: 10;
   iframe {
     width: 100%;
     height: calc(100vh - 70px);
@@ -38,10 +49,11 @@
 
 .code-editor {
   height: 100%;
-  padding-top: 25px;
+  padding-top: 70px;
   padding-left: 25px;
   padding-right: 25px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .titlebar_btnGroup {
@@ -52,7 +64,7 @@
   }
 }
 .ReactCodeMirror {
-  height: calc(100% - 25px);
+  height: 92%;
 }
 .CodeMirror {
   height: inherit;

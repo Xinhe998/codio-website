@@ -8,7 +8,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "coverage": "yarn run test -- --coverage",
     "build": "webpack --mode production",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "deploy": "npm run build && aws s3 sync dist/ s3://codio-website --delete",
+    "test-ci": "JEST_JUNIT_OUTPUT=\"reports/junit/js-test-results.xml\" jest --maxWorkers=2 --ci"
   },
   "author": "",
   "license": "ISC",
@@ -21,24 +23,29 @@
     "@storybook/react": "^5.2.3",
     "@storybook/theming": "^5.2.3",
     "axios": "^0.19.0",
+    "babel-plugin-require-context-hook": "^1.0.0",
     "calidators": "^3.0.2",
     "codemirror-colorpicker": "^1.9.50",
     "console-feed": "^2.8.8",
     "css-tree": "^1.0.0-alpha.29",
     "date-fns": "^2.2.1",
+    "enzyme-to-json": "^3.4.3",
     "gonzales-pe": "^4.2.4",
+    "jest": "^24.7.1",
+    "jest-junit": "^8.0.0",
     "js-beautify": "^1.10.0",
     "lodash": "^4.17.11",
     "query-ast": "^1.0.2",
-    "react": "^16.8.6",
+    "react": "^16.10.2",
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^6.0.0",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.11.0",
     "react-icons": "^3.7.0",
     "react-id-swiper": "^2.3.2",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "react-test-renderer": "^16.11.0",
     "redux": "^4.0.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
@@ -53,11 +60,14 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-storyshots": "^5.2.5",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "babel-loader": "8.0.4",
     "babel-polyfill": "^6.26.0",
+    "codecov.io": "^0.1.6",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^2.1.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
@@ -69,10 +79,10 @@
     "eslint-plugin-react": "^7.12.4",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.7.1",
     "less-loader": "^4.1.0",
     "node-sass": "^4.11.0",
     "react-hot-loader": "^4.6.3",
+    "require-context.macro": "^1.2.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
@@ -81,6 +91,10 @@
     "webpack-dev-server": "^3.1.14"
   },
   "jest": {
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
@@ -88,7 +102,7 @@
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
     ],
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
@@ -106,5 +120,14 @@
       "jsx",
       "node"
     ]
+  },
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "outputDirectory": "./test-results/jest",
+    "outputName": "results.xml",
+    "classNameTemplate": "{classname}-{title}",
+    "titleTemplate": "{classname}-{title}",
+    "ancestorSeparator": " › ",
+    "usePathForSuiteName": "true"
   }
 }

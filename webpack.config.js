@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: `${__dirname}/public/index.html`,
@@ -10,6 +11,10 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   favicon: `${__dirname}/public/favicon.ico`,
   title: 'Codio',
 });
+
+const CopyPluginConfig = new CopyPlugin([
+  { from: 'public/_redirects', to: '' },
+]);
 
 module.exports = {
   // JavaScript執行的入口
@@ -51,5 +56,5 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), HTMLWebpackPluginConfig],
+  plugins: [new webpack.HotModuleReplacementPlugin(), HTMLWebpackPluginConfig, CopyPluginConfig],
 };

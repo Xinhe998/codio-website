@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import './index.scss';
 import logo from '../../assets/codio_logo.svg';
 
-
-const Layout = ({
-  userImg,
-  userName,
-  list,
-  children,
-}) => {
+const Layout = ({ userImg, userName, list, children }) => {
   const LayoutRef = useRef();
   return (
 

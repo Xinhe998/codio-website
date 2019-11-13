@@ -1,0 +1,118 @@
+@import "../../../styles/main.scss";
+
+.Admin {
+  color: $black;
+
+  .main_section {
+    position: absolute;
+    top: 25%;
+    left: 6%;
+    background-color: white;
+    width: 50%;
+    // height: 80%;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+
+  }
+
+  .Modal__wrapper {
+    width: 60%;
+  }
+
+  .Modal__content .textinput {
+    margin: 20px 0;
+  }
+
+  .title {
+    font-size: 7px;
+    line-height: 1.14;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .multi_choice {
+    height: 80px;
+    border-radius: 5px;
+    border: solid 1px $gray;
+    overflow-y: scroll;
+    padding: 10px;
+    font-size: 12px;
+
+    h5 {
+      margin: 5px;
+      letter-spacing: 1px;
+    }
+  }
+
+  .add_user {
+    display: flex;
+    justify-content: space-around;
+
+    .add_user_btn {
+      width: 6%;
+      position: absolute;
+      right: 42%;
+      top: 3%;
+    }
+  }
+
+
+
+  .cancel_btn {
+    width: 45%;
+  }
+
+  .save_btn {
+    width: 45%;
+    float: right;
+  }
+
+  .user_list {
+    width: 100%;
+
+    tr {
+      text-align: center;
+    }
+
+    hr {
+      margin: 20px 20px;
+      border: 1px solid $light-gray;
+    }
+
+  }
+
+  .user_tool {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 80px;
+
+    .display_number {
+      display: flex;
+      align-items: baseline;
+    }
+
+    .filter_dropDown .filter_title {
+      color: $dark-gray;
+    }
+
+    .textinput__icon {
+      background-color: #ec5252;
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    hr {
+      border: 1px solid $light-gray;
+    }
+  }
+
+  .total {
+    text-align: right;
+    display: block;
+  }
+}

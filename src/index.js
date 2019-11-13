@@ -11,16 +11,20 @@ import thunk from 'redux-thunk';
 import storeFs from './reducers';
 
 import '../styles/main.scss';
-import App from './pages';
+import App from './pages/Index';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ForgetPasswordModal from './pages/ForgetPasswordModal';
 import ForgetPassword from './pages/ForgetPassword';
+import ForgetPasswordModal from './pages/ForgetPasswordModal';
 import CreateProject from './pages/CreateProject';
 import PrivateRoute from './pages/PrivateRoute';
 import HomePage from './pages/HomePage';
 import Search from './pages/Search';
+<<<<<<< HEAD
 import Settings from './pages/Settings';
+=======
+import Portfolio from './pages/Portfolio';
+>>>>>>> 77bca4f6e394c76bf1e46500d7daed8672cbb5b7
 
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
@@ -60,6 +64,7 @@ const CodioSwitch = ({ location }) => {
         <Route path="/homePage" component={HomePage} />
         <Route path="/search" component={Search} />
         <Route path="/settings" component={Settings} />
+        <Route path="/portfolio" component={Portfolio} />
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}

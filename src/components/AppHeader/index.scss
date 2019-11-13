@@ -1,7 +1,7 @@
 @import "../../../styles/main.scss";
 .AppHeader {
   background: #383e55;
-  height: 60px;
+  height: $app-header-height;
   position: fixed;
   top: 0;
   width: 100%;
