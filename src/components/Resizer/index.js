@@ -51,9 +51,10 @@ class Resizer extends Component {
 
   render() {
     const { elementWidth, children } = this.props;
+    const { isDragging } = this.state;
     return (
       <div className="resizer" style={{ width: `${elementWidth}px` }}>
-        {this.state.isDragging ? (
+        {isDragging ? (
           <div className="drag-overlay" onMouseUp={this.handleMouseUp} />
         ) : null}
         <div>{children}</div>
