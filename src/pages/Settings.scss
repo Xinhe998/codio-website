@@ -1,0 +1,148 @@
+.settings {
+  .title {
+    font-size: 22px;
+    font-weight: normal;
+    margin-top: 40px;
+  }
+
+  .edit_info {
+    .subtitle {
+      display: block;
+      font-size: 18px;
+      color: #3597ec;
+      margin-bottom: 30px;
+    }
+
+    .inputs {
+      display: flex;
+      flex-direction: row;
+
+      .left_sec {
+        width: 50%;
+      }
+
+      .right_sec {
+        width: 50%;
+      }
+    }
+
+    .textinput {
+      width: 65%;
+      padding: 10px 0;
+    }
+  }
+
+  .edit_settings {
+    display: flex;
+
+    .subtitle {
+      display: block;
+      font-size: 18px;
+      color: #707070;
+      margin-bottom: 30px;
+      margin-top: 30px;
+
+    }
+
+    .radioButtonGroup__option {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .selection {
+      width: 30%;
+    }
+
+    .editor {
+      max-width: 550px;
+      height: 300px;
+      width: 70%;
+      align-self: flex-end;
+
+      .editor_top {
+        background-color: #e6e6e6;
+        width: 100%;
+        height: 40px;
+        position: relative;
+        border-radius: 5px 5px 0 0;
+
+        .circle {
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          border-radius: 50%;
+        }
+
+        .red {
+          background-color: #ff5141;
+          left: 20px;
+          top: 15px;
+        }
+
+        .yellow {
+          background-color: #f1bb3f;
+          left: 50px;
+          top: 15px;
+        }
+
+        .green {
+          background-color: #70cb43;
+          left: 80px;
+          top: 15px;
+        }
+      }
+
+      .editor_body {
+        background-color: #2a2f42;
+        position: relative;
+        width: 100%;
+        height: 250px;
+        border-radius: 0 0 5px 5px;
+
+
+        .editor_body_title {
+          color: white;
+          position: absolute;
+          left: 15px;
+          top: 15px;
+
+        }
+      }
+    }
+  }
+
+  .edit_pw {
+    input {
+      width: 33%;
+    }
+  }
+
+.main_section {
+  position: absolute;
+  top:10%;
+  left: 6%;
+  background-color: white;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  padding: 20px;
+}
+
+  // .main_section {
+  //   height: 85%;
+  // }
+
+  .edit_button {
+    margin-top: 80px;
+    margin-bottom: 50px;
+
+    .cancel_btn {
+      width: 40%;
+    }
+
+    .save_btn {
+      width: 40%;
+      float: right;
+    }
+  }
+}

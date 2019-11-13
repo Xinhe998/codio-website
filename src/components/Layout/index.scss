@@ -8,7 +8,6 @@
     background-color: $codio-darkblue;
     color: $white;
     width: 10%;
-    height: 100vh;
     flex-direction: column;
     text-align: center;
 
@@ -50,7 +49,6 @@
   .Layout__content {
     width: 90%;
     background-color: $background-color;
-    height: 100vh;
     position: relative;
   }
 }

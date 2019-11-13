@@ -12,41 +12,41 @@ const Layout = ({
 }) => {
   const LayoutRef = useRef();
   return (
-    <div className="Layout">
-      <div className="Layout" ref={LayoutRef}>
 
-        <div className="Layout__sidebar">
-          <div
-            className="logo"
-            style={{
-              backgroundImage: `url(${logo})`, width: '40%', height: '20%', backgroundRepeat: 'no-repeat', marginBottom: 20,
-            }}
-          />
-          <div
-            className="user_img"
-            style={{
-              backgroundImage: `url(${userImg})`,
-            }}
-          />
-          <h2 className="user_name">{userName}</h2>
-          <ul>
-            {
-              list.map((item, index) => {
-                return (
+    <div className="Layout" ref={LayoutRef}>
+
+      <div className="Layout__sidebar">
+        <div
+          className="logo"
+          style={{
+            backgroundImage: `url(${logo})`, width: '40%', height: '20%', backgroundRepeat: 'no-repeat', marginBottom: 20,
+          }}
+        />
+        <div
+          className="user_img"
+          style={{
+            backgroundImage: `url(${userImg})`,
+          }}
+        />
+        <h2 className="user_name">{userName}</h2>
+        <ul>
+          {
+            list.map((item, index) => {
+              return (
                 <li key={index}>{item}</li>
-                );
-              })
+              );
+            })
 
-            }
+          }
 
-            <li className="logout">登出</li>
-          </ul>
-        </div>
-        <div className="Layout__content">
-          <div className="Layout__bg">{children}</div>
-        </div>
+          <li className="logout">登出</li>
+        </ul>
+      </div>
+      <div className="Layout__content">
+        <div className="Layout__bg">{children}</div>
       </div>
     </div>
+
   );
 };
 Layout.propTypes = {
