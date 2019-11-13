@@ -369,8 +369,7 @@ class Editors extends Component {
       tabSize: 2,
     };
     const dropdownOptions = [
-      '新增專案',
-      '儲存此專案',
+      '另開新專案',
       '刪除此專案',
       '分享此專案',
     ];
