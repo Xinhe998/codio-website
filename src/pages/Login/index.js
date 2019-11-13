@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { withRouter, Link, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  withRouter,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -8,6 +13,8 @@ import action from '../../actions';
 import AppHeader from '../../components/AppHeader';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
+
+import App from '../Index';
 
 import '../Index/index.scss';
 import './index.scss';
@@ -31,12 +38,9 @@ const Login = (props) => {
     };
     props.login(loginData, props.history);
   };
-  return !isAuthed ? (
+  const renderLoginPage = () => (
     <div className="Login">
-      <AppHeader
-        isDropdownVisible={false}
-        isTabVisible={false}
-      />
+      <AppHeader isDropdownVisible={false} isTabVisible={false} />
       <div className="AppContent">
         <div className="form-section">
           <p className="title">登入</p>
@@ -44,14 +48,12 @@ const Login = (props) => {
             還沒有帳號嗎？
             <a href="register">點我註冊</a>
           </p>
-          {props.user.errorMsg
-            ? (
-              <div className="error-message">
-                <IoIosCloseCircle />
+          {props.user.errorMsg ? (
+            <div className="error-message">
+              <IoIosCloseCircle />
               帳號或密碼有誤，請重新再輸入一次
-              </div>
-            )
-            : null}
+            </div>
+          ) : null}
           <TextInput
             title="帳號"
             text={id}
@@ -85,7 +87,12 @@ const Login = (props) => {
             onClick={loginHandler}
             disabled={emailValidator !== null || passwordValidator !== null}
           />
-          <Button className="github_login_btn" text="Github 登入" type="outline" size="small" />
+          <Button
+            className="github_login_btn"
+            text="Github 登入"
+            type="outline"
+            size="small"
+          />
         </div>
         <div
           className="photo-section"
@@ -93,7 +100,16 @@ const Login = (props) => {
         />
       </div>
     </div>
-  ) : <Redirect to="/" />;
+  );
+
+  return (
+    <Router>
+      <div>
+        <Route exact path="/" component={App} />
+        {isAuthed ? <Redirect to="/" /> : renderLoginPage}
+      </div>
+    </Router>
+  );
 };
 
 const mapStateToProps = store => ({
