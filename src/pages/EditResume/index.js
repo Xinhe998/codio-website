@@ -29,28 +29,29 @@ const EditResume = (props) => {
   const [expCompany, setExpCompany] = useState('');
   const [expPlace, setExpPlace] = useState('');
   const [expDesc, setExpDesc] = useState('');
+  const [projectTags, setProjectTags] = useState([]);
 
 
-  const userNameValidator = isRequired({ message: '請輸入使用者名稱' })(editUserName);
-  const countyValidator = isRequired({ message: '請輸入縣市' })(editCounty);
-  const urlValidator = isRequired({ message: '請輸入連結' })(editUrl);
-  const jobValidator = isRequired({ message: '請輸入職稱' })(editJob);
-  const emailValidator = isEmail({ message: 'Email格式錯誤' })(editEmail);
-  const telValidator = isRequired({ message: '請輸入聯絡電話' })(editTel);
-  const addressValidator = isRequired({ message: '請輸入通訊地址' })(editAddress);
-  const passwordValidator1 = isRequired({ message: '請輸入密碼' })(editOldPw, editNewPw, confirmNewPw);
-  const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(editNewPw);
-  const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(editNewPw);
-  const confirmPasswordValidator = isEqual({
-    message: '確認密碼不一致，請重新輸入',
-    value: editNewPw,
-  })(confirmNewPw);
+  // const userNameValidator = isRequired({ message: '請輸入使用者名稱' })(editUserName);
+  // const countyValidator = isRequired({ message: '請輸入縣市' })(editCounty);
+  // const urlValidator = isRequired({ message: '請輸入連結' })(editUrl);
+  // const jobValidator = isRequired({ message: '請輸入職稱' })(editJob);
+  // const emailValidator = isEmail({ message: 'Email格式錯誤' })(editEmail);
+  // const telValidator = isRequired({ message: '請輸入聯絡電話' })(editTel);
+  // const addressValidator = isRequired({ message: '請輸入通訊地址' })(editAddress);
+  // const passwordValidator1 = isRequired({ message: '請輸入密碼' })(editOldPw, editNewPw, confirmNewPw);
+  // const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(editNewPw);
+  // const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(editNewPw);
+  // const confirmPasswordValidator = isEqual({
+  //   message: '確認密碼不一致，請重新輸入',
+  //   value: editNewPw,
+  // })(confirmNewPw);
 
-  const [themeColor, setThemeColor] = useState('深藍色');
-  const themeColorOptions = ['深藍色', '黑色', '淺色'];
-  const [defaultOpen, setDefaultOpen] = useState('HTML');
-  const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
-
+  // const [themeColor, setThemeColor] = useState('深藍色');
+  // const themeColorOptions = ['深藍色', '黑色', '淺色'];
+  // const [defaultOpen, setDefaultOpen] = useState('HTML');
+  // const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
+  const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];
   const loginHandler = () => {
     const loginData = {
       id,
@@ -58,27 +59,27 @@ const EditResume = (props) => {
     };
     props.login(loginData, props.history);
   };
-  const handleEditInfo = () => {
-    const settingsData = {
-      editUserName,
-      editCounty,
-      editUrl,
-      editJob,
-      editEmail,
-      editBirth,
-      editTel,
-      editAddress,
-    };
-    props.settings(settingsData, props.history);
-  };
-  const handleEditPw = () => {
-    const settingsData = {
-      editOldPw,
-      editNewPw,
-      confirmNewPw,
-    };
-    props.settings(settingsData, props.history);
-  };
+  // const handleEditInfo = () => {
+  //   const settingsData = {
+  //     editUserName,
+  //     editCounty,
+  //     editUrl,
+  //     editJob,
+  //     editEmail,
+  //     editBirth,
+  //     editTel,
+  //     editAddress,
+  //   };
+  //   props.settings(settingsData, props.history);
+  // };
+  // const handleEditPw = () => {
+  //   const settingsData = {
+  //     editOldPw,
+  //     editNewPw,
+  //     confirmNewPw,
+  //   };
+  //   props.settings(settingsData, props.history);
+  // };
 
 
   return (
@@ -127,17 +128,20 @@ const EditResume = (props) => {
           <div className="edit_skill">
             <h2 className="title">
               技能
-              <span>限25個</span>
+              <span className="subtitle">限25個</span>
             </h2>
             <MultiSelect
               title="新增技能"
-            // options={fakeOptions}
-            // selectedItems={projectTags}
-            // onChange={setProjectTags}
+              options={fakeOptions}
+              selectedItems={projectTags}
+              onChange={setProjectTags}
             />
           </div>
           <div className="edit_exp">
-            <h2 className="title">經歷</h2>
+            <h2 className="title">
+              經歷
+              <span className="subtitle">限3個</span>
+            </h2>
             <TextInput
               title="職稱"
               type="text"
@@ -185,7 +189,7 @@ const EditResume = (props) => {
               text="儲存"
               type="primary"
               size="small"
-              onClick={handleEditPw}
+            // onClick={handleEditPw}
             // disabled={
             // }
             />

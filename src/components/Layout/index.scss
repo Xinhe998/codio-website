@@ -53,5 +53,8 @@
     background-color: $background-color;
     width: 85%;
     float:right;
+    display:flex;
+    flex-direction: column;
+    min-height: -webkit-fill-available;
   }
 }

@@ -16,14 +16,14 @@ const Checkbox = ({ text, checked, name, onChange }) => {
 
 Checkbox.propTypes = {
   text: PropTypes.string,
-  checked: PropTypes.array,
+  checked: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
   text: '',
-  checked: [],
+  checked: false,
   name: '',
 };
 export default Checkbox;

@@ -9,6 +9,15 @@
     color: #263238;
   }
 
+  .main_section {
+    width: 70%;
+    margin: 50px auto 0 auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+  }
+
   .edit_info {
     .subtitle {
       display: block;
@@ -118,11 +127,13 @@
           .darkBlue {
             background-color: #2a2f42;
           }
-          .black{
+
+          .black {
             background-color: #000000;
           }
-          .light{
-            background-color:#f5f7fb;
+
+          .light {
+            background-color: #f5f7fb;
           }
         }
       }
@@ -133,15 +144,6 @@
     .textinput {
       width: 40%;
     }
-  }
-
-  .main_section {
-    width: 70%;
-    margin: 50px auto 0 auto;
-    background-color: white;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    padding: 20px;
   }
 
   .edit_button {
