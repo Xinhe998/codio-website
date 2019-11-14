@@ -18,14 +18,14 @@ const CheckboxGroup = ({ title, options, required, name, value, onChange }) => {
           >
             {option}
             <input
-              type="radio"
+              type="checkbox"
               id={option}
               value={option}
               name={name}
               checked={value === option}
               onChange={e => onChange(e.target.value)}
             />
-            <span className="checkmark" />
+            <span className="checkMark" />
           </label>
         ))}
       </div>
@@ -33,7 +33,7 @@ const CheckboxGroup = ({ title, options, required, name, value, onChange }) => {
   );
 };
 
-RadioButtonGroup.propTypes = {
+CheckboxGroup.propTypes = {
   title: PropTypes.string,
   options: PropTypes.array,
   required: PropTypes.bool,

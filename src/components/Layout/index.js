@@ -13,7 +13,7 @@ const Layout = ({ userImg, userName, list, children }) => {
         <div
           className="logo"
           style={{
-            backgroundImage: `url(${logo})`, width: '40%', height: '20%', backgroundRepeat: 'no-repeat', marginBottom: 20,
+            backgroundImage: `url(${logo})`,
           }}
         />
         <div
@@ -37,7 +37,7 @@ const Layout = ({ userImg, userName, list, children }) => {
         </ul>
       </div>
       <div className="Layout__content">
-        <div className="Layout__bg">{children}</div>
+        {children}
       </div>
     </div>
 

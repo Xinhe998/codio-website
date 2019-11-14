@@ -20,11 +20,9 @@ import CreateProject from './pages/CreateProject';
 import PrivateRoute from './pages/PrivateRoute';
 import HomePage from './pages/HomePage';
 import Search from './pages/Search';
-<<<<<<< HEAD
 import Settings from './pages/Settings';
-=======
 import Portfolio from './pages/Portfolio';
->>>>>>> 77bca4f6e394c76bf1e46500d7daed8672cbb5b7
+import EditResume from './pages/EditResume';
 
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
@@ -62,9 +60,11 @@ const CodioSwitch = ({ location }) => {
         <PrivateRoute path="/create_project" component={CreateProject} />
         <Route path="/p/:id" component={App} />
         <Route path="/homePage" component={HomePage} />
+        <Route path="/homePage/editResume" component={EditResume} />
         <Route path="/search" component={Search} />
         <Route path="/settings" component={Settings} />
         <Route path="/portfolio" component={Portfolio} />
+        
         {/* <Route path="/:type(foods|drinks)" component={App} /> */}
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}

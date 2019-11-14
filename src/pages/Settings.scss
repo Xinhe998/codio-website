@@ -1,8 +1,12 @@
 .settings {
+  .textinput {
+    padding: 10px 0;
+  }
+
   .title {
     font-size: 22px;
     font-weight: normal;
-    margin-top: 40px;
+    color: #263238;
   }
 
   .edit_info {
@@ -23,13 +27,16 @@
 
       .right_sec {
         width: 50%;
+        // .textinput{
+        //   float: right;
+        // }
       }
     }
 
     .textinput {
-      width: 65%;
-      padding: 10px 0;
+      width: 80%;
     }
+
   }
 
   .edit_settings {
@@ -57,7 +64,7 @@
       max-width: 550px;
       height: 300px;
       width: 70%;
-      align-self: flex-end;
+      align-self: center;
 
       .editor_top {
         background-color: #e6e6e6;
@@ -105,36 +112,42 @@
           position: absolute;
           left: 15px;
           top: 15px;
+        }
 
+        .editor_body_color {
+          .darkBlue {
+            background-color: #2a2f42;
+          }
+          .black{
+            background-color: #000000;
+          }
+          .light{
+            background-color:#f5f7fb;
+          }
         }
       }
     }
   }
 
   .edit_pw {
-    input {
-      width: 33%;
+    .textinput {
+      width: 40%;
     }
   }
 
-.main_section {
-  position: absolute;
-  top:10%;
-  left: 6%;
-  background-color: white;
-  justify-content: center;
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  padding: 20px;
-}
-
-  // .main_section {
-  //   height: 85%;
-  // }
+  .main_section {
+    width: 70%;
+    margin: 50px auto 0 auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+  }
 
   .edit_button {
-    margin-top: 80px;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    display: block;
 
     .cancel_btn {
       width: 40%;

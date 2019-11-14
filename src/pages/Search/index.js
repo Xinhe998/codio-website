@@ -157,7 +157,6 @@ const Search = () => {
             </div>
           </Swiper>
         </div>
-        <h2 />
         <div className="projectList">
           <ProjectCard
             title="todolist"

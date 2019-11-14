@@ -9,7 +9,7 @@ import TextInput from '../components/TextInput';
 import DateInput from '../components/DateInput';
 import RadioButtonGroup from '../components/RadioButtonGroup';
 import Button from '../components/Button';
-import Checkbox from '../components/Checkbox';
+import CheckboxGroup from '../components/CheckboxGroup';
 import userImg from '../assets/userImg.png';
 
 import './Settings.scss';
@@ -50,19 +50,10 @@ const Settings = (props) => {
     value: editNewPw,
   })(confirmNewPw);
 
-  const [isChecked, setIsChecked] = useState([]);
-  const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
   const [themeColor, setThemeColor] = useState('深藍色');
   const themeColorOptions = ['深藍色', '黑色', '淺色'];
-
-  const handleSelectCheckbox = (choice) => {
-    const index = isChecked.indexOf(choice);
-    if (index !== -1) {
-      setIsChecked(isChecked.filter(item => item !== choice));
-    } else {
-      setIsChecked([choice, ...isChecked]);
-    }
-  };
+  const [defaultOpen, setDefaultOpen] = useState('HTML');
+  const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
 
   const loginHandler = () => {
     const loginData = {
@@ -71,10 +62,8 @@ const Settings = (props) => {
     };
     props.login(loginData, props.history);
   };
-  const handleEdit = () => {
+  const handleEditInfo = () => {
     const settingsData = {
-      id,
-      password,
       editUserName,
       editCounty,
       editUrl,
@@ -83,12 +72,18 @@ const Settings = (props) => {
       editBirth,
       editTel,
       editAddress,
+    };
+    props.settings(settingsData, props.history);
+  };
+  const handleEditPw = () => {
+    const settingsData = {
       editOldPw,
       editNewPw,
       confirmNewPw,
     };
     props.settings(settingsData, props.history);
   };
+
 
   return (
     <div className="settings">
@@ -182,6 +177,30 @@ const Settings = (props) => {
                 />
               </div>
             </div>
+            <div className="edit_button">
+              <Button
+                className="cancel_btn"
+                text="取消"
+                type="outline"
+                size="small"
+                onClick={() => props.history.push('/homePage')}
+              />
+              <Button
+                className="save_btn"
+                text="儲存"
+                type="primary"
+                size="small"
+                onClick={handleEditInfo}
+                disabled={
+                  userNameValidator !== null
+                  || countyValidator !== null
+                  || urlValidator !== null
+                  || jobValidator !== null
+                  || telValidator !== null
+                  || addressValidator !== null
+                }
+              />
+            </div>
           </div>
           <div className="edit_pw">
             <h2 className="title">修改密碼</h2>
@@ -217,6 +236,28 @@ const Settings = (props) => {
               hintType="error"
               hintText={confirmPasswordValidator}
             />
+            <div className="edit_button">
+              <Button
+                className="cancel_btn"
+                text="取消"
+                type="outline"
+                size="small"
+                onClick={() => props.history.push('/homePage')}
+              />
+              <Button
+                className="save_btn"
+                text="儲存"
+                type="primary"
+                size="small"
+                onClick={handleEditPw}
+                disabled={
+                  passwordValidator1 !== null
+                  || passwordValidator2 === null
+                  || passwordValidator3 !== null
+                  || confirmPasswordValidator !== null
+                }
+              />
+            </div>
           </div>
           <div className="edit_settings">
             <div className="selection">
@@ -229,8 +270,14 @@ const Settings = (props) => {
                 title="主題色"
                 required
               />
-              <span className="subtitle">預設開啟</span>
-              <Checkbox />
+              <CheckboxGroup
+                name="themeColor"
+                options={defaultOptions}
+                value={defaultOpen}
+                onChange={setDefaultOpen}
+                title="預設開啟"
+                required
+              />
             </div>
             <div className="editor">
               <div className="editor_top">
@@ -249,26 +296,14 @@ const Settings = (props) => {
               text="取消"
               type="outline"
               size="small"
-            // onClick={addChar}
+              onClick={() => props.history.push('/homePage')}
             />
             <Button
               className="save_btn"
               text="儲存"
               type="primary"
               size="small"
-              onClick={handleEdit}
-              disabled={
-                userNameValidator !== null
-                || countyValidator !== null
-                || urlValidator !== null
-                || jobValidator !== null
-                || telValidator !== null
-                || addressValidator !== null
-                || passwordValidator1 !== null
-                || passwordValidator2 === null
-                || passwordValidator3 !== null
-                || confirmPasswordValidator !== null
-              }
+            // onClick={handleEdit}
             />
           </div>
         </div>
