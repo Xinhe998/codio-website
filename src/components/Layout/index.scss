@@ -3,6 +3,16 @@
 .Layout {
   width: 100%;
 
+  .main_section {
+    width: 70%;
+    margin: 50px auto 0 auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+    padding-bottom: 200px;
+  }
+
   .Layout__sidebar {
     background-color: $codio-darkblue;
     color: $white;
@@ -52,8 +62,8 @@
   .Layout__content {
     background-color: $background-color;
     width: 85%;
-    float:right;
-    display:flex;
+    float: right;
+    display: flex;
     flex-direction: column;
     min-height: -webkit-fill-available;
   }

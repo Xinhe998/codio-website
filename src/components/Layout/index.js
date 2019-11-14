@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import './index.scss';
 import logo from '../../assets/codio_logo.svg';
 
-const Layout = ({ userImg, userName, list, children }) => {
+const Layout = ({
+  userImg, userName, list, children, actions,
+}) => {
   const LayoutRef = useRef();
   return (
 
@@ -25,11 +27,9 @@ const Layout = ({ userImg, userName, list, children }) => {
         <h2 className="user_name">{userName}</h2>
         <ul>
           {
-            list.map((item, index) => {
-              return (
-                <li key={index}>{item}</li>
-              );
-            })
+            list.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))
 
           }
 
@@ -37,7 +37,10 @@ const Layout = ({ userImg, userName, list, children }) => {
         </ul>
       </div>
       <div className="Layout__content">
-        {children}
+        {actions}
+        <div className="main_section">
+          {children}
+        </div>
       </div>
     </div>
 
@@ -48,6 +51,7 @@ Layout.propTypes = {
   userName: PropTypes.string,
   list: PropTypes.array,
   children: PropTypes.node,
+  actions: PropTypes.object,
 };
 
 Layout.defaultProps = {
