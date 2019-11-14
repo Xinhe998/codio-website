@@ -20,7 +20,9 @@ import CreateProject from './pages/CreateProject';
 import PrivateRoute from './pages/PrivateRoute';
 import HomePage from './pages/HomePage';
 import Search from './pages/Search';
+import Settings from './pages/Settings';
 import Portfolio from './pages/Portfolio';
+import EditResume from './pages/EditResume';
 
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
@@ -38,7 +40,7 @@ const store = createStore(
     applyMiddleware(thunk),
     // eslint-disable-next-line no-underscore-dangle
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__(),
+    window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
 
@@ -57,8 +59,10 @@ const CodioSwitch = ({ location }) => {
         <Route path="/forget_password" component={ForgetPassword} />
         <Route path="/admin" component={Admin} />
         <Route path="/p/:id" component={App} />
-        <Route path="/homePage" component={HomePage} />
+        <Route exact path="/homePage" component={HomePage} />
+        <Route path="/homePage/edit_resume" component={EditResume} />
         <Route path="/search" component={Search} />
+        <Route path="/settings" component={Settings} />
         <Route path="/portfolio" component={Portfolio} />
         <PrivateRoute path="/create_project" component={CreateProject} />
         <Route component={notfound} />

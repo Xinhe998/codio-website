@@ -6,35 +6,41 @@ import logo from '../../assets/codio_logo.svg';
 const Layout = ({ userImg, userName, list, children }) => {
   const LayoutRef = useRef();
   return (
-    <div className="Layout">
-      <div className="Layout" ref={LayoutRef}>
-        <div className="Layout__sidebar">
-          <div
-            className="logo"
-            style={{
-              backgroundImage: `url(${logo})`,
-            }}
-          />
-          <div
-            className="user_img"
-            style={{
-              backgroundImage: `url(${userImg})`,
-            }}
-          />
-          <h2 className="user_name">{userName}</h2>
-          <ul>
-            {list.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
 
-            <li className="logout">登出</li>
-          </ul>
-        </div>
-        <div className="Layout__content">
-          <div className="Layout__bg">{children}</div>
-        </div>
+    <div className="Layout" ref={LayoutRef}>
+
+      <div className="Layout__sidebar">
+        <div
+          className="logo"
+          style={{
+            backgroundImage: `url(${logo})`,
+          }}
+        />
+        <div
+          className="user_img"
+          style={{
+            backgroundImage: `url(${userImg})`,
+          }}
+        />
+        <h2 className="user_name">{userName}</h2>
+        <ul>
+          {
+            list.map((item, index) => {
+              return (
+                <li key={index}>{item}</li>
+              );
+            })
+
+          }
+
+          <li className="logout">登出</li>
+        </ul>
+      </div>
+      <div className="Layout__content">
+        {children}
       </div>
     </div>
+
   );
 };
 Layout.propTypes = {

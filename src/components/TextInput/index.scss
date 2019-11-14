@@ -55,7 +55,7 @@
   &.error {
     input {
       border: solid 1px $codio-pink;
-      padding-right: 250px;
+      // padding-right: 250px;
     }
 
     .textinput__hint {
@@ -115,7 +115,7 @@
   line-height: 1.14;
   letter-spacing: normal;
   text-align: left;
-  color: $black;
+  color: $dark-gray;
   margin-bottom: 7px;
 }
 

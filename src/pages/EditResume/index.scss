@@ -1,0 +1,45 @@
+.editResume {
+  .main_section {
+    width: 70%;
+    margin: 50px auto 0 auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+  }
+
+  .textinput {
+    padding: 10px 0;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: normal;
+    color: #263238;
+    margin-top: 50px;
+  }
+
+  .subtitle {
+    display: inline-block;
+    font-size: 14px;
+    color: black;
+    margin-left: 5px;
+  }
+  .textarea{
+    max-width: 100%;
+  }
+  .edit_button {
+    margin-top: 50px;
+    margin-bottom: 80px;
+    display: block;
+
+    .cancel_btn {
+      width: 40%;
+    }
+
+    .save_btn {
+      width: 40%;
+      float: right;
+    }
+  }
+}

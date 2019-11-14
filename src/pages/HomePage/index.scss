@@ -2,39 +2,47 @@
   color: black;
 
   .user_profile {
-    position: absolute;
-    left: 6%;
+    width: 74%;
+    margin: 0 auto;
+    margin-top: 3%;
+    display: flex;
+
+    .user_img {
+      margin-right: 30px;
+    }
 
     span {
       margin-right: 20px;
 
-      svg{
+      svg {
         margin-right: 10px;
       }
     }
   }
 
+  .add_project {
+    width: 74%;
+    margin: 0 auto;
 
-.add_project_btn {
-  width: 5%;
-  position: absolute;
-  right: 42%;
-  top: 24%;
-}
+    .add_project_btn {
+      width: 10%;
+      float: right;
+    }
+  }
+
+  .main_section {
+    width: 70%;
+    margin: 30px auto 0 auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    padding: 20px;
+    position: relative;
+    padding-bottom: 150px;
+  }
 }
 
-.main_section {
-  position: absolute;
-  bottom: 0;
-  left: 6%;
-  background-color: white;
-  width: 50%;
-  height: 60%;
-  justify-content: center;
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  padding: 20px;
-}
+
 
 .tool {
   display: flex;
@@ -70,11 +78,12 @@
   color: #3597ec;
 }
 
-.project_dropDown span{
+.project_dropDown span {
   display: block;
   line-height: 2;
   cursor: pointer;
 }
-.project_dropDown span:hover{
+
+.project_dropDown span:hover {
   color: #3597ec;
 }

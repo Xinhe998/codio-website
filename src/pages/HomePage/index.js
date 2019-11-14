@@ -62,14 +62,16 @@ const HomePage = (props) => {
           userAddress="台中市"
           userLink="www.alice0050722.com.tw"
         />
-        <Button
-          className="add_project_btn"
-          text="新增"
-          type="primary"
-          size="small"
-          theme="red"
-          onClick={() => props.history.push('/create_project')}
-        />
+        <div className="add_project">
+          <Button
+            className="add_project_btn"
+            text="新增"
+            type="primary"
+            size="small"
+            theme="red"
+            onClick={() => props.history.push('/create_project')}
+          />
+        </div>
         <div className="main_section">
 
           <div className="tool">
