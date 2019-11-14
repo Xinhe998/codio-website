@@ -29,6 +29,7 @@ const Home = () => {
 };
 
 const mapStateToProps = store => ({
+  user: store.user,
   editor: store.editor,
 });
 export default withRouter(

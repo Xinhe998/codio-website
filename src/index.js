@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect, IndexRoute } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -44,22 +44,25 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
+const notfound = () => <h1>404</h1>;
+
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
   const isModal = !!(location.state && location.state.modal && previousLocation);
   return (
     <BrowserRouter>
       <Switch location={isModal ? previousLocation : location}>
-        <Route exact path="/" component={App} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
         <Route path="/admin" component={Admin} />
-        <PrivateRoute path="/create_project" component={CreateProject} />
         <Route path="/p/:id" component={App} />
         <Route path="/homePage" component={HomePage} />
         <Route path="/search" component={Search} />
         <Route path="/portfolio" component={Portfolio} />
+        <PrivateRoute path="/create_project" component={CreateProject} />
+        <Route component={notfound} />
+        <Route exact path="/" component={App} />
       </Switch>
       {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}
     </BrowserRouter>
