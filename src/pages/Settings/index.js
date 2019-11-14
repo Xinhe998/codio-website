@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { isRequired, isEmail, isNumber, hasDigit, isEqual, } from 'calidators';
+import {
+  isRequired, isEmail, isNumber, hasDigit, isEqual,
+} from 'calidators';
 
-import action from '../actions';
-import Layout from '../components/Layout';
-import TextInput from '../components/TextInput';
-import DateInput from '../components/DateInput';
-import RadioButtonGroup from '../components/RadioButtonGroup';
-import Button from '../components/Button';
-import CheckboxGroup from '../components/CheckboxGroup';
-import userImg from '../assets/userImg.png';
+import action from '../../actions';
+import Layout from '../../components/Layout';
+import TextInput from '../../components/TextInput';
+import DateInput from '../../components/DateInput';
+import RadioButtonGroup from '../../components/RadioButtonGroup';
+import Button from '../../components/Button';
+import CheckboxGroup from '../../components/CheckboxGroup';
+import userImg from '../../assets/userImg.png';
 
-import './Settings.scss';
+import './index.scss';
 
 
 const Settings = (props) => {
