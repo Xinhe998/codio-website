@@ -94,202 +94,88 @@ const Settings = (props) => {
         userName={userName}
         list={list}
       >
-        <div className="main_section">
-          <div className="edit_info">
-            <h2 className="title">個人資料</h2>
-            <span className="subtitle">一般會員</span>
-            <div className="inputs">
-              <div className="left_sec">
-                <TextInput
-                  title="使用者名稱"
-                  type="text"
-                  text={editUserName}
-                  onChange={e => setEditUserName(e.target.value)}
-                  required
-                // showHint={editUserName !== '' && userNameValidator !== null}
-                // hintType="error"
-                />
-                <TextInput
-                  title="縣市"
-                  type="text"
-                  text={editCounty}
-                  onChange={e => setEditCounty(e.target.value)}
-                  required
-                // showHint={!(countyValidator !== null)}
-                // hintType="ok"
-                />
-                <TextInput
-                  title="連結"
-                  type="url"
-                  text={editUrl}
-                  onChange={e => setEditUrl(e.target.value)}
-                  required
-                // showHint={!(urlValidator !== null)}
-                // hintType="ok"
-                />
-                <TextInput
-                  title="職稱"
-                  type="text"
-                  text={editJob}
-                  onChange={e => setEditJob(e.target.value)}
-                  required
-                // showHint={!(jobValidator !== null)}
-                // hintType="ok"
-                />
-              </div>
-              <div className="right_sec">
-                <TextInput
-                  title="信箱"
-                  type="email"
-                  text={editEmail}
-                  onChange={e => setEditEmail(e.target.value)}
-                  required
-                  showHint={editEmail !== '' && (emailValidator !== null)}
-                  hintType="error"
-                  hintText={emailValidator}
-                />
-                <DateInput
-                  title="生日"
-                  required
-                  placeholder="dd/mm/yyyy"
-                  defaultDate={editBirth}
-                  onSelect={setEditBirth}
-                  disabledPastDate={false}
-                  isOpenDatePicker={isBirthOnFocus}
-                  onFocus={() => setIsBirthOnFocus(true)}
-                  switchHandler={setIsBirthOnFocus}
-                />
-                <TextInput
-                  title="聯絡電話"
-                  type="tel"
-                  text={editTel}
-                  onChange={e => setEditTel(e.target.value)}
-                  required
-                // showHint={!(telValidator !== null)}
-                // hintType="error"
-                />
-                <TextInput
-                  title="通訊地址"
-                  type="text"
-                  text={editAddress}
-                  onChange={e => setEditAddress(e.target.value)}
-                  required
-                // showHint={editAddress !== '' && (addressValidator !== null)}
-                // hintType="error"
-                />
-              </div>
-            </div>
-            <div className="edit_button">
-              <Button
-                className="cancel_btn"
-                text="取消"
-                type="outline"
-                size="small"
-                onClick={() => props.history.push('/homePage')}
-              />
-              <Button
-                className="save_btn"
-                text="儲存"
-                type="primary"
-                size="small"
-                onClick={handleEditInfo}
-                disabled={
-                  userNameValidator !== null
-                  || countyValidator !== null
-                  || urlValidator !== null
-                  || jobValidator !== null
-                  || telValidator !== null
-                  || addressValidator !== null
-                }
-              />
-            </div>
-          </div>
-          <div className="edit_pw">
-            <h2 className="title">修改密碼</h2>
-            <TextInput
-              title="舊密碼"
-              type="password"
-              text={editOldPw}
-              onChange={e => setEditOldPw(e.target.value)}
-              required
-              hintType="error"
-              showHint={editOldPw !== '' && (passwordValidator1 !== null)}
-              hintText={passwordValidator1}
-            />
-            <TextInput
-              title="新密碼"
-              type="password"
-              text={editNewPw}
-              onChange={e => setEditNewPw(e.target.value)}
-              required
-              hintType="error"
-              showHint={editNewPw !== '' && (passwordValidator2 === null || passwordValidator3 !== null)}
-              hintText={passwordValidator3}
-            />
-            <TextInput
-              title="確認新密碼"
-              type="password"
-              text={confirmNewPw}
-              onChange={e => setConfirmNewPw(e.target.value)}
-              required
-              showHint={
-                confirmNewPw !== '' && confirmPasswordValidator !== null
-              }
-              hintType="error"
-              hintText={confirmPasswordValidator}
-            />
-            <div className="edit_button">
-              <Button
-                className="cancel_btn"
-                text="取消"
-                type="outline"
-                size="small"
-                onClick={() => props.history.push('/homePage')}
-              />
-              <Button
-                className="save_btn"
-                text="儲存"
-                type="primary"
-                size="small"
-                onClick={handleEditPw}
-                disabled={
-                  passwordValidator1 !== null
-                  || passwordValidator2 === null
-                  || passwordValidator3 !== null
-                  || confirmPasswordValidator !== null
-                }
-              />
-            </div>
-          </div>
-          <div className="edit_settings">
-            <div className="selection">
-              <h2 className="title">偏好設定</h2>
-              <RadioButtonGroup
-                name="themeColor"
-                options={themeColorOptions}
-                value={themeColor}
-                onChange={setThemeColor}
-                title="主題色"
+        <div className="edit_info">
+          <h2 className="title">個人資料</h2>
+          <span className="subtitle">一般會員</span>
+          <div className="inputs">
+            <div className="left_sec">
+              <TextInput
+                title="使用者名稱"
+                type="text"
+                text={editUserName}
+                onChange={e => setEditUserName(e.target.value)}
                 required
+              // showHint={editUserName !== '' && userNameValidator !== null}
+              // hintType="error"
               />
-              <CheckboxGroup
-                name="themeColor"
-                options={defaultOptions}
-                value={defaultOpen}
-                onChange={setDefaultOpen}
-                title="預設開啟"
+              <TextInput
+                title="縣市"
+                type="text"
+                text={editCounty}
+                onChange={e => setEditCounty(e.target.value)}
                 required
+              // showHint={!(countyValidator !== null)}
+              // hintType="ok"
+              />
+              <TextInput
+                title="連結"
+                type="url"
+                text={editUrl}
+                onChange={e => setEditUrl(e.target.value)}
+                required
+              // showHint={!(urlValidator !== null)}
+              // hintType="ok"
+              />
+              <TextInput
+                title="職稱"
+                type="text"
+                text={editJob}
+                onChange={e => setEditJob(e.target.value)}
+                required
+              // showHint={!(jobValidator !== null)}
+              // hintType="ok"
               />
             </div>
-            <div className="editor">
-              <div className="editor_top">
-                <span className="circle red" />
-                <span className="circle yellow" />
-                <span className="circle green" />
-              </div>
-              <div className="editor_body">
-                <span className="editor_body_title">HTML</span>
-              </div>
+            <div className="right_sec">
+              <TextInput
+                title="信箱"
+                type="email"
+                text={editEmail}
+                onChange={e => setEditEmail(e.target.value)}
+                required
+                showHint={editEmail !== '' && (emailValidator !== null)}
+                hintType="error"
+                hintText={emailValidator}
+              />
+              <DateInput
+                title="生日"
+                required
+                placeholder="dd/mm/yyyy"
+                defaultDate={editBirth}
+                onSelect={setEditBirth}
+                disabledPastDate={false}
+                isOpenDatePicker={isBirthOnFocus}
+                onFocus={() => setIsBirthOnFocus(true)}
+                switchHandler={setIsBirthOnFocus}
+              />
+              <TextInput
+                title="聯絡電話"
+                type="tel"
+                text={editTel}
+                onChange={e => setEditTel(e.target.value)}
+                required
+              // showHint={!(telValidator !== null)}
+              // hintType="error"
+              />
+              <TextInput
+                title="通訊地址"
+                type="text"
+                text={editAddress}
+                onChange={e => setEditAddress(e.target.value)}
+                required
+              // showHint={editAddress !== '' && (addressValidator !== null)}
+              // hintType="error"
+              />
             </div>
           </div>
           <div className="edit_button">
@@ -305,9 +191,121 @@ const Settings = (props) => {
               text="儲存"
               type="primary"
               size="small"
-            // onClick={handleEdit}
+              onClick={handleEditInfo}
+              disabled={
+                userNameValidator !== null
+                || countyValidator !== null
+                || urlValidator !== null
+                || jobValidator !== null
+                || telValidator !== null
+                || addressValidator !== null
+              }
             />
           </div>
+        </div>
+        <div className="edit_pw">
+          <h2 className="title">修改密碼</h2>
+          <TextInput
+            title="舊密碼"
+            type="password"
+            text={editOldPw}
+            onChange={e => setEditOldPw(e.target.value)}
+            required
+            hintType="error"
+            showHint={editOldPw !== '' && (passwordValidator1 !== null)}
+            hintText={passwordValidator1}
+          />
+          <TextInput
+            title="新密碼"
+            type="password"
+            text={editNewPw}
+            onChange={e => setEditNewPw(e.target.value)}
+            required
+            hintType="error"
+            showHint={editNewPw !== '' && (passwordValidator2 === null || passwordValidator3 !== null)}
+            hintText={passwordValidator3}
+          />
+          <TextInput
+            title="確認新密碼"
+            type="password"
+            text={confirmNewPw}
+            onChange={e => setConfirmNewPw(e.target.value)}
+            required
+            showHint={
+              confirmNewPw !== '' && confirmPasswordValidator !== null
+            }
+            hintType="error"
+            hintText={confirmPasswordValidator}
+          />
+          <div className="edit_button">
+            <Button
+              className="cancel_btn"
+              text="取消"
+              type="outline"
+              size="small"
+              onClick={() => props.history.push('/homePage')}
+            />
+            <Button
+              className="save_btn"
+              text="儲存"
+              type="primary"
+              size="small"
+              onClick={handleEditPw}
+              disabled={
+                passwordValidator1 !== null
+                || passwordValidator2 === null
+                || passwordValidator3 !== null
+                || confirmPasswordValidator !== null
+              }
+            />
+          </div>
+        </div>
+        <div className="edit_settings">
+          <div className="selection">
+            <h2 className="title">偏好設定</h2>
+            <RadioButtonGroup
+              name="themeColor"
+              options={themeColorOptions}
+              value={themeColor}
+              onChange={setThemeColor}
+              title="主題色"
+              required
+            />
+            <CheckboxGroup
+              name="themeColor"
+              options={defaultOptions}
+              value={defaultOpen}
+              onChange={setDefaultOpen}
+              title="預設開啟"
+              required
+            />
+          </div>
+          <div className="editor">
+            <div className="editor_top">
+              <span className="circle red" />
+              <span className="circle yellow" />
+              <span className="circle green" />
+            </div>
+            <div className="editor_body">
+              <span className="editor_body_title">HTML</span>
+            </div>
+          </div>
+        </div>
+        <div className="edit_button">
+          <Button
+            className="cancel_btn"
+            text="取消"
+            type="outline"
+            size="small"
+            onClick={() => props.history.push('/homePage')}
+          />
+          <Button
+            className="save_btn"
+            text="儲存"
+            type="primary"
+            size="small"
+          // onClick={handleEdit}
+          />
         </div>
       </Layout>
     </div>

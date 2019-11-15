@@ -7,6 +7,7 @@ import action from '../../actions';
 import Layout from '../../components/Layout';
 import TextArea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
+import Select from '../../components/Select';
 import MultiSelect from '../../components/MultiSelect';
 import ProjectList from '../../components/ProjectList';
 import Button from '../../components/Button';
@@ -25,6 +26,8 @@ const EditResume = (props) => {
   const [educateSchool, setEducateSchool] = useState('');
   const [educateDegree, setEducateDegree] = useState('');
   const [educateMajor, setEducateMajor] = useState('');
+  const [educateEntryYear, setEducateEntryYear] = useState([]);
+  const [educateExistYear, setEducateExistYear] = useState([]);
   const [expJob, setExpJob] = useState('');
   const [expCompany, setExpCompany] = useState('');
   const [expPlace, setExpPlace] = useState('');
@@ -52,6 +55,9 @@ const EditResume = (props) => {
   // const [defaultOpen, setDefaultOpen] = useState('HTML');
   // const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
   const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];
+  const educateEntryOptions = ['1900', '', '', '', '', ''];
+  const educateExistOptions = ['1900', '', '', '', '', ''];
+
   const loginHandler = () => {
     const loginData = {
       id,
@@ -89,112 +95,135 @@ const EditResume = (props) => {
         userName={userName}
         list={list}
       >
-        <div className="main_section">
-          <div className="edit_about">
-            <h2 className="title">關於</h2>
-            <TextArea
-              title="簡介"
-              placeholder="用150字簡短介紹自己吧！"
-              text={aboutDesc}
-              onChange={e => setAboutDesc(e.target.value)}
-            />
-          </div>
-          <div className="edit_educate">
-            <h2 className="title">學歷</h2>
-            <TextInput
-              title="學校"
-              type="text"
-              placeholder="例：國立臺中科技大學"
-              text={educateSchool}
-              onChange={e => setEducateSchool(e.target.value)}
-              required
-            />
-            <TextInput
-              title="學位"
-              type="text"
-              placeholder="學士"
-              text={educateDegree}
-              onChange={e => setEducateDegree(e.target.value)}
-              required
-            />
-            <TextInput
-              title="科系類別"
-              type="text"
-              placeholder="例：資訊管理系"
-              text={educateMajor}
-              onChange={e => setEducateMajor(e.target.value)}
-            />
-          </div>
-          <div className="edit_skill">
-            <h2 className="title">
-              技能
-              <span className="subtitle">限25個</span>
-            </h2>
-            <MultiSelect
-              title="新增技能"
-              options={fakeOptions}
-              selectedItems={projectTags}
-              onChange={setProjectTags}
-            />
-          </div>
-          <div className="edit_exp">
-            <h2 className="title">
-              經歷
-              <span className="subtitle">限3個</span>
-            </h2>
-            <TextInput
-              title="職稱"
-              type="text"
-              placeholder="例：前端工程師"
-              text={expJob}
-              onChange={e => setExpJob(e.target.value)}
-              required
-            />
-            <TextInput
-              title="公司名稱"
-              type="text"
-              text={expCompany}
-              onChange={e => setExpCompany(e.target.value)}
-              required
-            />
-            <TextInput
-              title="地點"
-              type="text"
-              placeholder="例：台灣台北"
-              text={expPlace}
-              onChange={e => setExpPlace(e.target.value)}
-              required
-            />
-            <TextArea
-              title="工作內容"
-              placeholder="說明您在這份工作中扮演的角色和成果"
-              text={expDesc}
-              onChange={e => setExpDesc(e.target.value)}
-            />
-          </div>
-          <div className="edit_project">
-            <h2 className="title">作品</h2>
-            <ProjectList />
-          </div>
-          <div className="edit_button">
-            <Button
-              className="cancel_btn"
-              text="取消"
-              type="outline"
-              size="small"
-            // onClick={() => props.history.push('/homePage')}
-            />
-            <Button
-              className="save_btn"
-              text="儲存"
-              type="primary"
-              size="small"
-            // onClick={handleEditPw}
-            // disabled={
-            // }
-            />
-          </div>
 
+        <div className="edit_about">
+          <h2 className="title">關於</h2>
+          <TextArea
+            title="簡介"
+            placeholder="用150字簡短介紹自己吧！"
+            text={aboutDesc}
+            onChange={e => setAboutDesc(e.target.value)}
+          />
+        </div>
+        <div className="edit_educate">
+          <h2 className="title">學歷</h2>
+          <TextInput
+            title="學校"
+            type="text"
+            placeholder="例：國立臺中科技大學"
+            text={educateSchool}
+            onChange={e => setEducateSchool(e.target.value)}
+            required
+          />
+          <TextInput
+            title="學位"
+            type="text"
+            placeholder="學士"
+            text={educateDegree}
+            onChange={e => setEducateDegree(e.target.value)}
+            required
+          />
+          <TextInput
+            title="科系類別"
+            type="text"
+            placeholder="例：資訊管理系"
+            text={educateMajor}
+            onChange={e => setEducateMajor(e.target.value)}
+          />
+          <Select
+            title="入學年份"
+            required
+            value={educateEntryYear}
+            options={educateEntryOptions}
+            name="educateEntry"
+          />
+          <Select
+            title="畢業年份"
+            value={educateExistYear}
+            options={educateExistOptions}
+            name="educateExist"
+          />
+        </div>
+        <div className="edit_skill">
+          <h2 className="title">
+            技能
+            <span className="subtitle">限25個</span>
+          </h2>
+          <MultiSelect
+            title="新增技能"
+            options={fakeOptions}
+            selectedItems={projectTags}
+            onChange={setProjectTags}
+          />
+        </div>
+        <div className="edit_exp">
+          <h2 className="title">
+            經歷
+            <span className="subtitle">限3個</span>
+          </h2>
+          <TextInput
+            title="職稱"
+            type="text"
+            placeholder="例：前端工程師"
+            text={expJob}
+            onChange={e => setExpJob(e.target.value)}
+            required
+          />
+          <TextInput
+            title="公司名稱"
+            type="text"
+            text={expCompany}
+            onChange={e => setExpCompany(e.target.value)}
+            required
+          />
+          <TextInput
+            title="地點"
+            type="text"
+            placeholder="例：台灣台北"
+            text={expPlace}
+            onChange={e => setExpPlace(e.target.value)}
+            required
+          />
+          <Select
+            title="開始日期"
+            value={educateExistYear}
+            options={educateExistOptions}
+            name="educateExist"
+          />
+          <Select
+            // title="畢業年份"
+            value={educateExistYear}
+            options={educateExistOptions}
+            name="educateExist"
+          />
+          <TextArea
+            title="工作內容"
+            placeholder="說明您在這份工作中扮演的角色和成果"
+            text={expDesc}
+            onChange={e => setExpDesc(e.target.value)}
+          />
+        </div>
+        <div className="edit_project">
+          <h2 className="title">作品</h2>
+          <ProjectList />
+        </div>
+        <div className="edit_button">
+          <Button
+            className="cancel_btn"
+            text="取消"
+            type="outline"
+            size="small"
+          // onClick={() => props.history.push('/homePage')}
+          />
+          <Button
+            className="save_btn"
+            text="儲存"
+            type="primary"
+            size="small"
+          // onClick={handleEditPw}
+          // disabled={
+          // }
+          />
         </div>
       </Layout>
     </div>
