@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 
-export default function useAutoSize(element) {
+export default function useAutoSize(element, maxHeight) {
+  console.log(maxHeight);
   const autosize = () => {
     if (element.current) {
       setTimeout(() => {
-        element.current.style.cssText = 'height: auto; padding: 0';
-        element.current.style.cssText = `height: ${
-          element.current.scrollHeight
-        }px`;
+        element.current.style.cssText = `height: auto; padding: 0; max-height: ${maxHeight}px;`;
+        element.current.style.cssText = `height: ${element.current
+          .scrollHeight + 10}px; max-height: ${maxHeight}px;`;
       }, 0);
     }
   };

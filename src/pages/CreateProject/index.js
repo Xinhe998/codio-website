@@ -82,6 +82,7 @@ const CreateProject = (props) => {
               title="描述"
               text={projectDesc}
               onChange={e => setProjectDesc(e.target.value)}
+              maxHeight={80}
             />
             <RadioButtonGroup
               title="隱私"

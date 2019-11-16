@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cx from 'classnames';
 import useAutoSize from '../../hooks/useAutoSize';
 import './index.scss';
 
@@ -13,24 +13,20 @@ const TextArea = ({
   required,
   onFocus,
   onBlur,
-  icon,
+  isAutoSize,
+  maxHeight,
 }) => {
   const textareaRef = useRef();
-  useAutoSize(textareaRef);
+  if (isAutoSize) useAutoSize(textareaRef, maxHeight);
   return (
-    <div
-      className={classNames(
-        'textinput',
-        required ? 'required' : null,
-      )}
-    >
-      <span className="textinput__title">{title}</span>
+    <div className={cx('textinput', required ? 'required' : null)}>
+      {title ? <span className="textinput__title">{title}</span> : null}
       <textarea
         className="textarea"
         type={type}
         value={text}
         placeholder={placeholder}
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         onFocus={onFocus}
         onBlur={onBlur}
         ref={textareaRef}
@@ -48,6 +44,8 @@ TextArea.propTypes = {
   required: PropTypes.bool,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  isAutoSize: PropTypes.bool,
+  maxHeight: PropTypes.number,
 };
 
 TextArea.defaultProps = {
@@ -55,5 +53,6 @@ TextArea.defaultProps = {
   text: '',
   onBlur: null,
   onFocus: null,
+  isAutoSize: true,
 };
 export default TextArea;
