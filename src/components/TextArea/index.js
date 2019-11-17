@@ -4,36 +4,56 @@ import cx from 'classnames';
 import useAutoSize from '../../hooks/useAutoSize';
 import './index.scss';
 
-const TextArea = ({
-  type,
-  placeholder,
-  text,
-  title,
-  onChange,
-  required,
-  onFocus,
-  onBlur,
-  isAutoSize,
-  maxHeight,
-}) => {
-  const textareaRef = useRef();
-  if (isAutoSize) useAutoSize(textareaRef, maxHeight);
-  return (
-    <div className={cx('textinput', required ? 'required' : null)}>
-      {title ? <span className="textinput__title">{title}</span> : null}
-      <textarea
-        className="textarea"
-        type={type}
-        value={text}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e)}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        ref={textareaRef}
-      />
-    </div>
-  );
-};
+const TextArea = React.forwardRef(
+  (
+    {
+      type,
+      placeholder,
+      text,
+      title,
+      onChange,
+      required,
+      onFocus,
+      onBlur,
+      isAutoSize,
+      maxHeight,
+      onEnter,
+    },
+    ref,
+  ) => {
+    let textareaRef;
+    if (!ref) {
+      textareaRef = useRef();
+    } else {
+      textareaRef = ref;
+    }
+    if (isAutoSize) useAutoSize(textareaRef, maxHeight);
+    return (
+      <div className={cx('textinput', required ? 'required' : null)}>
+        {title ? <span className="textinput__title">{title}</span> : null}
+        <textarea
+          className="textarea"
+          type={type}
+          value={text}
+          placeholder={placeholder}
+          onChange={(e) => onChange(e)}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          // onCompositionUpdate={(e)=>this.chInProcessing=true}
+          onKeyPress={(e) => {
+            if (!e.shiftKey) {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                onEnter();
+              }
+            }
+          }}
+          ref={textareaRef}
+        />
+      </div>
+    );
+  },
+);
 
 TextArea.propTypes = {
   title: PropTypes.string,

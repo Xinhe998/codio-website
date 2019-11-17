@@ -63,7 +63,7 @@ const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
 
-class Editors extends Component {
+class CodeEditors extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -623,7 +623,7 @@ class Editors extends Component {
     );
   }
 }
-Editors.propTypes = {
+CodeEditors.propTypes = {
   currentActiveTab: PropTypes.string,
 };
 const mapStateToProps = (store) => ({
@@ -634,5 +634,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     action,
-  )(Editors),
+  )(CodeEditors),
 );

@@ -25,17 +25,29 @@ const Modal = ({
   className,
 }) => {
   const modalRef = useRef();
-  if (shouldCloseOnClickOutside) useClickOutside(isOpen, modalRef, onClose);
-  if (shouldCloseOnEsc) useEscCloseModal(onClose);
+
+  const closeFunc = () => {
+    onClose();
+    document.body.classList.remove('modal-open');
+  };
+
+  const confirmFunc = () => {
+    Confirm();
+    document.body.classList.remove('modal-open');
+  };
+
+  if (shouldCloseOnClickOutside) useClickOutside(isOpen, modalRef, closeFunc);
+  if (shouldCloseOnEsc) useEscCloseModal(closeFunc);
+
+  if (isOpen) {
+    document.body.classList.add('modal-open');
+  }
   return isOpen ? (
     <div className={classNames(className, 'Modal', 'Modal__backdrop')}>
       <div className="Modal__wrapper" ref={modalRef}>
         <div className="Modal__title">
           {title}
-          <IoIosClose
-            className="close_btn"
-            onClick={onClose}
-          />
+          <IoIosClose className="close_btn" onClick={closeFunc} />
         </div>
         <div className="Modal__content">
           {children}
@@ -44,14 +56,14 @@ const Modal = ({
               <button
                 type="button"
                 className="Modal__button-group__cancel"
-                onClick={onClose}
+                onClick={closeFunc}
               >
                 {cancelBtnText}
               </button>
               <button
                 type="button"
                 className="Modal__button-group__confirm"
-                onClick={Confirm}
+                onClick={confirmFunc}
                 disabled={disabled}
               >
                 {confirmBtnText}
@@ -90,7 +102,7 @@ Modal.defaultProps = {
   children: null,
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: store.user,
   editor: store.editor,
 });

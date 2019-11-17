@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AppHeader from '../../components/AppHeader';
-import Editors from '../../components/Editors';
+import CodeEditors from '../../components/CodeEditors';
 import AppFooter from '../../components/AppFooter';
 
 import * as action from '../../actions';
@@ -21,7 +21,7 @@ const Home = () => {
         isShareBtnVisible
       />
       <div className="AppContent">
-        <Editors currentActiveTab={currentActiveTab} />
+        <CodeEditors currentActiveTab={currentActiveTab} />
       </div>
       <AppFooter />
     </div>

@@ -4,6 +4,10 @@ $pc-media: 960px;
 $pad-media: 760px;
 $phone-media: 480px;
 
+.modal-open {
+  overflow: hidden;
+}
+
 .Modal__backdrop {
   position: fixed;
   top: 0;
@@ -12,6 +16,7 @@ $phone-media: 480px;
   right: 0;
   // width: 100%;
   height: 100%;
+  margin: 0 !important;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 16px;
   display: flex;

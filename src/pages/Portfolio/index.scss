@@ -57,13 +57,11 @@ hr {
 
 .portfolio_article_wrapper {
   display: flex;
+  position: relative;
   flex-direction: column;
 
-  div {
-    margin: 20px auto;
-  }
-
   .img_block {
+    margin: 20px 0;
     img {
       width: 100%;
     }
@@ -71,5 +69,6 @@ hr {
 
   .text_block {
     color: $dark-gray;
+    margin: 20px 0;
   }
 }
