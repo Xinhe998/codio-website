@@ -25,17 +25,19 @@ const renderPortfolioPage = ({ match }) => {
   const isEditMode = match.params.mode && match.params.mode === 'edit';
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理', '圖表分析', '帳戶設定']);
+  const [projectDesc, setProjectDesc] = useState(
+    'Meracle 憶想奇機是個，其使用 Neurosky的頭戴式腦波耳機擷取腦波生理訊號，以量化工作記憶力之演算法得出記憶力指數，並為家長提供豐富多元的圖表及數據分析 。Meracle憶想奇機的目標及宗旨在於提升學童的工作記憶力。',
+  );
   const [editorCurrentType, setEditorCurrentType] = useState('text');
   const [editorCurrentValue, setEditorCurrentValue] = useState('');
   const [contents, setContents] = useState([]);
   const contentsLength = Object.keys(contents).length;
 
-  console.log(contents);
-
   const elRef = React.useMemo(
     () => Array.from(contents, () => React.createRef()),
     [contentsLength],
   );
+  const newBlockRef = useRef();
 
   const { id } = useParams();
 
@@ -107,10 +109,10 @@ const renderPortfolioPage = ({ match }) => {
       <div className="portfolio_desc">
         {isEditMode ? (
           <TextArea
-            text="Meracle 憶想奇機是個，其使用 Neurosky
-        的頭戴式腦波耳機擷取腦波生理訊號，以量化工作記憶力之演算法得出記憶力指數
-        ，並為家長提供豐富多元的圖表及數據分析 。Meracle
-        憶想奇機的目標及宗旨在於提升學童的工作記憶力。"
+            text={projectDesc}
+            onChange={(e) => {
+              setProjectDesc(e.target.value);
+            }}
           />
         ) : (
           <React.Fragment>
@@ -165,6 +167,7 @@ const renderPortfolioPage = ({ match }) => {
         {isEditMode && (
           <ArticleEditors
             key="ArticleEditors_new"
+            className="new_content"
             selectedType={editorCurrentType}
             changeType={(type) => setEditorCurrentType(type)}
             value={editorCurrentValue}
@@ -173,6 +176,7 @@ const renderPortfolioPage = ({ match }) => {
               setEditorCurrentValue(val);
             }}
             onEnter={() => {
+              console.log('onEnter!!');
               let newContent = {};
               newContent = {
                 id: contentsLength + 1,
@@ -182,7 +186,17 @@ const renderPortfolioPage = ({ match }) => {
               setContents([...contents, newContent]);
               setEditorCurrentType('text');
               setEditorCurrentValue('');
+              if (newBlockRef.current) {
+                newBlockRef.current.focus();
+              } else {
+                setTimeout(() => {
+                  if (newBlockRef.current) {
+                    newBlockRef.current.focus();
+                  }
+                }, 100);
+              }
             }}
+            textRef={newBlockRef}
           />
         )}
       </div>

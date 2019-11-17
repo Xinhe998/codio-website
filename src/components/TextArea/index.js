@@ -18,6 +18,7 @@ const TextArea = React.forwardRef(
       isAutoSize,
       maxHeight,
       onEnter,
+      defaultRowCount,
     },
     ref,
   ) => {
@@ -27,7 +28,7 @@ const TextArea = React.forwardRef(
     } else {
       textareaRef = ref;
     }
-    if (isAutoSize) useAutoSize(textareaRef, maxHeight);
+    if (isAutoSize) useAutoSize(textareaRef, maxHeight, defaultRowCount);
     return (
       <div className={cx('textinput', required ? 'required' : null)}>
         {title ? <span className="textinput__title">{title}</span> : null}

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -33,6 +34,7 @@ const ArticleEditors = ({
   onEnter,
   isrenderAddBtn,
   textRef,
+  className,
 }) => {
   const ArticleEditorTextRef = textRef;
   const [newInputText, setNewInputText] = useState('');
@@ -129,9 +131,13 @@ const ArticleEditors = ({
     </div>
   );
 
+  if (selectedType === 'image' && value && className === 'new_content') {
+    onEnter();
+  }
+
   return (
     <div
-      className="ArticleEditor"
+      className={cx('ArticleEditor', className)}
       onMouseEnter={() => setIsShowAddBtn(true)}
       onMouseMove={() => setIsShowAddBtn(true)}
     >
@@ -147,8 +153,14 @@ const ArticleEditors = ({
               : { transform: 'unset' },
           )}
           onClick={() => {
-            setIsMenuOpen(!isMenuOpen);
-            ArticleEditorTextRef.current.focus();
+            if (!value) {
+              setIsMenuOpen(!isMenuOpen);
+              if (ArticleEditorTextRef && ArticleEditorTextRef.current) {
+                ArticleEditorTextRef.current.focus();
+              }
+            } else {
+              onEnter();
+            }
           }}
         >
           <IoMdAdd />
@@ -164,6 +176,7 @@ const ArticleEditors = ({
           }}
           onEnter={onEnter}
           ref={ArticleEditorTextRef}
+          defaultRowCount={1}
         />
       )}
       {selectedType === 'image' && !value && (
