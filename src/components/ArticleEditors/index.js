@@ -14,8 +14,8 @@ import Dropdown from './Dropdown';
 import Modal from '../Modal';
 
 import * as action from '../../actions';
-import config from '../../../config/project_config';
 import './index.scss';
+const { imgurClient } = require('../../../config/project_config');
 
 const { CancelToken } = axios;
 let cancel;
@@ -67,7 +67,7 @@ const ArticleEditors = ({
       data: formData,
       headers: {
         'Content-Type': 'text',
-        Authorization: `Client-ID ${config.imgurClient}`,
+        Authorization: `Client-ID ${imgurClient}`,
       },
       mimeType: 'multipart/form-data',
       onUploadProgress: (progressEvent) => {
