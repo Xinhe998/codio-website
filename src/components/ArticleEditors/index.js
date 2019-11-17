@@ -15,7 +15,12 @@ import Modal from '../Modal';
 
 import * as action from '../../actions';
 import './index.scss';
-const { imgurClient } = require('../../../config/project_config');
+
+if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI) {
+  var { imgurClient } = process.env;
+} else {
+  var { imgurClient } = require('../../../config/project_config');
+}
 
 const { CancelToken } = axios;
 let cancel;
