@@ -176,7 +176,6 @@ const renderPortfolioPage = ({ match }) => {
               setEditorCurrentValue(val);
             }}
             onEnter={() => {
-              console.log('onEnter!!');
               let newContent = {};
               newContent = {
                 id: contentsLength + 1,

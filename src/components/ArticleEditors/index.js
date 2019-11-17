@@ -58,7 +58,13 @@ const ArticleEditors = ({
         changeType('image');
       },
     ],
-    3: [<FaCode />, 'Code'],
+    3: [
+      <FaCode />,
+      'Code',
+      () => {
+        changeType('code');
+      },
+    ],
   });
   const [file, setFile] = useState({});
   const [isUploading, setIsUplaoding] = useState(false);
@@ -170,7 +176,6 @@ const ArticleEditors = ({
         <TextArea
           text={value}
           onChange={(e) => {
-            // setNewInputText(e.target.value);
             changeValue(e.target.value);
             setIsShowAddBtn(false);
           }}
@@ -188,6 +193,19 @@ const ArticleEditors = ({
       {selectedType === 'image' && value && (
         <div className="img_block">
           <img src={value} alt={value} />
+        </div>
+      )}
+      {selectedType === 'code' && (
+        <div className="code_block">
+          <TextArea
+            text={value}
+            onChange={(e) => {
+              changeValue(e.target.value);
+              setIsShowAddBtn(false);
+            }}
+            ref={ArticleEditorTextRef}
+            isAutoSize={false}
+          />
         </div>
       )}
       {isImageUploadModalOpen && (

@@ -119,3 +119,25 @@
     }
   }
 }
+
+.code_block {
+  width: 100%;
+  textarea {
+    width: 100%;
+    min-height: 50px;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+    color: #41314e !important;
+    line-height: 1.6em !important;
+    background: #f8f7fa;
+    border: 1px solid #f1f1f4 !important;
+    box-shadow: none;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: auto;
+    resize: vertical;
+    border-radius: 3px;
+    padding: 10px 12px !important;
+    outline: none;
+    font-size: 12px !important;
+  }
+}

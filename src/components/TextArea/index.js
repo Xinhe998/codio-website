@@ -42,7 +42,7 @@ const TextArea = React.forwardRef(
           onBlur={onBlur}
           // onCompositionUpdate={(e)=>this.chInProcessing=true}
           onKeyPress={(e) => {
-            if (!e.shiftKey) {
+            if (onEnter && !e.shiftKey) {
               if (e.key === 'Enter') {
                 e.preventDefault();
                 onEnter();
