@@ -397,7 +397,7 @@ exports[`Storyshots Modal 顯示control buttons 1`] = `
         </button>
         <button
           className="Modal__button-group__confirm"
-          onClick={null}
+          onClick={[Function]}
           type="button"
         >
           確定
