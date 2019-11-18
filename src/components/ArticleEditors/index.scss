@@ -1,0 +1,143 @@
+@import '../../../styles/main.scss';
+
+.ArticleEditor {
+  display: flex;
+  flex-direction: row;
+  margin: 12px 0 !important;
+
+  &:hover {
+    .add_content_btn {
+      opacity: 1;
+    }
+  }
+
+  .textinput {
+    margin: 0;
+    width: 100%;
+
+    textarea {
+      border: none;
+      font-size: 16px;
+      padding: 0;
+      color: #707070;
+      max-width: unset;
+      line-height: 1.5;
+    }
+  }
+}
+
+.add_content_btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: 1px solid #e4e4e4;
+  border-radius: 50%;
+  transition: all 0.5s;
+  position: absolute;
+  left: -65px;
+
+  svg {
+    color: $blue;
+    font-weight: 900;
+    width: 30px;
+    height: 20px;
+  }
+}
+
+.waitfor_img_upload {
+  background: $light-blue;
+  width: 100%;
+  padding: 10px 30px;
+  margin: 0 auto !important;
+  border-radius: 5px;
+  color: $dark-gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    color: $blue;
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    border: 1px solid $blue;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.img_dropzone {
+  color: $dark-gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed $dark-gray;
+  padding: 70px 20px;
+  outline: 0;
+  width: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  p {
+    color: $dark-gray;
+  }
+}
+
+.imgupload_preview {
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.upload_rogress_circle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  svg {
+    width: 40%;
+  }
+}
+
+.upload_cancel_btn {
+  position: absolute;
+  top: 32%;
+  cursor: pointer;
+  svg {
+    width: 60px;
+    height: 60px;
+    color: #e0e0e0;
+    transition: all .5s;
+    &:hover {
+      color: $dark-gray;
+    }
+  }
+}
+
+.code_block {
+  width: 100%;
+  textarea {
+    width: 100%;
+    min-height: 50px;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+    color: #41314e !important;
+    line-height: 1.6em !important;
+    background: #f8f7fa;
+    border: 1px solid #f1f1f4 !important;
+    box-shadow: none;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: auto;
+    resize: vertical;
+    border-radius: 3px;
+    padding: 10px 12px !important;
+    outline: none;
+    font-size: 12px !important;
+  }
+}

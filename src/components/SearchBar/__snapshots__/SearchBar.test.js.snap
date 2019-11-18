@@ -9,7 +9,7 @@ initialize {
     "children": Array [
       Object {
         "attribs": Object {
-          "class": "textinput",
+          "class": "textinput searchBar_input",
         },
         "children": Array [
           Object {

@@ -34,8 +34,8 @@ class Button extends Component {
         onClick={onClick}
         disabled={disabled}
       >
-        {text}
         {icon}
+        {text}
       </button>
     );
   }

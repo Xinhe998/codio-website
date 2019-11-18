@@ -104,15 +104,30 @@
       }
 
       .editor_body {
-        background-color: #2a2f42;
         position: relative;
         width: 100%;
-        height: 250px;
+        height: 260px;
         border-radius: 0 0 5px 5px;
+        box-shadow: 0 11px 13px 0px rgba(0, 0, 0, 0.1);
+        transition: all .5s;
+
+        &.navy {
+          background-color: #2a2f42;
+          color: #ffffff;
+        }
+
+        &.black {
+          background-color: #000000;
+          color: #ffffff;
+        }
+
+        &.white {
+          background-color: #ffffff;
+          color: #000000;
+        }
 
 
         .editor_body_title {
-          color: white;
           position: absolute;
           left: 15px;
           top: 15px;
@@ -144,7 +159,8 @@
   .edit_button {
     margin-top: 50px;
     margin-bottom: 80px;
-    display: block;
+    display: flex;
+    justify-content: center;
 
     .cancel_btn {
       width: 40%;
@@ -152,7 +168,7 @@
 
     .save_btn {
       width: 40%;
-      float: right;
+      // float: right;
     }
   }
 }

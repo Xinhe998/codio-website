@@ -25,6 +25,7 @@ const TextInput = React.forwardRef(
       postBtnText,
       postBtnOnClick,
       readonly,
+      className
     },
     ref,
   ) => (
@@ -33,6 +34,7 @@ const TextInput = React.forwardRef(
         'textinput',
         required ? 'required' : null,
         showHint ? hintType || null : null,
+        className,
       )}
     >
       {title ? <span className="textinput__title">{title}</span> : null}
@@ -73,6 +75,7 @@ TextInput.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   text: PropTypes.string,
+  className: PropTypes.string,
   placeholder: PropTypes.string,
   showHint: PropTypes.bool,
   hintType: PropTypes.string,
@@ -92,6 +95,7 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   type: 'text',
   text: '',
+  className: '',
   onBlur: null,
   onFocus: null,
   disabled: false,

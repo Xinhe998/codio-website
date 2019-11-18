@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  isRequired, isEmail, isNumber, hasDigit, isEqual,
-} from 'calidators';
+import cx from 'classnames';
+import { isRequired, isEmail, isNumber, hasDigit, isEqual } from 'calidators';
 
 import action from '../../actions';
 import Layout from '../../components/Layout';
@@ -15,7 +14,6 @@ import CheckboxGroup from '../../components/CheckboxGroup';
 import userImg from '../../assets/userImg.png';
 
 import './index.scss';
-
 
 const Settings = (props) => {
   const [id, setID] = useState('');
@@ -37,16 +35,28 @@ const Settings = (props) => {
   const [editNewPw, setEditNewPw] = useState('');
   const [confirmNewPw, setConfirmNewPw] = useState('');
 
-  const userNameValidator = isRequired({ message: '請輸入使用者名稱' })(editUserName);
+  const userNameValidator = isRequired({ message: '請輸入使用者名稱' })(
+    editUserName,
+  );
   const countyValidator = isRequired({ message: '請輸入縣市' })(editCounty);
   const urlValidator = isRequired({ message: '請輸入連結' })(editUrl);
   const jobValidator = isRequired({ message: '請輸入職稱' })(editJob);
   const emailValidator = isEmail({ message: 'Email格式錯誤' })(editEmail);
   const telValidator = isRequired({ message: '請輸入聯絡電話' })(editTel);
-  const addressValidator = isRequired({ message: '請輸入通訊地址' })(editAddress);
-  const passwordValidator1 = isRequired({ message: '請輸入密碼' })(editOldPw, editNewPw, confirmNewPw);
-  const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(editNewPw);
-  const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(editNewPw);
+  const addressValidator = isRequired({ message: '請輸入通訊地址' })(
+    editAddress,
+  );
+  const passwordValidator1 = isRequired({ message: '請輸入密碼' })(
+    editOldPw,
+    editNewPw,
+    confirmNewPw,
+  );
+  const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(
+    editNewPw,
+  );
+  const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(
+    editNewPw,
+  );
   const confirmPasswordValidator = isEqual({
     message: '確認密碼不一致，請重新輸入',
     value: editNewPw,
@@ -86,14 +96,25 @@ const Settings = (props) => {
     props.settings(settingsData, props.history);
   };
 
+  const handleThemeColor = (theme_text) => {
+    let theme = '';
+    switch (theme_text) {
+      case '深藍色':
+        theme = 'navy';
+        break;
+      case '黑色':
+        theme = 'black';
+        break;
+      default:
+        theme = 'white';
+        break;
+    }
+    return theme;
+  };
 
   return (
     <div className="settings">
-      <Layout
-        userImg={userImg}
-        userName={userName}
-        list={list}
-      >
+      <Layout userImg={userImg} userName={userName} list={list}>
         <div className="edit_info">
           <h2 className="title">個人資料</h2>
           <span className="subtitle">一般會員</span>
@@ -103,37 +124,37 @@ const Settings = (props) => {
                 title="使用者名稱"
                 type="text"
                 text={editUserName}
-                onChange={e => setEditUserName(e.target.value)}
+                onChange={(e) => setEditUserName(e.target.value)}
                 required
-              // showHint={editUserName !== '' && userNameValidator !== null}
-              // hintType="error"
+                // showHint={editUserName !== '' && userNameValidator !== null}
+                // hintType="error"
               />
               <TextInput
                 title="縣市"
                 type="text"
                 text={editCounty}
-                onChange={e => setEditCounty(e.target.value)}
+                onChange={(e) => setEditCounty(e.target.value)}
                 required
-              // showHint={!(countyValidator !== null)}
-              // hintType="ok"
+                // showHint={!(countyValidator !== null)}
+                // hintType="ok"
               />
               <TextInput
                 title="連結"
                 type="url"
                 text={editUrl}
-                onChange={e => setEditUrl(e.target.value)}
+                onChange={(e) => setEditUrl(e.target.value)}
                 required
-              // showHint={!(urlValidator !== null)}
-              // hintType="ok"
+                // showHint={!(urlValidator !== null)}
+                // hintType="ok"
               />
               <TextInput
                 title="職稱"
                 type="text"
                 text={editJob}
-                onChange={e => setEditJob(e.target.value)}
+                onChange={(e) => setEditJob(e.target.value)}
                 required
-              // showHint={!(jobValidator !== null)}
-              // hintType="ok"
+                // showHint={!(jobValidator !== null)}
+                // hintType="ok"
               />
             </div>
             <div className="right_sec">
@@ -141,9 +162,9 @@ const Settings = (props) => {
                 title="信箱"
                 type="email"
                 text={editEmail}
-                onChange={e => setEditEmail(e.target.value)}
+                onChange={(e) => setEditEmail(e.target.value)}
                 required
-                showHint={editEmail !== '' && (emailValidator !== null)}
+                showHint={editEmail !== '' && emailValidator !== null}
                 hintType="error"
                 hintText={emailValidator}
               />
@@ -162,30 +183,23 @@ const Settings = (props) => {
                 title="聯絡電話"
                 type="tel"
                 text={editTel}
-                onChange={e => setEditTel(e.target.value)}
+                onChange={(e) => setEditTel(e.target.value)}
                 required
-              // showHint={!(telValidator !== null)}
-              // hintType="error"
+                // showHint={!(telValidator !== null)}
+                // hintType="error"
               />
               <TextInput
                 title="通訊地址"
                 type="text"
                 text={editAddress}
-                onChange={e => setEditAddress(e.target.value)}
+                onChange={(e) => setEditAddress(e.target.value)}
                 required
-              // showHint={editAddress !== '' && (addressValidator !== null)}
-              // hintType="error"
+                // showHint={editAddress !== '' && (addressValidator !== null)}
+                // hintType="error"
               />
             </div>
           </div>
           <div className="edit_button">
-            <Button
-              className="cancel_btn"
-              text="取消"
-              type="outline"
-              size="small"
-              onClick={() => props.history.push('/homePage')}
-            />
             <Button
               className="save_btn"
               text="儲存"
@@ -193,12 +207,12 @@ const Settings = (props) => {
               size="small"
               onClick={handleEditInfo}
               disabled={
-                userNameValidator !== null
-                || countyValidator !== null
-                || urlValidator !== null
-                || jobValidator !== null
-                || telValidator !== null
-                || addressValidator !== null
+                userNameValidator !== null ||
+                countyValidator !== null ||
+                urlValidator !== null ||
+                jobValidator !== null ||
+                telValidator !== null ||
+                addressValidator !== null
               }
             />
           </div>
@@ -209,42 +223,36 @@ const Settings = (props) => {
             title="舊密碼"
             type="password"
             text={editOldPw}
-            onChange={e => setEditOldPw(e.target.value)}
+            onChange={(e) => setEditOldPw(e.target.value)}
             required
             hintType="error"
-            showHint={editOldPw !== '' && (passwordValidator1 !== null)}
+            showHint={editOldPw !== '' && passwordValidator1 !== null}
             hintText={passwordValidator1}
           />
           <TextInput
             title="新密碼"
             type="password"
             text={editNewPw}
-            onChange={e => setEditNewPw(e.target.value)}
+            onChange={(e) => setEditNewPw(e.target.value)}
             required
             hintType="error"
-            showHint={editNewPw !== '' && (passwordValidator2 === null || passwordValidator3 !== null)}
+            showHint={
+              editNewPw !== '' &&
+              (passwordValidator2 === null || passwordValidator3 !== null)
+            }
             hintText={passwordValidator3}
           />
           <TextInput
             title="確認新密碼"
             type="password"
             text={confirmNewPw}
-            onChange={e => setConfirmNewPw(e.target.value)}
+            onChange={(e) => setConfirmNewPw(e.target.value)}
             required
-            showHint={
-              confirmNewPw !== '' && confirmPasswordValidator !== null
-            }
+            showHint={confirmNewPw !== '' && confirmPasswordValidator !== null}
             hintType="error"
             hintText={confirmPasswordValidator}
           />
           <div className="edit_button">
-            <Button
-              className="cancel_btn"
-              text="取消"
-              type="outline"
-              size="small"
-              onClick={() => props.history.push('/homePage')}
-            />
             <Button
               className="save_btn"
               text="儲存"
@@ -252,10 +260,10 @@ const Settings = (props) => {
               size="small"
               onClick={handleEditPw}
               disabled={
-                passwordValidator1 !== null
-                || passwordValidator2 === null
-                || passwordValidator3 !== null
-                || confirmPasswordValidator !== null
+                passwordValidator1 !== null ||
+                passwordValidator2 === null ||
+                passwordValidator3 !== null ||
+                confirmPasswordValidator !== null
               }
             />
           </div>
@@ -271,14 +279,14 @@ const Settings = (props) => {
               title="主題色"
               required
             />
-            <CheckboxGroup
+            {/* <CheckboxGroup
               name="themeColor"
               options={defaultOptions}
               value={defaultOpen}
               onChange={setDefaultOpen}
               title="預設開啟"
               required
-            />
+            /> */}
           </div>
           <div className="editor">
             <div className="editor_top">
@@ -286,34 +294,26 @@ const Settings = (props) => {
               <span className="circle yellow" />
               <span className="circle green" />
             </div>
-            <div className="editor_body">
+            <div className={cx('editor_body', handleThemeColor(themeColor))}>
               <span className="editor_body_title">HTML</span>
             </div>
           </div>
         </div>
         <div className="edit_button">
           <Button
-            className="cancel_btn"
-            text="取消"
-            type="outline"
-            size="small"
-            onClick={() => props.history.push('/homePage')}
-          />
-          <Button
             className="save_btn"
             text="儲存"
             type="primary"
             size="small"
-          // onClick={handleEdit}
+            // onClick={handleEdit}
           />
         </div>
       </Layout>
     </div>
-
   );
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: store.user,
   editor: store.editor,
 });
