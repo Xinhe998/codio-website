@@ -28,9 +28,9 @@ const UserInfo = ({
         <FaMapMarkerAlt />
         {userAddress}
       </span>
-      <span>
+      <span className="user_url">
         <FaLink />
-        {userLink}
+        <a href={userLink}>{userLink}</a>
       </span>
     </div>
   </div>

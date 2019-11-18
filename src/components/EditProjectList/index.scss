@@ -1,0 +1,29 @@
+.edit_project_list {
+  padding: 5px 20px 5px 20px;
+  border-radius: 10px;
+  border: solid 1px #707070;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    color:#000000;
+    font-size: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .close_icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .edit_project_description {
+    color: #707070;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

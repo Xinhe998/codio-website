@@ -7,12 +7,14 @@
   border-left: 8px solid #2a2f42;
   position: relative;
   cursor: pointer;
-  margin-left: 30px;
   display: flex;
   flex-direction: column;
 
   h3 {
     font-size: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .ellipsis_icon {

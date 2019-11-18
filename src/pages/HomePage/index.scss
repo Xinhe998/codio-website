@@ -2,7 +2,7 @@
   color: black;
 
   .user_profile {
-    width: 74%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 3%;
     display: flex;
@@ -33,6 +33,7 @@
   margin-bottom: 30px;
 
   .textinput__icon {
+    top:calc(25%/2);
     background-color: #ec5252;
     width: 30px;
     height: 30px;

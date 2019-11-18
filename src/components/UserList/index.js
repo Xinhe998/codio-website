@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
+import { isRequired } from 'calidators';
 import { connect } from 'react-redux';
 import action from '../../actions';
 import TextArea from '../TextArea';
 import Button from '../Button';
+import Modal from '../Modal';
+import TextInput from '../TextInput';
+import Select from '../Select';
 import './index.scss';
+
 
 const UserList = ({
   userNumber,
@@ -14,10 +19,14 @@ const UserList = ({
   userType,
 }) => {
   const [text, setText] = useState('');
-
+  const [charType, setCharType] = useState('');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const charTypeValidator = isRequired({ message: '請輸入會員角色' })(
+    charType,
+  );
   return (
 
-    <React.Fragment className="user">
+    <React.Fragment>
       <td className="user_number">{userNumber}</td>
       <td className="user_info">
         <img className="user_img" src={userImg} alt="會員圖片" />
@@ -39,8 +48,42 @@ const UserList = ({
           type="outline"
           size="min"
           theme="blue"
+          onClick={() => { setIsEditModalOpen(true); }}
         />
       </td>
+      <Modal
+        isOpen={isEditModalOpen}
+        title="編輯"
+        onClose={() => { setIsEditModalOpen(false); }}
+        shouldCloseOnEsc
+        shouldCloseOnClickOutside
+        showControlBtn
+        cancelBtnText="取消"
+        confirmBtnText="儲存"
+        disabled={charTypeValidator !== null}
+      >
+        <TextInput
+          title="會員名稱"
+          // text={userName}
+          showHint={false}
+          hintType="ok"
+          disabled
+        />
+        <Select
+          title="會員角色"
+          // value
+          // name
+          // onChange
+          // options
+          required
+        />
+        <div className="user_uses">
+          <div className="title">使用功能</div>
+          <div className="multi_choice">
+            <h5>111</h5>
+          </div>
+        </div>
+      </Modal>
 
     </React.Fragment>
   );
