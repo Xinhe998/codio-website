@@ -7,7 +7,7 @@ import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowDown, IoIosCloud } from 'react-icons/io';
 import { MdCompare, MdFormatAlignLeft } from 'react-icons/md';
 import action from '../../actions';
 import TabPanel from '../TabPanel';
@@ -407,13 +407,22 @@ class CodeEditors extends Component {
                 swichOptionHandler={this.switchDropdown}
               />
               <div className="titlebar_btnGroup">
-                <Button
+                {/* <Button
                   type="primary"
                   size="small"
                   theme="red"
                   shape="square"
                   className="splitBtn"
                   icon={<MdCompare />}
+                /> */}
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="saveBtn"
+                  text="儲存"
+                  icon={<IoIosCloud />}
                 />
                 <Button
                   type="primary"
@@ -472,13 +481,22 @@ class CodeEditors extends Component {
                 swichOptionHandler={this.switchDropdown}
               />
               <div className="titlebar_btnGroup">
-                <Button
+                {/* <Button
                   type="primary"
                   size="small"
                   theme="red"
                   shape="square"
                   className="splitBtn"
                   icon={<MdCompare />}
+                /> */}
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="saveBtn"
+                  text="儲存"
+                  icon={<IoIosCloud />}
                 />
                 <Button
                   type="primary"
@@ -537,13 +555,22 @@ class CodeEditors extends Component {
                 swichOptionHandler={this.switchDropdown}
               />
               <div className="titlebar_btnGroup">
-                <Button
+                {/* <Button
                   type="primary"
                   size="small"
                   theme="red"
                   shape="square"
                   className="splitBtn"
                   icon={<MdCompare />}
+                /> */}
+                <Button
+                  type="primary"
+                  size="small"
+                  theme="red"
+                  shape="square"
+                  className="saveBtn"
+                  text="儲存"
+                  icon={<IoIosCloud />}
                 />
                 <Button
                   type="primary"
@@ -595,14 +622,14 @@ class CodeEditors extends Component {
                 swichOptionHandler={this.switchDropdown}
               />
               <div className="titlebar_btnGroup">
-                <Button
+                {/* <Button
                   type="primary"
                   size="small"
                   theme="red"
                   shape="square"
                   className="splitBtn"
                   icon={<MdCompare />}
-                />
+                /> */}
               </div>
             </div>
             <div className="code-editor logs-code">

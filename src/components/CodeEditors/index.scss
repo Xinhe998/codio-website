@@ -7,6 +7,15 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
+  .saveBtn {
+    width: auto;
+    font-size: 12px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    svg {
+      margin-right: 5px;
+    }
+  }
 }
 
 .titlebar {
@@ -57,6 +66,7 @@
 
 .titlebar_btnGroup {
   margin-left: auto !important;
+  display: flex;
   button {
     margin-left: 6px;
     cursor: pointer;
