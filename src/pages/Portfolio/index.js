@@ -15,6 +15,7 @@ import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 import ScoreCircle from '../../components/ScoreCircle';
 import ArticleEditors from '../../components/ArticleEditors';
+import Like from '../../components/Like';
 import { IoMdHeart } from 'react-icons/io';
 
 import '../Index/index.scss';
@@ -103,7 +104,7 @@ const renderPortfolioPage = ({ match }) => {
         ) : (
           <h1 className="project_title">My Project</h1>
         )}
-        <IoMdHeart />
+        <Like isLiked={false} likeCount={300} />
       </div>
       <hr />
       <div className="portfolio_tags_wrapper">
@@ -127,7 +128,6 @@ const renderPortfolioPage = ({ match }) => {
           </React.Fragment>
         )}
       </div>
-      <div className="portfolio_techstack">使用技術：JavaScript</div>
       <div className="portfolio_collaborator">
         <img src={userImg} alt="collaborator" />
         <img src={userImg} alt="collaborator" />
