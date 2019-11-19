@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { isRequired, isEmail, isNumber, hasDigit, isEqual, } from 'calidators';
+import { FaTimes } from 'react-icons/fa';
+import { isRequired } from 'calidators';
 
 import action from '../../actions';
 import Layout from '../../components/Layout';
@@ -9,7 +10,7 @@ import TextArea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
 import Select from '../../components/Select';
 import MultiSelect from '../../components/MultiSelect';
-import ProjectList from '../../components/ProjectList';
+import EditProjectList from '../../components/EditProjectList';
 import Button from '../../components/Button';
 import userImg from '../../assets/userImg.png';
 
@@ -21,42 +22,33 @@ const EditResume = (props) => {
 
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
+  const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];
+  const educateEntryOptions = ['1900', '1901', '', '', '', ''];
+  const educateExistOptions = ['1900', '1901', '', '', '', ''];
+  const expStartYearOptions = ['1900', '', '', '', '', ''];
+  const expStartMonthOptions = ['1900', '', '', '', '', ''];
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [aboutDesc, setAboutDesc] = useState('');
   const [educateSchool, setEducateSchool] = useState('');
   const [educateDegree, setEducateDegree] = useState('');
   const [educateMajor, setEducateMajor] = useState('');
   const [educateEntryYear, setEducateEntryYear] = useState([]);
   const [educateExistYear, setEducateExistYear] = useState([]);
+  const [expStartYear, setExpStartYear] = useState([]);
+  const [expStartMonth, setExpStartMonth] = useState([]);
   const [expJob, setExpJob] = useState('');
   const [expCompany, setExpCompany] = useState('');
   const [expPlace, setExpPlace] = useState('');
   const [expDesc, setExpDesc] = useState('');
   const [projectTags, setProjectTags] = useState([]);
 
-
-  // const userNameValidator = isRequired({ message: '請輸入使用者名稱' })(editUserName);
-  // const countyValidator = isRequired({ message: '請輸入縣市' })(editCounty);
-  // const urlValidator = isRequired({ message: '請輸入連結' })(editUrl);
-  // const jobValidator = isRequired({ message: '請輸入職稱' })(editJob);
-  // const emailValidator = isEmail({ message: 'Email格式錯誤' })(editEmail);
-  // const telValidator = isRequired({ message: '請輸入聯絡電話' })(editTel);
-  // const addressValidator = isRequired({ message: '請輸入通訊地址' })(editAddress);
-  // const passwordValidator1 = isRequired({ message: '請輸入密碼' })(editOldPw, editNewPw, confirmNewPw);
-  // const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(editNewPw);
-  // const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(editNewPw);
-  // const confirmPasswordValidator = isEqual({
-  //   message: '確認密碼不一致，請重新輸入',
-  //   value: editNewPw,
-  // })(confirmNewPw);
-
-  // const [themeColor, setThemeColor] = useState('深藍色');
-  // const themeColorOptions = ['深藍色', '黑色', '淺色'];
-  // const [defaultOpen, setDefaultOpen] = useState('HTML');
-  // const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
-  const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];
-  const educateEntryOptions = ['1900', '', '', '', '', ''];
-  const educateExistOptions = ['1900', '', '', '', '', ''];
+  const educateSchoolValidator = isRequired({ message: '請輸入學校名稱' })(educateSchool);
+  const educateDegreeValidator = isRequired({ message: '請輸入學位' })(educateDegree);
+  const educateEntryYearValidator = isRequired({ message: '請輸入年份' })(educateEntryYear, educateExistYear);
+  const expJobValidator = isRequired({ message: '請輸入職稱' })(expJob);
+  const expCompanyValidator = isRequired({ message: '請輸入公司名稱' })(expCompany);
+  const expPlaceValidator = isRequired({ message: '地點' })(expPlace);
 
   const loginHandler = () => {
     const loginData = {
@@ -65,27 +57,18 @@ const EditResume = (props) => {
     };
     props.login(loginData, props.history);
   };
-  // const handleEditInfo = () => {
-  //   const settingsData = {
-  //     editUserName,
-  //     editCounty,
-  //     editUrl,
-  //     editJob,
-  //     editEmail,
-  //     editBirth,
-  //     editTel,
-  //     editAddress,
-  //   };
-  //   props.settings(settingsData, props.history);
-  // };
-  // const handleEditPw = () => {
-  //   const settingsData = {
-  //     editOldPw,
-  //     editNewPw,
-  //     confirmNewPw,
-  //   };
-  //   props.settings(settingsData, props.history);
-  // };
+  const handleEditResume = () => {
+    const settingsData = {
+      educateSchool,
+      educateDegree,
+      educateEntryYear,
+      educateExistYear,
+      expJob,
+      expCompany,
+      expPlace,
+    };
+    props.settings(settingsData, props.history);
+  };
 
 
   return (
@@ -95,7 +78,12 @@ const EditResume = (props) => {
         userName={userName}
         list={list}
       >
-
+        <span className="close_icon">
+          <FaTimes
+            color="#3597ec"
+            onClick={() => props.history.push('/homePage')}
+          />
+        </span>
         <div className="edit_about">
           <h2 className="title">關於</h2>
           <TextArea
@@ -130,19 +118,25 @@ const EditResume = (props) => {
             text={educateMajor}
             onChange={e => setEducateMajor(e.target.value)}
           />
-          <Select
-            title="入學年份"
-            required
-            value={educateEntryYear}
-            options={educateEntryOptions}
-            name="educateEntry"
-          />
-          <Select
-            title="畢業年份"
-            value={educateExistYear}
-            options={educateExistOptions}
-            name="educateExist"
-          />
+          <div className="selects">
+            <Select
+              title="入學年份"
+              required
+              isOpen={isDropdownOpen}
+              // onClick={}
+              switchOptionHandler={setIsDropdownOpen}
+              // option={educateEntryYear}
+              options={educateEntryOptions}
+            />
+            <Select
+              title="畢業年份"
+              required
+              isOpen
+              switchOptionHandler={setIsDropdownOpen}
+              // value={educateExistYear}
+              options={educateExistOptions}
+            />
+          </div>
         </div>
         <div className="edit_skill">
           <h2 className="title">
@@ -184,18 +178,22 @@ const EditResume = (props) => {
             onChange={e => setExpPlace(e.target.value)}
             required
           />
-          <Select
-            title="開始日期"
-            value={educateExistYear}
-            options={educateExistOptions}
-            name="educateExist"
-          />
-          <Select
-            // title="畢業年份"
-            value={educateExistYear}
-            options={educateExistOptions}
-            name="educateExist"
-          />
+          <div className="selects">
+            <Select
+              title="開始年份"
+              isOpen={false}
+              switchOptionHandler={setIsDropdownOpen}
+              // value={expStartYear}
+              options={expStartYearOptions}
+            />
+            <Select
+              title="開始月份"
+              // value={expStartMonth}
+              switchOptionHandler={setIsDropdownOpen}
+              options={expStartMonthOptions}
+              isOpen={false}
+            />
+          </div>
           <TextArea
             title="工作內容"
             placeholder="說明您在這份工作中扮演的角色和成果"
@@ -205,7 +203,10 @@ const EditResume = (props) => {
         </div>
         <div className="edit_project">
           <h2 className="title">作品</h2>
-          <ProjectList />
+          <EditProjectList
+            projectName="1234"
+            projectDescription="1234"
+          />
         </div>
         <div className="edit_button">
           <Button
@@ -213,16 +214,22 @@ const EditResume = (props) => {
             text="取消"
             type="outline"
             size="small"
-          // onClick={() => props.history.push('/homePage')}
+            onClick={() => props.history.push('/homePage')}
           />
           <Button
             className="save_btn"
             text="儲存"
             type="primary"
             size="small"
-          // onClick={handleEditPw}
-          // disabled={
-          // }
+            onClick={handleEditResume}
+            disabled={
+              educateSchoolValidator !== null
+              || educateDegreeValidator !== null
+              || educateEntryYearValidator !== null
+              || expJobValidator !== null
+              || expCompanyValidator !== null
+              || expPlaceValidator !== null
+            }
           />
         </div>
       </Layout>

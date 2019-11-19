@@ -9,9 +9,10 @@ import action from '../../actions';
 import Layout from '../../components/Layout';
 import TextInput from '../../components/TextInput';
 import DateInput from '../../components/DateInput';
+import Select from '../../components/Select';
 import RadioButtonGroup from '../../components/RadioButtonGroup';
 import Button from '../../components/Button';
-import CheckboxGroup from '../../components/CheckboxGroup';
+// import CheckboxGroup from '../../components/CheckboxGroup';
 import userImg from '../../assets/userImg.png';
 
 import './index.scss';
@@ -24,11 +25,10 @@ const Settings = (props) => {
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [editUserName, setEditUserName] = useState('');
-  const [editCounty, setEditCounty] = useState('');
   const [editUrl, setEditUrl] = useState('');
   const [editJob, setEditJob] = useState('');
-  const [editEmail, setEditEmail] = useState('');
   const [editBirth, setEditBirth] = useState(new Date());
   const [isBirthOnFocus, setIsBirthOnFocus] = useState(false);
   const [editTel, setEditTel] = useState('');
@@ -40,10 +40,8 @@ const Settings = (props) => {
   const userNameValidator = isRequired({ message: '請輸入使用者名稱' })(
     editUserName,
   );
-  const countyValidator = isRequired({ message: '請輸入縣市' })(editCounty);
   const urlValidator = isRequired({ message: '請輸入連結' })(editUrl);
   const jobValidator = isRequired({ message: '請輸入職稱' })(editJob);
-  const emailValidator = isEmail({ message: 'Email格式錯誤' })(editEmail);
   const telValidator = isRequired({ message: '請輸入聯絡電話' })(editTel);
   const addressValidator = isRequired({ message: '請輸入通訊地址' })(
     editAddress,
@@ -66,7 +64,11 @@ const Settings = (props) => {
 
   const [themeColor, setThemeColor] = useState('深藍色');
   const themeColorOptions = ['深藍色', '黑色', '淺色'];
-  const [defaultOpen, setDefaultOpen] = useState('HTML');
+  // const [defaultOpen, setDefaultOpen] = useState('HTML');
+  // const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
+  const editCountyOptions = ['基隆市', '台北市', '新北市', '桃園縣', '新竹市', '新竹縣', '苗栗縣', '台中市', '彰化縣', '南投縣', '雲林縣', '嘉義市', '嘉義縣', '台南市', '高雄市', '屏東縣', '台東縣', '花蓮縣', '宜蘭縣', '澎湖縣', '金門縣', '連江縣'];
+  
+const [defaultOpen, setDefaultOpen] = useState('HTML');
   const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
@@ -110,7 +112,6 @@ const Settings = (props) => {
   const handleEditInfo = () => {
     const settingsData = {
       editUserName,
-      editCounty,
       editUrl,
       editJob,
       editEmail,
@@ -175,50 +176,39 @@ const Settings = (props) => {
                 title="使用者名稱"
                 type="text"
                 text={editUserName}
-                onChange={(e) => setEditUserName(e.target.value)}
+                onChange={e => setEditUserName(e.target.value)}
                 required
-                // showHint={editUserName !== '' && userNameValidator !== null}
-                // hintType="error"
-              />
-              <TextInput
-                title="縣市"
-                type="text"
-                text={editCounty}
-                onChange={(e) => setEditCounty(e.target.value)}
-                required
-                // showHint={!(countyValidator !== null)}
-                // hintType="ok"
               />
               <TextInput
                 title="連結"
                 type="url"
                 text={editUrl}
-                onChange={(e) => setEditUrl(e.target.value)}
-                required
-                // showHint={!(urlValidator !== null)}
-                // hintType="ok"
+                onChange={e => setEditUrl(e.target.value)}
               />
               <TextInput
                 title="職稱"
                 type="text"
                 text={editJob}
-                onChange={(e) => setEditJob(e.target.value)}
-                required
-                // showHint={!(jobValidator !== null)}
-                // hintType="ok"
+                onChange={e => setEditJob(e.target.value)}
               />
             </div>
             <div className="right_sec">
-              <TextInput
-                title="信箱"
-                type="email"
-                text={editEmail}
-                onChange={(e) => setEditEmail(e.target.value)}
-                required
-                showHint={editEmail !== '' && emailValidator !== null}
-                hintType="error"
-                hintText={emailValidator}
-              />
+              <div className="right_sec_address">
+                <Select
+                  title="縣市"
+                  options={editCountyOptions}
+                  isOpen={isDropdownOpen}
+                  switchOptionHandler={setIsDropdownOpen}
+                  required
+                />
+                <TextInput
+                  title="地址"
+                  type="text"
+                  text={editAddress}
+                  onChange={e => setEditAddress(e.target.value)}
+                  required
+                />
+              </div>
               <DateInput
                 title="生日"
                 required
@@ -234,19 +224,8 @@ const Settings = (props) => {
                 title="聯絡電話"
                 type="tel"
                 text={editTel}
-                onChange={(e) => setEditTel(e.target.value)}
+                onChange={e => setEditTel(e.target.value)}
                 required
-                // showHint={!(telValidator !== null)}
-                // hintType="error"
-              />
-              <TextInput
-                title="通訊地址"
-                type="text"
-                text={editAddress}
-                onChange={(e) => setEditAddress(e.target.value)}
-                required
-                // showHint={editAddress !== '' && (addressValidator !== null)}
-                // hintType="error"
               />
             </div>
           </div>
@@ -258,12 +237,11 @@ const Settings = (props) => {
               size="small"
               onClick={handleEditInfo}
               disabled={
-                userNameValidator !== null ||
-                countyValidator !== null ||
-                urlValidator !== null ||
-                jobValidator !== null ||
-                telValidator !== null ||
-                addressValidator !== null
+                userNameValidator !== null
+                || urlValidator !== null
+                || jobValidator !== null
+                || telValidator !== null
+                || addressValidator !== null
               }
             />
           </div>
@@ -274,7 +252,7 @@ const Settings = (props) => {
             title="舊密碼"
             type="password"
             text={editOldPw}
-            onChange={(e) => setEditOldPw(e.target.value)}
+            onChange={e => setEditOldPw(e.target.value)}
             required
             hintType="error"
             showHint={editOldPw !== '' && passwordValidator1 !== null}
@@ -284,12 +262,12 @@ const Settings = (props) => {
             title="新密碼"
             type="password"
             text={editNewPw}
-            onChange={(e) => setEditNewPw(e.target.value)}
+            onChange={e => setEditNewPw(e.target.value)}
             required
             hintType="error"
             showHint={
-              editNewPw !== '' &&
-              (passwordValidator2 === null || passwordValidator3 !== null)
+              editNewPw !== ''
+              && (passwordValidator2 === null || passwordValidator3 !== null)
             }
             hintText={passwordValidator3}
           />
@@ -297,7 +275,7 @@ const Settings = (props) => {
             title="確認新密碼"
             type="password"
             text={confirmNewPw}
-            onChange={(e) => setConfirmNewPw(e.target.value)}
+            onChange={e => setConfirmNewPw(e.target.value)}
             required
             showHint={confirmNewPw !== '' && confirmPasswordValidator !== null}
             hintType="error"
@@ -311,10 +289,10 @@ const Settings = (props) => {
               size="small"
               onClick={handleEditPw}
               disabled={
-                passwordValidator1 !== null ||
-                passwordValidator2 === null ||
-                passwordValidator3 !== null ||
-                confirmPasswordValidator !== null
+                passwordValidator1 !== null
+                || passwordValidator2 === null
+                || passwordValidator3 !== null
+                || confirmPasswordValidator !== null
               }
             />
           </div>
@@ -356,7 +334,7 @@ const Settings = (props) => {
             text="儲存"
             type="primary"
             size="small"
-            // onClick={handleEdit}
+          // onClick={handleEdit}
           />
         </div>
       </Layout>
@@ -364,7 +342,7 @@ const Settings = (props) => {
   );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   user: store.user,
   editor: store.editor,
 });
