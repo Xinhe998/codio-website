@@ -9,6 +9,12 @@
   padding: 50px;
 }
 
+.portfolio_titlebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .project_title, .project_title input {
   color: #000000;
   font-size: 25px;

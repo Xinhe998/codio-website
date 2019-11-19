@@ -1,3 +1,4 @@
+@import "../../../styles/main.scss";
 .settings {
   .main_section {
     padding-bottom: 0px;
@@ -13,11 +14,26 @@
     color: #263238;
   }
 
+  .avatar_dropzone {
+    width: 150px;
+    height: 150px;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%);
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    border: 1px solid lightgray;
+  }
+
   .edit_info {
     .subtitle {
       display: block;
       font-size: 18px;
       color: #3597ec;
+      margin-top: 35px;
       margin-bottom: 30px;
     }
 
@@ -112,7 +128,7 @@
         height: 260px;
         border-radius: 0 0 5px 5px;
         box-shadow: 0 11px 13px 0px rgba(0, 0, 0, 0.1);
-        transition: all .5s;
+        transition: all .3s;
 
         &.navy {
           background-color: #2a2f42;
@@ -174,4 +190,55 @@
       // float: right;
     }
   }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(0,0,0,.8);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0,0,0,.8) transparent;
+}
+
+.tooltip .tooltiptext {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip:hover .tooltiptext {
+  opacity: 1;
 }
