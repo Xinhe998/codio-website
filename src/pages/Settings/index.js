@@ -138,7 +138,7 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
         theme = 'black';
         break;
       default:
-        theme = 'white';
+        theme = 'light';
         break;
     }
     return theme;
