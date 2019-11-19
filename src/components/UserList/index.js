@@ -24,6 +24,8 @@ const UserList = ({
   const charTypeValidator = isRequired({ message: '請輸入會員角色' })(
     charType,
   );
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const userCharOptions = ['VIP', 'VVIP'];
   return (
 
     <React.Fragment>
@@ -64,18 +66,15 @@ const UserList = ({
       >
         <TextInput
           title="會員名稱"
-          // text={userName}
-          showHint={false}
-          hintType="ok"
+          text={userName}
           disabled
         />
         <Select
           title="會員角色"
-          // value
-          // name
-          // onChange
-          // options
+          options={userCharOptions}
           required
+          isOpen={isDropdownOpen}
+          switchOptionHandler={setIsDropdownOpen}
         />
         <div className="user_uses">
           <div className="title">使用功能</div>

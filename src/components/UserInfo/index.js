@@ -30,7 +30,7 @@ const UserInfo = ({
       </span>
       <span className="user_url">
         <FaLink />
-        <a href={userLink}>{userLink}</a>
+        <a href={`http://${userLink}`} target="_blank">{userLink}</a>
       </span>
     </div>
   </div>

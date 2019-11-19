@@ -24,6 +24,7 @@ const Admin = (props) => {
 
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理']);
+  const displayPagesOptions = ['5', '10', '15', '20'];
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectValue, setSelectValue] = useState('25');
@@ -35,6 +36,7 @@ const Admin = (props) => {
     charName,
   );
   const [isChecked, setIsChecked] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
@@ -80,14 +82,14 @@ const Admin = (props) => {
         <div className="user_management">
           <div className="user_tool">
             <div className="display_number">
-              <span>顯示
-              <Select
-                value={selectValue}
-                name="select_page"
-                // onChange={}
-                options={options}
-              />
-              筆
+              <span>
+                顯示
+                <Select
+                  options={displayPagesOptions}
+                  isOpen={isDropdownOpen}
+                  switchOptionHandler={setIsDropdownOpen}
+                />
+                筆
               </span>
             </div>
 

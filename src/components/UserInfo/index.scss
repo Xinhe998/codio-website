@@ -4,6 +4,9 @@
     a{
       color:black;
       text-decoration: none;
+      &:hover{
+        color:#3597ec;
+      }
     }
   }
 }
