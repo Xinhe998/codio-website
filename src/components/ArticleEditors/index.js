@@ -228,6 +228,7 @@ const ArticleEditors = ({
           Confirm={() => {
             setIsImageUploadModalOpen(false);
             changeValue(file.link); // will trigger rerender
+            setFile({});
           }}
         >
           <section className="container">
