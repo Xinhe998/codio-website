@@ -73,8 +73,6 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
 
-  console.log(avatar);
-
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     multiple: false,

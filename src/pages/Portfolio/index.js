@@ -16,7 +16,6 @@ import Button from '../../components/Button';
 import ScoreCircle from '../../components/ScoreCircle';
 import ArticleEditors from '../../components/ArticleEditors';
 import Like from '../../components/Like';
-import { IoMdHeart } from 'react-icons/io';
 
 import '../Index/index.scss';
 import './index.scss';
