@@ -41,14 +41,34 @@ const HomePage = (props) => {
   };
   const LayoutActions = () => (
     <LayoutBtn>
-      <Button
-        className="add_project_btn"
-        text="新增"
-        type="primary"
-        size="small"
-        theme="red"
-        onClick={() => props.history.push('/create_project')}
+      <UserInfo
+        userImg={userImg}
+        userName="Alice"
+        userJob="前端工程師"
+        userAddress="台中市"
+        userLink="www.alice0050722.com.tw"
       />
+      <div className="layoutBtn">
+        <Button
+          className="add_project_btn"
+          text="新增"
+          type="primary"
+          size="small"
+          theme="red"
+          onClick={() => props.history.push('/create_project')}
+        />
+        <ResumeBtn
+          isOpen={isResumeBtnOpen}
+          onClick={() => { setIsResumeBtnOpen(true); }}
+          onClose={() => { setIsResumeBtnOpen(false); }}
+          shouldCloseOnClickOutside
+          shouldCloseOnEsc
+        >
+          <span>製作履歷</span>
+          <span>編輯履歷</span>
+          <span>查看履歷</span>
+        </ResumeBtn>
+      </div>
     </LayoutBtn>
   );
   const loginHandler = () => {
@@ -68,14 +88,6 @@ const HomePage = (props) => {
         list={list}
         actions={<LayoutActions />}
       >
-        <UserInfo
-          userImg={userImg}
-          userName="Alice"
-          userJob="前端工程師"
-          userAddress="台中市"
-          userLink="www.alice0050722.com.tw"
-        />
-
         <div className="tool">
           <SearchBar
             placeholder="搜尋專案、標籤、開發者"
@@ -117,17 +129,6 @@ const HomePage = (props) => {
               onChange={() => { handleSelectCheckbox('舊到新'); }}
             />
           </Filter>
-          <ResumeBtn
-            isOpen={isResumeBtnOpen}
-            onClick={() => { setIsResumeBtnOpen(true); }}
-            onClose={() => { setIsResumeBtnOpen(false); }}
-            shouldCloseOnClickOutside
-            shouldCloseOnEsc
-          >
-            <span>製作履歷</span>
-            <span>編輯履歷</span>
-            <span>查看履歷</span>
-          </ResumeBtn>
         </div>
         <ProjectList
           projectName="專題"

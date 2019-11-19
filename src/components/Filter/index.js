@@ -17,7 +17,6 @@ const Filter = ({
   onClose,
   onClick,
   children,
-  history,
 }) => {
   const filterRef = useRef();
   if (shouldCloseOnClickOutside) useClickOutside(isOpen, filterRef, onClose);

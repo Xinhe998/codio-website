@@ -1,56 +1,71 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FaAngleDown } from 'react-icons/fa';
+import useClickOutside from '../../hooks/useClickOutside';
 import './index.scss';
 
 const Select = ({
+  isOpen,
+  switchOptionHandler,
   title,
-  value,
-  name,
-  onChange,
   required,
   options,
-}) => (
-  <div className="select">
-    <div className={classNames(
-      'select-title',
-      required ? 'required' : null,
-    )}
-    >
-      {title}
-    </div>
-    <div className="custom-select">
-      <div className="custom-select-value">{value}</div>
-      <select
-        name={name}
-        onChange={e => onChange(e)}
+}) => {
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const selectRef = useRef();
+  useClickOutside(isOpen, selectRef, () => switchOptionHandler(false));
+  return (
+    <div className="select" ref={selectRef}>
+      <div className={classNames(
+        'select_title',
+        required ? 'required' : null,
+      )}
       >
-        {
-          options.map((item, index) => {
-            if (value === item.value) {
-              return <option selected value={item.value} key={index}>{item.label}</option>;
-            }
-            return <option value={item.value} key={index}>{item.label}</option>;
-          })
-        }
-      </select>
+        {title}
+      </div>
+      <div
+        className="select_input"
+        onClick={() => switchOptionHandler(true)}
+      >
+        <span className="select_value">{selectedOption}</span>
+
+        {isOpen ? (
+          <ul className="select_dropDown">
+            {options.map((option, index) => (
+              <li
+                key={index}
+                onClick={() => { switchOptionHandler(false); }}
+                className={selectedOption === option ? 'select_dropDown_option active' : 'select_dropDown_option'}
+              >
+                {option}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <span className="select＿icon">
+          <FaAngleDown
+            color="#3597ec"
+          />
+        </span>
+      </div>
+
     </div>
-  </div>
-);
+  );
+};
 
 Select.propTypes = {
+  isOpen: PropTypes.bool,
   title: PropTypes.string,
-  value: PropTypes.string,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
   required: PropTypes.bool,
   options: PropTypes.array,
+  switchOptionHandler: PropTypes.func,
 };
 
 Select.defaultProps = {
+  isOpen: false,
   title: '',
-  value: '',
-  name: '',
+  switchOptionHandler: null,
   options: [],
 };
 export default Select;

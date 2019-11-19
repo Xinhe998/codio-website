@@ -17,7 +17,6 @@ const ResumeBtn = ({
   onClose,
   onClick,
   children,
-  history,
 }) => {
   const resumeBtnRef = useRef();
   if (shouldCloseOnClickOutside) useClickOutside(isOpen, resumeBtnRef, onClose);
@@ -25,12 +24,12 @@ const ResumeBtn = ({
   return (
     <div className="resumeBtn">
       <Button
+        text="履歷"
         className="resumeBtn_btn"
-        type="primary"
+        type="outline"
         size="small"
-        theme="white"
-        shape="square"
-        icon={<FaAlignLeft />}
+        theme="red"
+        // icon={<FaAlignLeft />}
         onClick={onClick}
       />
       {isOpen ? <div className="resumeBtn_dropDown" ref={resumeBtnRef}>{children}</div> : null}

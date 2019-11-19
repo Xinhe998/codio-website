@@ -1,9 +1,11 @@
 .editResume {
   .main_section {
     padding-bottom: 0px;
+    position: relative;
   }
 
-  .textinput,.select {
+  .textinput,
+  .select {
     padding: 10px 0;
   }
 
@@ -20,9 +22,18 @@
     color: black;
     margin-left: 5px;
   }
-  .textarea{
+
+  .textarea {
     max-width: 100%;
   }
+
+  .selects {
+    display: flex;
+    .select{
+      width:50%;
+    }
+  }
+
   .edit_button {
     margin-top: 50px;
     margin-bottom: 80px;
@@ -36,5 +47,10 @@
       width: 40%;
       float: right;
     }
+  }
+  .close_icon{
+    position:absolute;
+    right: 15px;
+    cursor: pointer;
   }
 }

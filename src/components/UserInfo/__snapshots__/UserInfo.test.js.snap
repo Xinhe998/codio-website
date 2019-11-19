@@ -311,7 +311,9 @@ initialize {
                   "name": "span",
                   "namespace": "http://www.w3.org/1999/xhtml",
                   "next": Object {
-                    "attribs": Object {},
+                    "attribs": Object {
+                      "class": "user_url",
+                    },
                     "children": Array [
                       Object {
                         "attribs": Object {
@@ -346,11 +348,33 @@ initialize {
                         "name": "svg",
                         "namespace": "http://www.w3.org/2000/svg",
                         "next": Object {
-                          "data": "Test Link",
+                          "attribs": Object {
+                            "href": "http://Test Link",
+                            "target": "_blank",
+                          },
+                          "children": Array [
+                            Object {
+                              "data": "Test Link",
+                              "next": null,
+                              "parent": [Circular],
+                              "prev": null,
+                              "type": "text",
+                            },
+                          ],
+                          "name": "a",
+                          "namespace": "http://www.w3.org/1999/xhtml",
                           "next": null,
                           "parent": [Circular],
                           "prev": [Circular],
-                          "type": "text",
+                          "type": "tag",
+                          "x-attribsNamespace": Object {
+                            "href": undefined,
+                            "target": undefined,
+                          },
+                          "x-attribsPrefix": Object {
+                            "href": undefined,
+                            "target": undefined,
+                          },
                         },
                         "parent": [Circular],
                         "prev": null,
@@ -375,7 +399,21 @@ initialize {
                         },
                       },
                       Object {
-                        "data": "Test Link",
+                        "attribs": Object {
+                          "href": "http://Test Link",
+                          "target": "_blank",
+                        },
+                        "children": Array [
+                          Object {
+                            "data": "Test Link",
+                            "next": null,
+                            "parent": [Circular],
+                            "prev": null,
+                            "type": "text",
+                          },
+                        ],
+                        "name": "a",
+                        "namespace": "http://www.w3.org/1999/xhtml",
                         "next": null,
                         "parent": [Circular],
                         "prev": Object {
@@ -433,7 +471,15 @@ initialize {
                             "xmlns": "",
                           },
                         },
-                        "type": "text",
+                        "type": "tag",
+                        "x-attribsNamespace": Object {
+                          "href": undefined,
+                          "target": undefined,
+                        },
+                        "x-attribsPrefix": Object {
+                          "href": undefined,
+                          "target": undefined,
+                        },
                       },
                     ],
                     "name": "span",
@@ -442,8 +488,12 @@ initialize {
                     "parent": [Circular],
                     "prev": [Circular],
                     "type": "tag",
-                    "x-attribsNamespace": Object {},
-                    "x-attribsPrefix": Object {},
+                    "x-attribsNamespace": Object {
+                      "class": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "class": undefined,
+                    },
                   },
                   "parent": [Circular],
                   "prev": [Circular],
@@ -720,7 +770,9 @@ initialize {
                 "name": "span",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": Object {
-                  "attribs": Object {},
+                  "attribs": Object {
+                    "class": "user_url",
+                  },
                   "children": Array [
                     Object {
                       "attribs": Object {
@@ -755,11 +807,33 @@ initialize {
                       "name": "svg",
                       "namespace": "http://www.w3.org/2000/svg",
                       "next": Object {
-                        "data": "Test Link",
+                        "attribs": Object {
+                          "href": "http://Test Link",
+                          "target": "_blank",
+                        },
+                        "children": Array [
+                          Object {
+                            "data": "Test Link",
+                            "next": null,
+                            "parent": [Circular],
+                            "prev": null,
+                            "type": "text",
+                          },
+                        ],
+                        "name": "a",
+                        "namespace": "http://www.w3.org/1999/xhtml",
                         "next": null,
                         "parent": [Circular],
                         "prev": [Circular],
-                        "type": "text",
+                        "type": "tag",
+                        "x-attribsNamespace": Object {
+                          "href": undefined,
+                          "target": undefined,
+                        },
+                        "x-attribsPrefix": Object {
+                          "href": undefined,
+                          "target": undefined,
+                        },
                       },
                       "parent": [Circular],
                       "prev": null,
@@ -784,7 +858,21 @@ initialize {
                       },
                     },
                     Object {
-                      "data": "Test Link",
+                      "attribs": Object {
+                        "href": "http://Test Link",
+                        "target": "_blank",
+                      },
+                      "children": Array [
+                        Object {
+                          "data": "Test Link",
+                          "next": null,
+                          "parent": [Circular],
+                          "prev": null,
+                          "type": "text",
+                        },
+                      ],
+                      "name": "a",
+                      "namespace": "http://www.w3.org/1999/xhtml",
                       "next": null,
                       "parent": [Circular],
                       "prev": Object {
@@ -842,7 +930,15 @@ initialize {
                           "xmlns": "",
                         },
                       },
-                      "type": "text",
+                      "type": "tag",
+                      "x-attribsNamespace": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
+                      "x-attribsPrefix": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
                     },
                   ],
                   "name": "span",
@@ -851,8 +947,12 @@ initialize {
                   "parent": [Circular],
                   "prev": [Circular],
                   "type": "tag",
-                  "x-attribsNamespace": Object {},
-                  "x-attribsPrefix": Object {},
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                  },
                 },
                 "parent": [Circular],
                 "prev": [Circular],
@@ -1014,7 +1114,9 @@ initialize {
               "name": "span",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
-                "attribs": Object {},
+                "attribs": Object {
+                  "class": "user_url",
+                },
                 "children": Array [
                   Object {
                     "attribs": Object {
@@ -1049,11 +1151,33 @@ initialize {
                     "name": "svg",
                     "namespace": "http://www.w3.org/2000/svg",
                     "next": Object {
-                      "data": "Test Link",
+                      "attribs": Object {
+                        "href": "http://Test Link",
+                        "target": "_blank",
+                      },
+                      "children": Array [
+                        Object {
+                          "data": "Test Link",
+                          "next": null,
+                          "parent": [Circular],
+                          "prev": null,
+                          "type": "text",
+                        },
+                      ],
+                      "name": "a",
+                      "namespace": "http://www.w3.org/1999/xhtml",
                       "next": null,
                       "parent": [Circular],
                       "prev": [Circular],
-                      "type": "text",
+                      "type": "tag",
+                      "x-attribsNamespace": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
+                      "x-attribsPrefix": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
                     },
                     "parent": [Circular],
                     "prev": null,
@@ -1078,7 +1202,21 @@ initialize {
                     },
                   },
                   Object {
-                    "data": "Test Link",
+                    "attribs": Object {
+                      "href": "http://Test Link",
+                      "target": "_blank",
+                    },
+                    "children": Array [
+                      Object {
+                        "data": "Test Link",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "a",
+                    "namespace": "http://www.w3.org/1999/xhtml",
                     "next": null,
                     "parent": [Circular],
                     "prev": Object {
@@ -1136,7 +1274,15 @@ initialize {
                         "xmlns": "",
                       },
                     },
-                    "type": "text",
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
                   },
                 ],
                 "name": "span",
@@ -1145,8 +1291,12 @@ initialize {
                 "parent": [Circular],
                 "prev": [Circular],
                 "type": "tag",
-                "x-attribsNamespace": Object {},
-                "x-attribsPrefix": Object {},
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
               },
               "parent": [Circular],
               "prev": Object {
@@ -1308,7 +1458,9 @@ initialize {
               "x-attribsPrefix": Object {},
             },
             Object {
-              "attribs": Object {},
+              "attribs": Object {
+                "class": "user_url",
+              },
               "children": Array [
                 Object {
                   "attribs": Object {
@@ -1343,11 +1495,33 @@ initialize {
                   "name": "svg",
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": Object {
-                    "data": "Test Link",
+                    "attribs": Object {
+                      "href": "http://Test Link",
+                      "target": "_blank",
+                    },
+                    "children": Array [
+                      Object {
+                        "data": "Test Link",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "a",
+                    "namespace": "http://www.w3.org/1999/xhtml",
                     "next": null,
                     "parent": [Circular],
                     "prev": [Circular],
-                    "type": "text",
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
                   },
                   "parent": [Circular],
                   "prev": null,
@@ -1372,7 +1546,21 @@ initialize {
                   },
                 },
                 Object {
-                  "data": "Test Link",
+                  "attribs": Object {
+                    "href": "http://Test Link",
+                    "target": "_blank",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Test Link",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "a",
+                  "namespace": "http://www.w3.org/1999/xhtml",
                   "next": null,
                   "parent": [Circular],
                   "prev": Object {
@@ -1430,7 +1618,15 @@ initialize {
                       "xmlns": "",
                     },
                   },
-                  "type": "text",
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "href": undefined,
+                    "target": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "href": undefined,
+                    "target": undefined,
+                  },
                 },
               ],
               "name": "span",
@@ -1726,8 +1922,12 @@ initialize {
                 "x-attribsPrefix": Object {},
               },
               "type": "tag",
-              "x-attribsNamespace": Object {},
-              "x-attribsPrefix": Object {},
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
             },
           ],
           "name": "div",
@@ -2028,7 +2228,9 @@ initialize {
                 "name": "span",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": Object {
-                  "attribs": Object {},
+                  "attribs": Object {
+                    "class": "user_url",
+                  },
                   "children": Array [
                     Object {
                       "attribs": Object {
@@ -2063,11 +2265,33 @@ initialize {
                       "name": "svg",
                       "namespace": "http://www.w3.org/2000/svg",
                       "next": Object {
-                        "data": "Test Link",
+                        "attribs": Object {
+                          "href": "http://Test Link",
+                          "target": "_blank",
+                        },
+                        "children": Array [
+                          Object {
+                            "data": "Test Link",
+                            "next": null,
+                            "parent": [Circular],
+                            "prev": null,
+                            "type": "text",
+                          },
+                        ],
+                        "name": "a",
+                        "namespace": "http://www.w3.org/1999/xhtml",
                         "next": null,
                         "parent": [Circular],
                         "prev": [Circular],
-                        "type": "text",
+                        "type": "tag",
+                        "x-attribsNamespace": Object {
+                          "href": undefined,
+                          "target": undefined,
+                        },
+                        "x-attribsPrefix": Object {
+                          "href": undefined,
+                          "target": undefined,
+                        },
                       },
                       "parent": [Circular],
                       "prev": null,
@@ -2092,7 +2316,21 @@ initialize {
                       },
                     },
                     Object {
-                      "data": "Test Link",
+                      "attribs": Object {
+                        "href": "http://Test Link",
+                        "target": "_blank",
+                      },
+                      "children": Array [
+                        Object {
+                          "data": "Test Link",
+                          "next": null,
+                          "parent": [Circular],
+                          "prev": null,
+                          "type": "text",
+                        },
+                      ],
+                      "name": "a",
+                      "namespace": "http://www.w3.org/1999/xhtml",
                       "next": null,
                       "parent": [Circular],
                       "prev": Object {
@@ -2150,7 +2388,15 @@ initialize {
                           "xmlns": "",
                         },
                       },
-                      "type": "text",
+                      "type": "tag",
+                      "x-attribsNamespace": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
+                      "x-attribsPrefix": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
                     },
                   ],
                   "name": "span",
@@ -2159,8 +2405,12 @@ initialize {
                   "parent": [Circular],
                   "prev": [Circular],
                   "type": "tag",
-                  "x-attribsNamespace": Object {},
-                  "x-attribsPrefix": Object {},
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                  },
                 },
                 "parent": [Circular],
                 "prev": [Circular],
@@ -2437,7 +2687,9 @@ initialize {
               "name": "span",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
-                "attribs": Object {},
+                "attribs": Object {
+                  "class": "user_url",
+                },
                 "children": Array [
                   Object {
                     "attribs": Object {
@@ -2472,11 +2724,33 @@ initialize {
                     "name": "svg",
                     "namespace": "http://www.w3.org/2000/svg",
                     "next": Object {
-                      "data": "Test Link",
+                      "attribs": Object {
+                        "href": "http://Test Link",
+                        "target": "_blank",
+                      },
+                      "children": Array [
+                        Object {
+                          "data": "Test Link",
+                          "next": null,
+                          "parent": [Circular],
+                          "prev": null,
+                          "type": "text",
+                        },
+                      ],
+                      "name": "a",
+                      "namespace": "http://www.w3.org/1999/xhtml",
                       "next": null,
                       "parent": [Circular],
                       "prev": [Circular],
-                      "type": "text",
+                      "type": "tag",
+                      "x-attribsNamespace": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
+                      "x-attribsPrefix": Object {
+                        "href": undefined,
+                        "target": undefined,
+                      },
                     },
                     "parent": [Circular],
                     "prev": null,
@@ -2501,7 +2775,21 @@ initialize {
                     },
                   },
                   Object {
-                    "data": "Test Link",
+                    "attribs": Object {
+                      "href": "http://Test Link",
+                      "target": "_blank",
+                    },
+                    "children": Array [
+                      Object {
+                        "data": "Test Link",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "a",
+                    "namespace": "http://www.w3.org/1999/xhtml",
                     "next": null,
                     "parent": [Circular],
                     "prev": Object {
@@ -2559,7 +2847,15 @@ initialize {
                         "xmlns": "",
                       },
                     },
-                    "type": "text",
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
                   },
                 ],
                 "name": "span",
@@ -2568,8 +2864,12 @@ initialize {
                 "parent": [Circular],
                 "prev": [Circular],
                 "type": "tag",
-                "x-attribsNamespace": Object {},
-                "x-attribsPrefix": Object {},
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
               },
               "parent": [Circular],
               "prev": [Circular],
@@ -2731,7 +3031,9 @@ initialize {
             "name": "span",
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
-              "attribs": Object {},
+              "attribs": Object {
+                "class": "user_url",
+              },
               "children": Array [
                 Object {
                   "attribs": Object {
@@ -2766,11 +3068,33 @@ initialize {
                   "name": "svg",
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": Object {
-                    "data": "Test Link",
+                    "attribs": Object {
+                      "href": "http://Test Link",
+                      "target": "_blank",
+                    },
+                    "children": Array [
+                      Object {
+                        "data": "Test Link",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "a",
+                    "namespace": "http://www.w3.org/1999/xhtml",
                     "next": null,
                     "parent": [Circular],
                     "prev": [Circular],
-                    "type": "text",
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "href": undefined,
+                      "target": undefined,
+                    },
                   },
                   "parent": [Circular],
                   "prev": null,
@@ -2795,7 +3119,21 @@ initialize {
                   },
                 },
                 Object {
-                  "data": "Test Link",
+                  "attribs": Object {
+                    "href": "http://Test Link",
+                    "target": "_blank",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Test Link",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "a",
+                  "namespace": "http://www.w3.org/1999/xhtml",
                   "next": null,
                   "parent": [Circular],
                   "prev": Object {
@@ -2853,7 +3191,15 @@ initialize {
                       "xmlns": "",
                     },
                   },
-                  "type": "text",
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "href": undefined,
+                    "target": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "href": undefined,
+                    "target": undefined,
+                  },
                 },
               ],
               "name": "span",
@@ -2862,8 +3208,12 @@ initialize {
               "parent": [Circular],
               "prev": [Circular],
               "type": "tag",
-              "x-attribsNamespace": Object {},
-              "x-attribsPrefix": Object {},
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
             },
             "parent": [Circular],
             "prev": Object {
@@ -3025,7 +3375,9 @@ initialize {
             "x-attribsPrefix": Object {},
           },
           Object {
-            "attribs": Object {},
+            "attribs": Object {
+              "class": "user_url",
+            },
             "children": Array [
               Object {
                 "attribs": Object {
@@ -3060,11 +3412,33 @@ initialize {
                 "name": "svg",
                 "namespace": "http://www.w3.org/2000/svg",
                 "next": Object {
-                  "data": "Test Link",
+                  "attribs": Object {
+                    "href": "http://Test Link",
+                    "target": "_blank",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Test Link",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "a",
+                  "namespace": "http://www.w3.org/1999/xhtml",
                   "next": null,
                   "parent": [Circular],
                   "prev": [Circular],
-                  "type": "text",
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "href": undefined,
+                    "target": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "href": undefined,
+                    "target": undefined,
+                  },
                 },
                 "parent": [Circular],
                 "prev": null,
@@ -3089,7 +3463,21 @@ initialize {
                 },
               },
               Object {
-                "data": "Test Link",
+                "attribs": Object {
+                  "href": "http://Test Link",
+                  "target": "_blank",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Test Link",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "a",
+                "namespace": "http://www.w3.org/1999/xhtml",
                 "next": null,
                 "parent": [Circular],
                 "prev": Object {
@@ -3147,7 +3535,15 @@ initialize {
                     "xmlns": "",
                   },
                 },
-                "type": "text",
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "href": undefined,
+                  "target": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "href": undefined,
+                  "target": undefined,
+                },
               },
             ],
             "name": "span",
@@ -3443,8 +3839,12 @@ initialize {
               "x-attribsPrefix": Object {},
             },
             "type": "tag",
-            "x-attribsNamespace": Object {},
-            "x-attribsPrefix": Object {},
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
           },
         ],
         "name": "div",

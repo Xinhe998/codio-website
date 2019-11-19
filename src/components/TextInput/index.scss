@@ -28,6 +28,7 @@
 
     &:disabled {
       background-color: $gray;
+      color: $dark-gray;
     }
 
     &::placeholder {

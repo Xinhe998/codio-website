@@ -24,13 +24,11 @@ const Admin = (props) => {
 
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理']);
+  const displayPagesOptions = ['5', '10', '15', '20'];
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectValue, setSelectValue] = useState('25');
-  const options = [
-    { value: '25', label: '25' },
-    { value: '35', label: '35' },
-  ];
+  const options = ['0'];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [charName, setCharName] = useState('');
@@ -38,12 +36,8 @@ const Admin = (props) => {
     charName,
   );
   const [isChecked, setIsChecked] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [charType, setCharType] = useState('');
-  const charTypeValidator = isRequired({ message: '請輸入會員角色' })(
-    charType,
-  );
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
     if (index !== -1) {
@@ -88,15 +82,16 @@ const Admin = (props) => {
         <div className="user_management">
           <div className="user_tool">
             <div className="display_number">
-              顯示
+              <span>
+                顯示
                 <Select
-                value={selectValue}
-                name="select_page"
-                // onChange={}
-                options={options}
-              />
-              筆
-              </div>
+                  options={displayPagesOptions}
+                  isOpen={isDropdownOpen}
+                  switchOptionHandler={setIsDropdownOpen}
+                />
+                筆
+              </span>
+            </div>
 
             <SearchBar
               placeholder="搜尋會員"
@@ -150,40 +145,6 @@ const Admin = (props) => {
 
           <span className="total">總共人數：</span>
         </div>
-        <Modal
-          isOpen={isEditModalOpen}
-          title="編輯"
-          onClose={() => { setIsEditModalOpen(false); }}
-          shouldCloseOnEsc
-          shouldCloseOnClickOutside
-          showControlBtn
-          cancelBtnText="取消"
-          confirmBtnText="儲存"
-          disabled={charTypeValidator !== null}
-        >
-          <TextInput
-            title="會員名稱"
-            // text={userName}
-            showHint={false}
-            hintType="ok"
-            disabled
-          />
-          <Select
-            title="會員角色"
-            // value
-            // name
-            // onChange
-            // options
-            required
-          />
-          <div className="user_uses">
-            <div className="title">使用功能</div>
-            <div className="multi_choice">
-              <h5>111</h5>
-            </div>
-          </div>
-        </Modal>
-
         <Modal
           isOpen={isModalOpen}
           title="新增角色"
