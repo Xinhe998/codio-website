@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 import { isRequired, isEmail, isNumber, hasDigit, isEqual } from 'calidators';
+import { useDropzone } from 'react-dropzone';
 
 import action from '../../actions';
 import Layout from '../../components/Layout';
@@ -14,6 +15,7 @@ import CheckboxGroup from '../../components/CheckboxGroup';
 import userImg from '../../assets/userImg.png';
 
 import './index.scss';
+import defaultAvatar from '../../assets/default_avatar.jpg';
 
 const Settings = (props) => {
   const [id, setID] = useState('');
@@ -66,6 +68,37 @@ const Settings = (props) => {
   const themeColorOptions = ['深藍色', '黑色', '淺色'];
   const [defaultOpen, setDefaultOpen] = useState('HTML');
   const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
+  const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
+  const [avatar, setAvatar] = useState([]);
+
+  console.log(avatar);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: 'image/*',
+    multiple: false,
+    onDrop: (acceptedFiles) => {
+      seAvatartIsUplaoding(true);
+      setAvatar(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      );
+    },
+  });
+
+  const ImgPreview = avatar.map((img) => (
+    <div key={img.name}>
+      <div className="imgupload_preview">
+        <img src={img.preview} alt="avatar" />
+      </div>
+    </div>
+  ));
+
+  const imgPreviewUrl = avatar.map((img) => {
+    return img.preview;
+  });
 
   const loginHandler = () => {
     const loginData = {
@@ -117,6 +150,24 @@ const Settings = (props) => {
       <Layout userImg={userImg} userName={userName} list={list}>
         <div className="edit_info">
           <h2 className="title">個人資料</h2>
+          <div className="tooltip">
+            <div
+              className="avatar_dropzone"
+              {...getRootProps()}
+              style={
+                avatar.length === 0
+                  ? {
+                      backgroundImage: `url("${defaultAvatar}")`,
+                    }
+                  : {
+                      backgroundImage: `url("${imgPreviewUrl}")`,
+                    }
+              }
+            >
+              <input {...getInputProps()} />
+            </div>
+            <span className="tooltiptext">編輯大頭貼</span>
+          </div>
           <span className="subtitle">一般會員</span>
           <div className="inputs">
             <div className="left_sec">
