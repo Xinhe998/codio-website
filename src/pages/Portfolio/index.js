@@ -15,6 +15,7 @@ import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 import ScoreCircle from '../../components/ScoreCircle';
 import ArticleEditors from '../../components/ArticleEditors';
+import { IoMdHeart } from 'react-icons/io';
 
 import '../Index/index.scss';
 import './index.scss';
@@ -96,11 +97,14 @@ const renderPortfolioPage = ({ match }) => {
           theme="red"
         />
       </div>
-      {isEditMode ? (
-        <TextInput className="project_title" text="My Project" />
-      ) : (
-        <h1 className="project_title">My Project</h1>
-      )}
+      <div className="portfolio_titlebar">
+        {isEditMode ? (
+          <TextInput className="project_title" text="My Project" />
+        ) : (
+          <h1 className="project_title">My Project</h1>
+        )}
+        <IoMdHeart />
+      </div>
       <hr />
       <div className="portfolio_tags_wrapper">
         <span className="tag">React</span>
