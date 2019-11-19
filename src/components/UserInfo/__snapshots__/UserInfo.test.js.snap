@@ -349,7 +349,8 @@ initialize {
                         "namespace": "http://www.w3.org/2000/svg",
                         "next": Object {
                           "attribs": Object {
-                            "href": "Test Link",
+                            "href": "http://Test Link",
+                            "target": "_blank",
                           },
                           "children": Array [
                             Object {
@@ -368,9 +369,11 @@ initialize {
                           "type": "tag",
                           "x-attribsNamespace": Object {
                             "href": undefined,
+                            "target": undefined,
                           },
                           "x-attribsPrefix": Object {
                             "href": undefined,
+                            "target": undefined,
                           },
                         },
                         "parent": [Circular],
@@ -397,7 +400,8 @@ initialize {
                       },
                       Object {
                         "attribs": Object {
-                          "href": "Test Link",
+                          "href": "http://Test Link",
+                          "target": "_blank",
                         },
                         "children": Array [
                           Object {
@@ -470,9 +474,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "href": undefined,
+                          "target": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "href": undefined,
+                          "target": undefined,
                         },
                       },
                     ],
@@ -802,7 +808,8 @@ initialize {
                       "namespace": "http://www.w3.org/2000/svg",
                       "next": Object {
                         "attribs": Object {
-                          "href": "Test Link",
+                          "href": "http://Test Link",
+                          "target": "_blank",
                         },
                         "children": Array [
                           Object {
@@ -821,9 +828,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "href": undefined,
+                          "target": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "href": undefined,
+                          "target": undefined,
                         },
                       },
                       "parent": [Circular],
@@ -850,7 +859,8 @@ initialize {
                     },
                     Object {
                       "attribs": Object {
-                        "href": "Test Link",
+                        "href": "http://Test Link",
+                        "target": "_blank",
                       },
                       "children": Array [
                         Object {
@@ -923,9 +933,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                     },
                   ],
@@ -1140,7 +1152,8 @@ initialize {
                     "namespace": "http://www.w3.org/2000/svg",
                     "next": Object {
                       "attribs": Object {
-                        "href": "Test Link",
+                        "href": "http://Test Link",
+                        "target": "_blank",
                       },
                       "children": Array [
                         Object {
@@ -1159,9 +1172,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                     },
                     "parent": [Circular],
@@ -1188,7 +1203,8 @@ initialize {
                   },
                   Object {
                     "attribs": Object {
-                      "href": "Test Link",
+                      "href": "http://Test Link",
+                      "target": "_blank",
                     },
                     "children": Array [
                       Object {
@@ -1261,9 +1277,11 @@ initialize {
                     "type": "tag",
                     "x-attribsNamespace": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                     "x-attribsPrefix": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                   },
                 ],
@@ -1478,7 +1496,8 @@ initialize {
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": Object {
                     "attribs": Object {
-                      "href": "Test Link",
+                      "href": "http://Test Link",
+                      "target": "_blank",
                     },
                     "children": Array [
                       Object {
@@ -1497,9 +1516,11 @@ initialize {
                     "type": "tag",
                     "x-attribsNamespace": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                     "x-attribsPrefix": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                   },
                   "parent": [Circular],
@@ -1526,7 +1547,8 @@ initialize {
                 },
                 Object {
                   "attribs": Object {
-                    "href": "Test Link",
+                    "href": "http://Test Link",
+                    "target": "_blank",
                   },
                   "children": Array [
                     Object {
@@ -1599,9 +1621,11 @@ initialize {
                   "type": "tag",
                   "x-attribsNamespace": Object {
                     "href": undefined,
+                    "target": undefined,
                   },
                   "x-attribsPrefix": Object {
                     "href": undefined,
+                    "target": undefined,
                   },
                 },
               ],
@@ -2242,7 +2266,8 @@ initialize {
                       "namespace": "http://www.w3.org/2000/svg",
                       "next": Object {
                         "attribs": Object {
-                          "href": "Test Link",
+                          "href": "http://Test Link",
+                          "target": "_blank",
                         },
                         "children": Array [
                           Object {
@@ -2261,9 +2286,11 @@ initialize {
                         "type": "tag",
                         "x-attribsNamespace": Object {
                           "href": undefined,
+                          "target": undefined,
                         },
                         "x-attribsPrefix": Object {
                           "href": undefined,
+                          "target": undefined,
                         },
                       },
                       "parent": [Circular],
@@ -2290,7 +2317,8 @@ initialize {
                     },
                     Object {
                       "attribs": Object {
-                        "href": "Test Link",
+                        "href": "http://Test Link",
+                        "target": "_blank",
                       },
                       "children": Array [
                         Object {
@@ -2363,9 +2391,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                     },
                   ],
@@ -2695,7 +2725,8 @@ initialize {
                     "namespace": "http://www.w3.org/2000/svg",
                     "next": Object {
                       "attribs": Object {
-                        "href": "Test Link",
+                        "href": "http://Test Link",
+                        "target": "_blank",
                       },
                       "children": Array [
                         Object {
@@ -2714,9 +2745,11 @@ initialize {
                       "type": "tag",
                       "x-attribsNamespace": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                       "x-attribsPrefix": Object {
                         "href": undefined,
+                        "target": undefined,
                       },
                     },
                     "parent": [Circular],
@@ -2743,7 +2776,8 @@ initialize {
                   },
                   Object {
                     "attribs": Object {
-                      "href": "Test Link",
+                      "href": "http://Test Link",
+                      "target": "_blank",
                     },
                     "children": Array [
                       Object {
@@ -2816,9 +2850,11 @@ initialize {
                     "type": "tag",
                     "x-attribsNamespace": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                     "x-attribsPrefix": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                   },
                 ],
@@ -3033,7 +3069,8 @@ initialize {
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": Object {
                     "attribs": Object {
-                      "href": "Test Link",
+                      "href": "http://Test Link",
+                      "target": "_blank",
                     },
                     "children": Array [
                       Object {
@@ -3052,9 +3089,11 @@ initialize {
                     "type": "tag",
                     "x-attribsNamespace": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                     "x-attribsPrefix": Object {
                       "href": undefined,
+                      "target": undefined,
                     },
                   },
                   "parent": [Circular],
@@ -3081,7 +3120,8 @@ initialize {
                 },
                 Object {
                   "attribs": Object {
-                    "href": "Test Link",
+                    "href": "http://Test Link",
+                    "target": "_blank",
                   },
                   "children": Array [
                     Object {
@@ -3154,9 +3194,11 @@ initialize {
                   "type": "tag",
                   "x-attribsNamespace": Object {
                     "href": undefined,
+                    "target": undefined,
                   },
                   "x-attribsPrefix": Object {
                     "href": undefined,
+                    "target": undefined,
                   },
                 },
               ],
@@ -3371,7 +3413,8 @@ initialize {
                 "namespace": "http://www.w3.org/2000/svg",
                 "next": Object {
                   "attribs": Object {
-                    "href": "Test Link",
+                    "href": "http://Test Link",
+                    "target": "_blank",
                   },
                   "children": Array [
                     Object {
@@ -3390,9 +3433,11 @@ initialize {
                   "type": "tag",
                   "x-attribsNamespace": Object {
                     "href": undefined,
+                    "target": undefined,
                   },
                   "x-attribsPrefix": Object {
                     "href": undefined,
+                    "target": undefined,
                   },
                 },
                 "parent": [Circular],
@@ -3419,7 +3464,8 @@ initialize {
               },
               Object {
                 "attribs": Object {
-                  "href": "Test Link",
+                  "href": "http://Test Link",
+                  "target": "_blank",
                 },
                 "children": Array [
                   Object {
@@ -3492,9 +3538,11 @@ initialize {
                 "type": "tag",
                 "x-attribsNamespace": Object {
                   "href": undefined,
+                  "target": undefined,
                 },
                 "x-attribsPrefix": Object {
                   "href": undefined,
+                  "target": undefined,
                 },
               },
             ],
