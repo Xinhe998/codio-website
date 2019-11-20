@@ -1,12 +1,38 @@
 .user_profile {
+  display: flex;
+  align-items: center;
+
+  .user_img {
+    margin-right: 30px;
+  }
+
   .user_url {
     cursor: pointer;
-    a{
-      color:black;
+    svg {
+      color: #383e55;
+    }
+    a {
+      color: black;
       text-decoration: none;
-      &:hover{
-        color:#3597ec;
+      transition: all 0.5s;
+      &:hover {
+        color: #3597ec;
       }
+    }
+  }
+
+  .user_text {
+    h2 {
+      font-weight: 400;
+      font-size: 30px;
+      margin: 0 0 15px;
+    }
+    span {
+      font-size: 14px;
+      margin-right: 20px;
+    }
+    svg {
+      margin-right: 10px;
     }
   }
 }

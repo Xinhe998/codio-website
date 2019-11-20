@@ -1,15 +1,17 @@
 import React, { useState, useRef, createRef } from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   useParams,
   useRouteMatch,
   withRouter,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createBrowserHistory as createHistory } from 'history';
 import action from '../../actions';
 
 import Layout from '../../components/Layout';
+import LayoutBtn from '../../components/LayoutBtn';
 import TextInput from '../../components/TextInput';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
@@ -22,7 +24,7 @@ import './index.scss';
 
 import userImg from '../../assets/userImg.png';
 
-const renderPortfolioPage = ({ match }) => {
+const renderPortfolioPage = ({ match, history }) => {
   const isEditMode = match.params.mode && match.params.mode === 'edit';
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理', '圖表分析', '帳戶設定']);
@@ -41,6 +43,7 @@ const renderPortfolioPage = ({ match }) => {
   const newBlockRef = useRef();
 
   const { id } = useParams();
+  const { path, url } = useRouteMatch();
 
   const editContentValueById = (id, type, value) => {
     let temp;
@@ -84,57 +87,63 @@ const renderPortfolioPage = ({ match }) => {
   return (
     <Layout userImg={userImg} userName={userName} list={list}>
       <div className="score_circle_wrapper">
-        <ScoreCircle score={5} theme="yellow" />
-        <ScoreCircle score={6.3} theme="red" />
-        <ScoreCircle score={8} theme="blue" />
+        <ScoreCircle score={5} theme="yellow" text="介面很美" />
+        <ScoreCircle score={6.3} theme="red" text="程式碼好閱讀" />
+        <ScoreCircle score={8} theme="blue" text="很有創意" />
       </div>
-      <div className="edit_portfolio">
-        <Button
-          className="edit_portfolio_btn"
-          text="編輯"
-          type="primary"
-          size="small"
-          theme="red"
-        />
-      </div>
-      <div className="portfolio_titlebar">
-        {isEditMode ? (
-          <TextInput className="project_title" text="My Project" />
-        ) : (
-          <h1 className="project_title">My Project</h1>
-        )}
-        <Like isLiked={false} likeCount={300} />
-      </div>
-      <hr />
-      <div className="portfolio_tags_wrapper">
-        <span className="tag">React</span>
-        <span className="tag">Vue.js</span>
-      </div>
-      <div className="portfolio_desc">
-        {isEditMode ? (
-          <TextArea
-            text={projectDesc}
-            onChange={(e) => {
-              setProjectDesc(e.target.value);
+      {!isEditMode ? (
+        <LayoutBtn>
+          <Button
+            className="edit_portfolio_btn"
+            text="編輯"
+            type="primary"
+            size="small"
+            theme="red"
+            onClick={() => {
+              history.push(`${url}/edit`);
             }}
           />
-        ) : (
-          <React.Fragment>
-            Meracle 憶想奇機是個，其使用 Neurosky
-            的頭戴式腦波耳機擷取腦波生理訊號，以量化工作記憶力之演算法得出記憶力指數
-            ，並為家長提供豐富多元的圖表及數據分析 。Meracle
-            憶想奇機的目標及宗旨在於提升學童的工作記憶力。
-          </React.Fragment>
-        )}
-      </div>
-      <div className="portfolio_collaborator">
-        <img src={userImg} alt="collaborator" />
-        <img src={userImg} alt="collaborator" />
-        <img src={userImg} alt="collaborator" />
-        <img src={userImg} alt="collaborator" />
-      </div>
-      <div className="portfolio_article_wrapper">
-        {/* <div className="text_block">
+        </LayoutBtn>
+      ) : null}
+      <div className="main_section">
+        <div className="portfolio_titlebar">
+          {isEditMode ? (
+            <TextInput className="project_title" text="My Project" />
+          ) : (
+            <h1 className="project_title">My Project</h1>
+          )}
+          <Like isLiked={false} likeCount={300} />
+        </div>
+        <hr />
+        <div className="portfolio_tags_wrapper">
+          <span className="tag">React</span>
+          <span className="tag">Vue.js</span>
+        </div>
+        <div className="portfolio_desc">
+          {isEditMode ? (
+            <TextArea
+              text={projectDesc}
+              onChange={(e) => {
+                setProjectDesc(e.target.value);
+              }}
+            />
+          ) : (
+            <React.Fragment>
+              Meracle 憶想奇機是個，其使用 Neurosky
+              的頭戴式腦波耳機擷取腦波生理訊號，以量化工作記憶力之演算法得出記憶力指數
+              ，並為家長提供豐富多元的圖表及數據分析 。Meracle
+              憶想奇機的目標及宗旨在於提升學童的工作記憶力。
+            </React.Fragment>
+          )}
+        </div>
+        <div className="portfolio_collaborator">
+          <img src={userImg} alt="collaborator" />
+          <img src={userImg} alt="collaborator" />
+          <img src={userImg} alt="collaborator" />
+          <img src={userImg} alt="collaborator" />
+        </div>
+        <div className="portfolio_article_wrapper">
+          {/* <div className="text_block">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
           sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
@@ -145,76 +154,82 @@ const renderPortfolioPage = ({ match }) => {
           <img src="https://xinhehsu.com/static/meracle-1-b4a9cf768700b3863a8f86d12cd348a5.png" />
         </div> */}
 
-        {isEditMode &&
-          contentsLength > 0 &&
-          contents.map((content, index) => (
+          {isEditMode &&
+            contentsLength > 0 &&
+            contents.map((content, index) => (
+              <ArticleEditors
+                key={content.id}
+                selectedType={content.type}
+                changeType={(type) => {
+                  editContentValueById(content.id, type, content.value);
+                }}
+                value={content.value}
+                isrenderAddBtn={!content.value}
+                changeValue={(val) => {
+                  editContentValueById(content.id, content.type, val);
+                }}
+                onEnter={() => {
+                  insertNewBlockBelow(content.id);
+                  focusById(content.id + 1);
+                }}
+                textRef={elRef[index]}
+              />
+            ))}
+
+          {isEditMode && (
             <ArticleEditors
-              key={content.id}
-              selectedType={content.type}
-              changeType={(type) => {
-                editContentValueById(content.id, type, content.value);
-              }}
-              value={content.value}
-              isrenderAddBtn={!content.value}
+              key="ArticleEditors_new"
+              className="new_content"
+              selectedType={editorCurrentType}
+              changeType={(type) => setEditorCurrentType(type)}
+              value={editorCurrentValue}
+              isrenderAddBtn
               changeValue={(val) => {
-                editContentValueById(content.id, content.type, val);
+                setEditorCurrentValue(val);
               }}
               onEnter={() => {
-                insertNewBlockBelow(content.id);
-                focusById(content.id + 1);
+                let newContent = {};
+                newContent = {
+                  id: contentsLength + 1,
+                  type: editorCurrentType,
+                  value: editorCurrentValue,
+                };
+                setContents([...contents, newContent]);
+                setEditorCurrentType('text');
+                setEditorCurrentValue('');
+                if (newBlockRef.current) {
+                  newBlockRef.current.focus();
+                } else {
+                  setTimeout(() => {
+                    if (newBlockRef.current) {
+                      newBlockRef.current.focus();
+                    }
+                  }, 100);
+                }
               }}
-              textRef={elRef[index]}
+              textRef={newBlockRef}
             />
-          ))}
-
-        {isEditMode && (
-          <ArticleEditors
-            key="ArticleEditors_new"
-            className="new_content"
-            selectedType={editorCurrentType}
-            changeType={(type) => setEditorCurrentType(type)}
-            value={editorCurrentValue}
-            isrenderAddBtn
-            changeValue={(val) => {
-              setEditorCurrentValue(val);
-            }}
-            onEnter={() => {
-              let newContent = {};
-              newContent = {
-                id: contentsLength + 1,
-                type: editorCurrentType,
-                value: editorCurrentValue,
-              };
-              setContents([...contents, newContent]);
-              setEditorCurrentType('text');
-              setEditorCurrentValue('');
-              if (newBlockRef.current) {
-                newBlockRef.current.focus();
-              } else {
-                setTimeout(() => {
-                  if (newBlockRef.current) {
-                    newBlockRef.current.focus();
-                  }
-                }, 100);
-              }
-            }}
-            textRef={newBlockRef}
-          />
-        )}
+          )}
+        </div>
       </div>
     </Layout>
   );
 };
 
-const Portfolio = ({ match }) => {
-  const { path, url } = useRouteMatch();
+const Portfolio = ({ match, history }) => {
   return (
     <div className="Portfolio">
-      <Route exact path="/portfolio/:id" component={renderPortfolioPage} />
+      <Route
+        exact
+        path="/portfolio/:id"
+        component={renderPortfolioPage}
+        history={history}
+      />
       <Route
         exact
         path="/portfolio/:id/:mode"
         component={renderPortfolioPage}
+        history={history}
       />
     </div>
   );

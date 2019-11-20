@@ -37,10 +37,7 @@ const Layout = ({
         </ul>
       </div>
       <div className="Layout__content">
-        {actions}
-        <div className="main_section">
-          {children}
-        </div>
+        {children}
       </div>
     </div>
 
