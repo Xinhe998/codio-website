@@ -29,13 +29,17 @@
   }
 
   .edit_info {
-    .subtitle {
-      display: block;
+    p{
+      color:black;
       font-size: 18px;
+      letter-spacing: 2px;
+    .subtitle {
+      display: inline-block;     
       color: #3597ec;
       margin-top: 35px;
       margin-bottom: 30px;
     }
+  }
 
     .inputs {
       display: flex;
@@ -52,6 +56,13 @@
         // }
         .right_sec_address{
           display: flex;
+          .select{
+            width:25%;
+          }
+          .textinput{
+            width:55%;
+            margin-left:2px;
+          }
         }
       }
     }
@@ -64,14 +75,13 @@
 
   .edit_settings {
     display: flex;
-
+    
     .subtitle {
-      display: block;
-      font-size: 18px;
+      display: block;      
       color: #707070;
+      font-size: 18px;
       margin-bottom: 30px;
       margin-top: 30px;
-
     }
 
     .radioButtonGroup__option {

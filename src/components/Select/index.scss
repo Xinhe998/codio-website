@@ -43,7 +43,8 @@
     cursor: pointer;
     color: black;
     text-align: left;
-    line-height: 40px;
+    display:flex;
+    align-items: center;
   }
 
   .select_value {

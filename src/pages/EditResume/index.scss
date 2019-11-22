@@ -1,7 +1,22 @@
 .editResume {
   .main_section {
     padding-bottom: 0px;
-    position: relative;
+  }
+
+  .container {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+    padding: 15px;
+  }
+
+  .edit_about,
+  .edit_educate,
+  .edit_skill,
+  .edit_exp,
+  .edit_project,
+  .edit_button {
+    margin: 0 auto;
+    width: 85%;
   }
 
   .textinput,
@@ -9,18 +24,23 @@
     padding: 10px 0;
   }
 
-  .title {
-    font-size: 22px;
-    font-weight: normal;
-    color: #263238;
+  .edit_exp_top {
+    display: flex;
     margin-top: 50px;
-  }
+    justify-content: space-between;
 
-  .subtitle {
-    display: inline-block;
-    font-size: 14px;
-    color: black;
-    margin-left: 5px;
+    .title {
+      font-size: 22px;
+      font-weight: normal;
+      color: #263238;
+    }
+
+    .subtitle {
+      display: inline-block;
+      font-size: 14px;
+      color: black;
+      margin-left: 5px;
+    }
   }
 
   .textarea {
@@ -29,9 +49,21 @@
 
   .selects {
     display: flex;
-    .select{
-      width:50%;
+
+    .select {
+      width: 50%;
     }
+  }
+
+
+  .add_btn,
+  .delete_btn {
+    width: 10%;
+  }
+
+  .exp_button {
+    display: flex;
+    justify-content: flex-end;
   }
 
   .edit_button {
@@ -47,10 +79,5 @@
       width: 40%;
       float: right;
     }
-  }
-  .close_icon{
-    position:absolute;
-    right: 15px;
-    cursor: pointer;
   }
 }

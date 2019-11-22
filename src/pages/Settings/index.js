@@ -24,6 +24,7 @@ const Settings = (props) => {
 
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
+  const userAccount = useState('alice0050722@gmail.com');
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [editUserName, setEditUserName] = useState('');
@@ -67,8 +68,8 @@ const Settings = (props) => {
   // const [defaultOpen, setDefaultOpen] = useState('HTML');
   // const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
   const editCountyOptions = ['基隆市', '台北市', '新北市', '桃園縣', '新竹市', '新竹縣', '苗栗縣', '台中市', '彰化縣', '南投縣', '雲林縣', '嘉義市', '嘉義縣', '台南市', '高雄市', '屏東縣', '台東縣', '花蓮縣', '宜蘭縣', '澎湖縣', '金門縣', '連江縣'];
-  
-const [defaultOpen, setDefaultOpen] = useState('HTML');
+
+  const [defaultOpen, setDefaultOpen] = useState('HTML');
   const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
@@ -114,7 +115,6 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
       editUserName,
       editUrl,
       editJob,
-      editEmail,
       editBirth,
       editTel,
       editAddress,
@@ -158,20 +158,20 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
               style={
                 avatar.length === 0
                   ? {
-                      backgroundImage: `url("${defaultAvatar}")`,
-                    }
+                    backgroundImage: `url("${defaultAvatar}")`,
+                  }
                   : {
-                      backgroundImage: `url("${imgPreviewUrl}")`,
-                    }
+                    backgroundImage: `url("${imgPreviewUrl}")`,
+                  }
               }
             >
               <input {...getInputProps()} />
             </div>
             <span className="tooltiptext">編輯大頭貼</span>
           </div>
-          <span className="subtitle">一般會員</span>
+          <p>Hi，{userAccount}! ｜ <span className="subtitle">一般會員</span></p>
           <div className="inputs">
-            <div className="left_sec">
+            <div className="sec1">
               <TextInput
                 title="使用者名稱"
                 type="text"
@@ -179,20 +179,6 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
                 onChange={e => setEditUserName(e.target.value)}
                 required
               />
-              <TextInput
-                title="連結"
-                type="url"
-                text={editUrl}
-                onChange={e => setEditUrl(e.target.value)}
-              />
-              <TextInput
-                title="職稱"
-                type="text"
-                text={editJob}
-                onChange={e => setEditJob(e.target.value)}
-              />
-            </div>
-            <div className="right_sec">
               <div className="right_sec_address">
                 <Select
                   title="縣市"
@@ -209,6 +195,14 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
                   required
                 />
               </div>
+            </div>
+            <div className="sec2">
+              <TextInput
+                title="連結"
+                type="url"
+                text={editUrl}
+                onChange={e => setEditUrl(e.target.value)}
+              />
               <DateInput
                 title="生日"
                 required
@@ -220,6 +214,14 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
                 onFocus={() => setIsBirthOnFocus(true)}
                 switchHandler={setIsBirthOnFocus}
               />
+            </div>
+            <div className="sec3">
+              <TextInput
+                title="職稱"
+                type="text"
+                text={editJob}
+                onChange={e => setEditJob(e.target.value)}
+              />
               <TextInput
                 title="聯絡電話"
                 type="tel"
@@ -228,6 +230,7 @@ const [defaultOpen, setDefaultOpen] = useState('HTML');
                 required
               />
             </div>
+
           </div>
           <div className="edit_button">
             <Button
