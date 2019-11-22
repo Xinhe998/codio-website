@@ -11,23 +11,25 @@ export const createProject = (payload, history) => {
       data: {
         m_no: payload.m_no,
         mp_name: payload.title,
-        mp_status: payload.privacy,
+        mp_hashtag: payload.tags,
+        mp_desc: payload.desc,
+        mp_isPublic: payload.privacy
       },
       headers: {
         Authorization: `bearer ${payload.token}`,
         'Content-Type': 'application/json',
       },
     };
+    console.log(postData);
     axios(postData)
       .then((res) => {
+        console.log(res);
         dispatch({ type: 'CREATE_PROJECT_SUCCESS', res });
         history.push(`/p/${res.data.mp_no}`);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         dispatch({ type: 'CREATE_PROJECT_FAILED', err });
       });
   };
 };
-
-export const logout = payload => ({ type: 'LOGOUT', payload });
