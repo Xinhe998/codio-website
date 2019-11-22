@@ -1,19 +1,29 @@
-.label {
-  padding: 3px;
-  border-radius: 5px;
-  width: 40px;
-  height: 20px;
-  font-size: 12px;
-  text-align: center;
-  line-height: 20px;
+.labels {
 
-  &.dark {
-    background: #3597ec;
-    color: white;
-  }
+  .label {
+    padding: 3px;
+    border-radius: 5px;
+    width: 40px;
+    height: 20px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    display: inline-block;
 
-  &.light {
     background: #e8f0fb;
     color: #3597ec;
+
+    // &.dark {
+    //   background: #3597ec;
+    //   color: white;
+    // }
+
+    // &.light {
+    //   background: #e8f0fb;
+    //   color: #3597ec;
+    // }
+
   }
 }

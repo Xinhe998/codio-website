@@ -23,24 +23,21 @@
   .select {
     padding: 10px 0;
   }
-
+  .title {
+    font-size: 22px;
+    font-weight: normal;
+    color: #263238;
+  }
+  .subtitle {
+    display: inline-block;
+    font-size: 14px;
+    color: black;
+    margin-left: 5px;
+  }
   .edit_exp_top {
     display: flex;
     margin-top: 50px;
     justify-content: space-between;
-
-    .title {
-      font-size: 22px;
-      font-weight: normal;
-      color: #263238;
-    }
-
-    .subtitle {
-      display: inline-block;
-      font-size: 14px;
-      color: black;
-      margin-left: 5px;
-    }
   }
 
   .textarea {

@@ -30,6 +30,7 @@ import Search from './pages/Search';
 import Settings from './pages/Settings';
 import Portfolio from './pages/Portfolio';
 import EditResume from './pages/EditResume';
+import Resume from './pages/Resume';
 
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
@@ -73,6 +74,7 @@ const CodioSwitch = ({ location }) => {
         <Route path="/p/:id" component={App} />
         <Route exact path="/homePage" component={HomePage} />
         <Route path="/homePage/edit_resume" component={EditResume} />
+        <Route path="/homePage/resume" component={Resume} />
         <Route path="/search" component={Search} />
         <Route path="/settings" component={Settings} />
         <Route path="/portfolio" component={Portfolio} />
