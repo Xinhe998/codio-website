@@ -1,9 +1,12 @@
-.main_section_btn {
+.actions_wrapper {
   width: 74%;
-  margin: 40px auto 0 auto;
-
-  .layoutBtn {
-    display: flex;
-    flex-direction: row-reverse;
+  margin: 30px auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  & > button {
+    height: 40px;
+    font-size: 16px;
+    margin-left: 20px;
   }
 }

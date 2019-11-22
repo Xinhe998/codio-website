@@ -8,7 +8,7 @@ class LayoutBtn extends Component {
       children,
     } = this.props;
     return (
-      <div className="main_section_btn">
+      <div className="actions_wrapper">
         {children}
       </div>
 

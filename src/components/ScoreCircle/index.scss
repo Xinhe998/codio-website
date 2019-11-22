@@ -11,6 +11,7 @@
   background-clip: padding-box;
   font-size: 16px;
   font-weight: 500;
+  position: relative;
   &.theme_red {
     background: #ec5252;
     border-color: rgb(236, 82, 82);
@@ -31,4 +32,12 @@
     -webkit-background-clip: padding-box; /* for Safari */
     background-clip: padding-box;
   }
+}
+.score_circle_desc {
+  font-size: 12px;
+  position: absolute;
+  color: #707070;
+  width: max-content;
+  bottom: -40px;
+  font-weight: 400;
 }

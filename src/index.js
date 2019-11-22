@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Redirect, IndexRoute } from 'react-router-dom';
+import {
+  Router,
+  Route,
+  Switch,
+  Redirect,
+  IndexRoute,
+} from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -27,6 +34,7 @@ import EditResume from './pages/EditResume';
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
 
+const history = createBrowserHistory();
 const persistConfig = {
   key: 'root',
   storage,
@@ -40,7 +48,7 @@ const store = createStore(
     applyMiddleware(thunk),
     // eslint-disable-next-line no-underscore-dangle
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__(),
+      window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
 
@@ -50,9 +58,13 @@ const notfound = () => <h1>404</h1>;
 
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
-  const isModal = !!(location.state && location.state.modal && previousLocation);
+  const isModal = !!(
+    location.state &&
+    location.state.modal &&
+    previousLocation
+  );
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch location={isModal ? previousLocation : location}>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
@@ -68,8 +80,10 @@ const CodioSwitch = ({ location }) => {
         <Route component={notfound} />
         <Route exact path="/" component={App} />
       </Switch>
-      {isModal ? <Route path="/forget_password" component={ForgetPasswordModal} /> : null}
-    </BrowserRouter>
+      {isModal ? (
+        <Route path="/forget_password" component={ForgetPasswordModal} />
+      ) : null}
+    </Router>
   );
 };
 
@@ -80,9 +94,9 @@ CodioSwitch.propTypes = {
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
+      <Router history={history}>
         <Route component={CodioSwitch} />
-      </BrowserRouter>
+      </Router>
     </PersistGate>
   </Provider>,
   document.getElementById('root'),

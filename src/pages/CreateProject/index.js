@@ -59,7 +59,7 @@ const CreateProject = (props) => {
         shouldCloseOnClickOutside={false}
         showControlBtn={false}
         title="新增專案"
-        onClose={() => props.history.push('/')}
+        onClose={() => props.history.goBack()}
         className="CreateProjectModal"
       >
         <div className="createProjectForm">
@@ -125,7 +125,7 @@ const CreateProject = (props) => {
                 text="取消"
                 type="outline"
                 size="small"
-                onClick={() => history.push('/')}
+                onClick={() => props.history.goBack()}
               />
               <Button
                 className="createProject_btn"

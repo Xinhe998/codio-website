@@ -74,8 +74,6 @@ const Settings = (props) => {
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
 
-  console.log(avatar);
-
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     multiple: false,
@@ -140,7 +138,7 @@ const Settings = (props) => {
         theme = 'black';
         break;
       default:
-        theme = 'white';
+        theme = 'light';
         break;
     }
     return theme;

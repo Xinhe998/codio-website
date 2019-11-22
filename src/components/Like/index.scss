@@ -1,0 +1,30 @@
+.like {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  user-select: none;
+
+  .heart {
+    width: 30px;
+    height: 30px;
+    background-color: #ffe0e0;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 5px;
+    cursor: pointer;
+
+    .heart_icon {
+      color: #ec5252;
+      width: 18px;
+      height: 15px;
+      position: absolute;
+      top: calc(50% / 2);
+      right: 6px;
+    }
+  }
+}
+
+.likes_number {
+  color: #ec5252;
+}

@@ -2,32 +2,12 @@
   color: black;
 
   .user_profile {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 3%;
-    display: flex;
-
-    .user_img {
-      margin-right: 30px;
-    }
-
-    span {
-      margin-right: 20px;
-
-      svg {
-        margin-right: 10px;
-      }
-    }
+    width: 74%;
+    margin: 30px auto 0;
   }
-   .add_project_btn {
-      width: 10%;
-      float: right;
-    }
 }
 
-
-
-.tool {
+.toolbar {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 30px;
@@ -52,16 +32,6 @@
   }
 }
 
-.resumeBtn span {
-  display: block;
-  line-height: 2;
-  cursor: pointer;
-}
-
-.resumeBtn span:hover {
-  color: #3597ec;
-}
-
 .project_dropDown span {
   display: block;
   line-height: 2;
@@ -70,4 +40,12 @@
 
 .project_dropDown span:hover {
   color: #3597ec;
+}
+
+.createNewProjectBtn {
+  width: 20% !important;
+}
+
+.resumeBtn {
+  width: 20%;
 }
