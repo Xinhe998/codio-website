@@ -6561,17 +6561,9 @@ initialize {
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": Object {
                                   "attribs": Object {
-                                    "class": "label dark colordark",
+                                    "class": "labels",
                                   },
-                                  "children": Array [
-                                    Object {
-                                      "data": "標籤",
-                                      "next": null,
-                                      "parent": [Circular],
-                                      "prev": null,
-                                      "type": "text",
-                                    },
-                                  ],
+                                  "children": Array [],
                                   "name": "div",
                                   "namespace": "http://www.w3.org/1999/xhtml",
                                   "next": Object {
@@ -6844,17 +6836,9 @@ initialize {
                               },
                               Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": Object {
@@ -7528,17 +7512,9 @@ initialize {
                                 "parent": [Circular],
                                 "prev": Object {
                                   "attribs": Object {
-                                    "class": "label dark colordark",
+                                    "class": "labels",
                                   },
-                                  "children": Array [
-                                    Object {
-                                      "data": "標籤",
-                                      "next": null,
-                                      "parent": [Circular],
-                                      "prev": null,
-                                      "type": "text",
-                                    },
-                                  ],
+                                  "children": Array [],
                                   "name": "div",
                                   "namespace": "http://www.w3.org/1999/xhtml",
                                   "next": [Circular],
@@ -7965,17 +7941,9 @@ initialize {
                                   "parent": [Circular],
                                   "prev": Object {
                                     "attribs": Object {
-                                      "class": "label dark colordark",
+                                      "class": "labels",
                                     },
-                                    "children": Array [
-                                      Object {
-                                        "data": "標籤",
-                                        "next": null,
-                                        "parent": [Circular],
-                                        "prev": null,
-                                        "type": "text",
-                                      },
-                                    ],
+                                    "children": Array [],
                                     "name": "div",
                                     "namespace": "http://www.w3.org/1999/xhtml",
                                     "next": [Circular],
@@ -8370,17 +8338,9 @@ initialize {
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": Object {
@@ -8653,17 +8613,9 @@ initialize {
                             },
                             Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -9337,17 +9289,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -9774,17 +9718,9 @@ initialize {
                                 "parent": [Circular],
                                 "prev": Object {
                                   "attribs": Object {
-                                    "class": "label dark colordark",
+                                    "class": "labels",
                                   },
-                                  "children": Array [
-                                    Object {
-                                      "data": "標籤",
-                                      "next": null,
-                                      "parent": [Circular],
-                                      "prev": null,
-                                      "type": "text",
-                                    },
-                                  ],
+                                  "children": Array [],
                                   "name": "div",
                                   "namespace": "http://www.w3.org/1999/xhtml",
                                   "next": [Circular],
@@ -11702,17 +11638,9 @@ initialize {
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": Object {
@@ -11985,17 +11913,9 @@ initialize {
                             },
                             Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -12669,17 +12589,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -13106,17 +13018,9 @@ initialize {
                                 "parent": [Circular],
                                 "prev": Object {
                                   "attribs": Object {
-                                    "class": "label dark colordark",
+                                    "class": "labels",
                                   },
-                                  "children": Array [
-                                    Object {
-                                      "data": "標籤",
-                                      "next": null,
-                                      "parent": [Circular],
-                                      "prev": null,
-                                      "type": "text",
-                                    },
-                                  ],
+                                  "children": Array [],
                                   "name": "div",
                                   "namespace": "http://www.w3.org/1999/xhtml",
                                   "next": [Circular],
@@ -13511,17 +13415,9 @@ initialize {
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -13794,17 +13690,9 @@ initialize {
                           },
                           Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -14478,17 +14366,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -14915,17 +14795,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -20583,17 +20455,9 @@ initialize {
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -20866,17 +20730,9 @@ initialize {
                           },
                           Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -21550,17 +21406,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -21987,17 +21835,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -22392,17 +22232,9 @@ initialize {
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -22675,17 +22507,9 @@ initialize {
                         },
                         Object {
                           "attribs": Object {
-                            "class": "label dark colordark",
+                            "class": "labels",
                           },
-                          "children": Array [
-                            Object {
-                              "data": "標籤",
-                              "next": null,
-                              "parent": [Circular],
-                              "prev": null,
-                              "type": "text",
-                            },
-                          ],
+                          "children": Array [],
                           "name": "div",
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
@@ -23359,17 +23183,9 @@ initialize {
                           "parent": [Circular],
                           "prev": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": [Circular],
@@ -23796,17 +23612,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -33713,17 +33521,9 @@ initialize {
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": Object {
@@ -33996,17 +33796,9 @@ initialize {
                             },
                             Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -34680,17 +34472,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -35117,17 +34901,9 @@ initialize {
                                 "parent": [Circular],
                                 "prev": Object {
                                   "attribs": Object {
-                                    "class": "label dark colordark",
+                                    "class": "labels",
                                   },
-                                  "children": Array [
-                                    Object {
-                                      "data": "標籤",
-                                      "next": null,
-                                      "parent": [Circular],
-                                      "prev": null,
-                                      "type": "text",
-                                    },
-                                  ],
+                                  "children": Array [],
                                   "name": "div",
                                   "namespace": "http://www.w3.org/1999/xhtml",
                                   "next": [Circular],
@@ -35522,17 +35298,9 @@ initialize {
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -35805,17 +35573,9 @@ initialize {
                           },
                           Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -36489,17 +36249,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -36926,17 +36678,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -38854,17 +38598,9 @@ initialize {
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": Object {
@@ -39137,17 +38873,9 @@ initialize {
                           },
                           Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -39821,17 +39549,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -40258,17 +39978,9 @@ initialize {
                               "parent": [Circular],
                               "prev": Object {
                                 "attribs": Object {
-                                  "class": "label dark colordark",
+                                  "class": "labels",
                                 },
-                                "children": Array [
-                                  Object {
-                                    "data": "標籤",
-                                    "next": null,
-                                    "parent": [Circular],
-                                    "prev": null,
-                                    "type": "text",
-                                  },
-                                ],
+                                "children": Array [],
                                 "name": "div",
                                 "namespace": "http://www.w3.org/1999/xhtml",
                                 "next": [Circular],
@@ -40663,17 +40375,9 @@ initialize {
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -40946,17 +40650,9 @@ initialize {
                         },
                         Object {
                           "attribs": Object {
-                            "class": "label dark colordark",
+                            "class": "labels",
                           },
-                          "children": Array [
-                            Object {
-                              "data": "標籤",
-                              "next": null,
-                              "parent": [Circular],
-                              "prev": null,
-                              "type": "text",
-                            },
-                          ],
+                          "children": Array [],
                           "name": "div",
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
@@ -41630,17 +41326,9 @@ initialize {
                           "parent": [Circular],
                           "prev": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": [Circular],
@@ -42067,17 +41755,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -47735,17 +47415,9 @@ initialize {
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": Object {
@@ -48018,17 +47690,9 @@ initialize {
                         },
                         Object {
                           "attribs": Object {
-                            "class": "label dark colordark",
+                            "class": "labels",
                           },
-                          "children": Array [
-                            Object {
-                              "data": "標籤",
-                              "next": null,
-                              "parent": [Circular],
-                              "prev": null,
-                              "type": "text",
-                            },
-                          ],
+                          "children": Array [],
                           "name": "div",
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
@@ -48702,17 +48366,9 @@ initialize {
                           "parent": [Circular],
                           "prev": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": [Circular],
@@ -49139,17 +48795,9 @@ initialize {
                             "parent": [Circular],
                             "prev": Object {
                               "attribs": Object {
-                                "class": "label dark colordark",
+                                "class": "labels",
                               },
-                              "children": Array [
-                                Object {
-                                  "data": "標籤",
-                                  "next": null,
-                                  "parent": [Circular],
-                                  "prev": null,
-                                  "type": "text",
-                                },
-                              ],
+                              "children": Array [],
                               "name": "div",
                               "namespace": "http://www.w3.org/1999/xhtml",
                               "next": [Circular],
@@ -49544,17 +49192,9 @@ initialize {
                         "namespace": "http://www.w3.org/1999/xhtml",
                         "next": Object {
                           "attribs": Object {
-                            "class": "label dark colordark",
+                            "class": "labels",
                           },
-                          "children": Array [
-                            Object {
-                              "data": "標籤",
-                              "next": null,
-                              "parent": [Circular],
-                              "prev": null,
-                              "type": "text",
-                            },
-                          ],
+                          "children": Array [],
                           "name": "div",
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": Object {
@@ -49827,17 +49467,9 @@ initialize {
                       },
                       Object {
                         "attribs": Object {
-                          "class": "label dark colordark",
+                          "class": "labels",
                         },
-                        "children": Array [
-                          Object {
-                            "data": "標籤",
-                            "next": null,
-                            "parent": [Circular],
-                            "prev": null,
-                            "type": "text",
-                          },
-                        ],
+                        "children": Array [],
                         "name": "div",
                         "namespace": "http://www.w3.org/1999/xhtml",
                         "next": Object {
@@ -50511,17 +50143,9 @@ initialize {
                         "parent": [Circular],
                         "prev": Object {
                           "attribs": Object {
-                            "class": "label dark colordark",
+                            "class": "labels",
                           },
-                          "children": Array [
-                            Object {
-                              "data": "標籤",
-                              "next": null,
-                              "parent": [Circular],
-                              "prev": null,
-                              "type": "text",
-                            },
-                          ],
+                          "children": Array [],
                           "name": "div",
                           "namespace": "http://www.w3.org/1999/xhtml",
                           "next": [Circular],
@@ -50948,17 +50572,9 @@ initialize {
                           "parent": [Circular],
                           "prev": Object {
                             "attribs": Object {
-                              "class": "label dark colordark",
+                              "class": "labels",
                             },
-                            "children": Array [
-                              Object {
-                                "data": "標籤",
-                                "next": null,
-                                "parent": [Circular],
-                                "prev": null,
-                                "type": "text",
-                              },
-                            ],
+                            "children": Array [],
                             "name": "div",
                             "namespace": "http://www.w3.org/1999/xhtml",
                             "next": [Circular],
