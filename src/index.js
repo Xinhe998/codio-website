@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {
-  Router, Route, Switch, Redirect, IndexRoute,
+  Router, Route, Switch,
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
@@ -38,17 +38,16 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, storeFs);
-const devTools = process.env.NODE_ENV === 'development'
+
+const composeSetup = process.env.NODE_ENV !== 'production'
+  && typeof window === 'object'
+  && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
-  : null;
+  : compose;
 
 const store = createStore(
   persistedReducer,
-  compose(
-    applyMiddleware(thunk),
-    devTools,
-  ),
+  composeSetup(applyMiddleware(thunk)),
 );
 
 const persistor = persistStore(store);
