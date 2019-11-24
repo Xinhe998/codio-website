@@ -52,7 +52,7 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-const notfound = () => <h1>404</h1>;
+const notfound = () => <h1>404 Not Found.</h1>;
 
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
