@@ -15,22 +15,43 @@ const editorInitialState = {
   css: '',
   js: '',
   logs: '',
+  errorMsg: '',
+  isLoading: false,
 };
 
 
 export default function (state = editorInitialState, action) {
   switch (action.type) {
-  case 'ADD_HTML': {
-    return Object.assign({}, state, { html: action.payload });
-  }
-  case 'ADD_CSS': {
-    return Object.assign({}, state, { css: action.payload });
-  }
-  case 'ADD_JS': {
-    return Object.assign({}, state, { js: action.payload });
+  case 'UPDATE_CODE': {
+    return Object.assign({}, state, {
+      html: action.payload.html,
+      css: action.payload.css,
+      js: action.payload.js,
+    });
   }
   case 'ADD_LOGS': {
     return Object.assign({}, state, { logs: action.payload });
+  }
+  case 'UPDATE_HTML': {
+    return Object.assign({}, state, { html: action.payload });
+  }
+  case 'UPDATE_CSS': {
+    return Object.assign({}, state, { css: action.payload });
+  }
+  case 'UPDATE_JS': {
+    return Object.assign({}, state, { js: action.payload });
+  }
+  case 'GET_CODE_REQUEST': {
+    return { ...state, isLoading: true, errorMsg: null };
+  }
+  case 'GET_CODE_SUCCESS': {
+    return { ...state, isLoading: false, errorMsg: null };
+  }
+  case 'GET_CODE_FAILED': {
+    return { ...state, isLoading: false, errorMsg: action.err };
+  }
+  case 'RESET': {
+    return editorInitialState;
   }
   default:
     return state;

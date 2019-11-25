@@ -7,7 +7,6 @@ import {
   withRouter,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createBrowserHistory as createHistory } from 'history';
 import action from '../../actions';
 
 import Layout from '../../components/Layout';
@@ -34,6 +33,7 @@ const renderPortfolioPage = ({ match, history }) => {
   const [editorCurrentType, setEditorCurrentType] = useState('text');
   const [editorCurrentValue, setEditorCurrentValue] = useState('');
   const [contents, setContents] = useState([]);
+  const [isUpdate, setIsUpdate] = useState(false);
   const contentsLength = Object.keys(contents).length;
 
   const elRef = React.useMemo(
@@ -104,7 +104,18 @@ const renderPortfolioPage = ({ match, history }) => {
             }}
           />
         </LayoutBtn>
-      ) : null}
+      ) : (
+        <LayoutBtn>
+          <Button
+            className="edit_portfolio_btn"
+            text="儲存"
+            type="primary"
+            size="small"
+            theme="red"
+            onClick={() => {}}
+          />
+        </LayoutBtn>
+      )}
       <div className="main_section">
         <div className="portfolio_titlebar">
           {isEditMode ? (
