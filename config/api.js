@@ -1,7 +1,8 @@
+let API_URL = '';
 if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI || process.env.CI) {
-  var { API_URL } = process.env;
+  API_URL = process.env.API_URL;
 } else {
-  var API_URL = require('./project_config').api.url2;
+  API_URL = require('./project_config').api.url2;
 }
 
 module.exports = {
