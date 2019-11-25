@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI) {
+if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI || process.env.CI) {
   var { API_URL } = process.env;
 } else {
   var API_URL = require('./project_config').api.url2;
