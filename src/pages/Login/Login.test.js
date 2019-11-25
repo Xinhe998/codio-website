@@ -34,6 +34,7 @@ describe('Login', function () {
   });
   describe('when it has complete data', () => {
     beforeEach(() => {
+      store.dispatch = jest.fn();
       this.subject = this.makeSubject();
     });
 
