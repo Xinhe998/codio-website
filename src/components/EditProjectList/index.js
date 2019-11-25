@@ -19,6 +19,7 @@ const EditProjectList = ({
       <h3>{projectName}</h3>
     </div>
     <Label
+      className="label"
       labels={text}
     />
     <p className="edit_project_description">{projectDescription}</p>

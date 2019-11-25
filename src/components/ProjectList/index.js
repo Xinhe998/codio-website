@@ -35,7 +35,7 @@ const ProjectList = ({
         {isOpen ? <div className="project_dropDown" ref={dropDownRef}>{children}</div> : null}
       </div>
       <Label
-        className="label dark"
+        className="label"
         text="標籤"
 
       />
