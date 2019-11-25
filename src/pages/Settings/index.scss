@@ -1,9 +1,10 @@
 @import "../../../styles/main.scss";
+
 .settings {
   .main_section {
     padding-bottom: 0px;
   }
-  
+
   .textinput {
     padding: 10px 0;
   }
@@ -20,8 +21,8 @@
     outline: 0;
     cursor: pointer;
     margin-bottom: 5px;
-    clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%);
-    -webkit-clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
     background-size: cover;
     background-position: center;
     border-radius: 15px;
@@ -29,31 +30,67 @@
   }
 
   .edit_info {
-    .subtitle {
-      display: block;
+    p {
+      color: black;
       font-size: 18px;
-      color: #3597ec;
-      margin-top: 35px;
-      margin-bottom: 30px;
+      letter-spacing: 2px;
+
+      .subtitle {
+        display: inline-block;
+        color: #3597ec;
+        margin-top: 35px;
+        margin-bottom: 30px;
+      }
     }
 
     .inputs {
-      display: flex;
-      flex-direction: row;
 
-      .left_sec {
-        width: 50%;
-      }
+      // display: flex;
+      // flex-direction: row;
+      .sec1,.sec2,.sec3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
 
-      .right_sec {
-        width: 50%;
-        // .textinput{
-        //   float: right;
-        // }
-        .right_sec_address{
-          display: flex;
+        .textinput {
+          width: 45%;
+        }
+        .DateInput{
+          width: 50%;
+          .textinput{
+            width: 100%;
+          }
         }
       }
+
+      .right_sec_address {
+        // display: flex;
+        // .select{
+        //   width:25%;
+        // }
+        // .textinput{
+        //   width:55%;
+        //   margin-left:2px;
+        // }
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        .select{
+          width: 25%;
+        }
+        .textinput{
+          width: 70%;
+        }
+      }
+      .sec3{
+        .tel_input{
+          width:50%;
+          .textinput{
+            width:100%;
+          }
+        }
+      }
+
     }
 
     .textinput {
@@ -67,11 +104,10 @@
 
     .subtitle {
       display: block;
-      font-size: 18px;
       color: #707070;
+      font-size: 18px;
       margin-bottom: 30px;
       margin-top: 30px;
-
     }
 
     .radioButtonGroup__option {
@@ -201,14 +237,14 @@
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0, 0, 0, .8);
   color: #fff;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
   font-size: 12px;
   letter-spacing: 1px;
- 
+
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
@@ -226,12 +262,13 @@
 .tooltip .tooltiptext::after {
   content: " ";
   position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
+  bottom: 100%;
+  /* At the top of the tooltip */
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent rgba(0,0,0,.8) transparent;
+  border-color: transparent transparent rgba(0, 0, 0, .8) transparent;
 }
 
 .tooltip .tooltiptext {

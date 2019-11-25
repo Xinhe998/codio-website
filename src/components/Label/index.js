@@ -7,30 +7,37 @@ class Label extends Component {
   render() {
     const {
       className,
-      color,
-      text,
+      // color,
+      labels,
     } = this.props;
     return (
-      <div
-        className={classNames(
-          className,
-          color ? `color${color}` : null,
-        )}
-      >
-        {text}
+
+      <div className="labels">
+
+        {labels.map((text, index) => (
+          <div
+            className={classNames(
+              className,
+            // color,
+            )}
+            key={index}
+          >
+            {text}
+          </div>
+        ))}
       </div>
     );
   }
 }
 
 Label.propTypes = {
-  text: PropTypes.string,
+  labels: PropTypes.array,
   className: PropTypes.string,
-  color: PropTypes.string,
+  // color: PropTypes.string,
 };
 
 Label.defaultProps = {
-  text: '',
-  color: 'dark',
+  labels: [],
+  // color: 'light',
 };
 export default Label;

@@ -2,11 +2,15 @@ const userInitialState = {
   token: '',
   m_no: '',
   m_account: '',
+  m_pasword: '',
   m_name: '',
   m_sex: '',
   m_birthday: '',
   m_phone: '',
   m_address: '',
+  m_address_title: null,
+  m_position: null,
+  m_like: null,
   role_no: '',
   isLoading: false,
   errorMsg: null,
@@ -19,7 +23,7 @@ export default function (state = userInitialState, action) {
   }
   case 'LOGIN_SUCCESS': {
     const {
-      data: { token, member },
+      data: { token, data },
       status,
     } = action.res;
     return status === 200
@@ -27,7 +31,7 @@ export default function (state = userInitialState, action) {
         ...state,
         isLoading: false,
         token,
-        ...member,
+        ...data,
         errorMsg: null,
       }
       : state;

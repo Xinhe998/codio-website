@@ -5,12 +5,11 @@ if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI) {
 }
 
 module.exports = {
-  register: `${API_URL}/register/register`,
-  login: `${API_URL}/login/login`,
+  register: `${API_URL}/Members/Register`,
+  login: `${API_URL}/Members/Login`,
   create_project: `${API_URL}/Project/CRproject`,
   create_file: `${API_URL}/member/CRjDetail`,
-  update_file: `${API_URL}/member/UPPjDetail`,
-  forget_password: `${API_URL}/Register/ForgetPwd`,
+  forget_password: `${API_URL}/Members/ForgetPassword?E_mail=`,
   get_all_tags: `${API_URL}/Project/GetAllHashtag`,
   add_tag: `${API_URL}/Project/AddTag?newTag=`,
 };
