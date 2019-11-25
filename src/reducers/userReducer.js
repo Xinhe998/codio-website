@@ -3,7 +3,6 @@ const userInitialState = {
   m_no: '',
   m_account: '',
   m_name: '',
-  m_sex: '',
   m_birthday: '',
   m_phone: '',
   m_address: '',

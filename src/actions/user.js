@@ -9,7 +9,7 @@ export const login = (payload, history) => {
       .post(URL, { m_account: payload.id, m_password: payload.password })
       .then((res) => {
         dispatch({ type: 'LOGIN_SUCCESS', res });
-        history.push('/create_project');
+        history.push('/homePage');
       })
       .catch(err => dispatch({ type: 'LOGIN_FAILED', err }));
   };
@@ -21,9 +21,9 @@ export const register = (payload, history) => {
     dispatch({ type: 'REGISTER_REQUEST', payload });
     axios
       .post(URL, {
-        m_account: payload.id,
-        m_password: payload.password,
         m_name: payload.name,
+        m_account: payload.id,
+        m_pasword: payload.password,
         m_birthday: payload.birth,
         m_phone: payload.phone,
         m_address: payload.address,
@@ -41,7 +41,7 @@ export const forgetPassword = (payload, history) => {
   return (dispatch) => {
     dispatch({ type: 'FORGET_PASSWORD_REQUEST', payload });
     axios
-      .post(URL, {
+      .get(URL, {
         m_account: payload,
       })
       .then((res) => {

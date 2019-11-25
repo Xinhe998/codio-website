@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-import { isRequired, isEmail, isNumber, hasDigit, isEqual } from 'calidators';
+import {
+  isRequired, isNumber, hasDigit, isEqual,
+} from 'calidators';
 import { useDropzone } from 'react-dropzone';
 
 import action from '../../actions';
@@ -24,7 +26,7 @@ const Settings = (props) => {
 
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
-  const userAccount = useState('alice0050722@gmail.com');
+  const [userAccount, setUserAccount] = useState('alice0050722@gmail.com');
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [editUserName, setEditUserName] = useState('');
@@ -65,12 +67,8 @@ const Settings = (props) => {
 
   const [themeColor, setThemeColor] = useState('深藍色');
   const themeColorOptions = ['深藍色', '黑色', '淺色'];
-  // const [defaultOpen, setDefaultOpen] = useState('HTML');
-  // const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
   const editCountyOptions = ['基隆市', '台北市', '新北市', '桃園縣', '新竹市', '新竹縣', '苗栗縣', '台中市', '彰化縣', '南投縣', '雲林縣', '嘉義市', '嘉義縣', '台南市', '高雄市', '屏東縣', '台東縣', '花蓮縣', '宜蘭縣', '澎湖縣', '金門縣', '連江縣'];
 
-  const [defaultOpen, setDefaultOpen] = useState('HTML');
-  const defaultOptions = ['HTML', 'CSS', 'JS', 'Console', 'View'];
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
 
@@ -80,16 +78,14 @@ const Settings = (props) => {
     onDrop: (acceptedFiles) => {
       seAvatartIsUplaoding(true);
       setAvatar(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
-        ),
+        acceptedFiles.map(file => Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })),
       );
     },
   });
 
-  const ImgPreview = avatar.map((img) => (
+  const ImgPreview = avatar.map(img => (
     <div key={img.name}>
       <div className="imgupload_preview">
         <img src={img.preview} alt="avatar" />
@@ -97,9 +93,7 @@ const Settings = (props) => {
     </div>
   ));
 
-  const imgPreviewUrl = avatar.map((img) => {
-    return img.preview;
-  });
+  const imgPreviewUrl = avatar.map(img => img.preview);
 
   const loginHandler = () => {
     const loginData = {
@@ -131,15 +125,15 @@ const Settings = (props) => {
   const handleThemeColor = (theme_text) => {
     let theme = '';
     switch (theme_text) {
-      case '深藍色':
-        theme = 'navy';
-        break;
-      case '黑色':
-        theme = 'black';
-        break;
-      default:
-        theme = 'light';
-        break;
+    case '深藍色':
+      theme = 'navy';
+      break;
+    case '黑色':
+      theme = 'black';
+      break;
+    default:
+      theme = 'light';
+      break;
     }
     return theme;
   };
@@ -168,7 +162,13 @@ const Settings = (props) => {
               </div>
               <span className="tooltiptext">編輯大頭貼</span>
             </div>
-            <p>Hi，{userAccount}! ｜ <span className="subtitle">一般會員</span></p>
+            <p>
+Hi，
+              {userAccount}
+! ｜
+              {' '}
+              <span className="subtitle">一般會員</span>
+            </p>
             <div className="inputs">
               <div className="sec1">
                 <TextInput
@@ -336,7 +336,7 @@ const Settings = (props) => {
               text="儲存"
               type="primary"
               size="small"
-            // onClick={handleEdit}
+              onClick={handleThemeColor}
             />
           </div>
         </div>

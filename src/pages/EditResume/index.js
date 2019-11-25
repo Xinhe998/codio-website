@@ -225,7 +225,7 @@ const EditResume = (props) => {
             <EditProjectList
               projectName="1234"
               projectDescription="1234"
-              isCloseIcon
+              isShowCloseIcon
             />
           </div>
           <div className="edit_button">

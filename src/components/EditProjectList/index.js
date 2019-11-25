@@ -12,7 +12,7 @@ const EditProjectList = ({
   projectName,
   onClick,
   projectDescription,
-  isCloseIcon,
+  isShowCloseIcon,
 }) => (
   <div className="edit_project_list">
     <div className="edit_project_title">
@@ -22,7 +22,7 @@ const EditProjectList = ({
       labels={text}
     />
     <p className="edit_project_description">{projectDescription}</p>
-    {isCloseIcon
+    {isShowCloseIcon
       ? (
         <div className="close_icon">
           <IoIosCloseCircle
@@ -41,13 +41,13 @@ EditProjectList.propTypes = {
   projectName: PropTypes.string,
   onClick: PropTypes.func,
   projectDescription: PropTypes.string,
-  isCloseIcon: PropTypes.bool,
+  isShowCloseIcon: PropTypes.bool,
 };
 
 EditProjectList.defaultProps = {
   projectName: '',
   projectDescription: '',
-  isCloseIcon: false,
+  isShowCloseIcon: false,
 };
 
 const mapStateToProps = store => ({
