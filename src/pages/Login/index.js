@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
+  Link,
   withRouter,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -38,7 +39,7 @@ const Login = (props) => {
     };
     props.login(loginData, props.history);
   };
-  const renderLoginPage = () => (
+  const RenderLoginPage = () => (
     <div className="Login">
       <AppHeader isDropdownVisible={false} isTabVisible={false} />
       <div className="AppContent">
@@ -106,7 +107,7 @@ const Login = (props) => {
     <Router>
       <div>
         <Route exact path="/" component={App} />
-        {isAuthed ? <Redirect to="/" /> : renderLoginPage}
+        {isAuthed ? <Redirect to="/" /> : <RenderLoginPage />}
       </div>
     </Router>
   );

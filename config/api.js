@@ -11,4 +11,6 @@ module.exports = {
   create_file: `${API_URL}/member/CRjDetail`,
   update_file: `${API_URL}/Members/UpdateMember`,
   forget_password: `${API_URL}/Members/ForgetPassword?E_mail=`,
+  get_all_tags: `${API_URL}/Project/GetAllHashtag`,
+  add_tag: `${API_URL}/Project/AddTag?newTag=`,
 };

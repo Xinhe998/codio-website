@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isRequired } from 'calidators';
@@ -18,8 +18,20 @@ import './index.scss';
 import boostrapImg from '../../assets/bootstrap.svg';
 import htmlImg from '../../assets/html.svg';
 
-const CreateProject = (props) => {
-  const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];
+const CreateProject = ({
+  history,
+  user,
+  tags,
+  createProject,
+  getAllTags,
+  addTag,
+}) => {
+  useEffect(() => {
+    getAllTags({
+      token: user.token,
+    });
+  }, []);
+
   const privacyOptions = ['公開', '私人'];
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
@@ -33,22 +45,33 @@ const CreateProject = (props) => {
   const handleSelectProjectTemplate = (template) => {
     const index = projectTemplate.indexOf(template);
     if (index !== -1) {
-      setProjectTemplate(projectTemplate.filter(item => item !== template));
+      setProjectTemplate(projectTemplate.filter((item) => item !== template));
     } else {
       setProjectTemplate([template, ...projectTemplate]);
     }
   };
   const createProjectHandler = () => {
+    const projectTagsData = projectTags.map((t) => t.toLowerCase());
     const projectData = {
-      m_no: props.user.m_no,
-      token: props.user.token,
+      m_no: user.m_no,
+      token: user.token,
       title: projectTitle,
       desc: projectDesc,
       privacy: projectPrivacy === '公開',
-      tags: projectTags,
+      tags: projectTagsData.toString(),
       snippets: projectTemplate,
     };
-    props.createProject(projectData, props.history);
+    if (JSON.stringify(projectTagsData) !== JSON.stringify(tags)) {
+      projectTagsData.map((tag) => {
+        if (!tags.includes(tag)) {
+          addTag({
+            token: user.token,
+            tagName: tag,
+          });
+        }
+      });
+    }
+    createProject(projectData, history);
   };
   return (
     <div className="CreateProject">
@@ -59,7 +82,7 @@ const CreateProject = (props) => {
         shouldCloseOnClickOutside={false}
         showControlBtn={false}
         title="新增專案"
-        onClose={() => props.history.goBack()}
+        onClose={() => history.goBack()}
         className="CreateProjectModal"
       >
         <div className="createProjectForm">
@@ -69,19 +92,19 @@ const CreateProject = (props) => {
               title="標題"
               type="text"
               text={projectTitle}
-              onChange={e => setProjectTitle(e.target.value)}
+              onChange={(e) => setProjectTitle(e.target.value)}
               required
             />
             <MultiSelect
               title="類別"
-              options={fakeOptions}
+              options={tags}
               selectedItems={projectTags}
               onChange={setProjectTags}
             />
             <TextArea
               title="描述"
               text={projectDesc}
-              onChange={e => setProjectDesc(e.target.value)}
+              onChange={(e) => setProjectDesc(e.target.value)}
               maxHeight={80}
             />
             <RadioButtonGroup
@@ -125,7 +148,7 @@ const CreateProject = (props) => {
                 text="取消"
                 type="outline"
                 size="small"
-                onClick={() => props.history.goBack()}
+                onClick={() => history.goBack()}
               />
               <Button
                 className="createProject_btn"
@@ -143,11 +166,13 @@ const CreateProject = (props) => {
   );
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   editor: store.editor,
   user: store.user,
   project: store.project,
+  tags: store.tags,
 });
+
 export default withRouter(
   connect(
     mapStateToProps,

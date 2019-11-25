@@ -1,12 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {
-  Router,
-  Route,
-  Switch,
-  Redirect,
-  IndexRoute,
+  Router, Route, Switch,
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
@@ -43,26 +40,27 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, storeFs);
 
+const composeSetup = process.env.NODE_ENV !== 'production'
+  && typeof window === 'object'
+  && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  : compose;
+
 const store = createStore(
   persistedReducer,
-  compose(
-    applyMiddleware(thunk),
-    // eslint-disable-next-line no-underscore-dangle
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__(),
-  ),
+  composeSetup(applyMiddleware(thunk)),
 );
 
 const persistor = persistStore(store);
 
-const notfound = () => <h1>404</h1>;
+const notfound = () => <h1>404 Not Found.</h1>;
 
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
   const isModal = !!(
-    location.state &&
-    location.state.modal &&
-    previousLocation
+    location.state
+    && location.state.modal
+    && previousLocation
   );
   return (
     <Router history={history}>
