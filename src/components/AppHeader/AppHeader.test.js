@@ -64,10 +64,6 @@ describe('AppHeader', function() {
     it('should find div', async () => {
       expect(testComp.find('.AppHeader'));
     });
-    // 測試 UserInfo
-    it('should render UserInfo icon', () => {
-      expect(testComp.find('.userinfo').find('img').prop('src')).toEqual(userInfoImg);
-    });
     // 測試 ShareBtn，按下會打開 Modal
     it('should render ShareBtn icon', () => {
       expect(testComp.find('.shareBtn'));

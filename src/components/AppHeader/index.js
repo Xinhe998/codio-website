@@ -97,7 +97,7 @@ const AppHeader = ({
             />
           </Modal>
         ) : null}
-        <UserInfo />
+        {isUserBtnVisible && <UserInfo />}
       </div>
     </header>
   );
