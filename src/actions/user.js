@@ -59,4 +59,20 @@ export const forgetPassword = (payload) => {
   };
 };
 
+export const updatePersonalInfo = (payload, history) => {
+  const URL = API.update_personal_info;
+  return (dispatch) => {
+    dispatch({ type: 'UPDATE_PERSONAL_INFO_REQUEST', payload });
+    axios
+      .post(URL, {
+        m_account: payload,
+      })
+      .then((res) => {
+        dispatch({ type: 'UPDATE_PERSONAL_INFO_SUCCESS', res });
+        history.goBack();
+      })
+      .catch(err => dispatch({ type: 'UPDATE_PERSONAL_INFO_FAILED', err }));
+  };
+};
+
 export const logout = payload => ({ type: 'LOGOUT', payload });

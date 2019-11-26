@@ -7,10 +7,10 @@ export default function (state = projectInitialState, action) {
   }
   case 'CREATE_PROJECT_SUCCESS': {
     const {
-      data: { mp_no },
       status,
       config: { data },
     } = action.res;
+    const mp_no = action.res.data;
 
     const postData = JSON.parse(data);
 
@@ -21,10 +21,11 @@ export default function (state = projectInitialState, action) {
     };
     newState[mp_no] = {
       mp_name: postData.mp_name,
-      mp_status: postData.mp_status,
+      mp_desc: postData.mp_desc,
+      mp_hashtag: postData.mp_hashtag,
+      mp_isPublic: postData.mp_isPublic,
     };
-    return status === 200
-      ? newState : state;
+    return status === 200 ? newState : state;
   }
   case 'CREATE_PROJECT_FAILED':
     return { ...state, errorMsg: 'Create Project Failed', isLoading: false };

@@ -180,7 +180,6 @@ const Register = (props) => {
 
 const mapStateToProps = store => ({
   user: store.user,
-  editor: store.editor,
 });
 export default withRouter(
   connect(

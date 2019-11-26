@@ -12,6 +12,11 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   title: 'Codio',
 });
 
+const EnvironmentPlugin = new webpack.EnvironmentPlugin({
+  API_URL: process.env.API_URL,
+  imgurClient: process.env.imgurClient,
+});
+
 const CopyPluginConfig = new CopyPlugin([
   { from: 'public/_redirects', to: '' },
 ]);
@@ -56,5 +61,5 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), HTMLWebpackPluginConfig, CopyPluginConfig],
+  plugins: [new webpack.HotModuleReplacementPlugin(), HTMLWebpackPluginConfig, CopyPluginConfig, EnvironmentPlugin],
 };

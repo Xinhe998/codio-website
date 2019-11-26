@@ -6,7 +6,7 @@ import CodeMirror from 'react-codemirror';
 import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import { IoIosArrowDown, IoIosCloud } from 'react-icons/io';
 import { MdCompare, MdFormatAlignLeft } from 'react-icons/md';
 import action from '../../actions';
@@ -81,8 +81,21 @@ class CodeEditors extends Component {
   }
 
   componentDidMount() {
+    const { id } = this.props.match.params;
+    this.setState({
+      project_title: this.props.project[id].mp_name,
+    }, () => {
+      this.autoSizeInput(this.state.project_title);
+    });
+    this.props.getCodeByProjectId(
+      {
+        token: this.props.user.token,
+        projectId: id,
+        m_no: this.props.user.m_no,
+      },
+      this.props.history,
+    );
     this.printConsole();
-    this.autoSizeInput(this.state.project_title);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -268,7 +281,7 @@ class CodeEditors extends Component {
   };
 
   jsEditorOnChange = (e, changeObj) => {
-    this.props.addJavascript(e);
+    this.props.updateJs(e);
     if (
       JSON.stringify(changeObj.text) !== '[";"]'
       && JSON.stringify(changeObj.text) !== '[""]'
@@ -280,7 +293,7 @@ class CodeEditors extends Component {
   };
 
   cssEditorOnChange = (e, changeObj) => {
-    this.props.addCss(e);
+    this.props.updateCss(e);
     if (
       JSON.stringify(changeObj.text) !== '[";"]'
       && JSON.stringify(changeObj.text) !== '[""]'
@@ -294,7 +307,7 @@ class CodeEditors extends Component {
   };
 
   htmlEditorOnChange = (e, changeObj) => {
-    this.props.addHtml(e);
+    this.props.updateHtml(e);
     if (
       JSON.stringify(changeObj.text) !== '[""]'
       && JSON.stringify(changeObj.text) !== '["",""]'
@@ -342,6 +355,18 @@ class CodeEditors extends Component {
     }
   };
 
+  saveCode = () => {
+    const { id } = this.props.match.params;
+    const { html, css, js } = this.props.editor;
+    this.props.updateCode({
+      token: this.props.user.token,
+      projectId: id,
+      html,
+      css,
+      js,
+    });
+  };
+
   render() {
     const { html, css, js } = this.props.editor;
     const codeMirrorOptions = {
@@ -368,18 +393,17 @@ class CodeEditors extends Component {
       styleActiveLine: true,
       tabSize: 2,
     };
-    const deleteProjectHandler = (props) => {
-      console.log(props);
+    const deleteProjectHandler = () => {
       const deleteProjectData = {
-        token: props.user.token,
-        mp_no: mp_no,
+        token: this.props.user.token,
+        mp_no: this.props.user.mp_no,
       };
-      props.deleteProject(deleteProjectData, props.history);
+      this.props.deleteProject(deleteProjectData, this.props.history);
     };
 
     const dropdownOptions = [
       { text: '另開新專案' },
-      { text: '刪除此專案', action: deleteProjectHandler() },
+      { text: '刪除此專案', action: deleteProjectHandler },
       { text: '分享此專案' },
     ];
 
@@ -506,6 +530,7 @@ class CodeEditors extends Component {
                   className="saveBtn"
                   text="儲存"
                   icon={<IoIosCloud />}
+                  onClick={this.saveCode}
                 />
                 <Button
                   type="primary"
@@ -663,6 +688,7 @@ CodeEditors.propTypes = {
 const mapStateToProps = store => ({
   editor: store.editor,
   user: store.user,
+  project: store.project,
 });
 export default withRouter(
   connect(

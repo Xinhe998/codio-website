@@ -1,7 +1,8 @@
-if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI) {
-  var { API_URL } = process.env;
+let API_URL = '';
+if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI || process.env.CI) {
+  API_URL = process.env.API_URL;
 } else {
-  var API_URL = require('./project_config').api.url2;
+  API_URL = require('./project_config').api.url2;
 }
 
 module.exports = {
@@ -13,4 +14,8 @@ module.exports = {
   forget_password: `${API_URL}/Members/ForgetPassword?E_mail=`,
   get_all_tags: `${API_URL}/Project/GetAllHashtag`,
   add_tag: `${API_URL}/Project/AddTag?newTag=`,
+  save_code: `${API_URL}/Project/SaveCode`,
+  get_code_by_project_id: `${API_URL}/Project/UseMnoGetProject`,
+  update_personal_info: `${API_URL}/Members/UpdateMember`,
+  create_portfolio: `${API_URL}/Personal/CRcollection`,
 };

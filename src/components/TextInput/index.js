@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { IoIosWarning, IoIosCheckmarkCircle } from 'react-icons/io';
@@ -25,50 +25,58 @@ const TextInput = React.forwardRef(
       postBtnText,
       postBtnOnClick,
       readonly,
-      className
+      className,
     },
     ref,
-  ) => (
-    <div
-      className={classNames(
-        'textinput',
-        required ? 'required' : null,
-        showHint ? hintType || null : null,
-        className,
-      )}
-    >
-      {title ? <span className="textinput__title">{title}</span> : null}
-      <input
-        type={type}
-        value={text}
-        placeholder={placeholder}
-        onChange={e => onChange(e)}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        disabled={disabled}
-        readOnly={readonly}
-        ref={ref}
-      />
-      <div className="textinput__icon">{icon}</div>
-      {showPostBtn ? (
-        <Button
-          className="textinput__postBtn"
-          type="primary"
-          size="small"
-          theme="blue"
-          text={postBtnText}
-          onClick={postBtnOnClick}
+  ) => {
+    let inputRef;
+    if (!ref) {
+      inputRef = useRef();
+    } else {
+      inputRef = ref;
+    }
+    return (
+      <div
+        className={classNames(
+          'textinput',
+          required ? 'required' : null,
+          showHint ? hintType || null : null,
+          className,
+        )}
+      >
+        {title ? <span className="textinput__title">{title}</span> : null}
+        <input
+          type={type}
+          value={text}
+          placeholder={placeholder}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          disabled={disabled}
+          readOnly={readonly}
+          ref={inputRef}
         />
-      ) : null}
-      {showHint ? (
-        <span className="textinput__hint">
-          <span className="hinttext">{hintText}</span>
-          {hintType === 'error' ? <IoIosWarning /> : null}
-          {hintType === 'ok' ? <IoIosCheckmarkCircle /> : null}
-        </span>
-      ) : null}
-    </div>
-  ),
+        <div className="textinput__icon">{icon}</div>
+        {showPostBtn ? (
+          <Button
+            className="textinput__postBtn"
+            type="primary"
+            size="small"
+            theme="blue"
+            text={postBtnText}
+            onClick={postBtnOnClick}
+          />
+        ) : null}
+        {showHint ? (
+          <span className="textinput__hint">
+            <span className="hinttext">{hintText}</span>
+            {hintType === 'error' ? <IoIosWarning /> : null}
+            {hintType === 'ok' ? <IoIosCheckmarkCircle /> : null}
+          </span>
+        ) : null}
+      </div>
+    );
+  },
 );
 
 TextInput.propTypes = {
@@ -95,6 +103,7 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   type: 'text',
   text: '',
+  placeholder: '',
   className: '',
   onBlur: null,
   onFocus: null,

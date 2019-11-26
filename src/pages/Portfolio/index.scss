@@ -50,6 +50,10 @@ hr {
 .portfolio_desc {
   color: $dark-gray;
   margin: 50px auto 20px;
+
+  textarea {
+    max-width: unset !important;
+  }
 }
 
 .portfolio_techstack {
