@@ -31,7 +31,6 @@ const Login = (props) => {
 
   const userData = window.localStorage.getItem('persist:root');
   const isAuthed = userData && JSON.parse(JSON.parse(userData).user).token;
-
   const loginHandler = () => {
     const loginData = {
       id,
@@ -39,7 +38,8 @@ const Login = (props) => {
     };
     props.login(loginData, props.history);
   };
-
+  
+  console.log(process.env.API_URL);
   return (
     <Router>
       <div>
