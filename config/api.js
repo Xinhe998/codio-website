@@ -18,4 +18,5 @@ module.exports = {
   get_code_by_project_id: `${API_URL}/Project/UseMnoGetProject`,
   update_personal_info: `${API_URL}/Members/UpdateMember`,
   create_portfolio: `${API_URL}/Personal/CRcollection`,
+  get_user_all_projects: `${API_URL}/Project/GetMemberAllProject`,
 };

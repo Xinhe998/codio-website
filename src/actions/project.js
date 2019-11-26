@@ -55,3 +55,29 @@ export const deleteProject = (payload, history) => {
       .catch(err => dispatch({ type: 'DELETE_PROJECT_FAILED', err }));
   };
 };
+
+export const getUserAllProjects = (payload) => {
+  const URL = API.get_user_all_projects;
+  return (dispatch) => {
+    const postData = {
+      method: 'POST',
+      url: URL,
+      data: {
+        m_no: payload.m_no,
+      },
+      headers: {
+        Authorization: `bearer ${payload.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log(postData);
+    axios(postData)
+      .then((res) => {
+        console.log(res);
+        dispatch({ type: 'GET_ALL_USER_PROJECTS', res });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};

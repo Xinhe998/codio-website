@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -17,10 +17,12 @@ import dafaulrAvatar from '../../assets/default_avatar.jpg';
 import './index.scss';
 
 const HomePage = (props) => {
-  const [id, setID] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [userName, setUserName] = useState('Alice');
+  useEffect(() => {
+    props.getUserAllProjects({
+      token: props.user.token,
+      m_no: props.user.m_no,
+    });
+  }, []);
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -32,7 +34,7 @@ const HomePage = (props) => {
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
     if (index !== -1) {
-      setIsChecked(isChecked.filter((item) => item !== choice));
+      setIsChecked(isChecked.filter(item => item !== choice));
     } else {
       setIsChecked([choice, ...isChecked]);
     }
@@ -44,7 +46,6 @@ const HomePage = (props) => {
         userImg={props.user.m_avatar || dafaulrAvatar}
         userName={props.user.m_name}
         list={list}
-        // actions={<LayoutActions />}
       >
         <UserInfo
           userImg={props.user.m_avatar || dafaulrAvatar}
@@ -65,7 +66,6 @@ const HomePage = (props) => {
             shouldCloseOnClickOutside
             shouldCloseOnEsc
           >
-            <span>製作履歷</span>
             <span>編輯履歷</span>
             <span>查看履歷</span>
           </ResumeBtn>
@@ -131,45 +131,50 @@ const HomePage = (props) => {
               />
             </Filter>
           </div>
-          <ProjectList
-            projectName="專題"
-            projectDescription="loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem"
-            isOpen={isProjectDropDownOpen}
-            onClick={() => {
-              setIsProjectDropDownOpen(true);
-            }}
-            onClose={() => {
-              setIsProjectDropDownOpen(false);
-            }}
-            shouldCloseOnClickOutside
-            shouldCloseOnEsc
-            number={number}
-            onDoubleClick={() => {
-              setNumber(number + 1);
-            }}
-          >
-            <span
-              onClick={() => {
-                props.history.push('/portfolio/MP0000000010');
-              }}
-            >
-              查看作品集
-            </span>
-            <span>編輯程式碼</span>
-            <span>分享</span>
-            <span>設定</span>
-            <span style={{ color: '#ec5252' }}>刪除</span>
-          </ProjectList>
+          {Object.values(props.project).map(
+            item => item.mp_no && (
+              <ProjectList
+                projectName={item.mp_name}
+                projectDescription={item.mp_desc}
+                isOpen={isProjectDropDownOpen}
+                onClick={() => {
+                  setIsProjectDropDownOpen(true);
+                }}
+                onClose={() => {
+                  setIsProjectDropDownOpen(false);
+                }}
+                shouldCloseOnClickOutside
+                shouldCloseOnEsc
+                number={number}
+                onDoubleClick={() => {
+                  setNumber(number + 1);
+                }}
+              >
+                <span
+                  onClick={() => {
+                    props.history.push(`/portfolio/${item.mp_no}`);
+                  }}
+                >
+                    查看作品集
+                </span>
+                <span>編輯程式碼</span>
+                <span>分享</span>
+                <span>設定</span>
+                <span style={{ color: '#ec5252' }}>刪除</span>
+              </ProjectList>
+            ),
+          )}
         </div>
       </Layout>
     </div>
   );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   user: store.user,
   project: store.project,
 });
+
 export default withRouter(
   connect(
     mapStateToProps,
