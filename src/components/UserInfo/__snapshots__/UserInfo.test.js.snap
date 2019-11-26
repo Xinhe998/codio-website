@@ -10,30 +10,9 @@ initialize {
       Object {
         "attribs": Object {
           "class": "user_img",
+          "style": "background-image:url(userImg.png)",
         },
-        "children": Array [
-          Object {
-            "attribs": Object {
-              "alt": "會員圖片",
-              "src": "userImg.png",
-            },
-            "children": Array [],
-            "name": "img",
-            "namespace": "http://www.w3.org/1999/xhtml",
-            "next": null,
-            "parent": [Circular],
-            "prev": null,
-            "type": "tag",
-            "x-attribsNamespace": Object {
-              "alt": undefined,
-              "src": undefined,
-            },
-            "x-attribsPrefix": Object {
-              "alt": undefined,
-              "src": undefined,
-            },
-          },
-        ],
+        "children": Array [],
         "name": "div",
         "namespace": "http://www.w3.org/1999/xhtml",
         "next": Object {
@@ -1948,9 +1927,11 @@ initialize {
         "type": "tag",
         "x-attribsNamespace": Object {
           "class": undefined,
+          "style": undefined,
         },
         "x-attribsPrefix": Object {
           "class": undefined,
+          "style": undefined,
         },
       },
       Object {
@@ -3854,30 +3835,9 @@ initialize {
         "prev": Object {
           "attribs": Object {
             "class": "user_img",
+            "style": "background-image:url(userImg.png)",
           },
-          "children": Array [
-            Object {
-              "attribs": Object {
-                "alt": "會員圖片",
-                "src": "userImg.png",
-              },
-              "children": Array [],
-              "name": "img",
-              "namespace": "http://www.w3.org/1999/xhtml",
-              "next": null,
-              "parent": [Circular],
-              "prev": null,
-              "type": "tag",
-              "x-attribsNamespace": Object {
-                "alt": undefined,
-                "src": undefined,
-              },
-              "x-attribsPrefix": Object {
-                "alt": undefined,
-                "src": undefined,
-              },
-            },
-          ],
+          "children": Array [],
           "name": "div",
           "namespace": "http://www.w3.org/1999/xhtml",
           "next": [Circular],
@@ -3886,9 +3846,11 @@ initialize {
           "type": "tag",
           "x-attribsNamespace": Object {
             "class": undefined,
+            "style": undefined,
           },
           "x-attribsPrefix": Object {
             "class": undefined,
+            "style": undefined,
           },
         },
         "type": "tag",
