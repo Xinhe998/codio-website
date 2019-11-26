@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  isRequired, isEqual, isEmail, isNumber, hasDigit,
-} from 'calidators';
+import { isRequired, isEqual, isEmail, isNumber, hasDigit } from 'calidators';
 import action from '../../actions';
 
 import AppHeader from '../../components/AppHeader';
@@ -30,8 +28,12 @@ const Register = (props) => {
   const idValidator = isRequired({ message: '請輸入帳號' })(id);
   const emailValidator = isEmail({ message: 'Email格式錯誤' })(id);
   const passwordValidator1 = isRequired({ message: '請輸入密碼' })(password);
-  const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(password);
-  const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(password);
+  const passwordValidator2 = isNumber({ message: '密碼需包含英文及數字' })(
+    password,
+  );
+  const passwordValidator3 = hasDigit({ message: '密碼需包含英文及數字' })(
+    password,
+  );
   const nameValidator = isRequired({ message: '請輸入使用者名稱' })(name);
   const confirmPasswordValidator1 = isRequired({ message: '請輸入確認密碼' })(
     confirmPassword,
@@ -54,7 +56,11 @@ const Register = (props) => {
   };
   return (
     <div className="Register">
-      <AppHeader isDropdownVisible={false} isTabVisible={false} />
+      <AppHeader
+        isDropdownVisible={false}
+        isTabVisible={false}
+        isUserBtnVisible={false}
+      />
       <div className="AppContent">
         <div
           className="photo-section"
@@ -68,14 +74,16 @@ const Register = (props) => {
           </p>
           {currentStep === 1 ? (
             <form>
-              
               <TextInput
                 title="帳號"
                 text={id}
-                showHint={id !== '' && !(idValidator !== null || emailValidator !== null)}
+                showHint={
+                  id !== '' &&
+                  !(idValidator !== null || emailValidator !== null)
+                }
                 hintType="ok"
                 placeholder="請輸入您的E-mail"
-                onChange={e => setID(e.target.value)}
+                onChange={(e) => setID(e.target.value)}
                 required
               />
               <TextInput
@@ -83,9 +91,12 @@ const Register = (props) => {
                 text={password}
                 type="password"
                 hintType="error"
-                showHint={password !== '' && (passwordValidator2 === null || passwordValidator3 !== null)}
+                showHint={
+                  password !== '' &&
+                  (passwordValidator2 === null || passwordValidator3 !== null)
+                }
                 hintText={passwordValidator3}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <TextInput
@@ -97,7 +108,7 @@ const Register = (props) => {
                 }
                 hintType="error"
                 hintText={confirmPasswordValidator2}
-                onChange={e => setConfirmPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               <TextInput
@@ -106,7 +117,7 @@ const Register = (props) => {
                 hintType="error"
                 showHint={name !== '' && nameValidator !== null}
                 hintText={nameValidator}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
               <Button
@@ -116,13 +127,13 @@ const Register = (props) => {
                 theme="blue"
                 onClick={() => setCurrentStep(2)}
                 disabled={
-                  idValidator !== null
-                  || passwordValidator1 !== null
-                  || passwordValidator2 === null
-                  || passwordValidator3 !== null
-                  || nameValidator !== null
-                  || confirmPasswordValidator1 !== null
-                  || confirmPasswordValidator2 !== null
+                  idValidator !== null ||
+                  passwordValidator1 !== null ||
+                  passwordValidator2 === null ||
+                  passwordValidator3 !== null ||
+                  nameValidator !== null ||
+                  confirmPasswordValidator1 !== null ||
+                  confirmPasswordValidator2 !== null
                 }
               />
             </form>
@@ -145,13 +156,13 @@ const Register = (props) => {
                 title="聯絡電話"
                 text={phone}
                 showHint={false}
-                onChange={e => setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
               />
               <TextInput
                 title="通訊地址"
                 text={address}
                 showHint={false}
-                onChange={e => setAddress(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
               />
               <Button
                 className="register_btn"
@@ -160,14 +171,14 @@ const Register = (props) => {
                 size="small"
                 onClick={handleRegister}
                 disabled={
-                  idValidator !== null
-                  || passwordValidator1 !== null
-                  || passwordValidator2 === null
-                  || passwordValidator3 !== null
-                  || nameValidator !== null
-                  || birth === ''
-                  || confirmPasswordValidator1 !== null
-                  || confirmPasswordValidator2 !== null
+                  idValidator !== null ||
+                  passwordValidator1 !== null ||
+                  passwordValidator2 === null ||
+                  passwordValidator3 !== null ||
+                  nameValidator !== null ||
+                  birth === '' ||
+                  confirmPasswordValidator1 !== null ||
+                  confirmPasswordValidator2 !== null
                 }
               />
             </form>
@@ -178,7 +189,7 @@ const Register = (props) => {
   );
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: store.user,
 });
 export default withRouter(

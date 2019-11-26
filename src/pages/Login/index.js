@@ -47,7 +47,7 @@ const Login = (props) => {
           <Redirect to="/" />
         ) : (
           <div className="Login">
-            <AppHeader isDropdownVisible={false} isTabVisible={false} />
+            <AppHeader isDropdownVisible={false} isTabVisible={false} isUserBtnVisible={false} />
             <div className="AppContent">
               <div className="form-section">
                 <p className="title">登入</p>

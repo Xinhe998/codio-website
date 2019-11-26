@@ -88,6 +88,8 @@ class CodeEditors extends Component {
       }, () => {
         this.autoSizeInput(this.state.project_title);
       });
+    } else {
+      this.autoSizeInput(this.state.project_title);
     }
     this.props.getCodeByProjectId(
       {
@@ -446,6 +448,7 @@ class CodeEditors extends Component {
                   className="saveBtn"
                   text="儲存"
                   icon={<IoIosCloud />}
+                  onClick={this.saveCode}
                 />
                 <Button
                   type="primary"
@@ -595,6 +598,7 @@ class CodeEditors extends Component {
                   className="saveBtn"
                   text="儲存"
                   icon={<IoIosCloud />}
+                  onClick={this.saveCode}
                 />
                 <Button
                   type="primary"

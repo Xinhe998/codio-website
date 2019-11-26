@@ -52,6 +52,7 @@ initialize {
                 Object {
                   "attribs": Object {
                     "class": "userinfo",
+                    "style": "background-image:url(user-solid.svg)",
                   },
                   "children": Array [
                     Object {
@@ -81,9 +82,11 @@ initialize {
                   "type": "tag",
                   "x-attribsNamespace": Object {
                     "class": undefined,
+                    "style": undefined,
                   },
                   "x-attribsPrefix": Object {
                     "class": undefined,
+                    "style": undefined,
                   },
                 },
               ],
@@ -118,6 +121,7 @@ initialize {
               Object {
                 "attribs": Object {
                   "class": "userinfo",
+                  "style": "background-image:url(user-solid.svg)",
                 },
                 "children": Array [
                   Object {
@@ -147,9 +151,11 @@ initialize {
                 "type": "tag",
                 "x-attribsNamespace": Object {
                   "class": undefined,
+                  "style": undefined,
                 },
                 "x-attribsPrefix": Object {
                   "class": undefined,
+                  "style": undefined,
                 },
               },
             ],
@@ -55651,6 +55657,7 @@ initialize {
                   Object {
                     "attribs": Object {
                       "class": "userinfo",
+                      "style": "background-image:url(user-solid.svg)",
                     },
                     "children": Array [
                       Object {
@@ -55680,9 +55687,11 @@ initialize {
                     "type": "tag",
                     "x-attribsNamespace": Object {
                       "class": undefined,
+                      "style": undefined,
                     },
                     "x-attribsPrefix": Object {
                       "class": undefined,
+                      "style": undefined,
                     },
                   },
                 ],
@@ -55717,6 +55726,7 @@ initialize {
                 Object {
                   "attribs": Object {
                     "class": "userinfo",
+                    "style": "background-image:url(user-solid.svg)",
                   },
                   "children": Array [
                     Object {
@@ -55746,9 +55756,11 @@ initialize {
                   "type": "tag",
                   "x-attribsNamespace": Object {
                     "class": undefined,
+                    "style": undefined,
                   },
                   "x-attribsPrefix": Object {
                     "class": undefined,
+                    "style": undefined,
                   },
                 },
               ],

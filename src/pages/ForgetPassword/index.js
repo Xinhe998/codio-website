@@ -20,7 +20,7 @@ const ForgetPassword = () => {
 
   return (
     <div className="ForgetPassword">
-      <AppHeader isDropdownVisible={false} isTabVisible={false} />
+      <AppHeader isDropdownVisible={false} isTabVisible={false} isUserBtnVisible={false} />
       <div className="AppContent">
         <div
           className="photo-section"

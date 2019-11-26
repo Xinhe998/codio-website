@@ -15,6 +15,7 @@ const AppHeader = ({
   handleTabClick,
   isTabVisible,
   isShareBtnVisible,
+  isUserBtnVisible,
 }) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [permission, setPermission] = useState('編輯');

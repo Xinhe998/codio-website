@@ -6,11 +6,11 @@ import { createStore } from 'redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { shallow, configure, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import AppHeader from '../index';
+import AppHeader from './index';
 
-import storeFs from '../../../reducers';
+import storeFs from '../../reducers';
 
-import userInfoImg from '../../../assets/user-solid.svg';
+import userInfoImg from '../../assets/user-solid.svg';
 
 const store = createStore(storeFs);
 

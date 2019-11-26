@@ -1,11 +1,18 @@
 .userinfo {
   display: flex;
   margin-left: auto;
-  height: 100%;
   align-items: center;
-  padding: 30px;
   box-sizing: border-box;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  outline: 0;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  margin: 20px;
   img {
     user-select: none;
     -webkit-user-drag: none;
