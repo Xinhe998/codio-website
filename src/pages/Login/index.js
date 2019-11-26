@@ -38,8 +38,7 @@ const Login = (props) => {
     };
     props.login(loginData, props.history);
   };
-  
-  console.log(process.env.API_URL);
+
   return (
     <Router>
       <div>

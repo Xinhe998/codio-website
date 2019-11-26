@@ -29,10 +29,18 @@
     }
 
     .user_img {
-      max-width: 100px;
-      height: 100px;
-      margin: 0 auto;
+      margin: 30px auto 0;
       background-repeat: no-repeat;
+      width: 80px;
+      height: 80px;
+      outline: 0;
+      margin-bottom: 5px;
+      clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+      -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+      background-size: cover;
+      background-position: center;
+      border-radius: 15px;
+      border: 1px solid lightgray;
     }
 
     .user_name {

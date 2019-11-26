@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { isRequired } from 'calidators';
 
 import action from '../../actions';
 import Layout from '../../components/Layout';
@@ -13,7 +12,7 @@ import Filter from '../../components/Filter';
 import ResumeBtn from '../../components/ResumeBtn';
 import ProjectList from '../../components/ProjectList';
 import Checkbox from '../../components/Checkbox';
-import userImg from '../../assets/userImg.png';
+import dafaulrAvatar from '../../assets/default_avatar.jpg';
 
 import './index.scss';
 
@@ -38,60 +37,18 @@ const HomePage = (props) => {
       setIsChecked([choice, ...isChecked]);
     }
   };
-  // const LayoutActions = () => (
-  //   <LayoutBtn>
-  //     <UserInfo
-  //       userImg={userImg}
-  //       userName="Alice"
-  //       userJob="前端工程師"
-  //       userAddress="台中市"
-  //       userLink="www.alice0050722.com.tw"
-  //     />
-  //     <div className="layoutBtn">
-  //       <Button
-  //         text="新增"
-  //         type="primary"
-  //         size="small"
-  //         theme="red"
-  //         onClick={() => props.history.push('/create_project')}
-  //       />
-  //       <ResumeBtn
-  //         isOpen={isResumeBtnOpen}
-  //         onClick={() => {
-  //           setIsResumeBtnOpen(true);
-  //         }}
-  //         onClose={() => {
-  //           setIsResumeBtnOpen(false);
-  //         }}
-  //         shouldCloseOnClickOutside
-  //         shouldCloseOnEsc
-  //       >
-  //         <span>製作履歷</span>
-  //         <span>編輯履歷</span>
-  //         <span>查看履歷</span>
-  //       </ResumeBtn>
-  //     </div>
-  //   </LayoutBtn>
-  // );
-  const loginHandler = () => {
-    const loginData = {
-      id,
-      password,
-    };
-    props.login(loginData, props.history);
-  };
 
   return (
     <div className="home_page">
       <Layout
-        userImg={userImg}
-        userName={userName}
+        userImg={props.user.m_avatar || dafaulrAvatar}
+        userName={props.user.m_name}
         list={list}
         // actions={<LayoutActions />}
       >
         <UserInfo
-          userImg={userImg}
-          userName="Alice"
+          userImg={props.user.m_avatar || dafaulrAvatar}
+          userName={props.user.m_name}
           userJob="前端工程師"
           userAddress="台中市"
           userLink="www.alice0050722.com.tw"
@@ -191,7 +148,13 @@ const HomePage = (props) => {
               setNumber(number + 1);
             }}
           >
-            <span>編輯描述</span>
+            <span
+              onClick={() => {
+                props.history.push('/portfolio/MP0000000010');
+              }}
+            >
+              查看作品集
+            </span>
             <span>編輯程式碼</span>
             <span>分享</span>
             <span>設定</span>
@@ -205,7 +168,7 @@ const HomePage = (props) => {
 
 const mapStateToProps = (store) => ({
   user: store.user,
-  editor: store.editor,
+  project: store.project,
 });
 export default withRouter(
   connect(
