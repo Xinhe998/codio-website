@@ -15,9 +15,7 @@ const UserInfo = ({
   userLink,
 }) => (
   <div className="user_profile">
-    <div className="user_img">
-      <img src={userImg} alt="會員圖片" />
-    </div>
+    <div className="user_img" style={{ backgroundImage: `url(${userImg})`}} />
     <div className="user_text">
       <h2>{userName}</h2>
       <span>
