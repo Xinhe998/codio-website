@@ -1,6 +1,6 @@
 /* eslint-disable no-eval */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { Component } from 'react';
+import React, { Component,useState } from 'react';
 import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
 import { Hook, Decode } from 'console-feed';
@@ -15,6 +15,7 @@ import ConsoleBox from '../ConsoleBox';
 import Button from '../Button';
 import Dropdown from './Dropdown';
 import Resizer from '../Resizer';
+import Modal from '../Modal';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -62,6 +63,8 @@ import './index.scss';
 const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
+
+// const [isModalOpen, setIsModalOpen] = useState(false);
 
 class CodeEditors extends Component {
   constructor(props) {
@@ -274,7 +277,7 @@ class CodeEditors extends Component {
       });
       this.setState({ logs: updatedLogs });
       this.props.addLogs(updatedLogs);
-      window.alert = function () {}; // 讓alert不要執行兩次
+      window.alert = function () { }; // 讓alert不要執行兩次
       eval(js);
       this.runCode();
     } catch (e) {
@@ -395,13 +398,19 @@ class CodeEditors extends Component {
       styleActiveLine: true,
       tabSize: 2,
     };
+
+    // const confirmFunc = () => {
+    //   setIsModalOpen(true);
+    // };
     const deleteProjectHandler = () => {
+      const { id } = this.props.match.params;
       const deleteProjectData = {
         token: this.props.user.token,
-        mp_no: this.props.user.mp_no,
+        mp_no: id,
       };
       this.props.deleteProject(deleteProjectData, this.props.history);
     };
+
 
     const dropdownOptions = [
       { text: '另開新專案' },
@@ -442,6 +451,19 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
+              {/*<Modal
+                isOpen={isModalOpen}
+                title="確定刪除專案"
+                onClose={() => {
+                  setIsModalOpen(false);
+                }}
+                shouldCloseOnEsc
+                shouldCloseOnClickOutside
+                showControlBtn
+                cancelBtnText="取消"
+                confirmBtnText="新增"
+                Confirm={deleteProjectHandler}
+              />*/}
               <div className="titlebar_btnGroup">
                 {/* <Button
                   type="primary"

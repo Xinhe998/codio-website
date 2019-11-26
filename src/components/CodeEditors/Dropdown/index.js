@@ -26,8 +26,7 @@ const Dropdown = ({
                 key={index}
                 onClick={() => {
                   // setSelectedOption(option);
-                  option.action
-                  // console.log(option.action)
+                  option.action()
                   // swichOptionHandler(false);
                 }}
                 className={

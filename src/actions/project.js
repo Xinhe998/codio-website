@@ -35,7 +35,7 @@ export const createProject = (payload, history) => {
   };
 };
 
-export const deleteProject = (payload) => {
+export const deleteProject = (payload, history) => {
   const URL = API.delete_project + payload.mp_no;
   const getData = {
     method: 'GET',
@@ -50,7 +50,7 @@ export const deleteProject = (payload) => {
     axios(getData)
       .then((res) => {
         dispatch({ type: 'DELETE_PROJECT_SUCCESS', res });
-        history.goBack();
+        history.push('/homePage');
       })
       .catch(err => dispatch({ type: 'DELETE_PROJECT_FAILED', err }));
   };
