@@ -13,10 +13,17 @@ import './index.scss';
 
 import mockup from '../../assets/smartmockups_jxfuqv8i.jpg';
 
-const ForgetPassword = () => {
+const ForgetPassword = (props) => {
   const [email, setEmail] = useState('');
   const emailValidator = isRequired({ message: '請輸入E-mail' })(email);
   const emailValidator2 = isEmail({ message: '請輸入正確的Email' })(email);
+
+  const forgetPasswordHandler = () => {
+    const forgetPasswordData = {
+      email,
+    };
+    props.forgetPassword(forgetPasswordData, props.history);
+  };
 
   return (
     <div className="ForgetPassword">
@@ -45,7 +52,7 @@ const ForgetPassword = () => {
               text="送出"
               type="primary"
               size="small"
-              onClick={() => {}}
+              onClick={forgetPasswordHandler}
               disabled={emailValidator !== null || emailValidator2 !== null}
             />
           </form>

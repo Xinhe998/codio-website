@@ -33,3 +33,24 @@ export const createProject = (payload, history) => {
       });
   };
 };
+
+export const deleteProject = (payload) => {
+  const URL = API.delete_project + payload.mp_no;
+  const getData = {
+    method: 'GET',
+    url: URL,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `bearer ${payload.token}`,
+    },
+  };
+  return (dispatch) => {
+    dispatch({ type: 'DELETE_PROJECT_REQUEST', payload });
+    axios(getData)
+      .then((res) => {
+        dispatch({ type: 'DELETE_PROJECT_SUCCESS', res });
+        history.goBack();
+      })
+      .catch(err => dispatch({ type: 'DELETE_PROJECT_FAILED', err }));
+  };
+};

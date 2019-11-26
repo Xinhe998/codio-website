@@ -136,59 +136,59 @@ class CodeEditors extends Component {
     const lines = 0;
     cm.operation(() => {
       switch (lang || outer.name) {
-        case 'htmlmixed':
-          cm.replaceRange(
-            beautify_html(text, {
+      case 'htmlmixed':
+        cm.replaceRange(
+          beautify_html(text, {
+            indent_size: 2,
+            html: {
+              end_with_newline: true,
+              js: {
+                indent_size: 2,
+              },
+              css: {
+                indent_size: 2,
+              },
+            },
+            css: {
               indent_size: 2,
-              html: {
-                end_with_newline: true,
-                js: {
-                  indent_size: 2,
-                },
-                css: {
-                  indent_size: 2,
-                },
+            },
+            js: {
+              'preserve-newlines': true,
+            },
+          }),
+          from,
+          to,
+        );
+        break;
+      case 'css':
+        cm.replaceRange(
+          beautify_css(text, {
+            indent_size: 4,
+            html: {
+              end_with_newline: true,
+              js: {
+                indent_size: 2,
               },
               css: {
                 indent_size: 2,
               },
-              js: {
-                'preserve-newlines': true,
-              },
-            }),
-            from,
-            to,
-          );
-          break;
-        case 'css':
-          cm.replaceRange(
-            beautify_css(text, {
-              indent_size: 4,
-              html: {
-                end_with_newline: true,
-                js: {
-                  indent_size: 2,
-                },
-                css: {
-                  indent_size: 2,
-                },
-              },
-              css: {
-                indent_size: 2,
-              },
-              js: {
-                'preserve-newlines': true,
-              },
-            }),
-            from,
-            to,
-          );
-          break;
-        case 'javascript':
-          cm.replaceRange(beautify_js(text), from, to);
-          break;
-        default:
-          break;
+            },
+            css: {
+              indent_size: 2,
+            },
+            js: {
+              'preserve-newlines': true,
+            },
+          }),
+          from,
+          to,
+        );
+        break;
+      case 'javascript':
+        cm.replaceRange(beautify_js(text), from, to);
+        break;
+      default:
+        break;
       }
       for (
         let cur = from.line + 1, end = from.line + lines;
@@ -220,20 +220,20 @@ class CodeEditors extends Component {
       closeOnUnfocus: true,
     };
     switch (lang || cm.getMode().name) {
-      case 'htmlmixed':
-        codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
-        codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
-        break;
-      case 'css':
-        codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
-        codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
-        break;
-      case 'javascript':
-        codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
-        codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
-        break;
-      default:
-        break;
+    case 'htmlmixed':
+      codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
+      break;
+    case 'css':
+      codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
+      break;
+    case 'javascript':
+      codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
+      codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
+      break;
+    default:
+      break;
     }
   };
 
@@ -259,7 +259,7 @@ class CodeEditors extends Component {
       });
       this.setState({ logs: updatedLogs });
       this.props.addLogs(updatedLogs);
-      window.alert = function() {}; // 讓alert不要執行兩次
+      window.alert = function () {}; // 讓alert不要執行兩次
       eval(js);
       this.runCode();
     } catch (e) {
@@ -270,10 +270,10 @@ class CodeEditors extends Component {
   jsEditorOnChange = (e, changeObj) => {
     this.props.addJavascript(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]' &&
-      JSON.stringify(changeObj.text) !== '[""]' &&
-      JSON.stringify(changeObj.text) !== '[" "]' &&
-      JSON.stringify(changeObj.text) !== '["",""]'
+      JSON.stringify(changeObj.text) !== '[";"]'
+      && JSON.stringify(changeObj.text) !== '[""]'
+      && JSON.stringify(changeObj.text) !== '[" "]'
+      && JSON.stringify(changeObj.text) !== '["",""]'
     ) {
       this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
     }
@@ -282,12 +282,12 @@ class CodeEditors extends Component {
   cssEditorOnChange = (e, changeObj) => {
     this.props.addCss(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]' &&
-      JSON.stringify(changeObj.text) !== '[""]' &&
-      JSON.stringify(changeObj.text) !== '["",""]' &&
-      JSON.stringify(changeObj.text) !== '["{"]' &&
-      JSON.stringify(changeObj.text) !== '["}"]' &&
-      JSON.stringify(changeObj.text) !== '["{}"]'
+      JSON.stringify(changeObj.text) !== '[";"]'
+      && JSON.stringify(changeObj.text) !== '[""]'
+      && JSON.stringify(changeObj.text) !== '["",""]'
+      && JSON.stringify(changeObj.text) !== '["{"]'
+      && JSON.stringify(changeObj.text) !== '["}"]'
+      && JSON.stringify(changeObj.text) !== '["{}"]'
     ) {
       this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
     }
@@ -296,10 +296,10 @@ class CodeEditors extends Component {
   htmlEditorOnChange = (e, changeObj) => {
     this.props.addHtml(e);
     if (
-      JSON.stringify(changeObj.text) !== '[""]' &&
-      JSON.stringify(changeObj.text) !== '["",""]' &&
-      JSON.stringify(changeObj.text) !== '["  "]' &&
-      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+      JSON.stringify(changeObj.text) !== '[""]'
+      && JSON.stringify(changeObj.text) !== '["",""]'
+      && JSON.stringify(changeObj.text) !== '["  "]'
+      && JSON.stringify(changeObj.text) !== '[">","","</div>"]'
     ) {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
@@ -322,9 +322,9 @@ class CodeEditors extends Component {
     if (text.length > 0) {
       for (let i = 0; i < text.length; i++) {
         if (
-          /^[A-Za-z0-9]*$/.test(text.charAt(i)) ||
-          /[.!?\\-]/.test(text.charAt(i)) ||
-          text.charAt(i) === ' '
+          /^[A-Za-z0-9]*$/.test(text.charAt(i))
+          || /[.!?\\-]/.test(text.charAt(i))
+          || text.charAt(i) === ' '
         ) {
           // number
           inputSize++;
@@ -351,8 +351,8 @@ class CodeEditors extends Component {
         'Ctrl-Q': (cm) => {
           cm.foldCode(cm.getCursor());
         },
-        'Ctrl-E': (cm) => this.autoFormat(cm),
-        'Ctrl-H': (cm) => this.autoComplete(cm),
+        'Ctrl-E': cm => this.autoFormat(cm),
+        'Ctrl-H': cm => this.autoComplete(cm),
       },
       theme: 'one-dark',
       foldGutter: true,
@@ -368,15 +368,25 @@ class CodeEditors extends Component {
       styleActiveLine: true,
       tabSize: 2,
     };
+    const deleteProjectHandler = (props) => {
+      console.log(props);
+      const deleteProjectData = {
+        token: props.user.token,
+        mp_no: mp_no,
+      };
+      props.deleteProject(deleteProjectData, props.history);
+    };
+
     const dropdownOptions = [
-      '另開新專案',
-      '刪除此專案',
-      '分享此專案',
+      { text: '另開新專案' },
+      { text: '刪除此專案', action: deleteProjectHandler() },
+      { text: '分享此專案' },
     ];
 
     const editorWidthStyle = {
       width: `${this.state.editorWidth}px`,
     };
+
     return (
       <div className="playground">
         <Resizer
@@ -431,11 +441,10 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() =>
-                    this.autoFormat(
-                      this.refs.htmlEditor.codeMirror,
-                      'htmlmixed',
-                    )
+                  onClick={() => this.autoFormat(
+                    this.refs.htmlEditor.codeMirror,
+                    'htmlmixed',
+                  )
                   }
                 />
               </div>
@@ -505,8 +514,7 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() =>
-                    this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+                  onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
                   }
                 />
               </div>
@@ -579,8 +587,7 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() =>
-                    this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+                  onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
                   }
                 />
               </div>
@@ -653,7 +660,7 @@ class CodeEditors extends Component {
 CodeEditors.propTypes = {
   currentActiveTab: PropTypes.string,
 };
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   editor: store.editor,
   user: store.user,
 });

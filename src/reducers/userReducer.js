@@ -55,6 +55,25 @@ export default function (state = userInitialState, action) {
   }
   case 'REGISTER_FAILED':
     return { ...state, errorMsg: 'Register Failed', isLoading: false };
+
+  case 'FORGET_PASSWORD_REQUEST': {
+    return { ...state, isLoading: true, errorMsg: null };
+  }
+  case 'FORGET_PASSWORD_SUCCESS': {
+    const {
+      status,
+    } = action.res;
+    return status === 200
+      ? {
+        ...state,
+        isLoading: false,
+        errorMsg: null,
+      }
+      : state;
+  }
+  case 'FORGET_PASSWORD_FAILED':
+    return { ...state, errorMsg: 'Register Failed', isLoading: false };
+
   default:
     return state;
   }
