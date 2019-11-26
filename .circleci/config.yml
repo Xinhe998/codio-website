@@ -13,8 +13,8 @@ jobs: # a collection of steps
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
-        name: "echo env variable"
-        command: echo ${API_URL}
+        name: echo env variable
+        command: 'echo ${API_URL}'
       - run:
           name: Update npm
           command: 'sudo npm install -g npm@latest'
