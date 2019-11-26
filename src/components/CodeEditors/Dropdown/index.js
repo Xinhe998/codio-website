@@ -4,7 +4,7 @@ import './index.scss';
 import useClickOutside from '../../../hooks/useClickOutside';
 
 const Dropdown = ({
-  icon, options, swichOptionHandler, isOpen 
+  icon, options, swichOptionHandler, isOpen, onClick
 }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef();
@@ -26,7 +26,8 @@ const Dropdown = ({
                 key={index}
                 onClick={() => {
                   // setSelectedOption(option);
-                  swichOptionHandler(false);
+                  option.action()
+                  // swichOptionHandler(false);
                 }}
                 className={
                   selectedOption === option
@@ -34,7 +35,7 @@ const Dropdown = ({
                     : 'Dropdown__tooltip__list__option'
                 }
               >
-                {option}
+                {option.text}
               </li>
             ))}
           </ul>
@@ -48,6 +49,7 @@ Dropdown.propTypes = {
   options: PropTypes.array,
   swichOptionHandler: PropTypes.func,
   isOpen: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 Dropdown.defaultProps = {

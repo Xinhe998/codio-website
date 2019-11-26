@@ -44,14 +44,16 @@ const UserList = ({
         />
       </td>
       <td className="user_operation">
-        <Button
-          className="user_btn"
-          text="編輯"
-          type="outline"
-          size="min"
-          theme="blue"
-          onClick={() => { setIsEditModalOpen(true); }}
-        />
+        <div className="edit_user_btn">
+          <Button
+            className="user_btn"
+            text="編輯"
+            type="outline"
+            size="min"
+            theme="blue"
+            onClick={() => { setIsEditModalOpen(true); }}
+          />
+        </div>
       </td>
       <Modal
         isOpen={isEditModalOpen}

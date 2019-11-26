@@ -29,6 +29,23 @@ export default function (state = projectInitialState, action) {
   }
   case 'CREATE_PROJECT_FAILED':
     return { ...state, errorMsg: 'Create Project Failed', isLoading: false };
+  case 'DELETE_PROJECT_REQUEST': {
+    return { ...state, isLoading: true, errorMsg: null };
+  }
+  case 'DELETE_PROJECT_SUCCESS': {
+    const {
+      status,
+    } = action.res;
+    return status === 200
+      ? {
+        ...state,
+        isLoading: false,
+        errorMsg: null,
+      }
+      : state;
+  }
+  case 'DELETE_PROJECT_FAILED':
+    return { ...state, errorMsg: 'Create Project Failed', isLoading: false };
   default:
     return state;
   }

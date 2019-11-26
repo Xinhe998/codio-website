@@ -9,6 +9,7 @@ module.exports = {
   register: `${API_URL}/Members/Register`,
   login: `${API_URL}/Members/Login`,
   create_project: `${API_URL}/Project/CRproject`,
+  delete_project: `${API_URL}/Project/DelMProject?mp_no=`,
   create_file: `${API_URL}/member/CRjDetail`,
   forget_password: `${API_URL}/Members/ForgetPassword?E_mail=`,
   get_all_tags: `${API_URL}/Project/GetAllHashtag`,

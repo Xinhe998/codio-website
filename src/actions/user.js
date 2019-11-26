@@ -39,14 +39,18 @@ export const register = (payload, history) => {
   };
 };
 
-export const forgetPassword = (payload, history) => {
-  const URL = API.forget_password;
+export const forgetPassword = (payload) => {
+  const URL = API.forget_password + payload.email;
+  const getData = {
+    method: 'GET',
+    url: URL,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
   return (dispatch) => {
     dispatch({ type: 'FORGET_PASSWORD_REQUEST', payload });
-    axios
-      .get(URL, {
-        m_account: payload,
-      })
+    axios(getData)
       .then((res) => {
         dispatch({ type: 'FORGET_PASSWORD_SUCCESS', res });
         history.goBack();
