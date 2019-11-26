@@ -82,11 +82,13 @@ class CodeEditors extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.setState({
-      project_title: this.props.project[id].mp_name,
-    }, () => {
-      this.autoSizeInput(this.state.project_title);
-    });
+    if (this.props.project[id]) {
+      this.setState({
+        project_title: this.props.project[id].mp_name,
+      }, () => {
+        this.autoSizeInput(this.state.project_title);
+      });
+    }
     this.props.getCodeByProjectId(
       {
         token: this.props.user.token,
