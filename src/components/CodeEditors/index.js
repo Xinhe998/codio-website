@@ -66,7 +66,6 @@ const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
 
-// const [isModalOpen, setIsModalOpen] = useState(false);
 
 class CodeEditors extends Component {
   constructor(props) {
@@ -409,10 +408,6 @@ class CodeEditors extends Component {
       styleActiveLine: true,
       tabSize: 2,
     };
-
-    // const confirmFunc = () => {
-    //   setIsModalOpen(true);
-    // };
     const deleteProjectHandler = () => {
       const { id } = this.props.match.params;
       const deleteProjectData = {
@@ -469,11 +464,13 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
-              {/*<Modal
-                isOpen={isModalOpen}
+              <Modal
+                isOpen={this.state.isShareModalOpen}
                 title="確定刪除專案"
                 onClose={() => {
-                  setIsModalOpen(false);
+                  this.setState({
+                    isShareModalOpen: false,
+                  });
                 }}
                 shouldCloseOnEsc
                 shouldCloseOnClickOutside
@@ -481,7 +478,7 @@ class CodeEditors extends Component {
                 cancelBtnText="取消"
                 confirmBtnText="新增"
                 Confirm={deleteProjectHandler}
-              />*/}
+              />
               <div className="titlebar_btnGroup">
                 {/* <Button
                   type="primary"
