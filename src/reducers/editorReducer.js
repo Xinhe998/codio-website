@@ -16,6 +16,11 @@ const editorInitialState = {
   js: '',
   logs: '',
   errorMsg: '',
+  mp_desc: '',
+  mp_hashtag: '',
+  mp_isPublic: null,
+  mp_name: '',
+  mp_no: '',
   isLoading: false,
 };
 
@@ -23,11 +28,7 @@ const editorInitialState = {
 export default function (state = editorInitialState, action) {
   switch (action.type) {
   case 'UPDATE_CODE': {
-    return Object.assign({}, state, {
-      html: action.payload.html,
-      css: action.payload.css,
-      js: action.payload.js,
-    });
+    return Object.assign({}, state, action.payload);
   }
   case 'ADD_LOGS': {
     return Object.assign({}, state, { logs: action.payload });
