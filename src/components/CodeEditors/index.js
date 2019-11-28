@@ -1,6 +1,6 @@
 /* eslint-disable no-eval */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { Component,useState } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
 import { Hook, Decode } from 'console-feed';
@@ -16,6 +16,8 @@ import Button from '../Button';
 import Dropdown from './Dropdown';
 import Resizer from '../Resizer';
 import Modal from '../Modal';
+import TextInput from '../TextInput';
+import RadioButtonGroup from '../RadioButtonGroup';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -75,6 +77,8 @@ class CodeEditors extends Component {
       isDropdownOpen: false,
       editorWidth: 650,
       projectTitleInputSize: 0,
+      isShareModalOpen: false,
+      permission: '編輯',
     };
     this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
     this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
@@ -86,11 +90,14 @@ class CodeEditors extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (this.props.project[id]) {
-      this.setState({
-        project_title: this.props.project[id].mp_name,
-      }, () => {
-        this.autoSizeInput(this.state.project_title);
-      });
+      this.setState(
+        {
+          project_title: this.props.project[id].mp_name,
+        },
+        () => {
+          this.autoSizeInput(this.state.project_title);
+        },
+      );
     } else {
       this.autoSizeInput(this.state.project_title);
     }
@@ -156,59 +163,59 @@ class CodeEditors extends Component {
     const lines = 0;
     cm.operation(() => {
       switch (lang || outer.name) {
-      case 'htmlmixed':
-        cm.replaceRange(
-          beautify_html(text, {
-            indent_size: 2,
-            html: {
-              end_with_newline: true,
-              js: {
-                indent_size: 2,
+        case 'htmlmixed':
+          cm.replaceRange(
+            beautify_html(text, {
+              indent_size: 2,
+              html: {
+                end_with_newline: true,
+                js: {
+                  indent_size: 2,
+                },
+                css: {
+                  indent_size: 2,
+                },
               },
               css: {
                 indent_size: 2,
               },
-            },
-            css: {
-              indent_size: 2,
-            },
-            js: {
-              'preserve-newlines': true,
-            },
-          }),
-          from,
-          to,
-        );
-        break;
-      case 'css':
-        cm.replaceRange(
-          beautify_css(text, {
-            indent_size: 4,
-            html: {
-              end_with_newline: true,
               js: {
-                indent_size: 2,
+                'preserve-newlines': true,
+              },
+            }),
+            from,
+            to,
+          );
+          break;
+        case 'css':
+          cm.replaceRange(
+            beautify_css(text, {
+              indent_size: 4,
+              html: {
+                end_with_newline: true,
+                js: {
+                  indent_size: 2,
+                },
+                css: {
+                  indent_size: 2,
+                },
               },
               css: {
                 indent_size: 2,
               },
-            },
-            css: {
-              indent_size: 2,
-            },
-            js: {
-              'preserve-newlines': true,
-            },
-          }),
-          from,
-          to,
-        );
-        break;
-      case 'javascript':
-        cm.replaceRange(beautify_js(text), from, to);
-        break;
-      default:
-        break;
+              js: {
+                'preserve-newlines': true,
+              },
+            }),
+            from,
+            to,
+          );
+          break;
+        case 'javascript':
+          cm.replaceRange(beautify_js(text), from, to);
+          break;
+        default:
+          break;
       }
       for (
         let cur = from.line + 1, end = from.line + lines;
@@ -240,20 +247,20 @@ class CodeEditors extends Component {
       closeOnUnfocus: true,
     };
     switch (lang || cm.getMode().name) {
-    case 'htmlmixed':
-      codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
-      break;
-    case 'css':
-      codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
-      break;
-    case 'javascript':
-      codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
-      break;
-    default:
-      break;
+      case 'htmlmixed':
+        codeMirror = this.refs.htmlEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.html, hintOptions);
+        break;
+      case 'css':
+        codeMirror = this.refs.cssEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.css, hintOptions);
+        break;
+      case 'javascript':
+        codeMirror = this.refs.jsEditor.getCodeMirrorInstance();
+        codeMirror.showHint(cm, codeMirror.hint.js, hintOptions);
+        break;
+      default:
+        break;
     }
   };
 
@@ -279,7 +286,7 @@ class CodeEditors extends Component {
       });
       this.setState({ logs: updatedLogs });
       this.props.addLogs(updatedLogs);
-      window.alert = function () { }; // 讓alert不要執行兩次
+      window.alert = function() {}; // 讓alert不要執行兩次
       eval(js);
       this.runCode();
     } catch (e) {
@@ -290,10 +297,10 @@ class CodeEditors extends Component {
   jsEditorOnChange = (e, changeObj) => {
     this.props.updateJs(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]'
-      && JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '[" "]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '[" "]' &&
+      JSON.stringify(changeObj.text) !== '["",""]'
     ) {
       this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
     }
@@ -302,12 +309,12 @@ class CodeEditors extends Component {
   cssEditorOnChange = (e, changeObj) => {
     this.props.updateCss(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]'
-      && JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
-      && JSON.stringify(changeObj.text) !== '["{"]'
-      && JSON.stringify(changeObj.text) !== '["}"]'
-      && JSON.stringify(changeObj.text) !== '["{}"]'
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["{"]' &&
+      JSON.stringify(changeObj.text) !== '["}"]' &&
+      JSON.stringify(changeObj.text) !== '["{}"]'
     ) {
       this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
     }
@@ -316,10 +323,10 @@ class CodeEditors extends Component {
   htmlEditorOnChange = (e, changeObj) => {
     this.props.updateHtml(e);
     if (
-      JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
-      && JSON.stringify(changeObj.text) !== '["  "]'
-      && JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["  "]' &&
+      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
     ) {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
@@ -342,9 +349,9 @@ class CodeEditors extends Component {
     if (text.length > 0) {
       for (let i = 0; i < text.length; i++) {
         if (
-          /^[A-Za-z0-9]*$/.test(text.charAt(i))
-          || /[.!?\\-]/.test(text.charAt(i))
-          || text.charAt(i) === ' '
+          /^[A-Za-z0-9]*$/.test(text.charAt(i)) ||
+          /[.!?\\-]/.test(text.charAt(i)) ||
+          text.charAt(i) === ' '
         ) {
           // number
           inputSize++;
@@ -376,6 +383,8 @@ class CodeEditors extends Component {
 
   render() {
     const { html, css, js } = this.props.editor;
+    const ShareUrlInputRef = React.createRef();
+    const permissionOptions = ['編輯', '檢視'];
     const codeMirrorOptions = {
       autoCloseBrackets: true,
       autoCloseTags: true,
@@ -383,8 +392,8 @@ class CodeEditors extends Component {
         'Ctrl-Q': (cm) => {
           cm.foldCode(cm.getCursor());
         },
-        'Ctrl-E': cm => this.autoFormat(cm),
-        'Ctrl-H': cm => this.autoComplete(cm),
+        'Ctrl-E': (cm) => this.autoFormat(cm),
+        'Ctrl-H': (cm) => this.autoComplete(cm),
       },
       theme: 'one-dark',
       foldGutter: true,
@@ -413,11 +422,18 @@ class CodeEditors extends Component {
       this.props.deleteProject(deleteProjectData, this.props.history);
     };
 
-
     const dropdownOptions = [
       { text: '另開新專案' },
       { text: '刪除此專案', action: deleteProjectHandler },
-      { text: '分享此專案' },
+      {
+        text: '分享此專案',
+        action: () => {
+          this.setState({
+            isShareModalOpen: true,
+            isDropdownOpen: false,
+          });
+        },
+      },
     ];
 
     const editorWidthStyle = {
@@ -492,10 +508,11 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() => this.autoFormat(
-                    this.refs.htmlEditor.codeMirror,
-                    'htmlmixed',
-                  )
+                  onClick={() =>
+                    this.autoFormat(
+                      this.refs.htmlEditor.codeMirror,
+                      'htmlmixed',
+                    )
                   }
                 />
               </div>
@@ -566,7 +583,8 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+                  onClick={() =>
+                    this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
                   }
                 />
               </div>
@@ -640,7 +658,8 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+                  onClick={() =>
+                    this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
                   }
                 />
               </div>
@@ -706,6 +725,40 @@ class CodeEditors extends Component {
         >
           <iframe title="result" className="iframe" ref="iframe" />
         </div>
+        <Modal
+          isOpen={this.state.isShareModalOpen}
+          className="shareModal"
+          title="與他人共用"
+          onClose={() => {
+            this.setState({
+              isShareModalOpen: false,
+            });
+          }}
+          shouldCloseOnEsc
+          shouldCloseOnClickOutside
+          showControlBtn
+          confirmBtnText="儲存"
+          cancelBtnText="取消"
+        >
+          <TextInput
+            text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+            showPostBtn
+            postBtnText="複製連結"
+            ref={ShareUrlInputRef}
+            postBtnOnClick={() => {
+              ShareUrlInputRef.current.select();
+              document.execCommand('copy');
+            }}
+            readonly
+          />
+          <p>知道連結的人可以</p>
+          <RadioButtonGroup
+            name="permission"
+            options={permissionOptions}
+            value={this.state.permission}
+            onChange={()=> {}}
+          />
+        </Modal>
       </div>
     );
   }
@@ -713,7 +766,7 @@ class CodeEditors extends Component {
 CodeEditors.propTypes = {
   currentActiveTab: PropTypes.string,
 };
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   editor: store.editor,
   user: store.user,
   project: store.project,

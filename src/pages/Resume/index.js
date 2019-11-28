@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../../actions';
@@ -8,9 +8,12 @@ import LayoutBtn from '../../components/LayoutBtn';
 import Button from '../../components/Button';
 import EditProjectList from '../../components/EditProjectList';
 
-
 import './index.scss';
 import userImg from '../../assets/userImg.png';
+
+import Doc from '../../../utils/DocService';
+import { defineFont } from '@progress/kendo-drawing/pdf';
+
 
 const Resume = (props) => {
   const [id, setID] = useState('');
@@ -19,7 +22,6 @@ const Resume = (props) => {
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理']);
 
-
   const [charName, setCharName] = useState('');
   const [userCounty, setUserCounty] = useState('台中市');
   const [userJob, setUserJob] = useState('前端工程師');
@@ -27,7 +29,9 @@ const Resume = (props) => {
   const [userSchool, setUserSchool] = useState('國立臺中科技大學');
   const [userMajor, setUserMajor] = useState('資訊應用');
   const [userGraduateYear, setUserGraduateYear] = useState('畢業於2020年');
-  const [userBg, setUserBg] = useState('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam voluptua. At vero eos et accusam et justduo dolores et ea rebum.');
+  const [userBg, setUserBg] = useState(
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam voluptua. At vero eos et accusam et justduo dolores et ea rebum.',
+  );
   const [skill, setSkill] = useState('HTMLHTML');
   const [expJob, setExpJob] = useState('網頁前端開發');
   const [expChar, setExpChar] = useState('實習生');
@@ -38,13 +42,20 @@ const Resume = (props) => {
   const [expExistYear, setExpExistYear] = useState('2018');
   const [expExistMonth, setExpExistMonth] = useState('12');
   const [expTotal, setExpTotal] = useState('7個月');
-  const [expDetail, setExpDetail] = useState('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam.');
+  const [expDetail, setExpDetail] = useState(
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam.',
+  );
   const [projectStartYear, setProjectStartYear] = useState('2018');
   const [projectStartMonth, setProjectStartMonth] = useState('12');
   const [projectExistYear, setProjectExistYear] = useState('2018');
   const [projectExistMonth, setProjectExistMonth] = useState('12');
   const [projectName, setProjectName] = useState('公開專題');
-  const [projectDescription, setProjectDescription] = useState('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam voluptua. At vero eos et accusam et justduo dolores et ea rebum.');
+  const [projectDescription, setProjectDescription] = useState(
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam voluptua. At vero eos et accusam et justduo dolores et ea rebum.',
+  );
+
+  const createPdf = (html) => Doc.createPdf(html);
+  const bodyRef = React.useRef();
 
   const loginHandler = () => {
     const loginData = {
@@ -53,7 +64,6 @@ const Resume = (props) => {
     };
     props.login(loginData, props.history);
   };
-
 
   return (
     <div className="resume">
@@ -65,10 +75,12 @@ const Resume = (props) => {
             type="primary"
             size="small"
             theme="red"
-          // onClick={addPDF}
+            onClick={() => {
+              createPdf(bodyRef.current);
+            }}
           />
         </LayoutBtn>
-        <div className="main_section">
+        <div className="main_section" ref={bodyRef}>
           <div className="user_info">
             <div className="left_sec">
               <img src={userImg} alt="個人照" />
@@ -78,10 +90,7 @@ const Resume = (props) => {
             </div>
             <div className="right_sec">
               <h1>{`Hi, I'm ${userName}`}</h1>
-              <h3>
-                {`${userSchool} ${userMajor}`}
-
-              </h3>
+              <h3>{`${userSchool} ${userMajor}`}</h3>
               <h3>{userGraduateYear}</h3>
               <p>{userBg}</p>
               <div className="skills">
@@ -136,10 +145,9 @@ const Resume = (props) => {
               </h5>
               <p>
                 <h5>工作內容：</h5>
-                Lorem ipsum dolor sit amet, consetetur
-                sadipscing elitr, sed diam nonumy
-                eirmod tempor invidunt ut labore et
-                dolore magna aliquyam erat, sed.
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed.
               </p>
             </div>
             <div className="exp_block">
@@ -152,10 +160,9 @@ const Resume = (props) => {
               </h5>
               <p>
                 <h5>工作內容：</h5>
-                Lorem ipsum dolor sit amet, consetetur
-                sadipscing elitr, sed diam nonumy
-                eirmod tempor invidunt ut labore et
-                dolore magna aliquyam erat, sed.
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed.
               </p>
             </div>
           </div>
@@ -182,18 +189,17 @@ const Resume = (props) => {
               />
             </div>
           </div>
-
         </div>
-
       </Layout>
     </div>
   );
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: store.user,
   editor: store.editor,
 });
+
 export default withRouter(
   connect(
     mapStateToProps,

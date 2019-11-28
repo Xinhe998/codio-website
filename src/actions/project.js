@@ -17,7 +17,6 @@ export const createProject = (payload, history) => {
       },
       headers: {
         Authorization: `bearer ${payload.token}`,
-        // Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJ4aW5oZTEiLCJhdXRoX3RpbWUiOiIyMDE5LzExLzIzIOS4i-WNiCAwNzoxNDo1NiIsInVuaXF1ZV9uYW1lIjoiTTAwMDAwMDAwMiIsImV4cCI6MTU3NDUxNDg5NiwiaXNzIjoiaHR0cDovL3d3dy5mYWNlYm9vay5jb20iLCJhdWQiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbSJ9.bjsP4cfeHO_8e7iIG4oBntSMJB3Q0utuW5D0k61tzN4',
         'Content-Type': 'application/json',
       },
     };
