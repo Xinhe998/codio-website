@@ -1,17 +1,21 @@
 @import "../../../styles/main.scss";
+
 .playground {
   display: flex;
   flex-direction: row;
   height: 100%;
+
   .resizer {
     overflow-y: scroll;
     overflow-x: hidden;
   }
+
   .saveBtn {
     width: auto;
     font-size: 12px;
     padding: 0 10px;
     box-sizing: border-box;
+
     svg {
       margin-right: 5px;
     }
@@ -29,6 +33,7 @@
   background: $codio-darkblue;
   top: $app-header-height;
   z-index: 10;
+
   input {
     border: transparent;
     background: none;
@@ -48,6 +53,7 @@
   // flex-basis: 40%;
   background: $white;
   z-index: 10;
+
   iframe {
     width: 100%;
     height: calc(100vh - 70px);
@@ -67,15 +73,24 @@
 .titlebar_btnGroup {
   margin-left: auto !important;
   display: flex;
+
   button {
     margin-left: 6px;
     cursor: pointer;
     margin-bottom: 0;
+    border: none;
+
+    &:focus,
+    &:active {
+      border: none;
+    }
   }
 }
+
 .ReactCodeMirror {
   height: 92%;
 }
+
 .CodeMirror {
   height: inherit;
 }

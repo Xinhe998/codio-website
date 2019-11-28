@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,12 +9,14 @@ import useEscCloseModal from '../../hooks/useEscCloseModal';
 import Label from '../Label';
 import './index.scss';
 
+const text = ['標籤'];
+const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
 const ProjectList = ({
   shouldCloseOnClickOutside,
   shouldCloseOnEsc,
   projectName,
   isOpen,
-  onClick,
+  // onClick,
   onClose,
   projectDescription,
   onDoubleClick,
@@ -30,13 +32,19 @@ const ProjectList = ({
         <h3>{projectName}</h3>
         <FaEllipsisH
           className="ellipsis_icon"
-          onClick={onClick}
+          isOpen={isProjectDropDownOpen}
+          onClick={() => {
+            setIsProjectDropDownOpen(true);
+          }}
+          onClose={() => {
+            setIsProjectDropDownOpen(false);
+          }}
         />
         {isOpen ? <div className="project_dropDown" ref={dropDownRef}>{children}</div> : null}
       </div>
       <Label
         className="label"
-        text="標籤"
+        labels={text}
 
       />
       <p className="project_description">{projectDescription}</p>
@@ -59,7 +67,7 @@ ProjectList.propTypes = {
   shouldCloseOnClickOutside: PropTypes.bool,
   projectName: PropTypes.string,
   isOpen: PropTypes.bool,
-  onClick: PropTypes.func,
+  // onClick: PropTypes.func,
   onClose: PropTypes.func,
   projectDescription: PropTypes.string,
   onDoubleClick: PropTypes.func,

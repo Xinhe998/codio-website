@@ -28,7 +28,7 @@ const HomePage = (props) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isChecked, setIsChecked] = useState([]);
   const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
-  const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
+  // const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
   const [number, setNumber] = useState(0);
 
   const handleSelectCheckbox = (choice) => {
@@ -136,13 +136,13 @@ const HomePage = (props) => {
               <ProjectList
                 projectName={item.mp_name}
                 projectDescription={item.mp_desc}
-                isOpen={isProjectDropDownOpen}
-                onClick={() => {
-                  setIsProjectDropDownOpen(true);
-                }}
-                onClose={() => {
-                  setIsProjectDropDownOpen(false);
-                }}
+                // isOpen={isProjectDropDownOpen}
+                // onClick={() => {
+                //   setIsProjectDropDownOpen(true);
+                // }}
+                // onClose={() => {
+                //   setIsProjectDropDownOpen(false);
+                // }}
                 shouldCloseOnClickOutside
                 shouldCloseOnEsc
                 number={number}
