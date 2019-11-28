@@ -108,12 +108,14 @@ AppHeader.propTypes = {
   handleTabClick: PropTypes.func,
   isTabVisible: PropTypes.bool,
   isShareBtnVisible: PropTypes.bool,
+  isUserBtnVisible: PropTypes.bool,
 };
 
 AppHeader.defaultProps = {
   currentActiveTab: 'html',
   isTabVisible: false,
   isShareBtnVisible: false,
+  isUserBtnVisible: true,
 };
 
 export default AppHeader;

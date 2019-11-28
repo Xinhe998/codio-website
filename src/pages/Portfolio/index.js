@@ -1,6 +1,5 @@
-import React, { useState, useRef, createRef } from 'react';
+import React, { useState, useRef, createRef, useEffect } from 'react';
 import {
-  Router,
   Route,
   useParams,
   useRouteMatch,
@@ -22,8 +21,20 @@ import '../Index/index.scss';
 import './index.scss';
 
 import userImg from '../../assets/userImg.png';
+import dafaulrAvatar from '../../assets/default_avatar.jpg';
 
-const renderPortfolioPage = ({ match, history }) => {
+const RenderPortfolioPage = ({
+  match,
+  history,
+  user,
+  portfolio,
+  project,
+  getPortfolioById,
+  createPortfolio,
+}) => {
+  const { id } = useParams();
+  const { path, url } = useRouteMatch();
+
   const isEditMode = match.params.mode && match.params.mode === 'edit';
   const [userName, setUserName] = useState('Alice');
   const [list, setList] = useState(['會員管理', '圖表分析', '帳戶設定']);
@@ -42,8 +53,16 @@ const renderPortfolioPage = ({ match, history }) => {
   );
   const newBlockRef = useRef();
 
-  const { id } = useParams();
-  const { path, url } = useRouteMatch();
+  useEffect(() => {
+    getPortfolioById({
+      token: user.token,
+      mp_no: id,
+    });
+  }, []);
+
+  useEffect(() => {
+    setContents(portfolio);
+  }, [portfolio]);
 
   const editContentValueById = (id, type, value) => {
     let temp;
@@ -84,8 +103,10 @@ const renderPortfolioPage = ({ match, history }) => {
     elRef[id - 1].current.focus();
   };
 
+  console.log(contents);
+
   return (
-    <Layout userImg={userImg} userName={userName} list={list}>
+    <Layout userImg={dafaulrAvatar} userName={user.m_name} list={list}>
       <div className="score_circle_wrapper">
         <ScoreCircle score={5} theme="yellow" text="介面很美" />
         <ScoreCircle score={6.3} theme="red" text="程式碼好閱讀" />
@@ -112,7 +133,13 @@ const renderPortfolioPage = ({ match, history }) => {
             type="primary"
             size="small"
             theme="red"
-            onClick={() => {}}
+            onClick={() => {
+              // createPortfolio({
+              //   mp_no: id,
+              //   Data: 
+              // });
+              history.push(`/portfolio/${id}`);
+            }}
           />
         </LayoutBtn>
       )}
@@ -121,7 +148,7 @@ const renderPortfolioPage = ({ match, history }) => {
           {isEditMode ? (
             <TextInput className="project_title" text="My Project" />
           ) : (
-            <h1 className="project_title">My Project</h1>
+            <h1 className="project_title">{'Xinhe'}</h1>
           )}
           <Like isLiked={false} likeCount={300} />
         </div>
@@ -154,17 +181,6 @@ const renderPortfolioPage = ({ match, history }) => {
           <img src={userImg} alt="collaborator" />
         </div>
         <div className="portfolio_article_wrapper">
-          {/* <div className="text_block">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet. Lorem ipsum dolor sit
-        </div>
-        <div className="img_block">
-          <img src="https://xinhehsu.com/static/meracle-1-b4a9cf768700b3863a8f86d12cd348a5.png" />
-        </div> */}
-
           {isEditMode &&
             contentsLength > 0 &&
             contents.map((content, index) => (
@@ -227,20 +243,22 @@ const renderPortfolioPage = ({ match, history }) => {
   );
 };
 
-const Portfolio = ({ match, history }) => {
+const Portfolio = (props) => {
   return (
     <div className="Portfolio">
       <Route
         exact
+        {...props}
         path="/portfolio/:id"
-        component={renderPortfolioPage}
-        history={history}
+        render={() => <RenderPortfolioPage {...props} />}
+        history={props.history}
       />
       <Route
         exact
+        {...props}
         path="/portfolio/:id/:mode"
-        component={renderPortfolioPage}
-        history={history}
+        render={() => <RenderPortfolioPage {...props} />}
+        history={props.history}
       />
     </div>
   );
@@ -248,7 +266,8 @@ const Portfolio = ({ match, history }) => {
 
 const mapStateToProps = (store) => ({
   user: store.user,
-  editor: store.editor,
+  project: store.project,
+  portfolio: store.portfolio,
 });
 
 export default withRouter(
