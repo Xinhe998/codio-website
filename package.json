@@ -15,8 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@progress/kendo-drawing": "^1.6.0",
-    "@progress/kendo-react-pdf": "^3.9.0",
+    "@react-pdf/renderer": "^1.6.8",
     "@storybook/addon-actions": "^5.2.4",
     "@storybook/addon-docs": "^5.2.4",
     "@storybook/addon-links": "^5.2.4",
