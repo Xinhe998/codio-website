@@ -75,4 +75,4 @@ export const updatePersonalInfo = (payload, history) => {
   };
 };
 
-export const logout = payload => ({ type: 'LOGOUT', payload });
+export const logout = () => ({ type: 'LOGOUT' });
