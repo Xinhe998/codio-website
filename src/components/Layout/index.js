@@ -6,7 +6,7 @@ import action from '../../actions';
 import './index.scss';
 import logo from '../../assets/codio_logo.svg';
 
-const Layout = ({ userImg, userName, list, children, history, logout }) => {
+const Layout = ({ userImg, userName, list, children, history, logout, resetPortfolio, resetAll }) => {
   const LayoutRef = useRef();
   return (
     <div className="Layout" ref={LayoutRef}>
@@ -32,6 +32,8 @@ const Layout = ({ userImg, userName, list, children, history, logout }) => {
             className="logout"
             onClick={() => {
               logout();
+              resetPortfolio();
+              resetAll();
               history.push('/login');
             }}
           >

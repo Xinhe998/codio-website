@@ -51,3 +51,7 @@ export const getPortfolioById = (payload) => {
       });
   };
 };
+
+export const resetPortfolio = () => (dispatch) => {
+  dispatch({ type: 'RESET_PORTFOLIO' });
+};

@@ -25,6 +25,7 @@ const RenderPortfolioPage = ({
   project,
   getPortfolioById,
   createPortfolio,
+  resetPortfolio,
 }) => {
   const { id, mode } = useParams();
   const { path, url } = useRouteMatch();
@@ -46,6 +47,7 @@ const RenderPortfolioPage = ({
   const newBlockRef = useRef();
 
   useEffect(() => {
+    resetPortfolio();
     getPortfolioById({
       token: user.token,
       mp_no: id,
@@ -138,7 +140,7 @@ const RenderPortfolioPage = ({
         <ScoreCircle score={6.3} theme="red" text="程式碼好閱讀" />
         <ScoreCircle score={8} theme="blue" text="很有創意" />
       </div>
-      {!isEditMode ? (
+      {!isEditMode && user.m_no === portfolio.m_no ? (
         <LayoutBtn>
           <Button
             className="edit_portfolio_btn"

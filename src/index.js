@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -53,7 +53,6 @@ const store = createStore(
 const persistor = persistStore(store);
 
 const notfound = () => <h1>404 Not Found.</h1>;
-const NotFoundRedirect = () => <Redirect to="/notfound" />;
 
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
@@ -62,26 +61,27 @@ const CodioSwitch = ({ location }) => {
     location.state.modal &&
     previousLocation
   );
+  console.log(location.state);
   return (
     <Router history={history}>
       <Switch location={isModal ? previousLocation : location}>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
         <Route path="/forget_password" component={ForgetPassword} />
+        <Route exact path="/" component={App} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <PrivateRoute path="/create_project" component={CreateProject} />
         <Route path="/admin" component={Admin} />
         <Route path="/p/:id" component={App} />
-        <Route exact path="/homePage" component={HomePage} />
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/resume/edit" component={EditResume} />
         <Route path="/resume" component={Resume} />
         <Route path="/search" component={Search} />
         <Route path="/settings" component={Settings} />
-        <PrivateRoute path="/create_project" component={CreateProject} />
+        <Route exact path="/homePage" component={HomePage} />
         <Route component={notfound} />
-        <Route exact path="/" component={App} />
       </Switch>
       {isModal ? (
-        <Route path="/forget_password" component={ForgetPasswordModal} />
+        <Route exact path="/forget_password" component={ForgetPasswordModal} />
       ) : null}
     </Router>
   );
