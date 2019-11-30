@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -11,7 +12,7 @@ import './index.scss';
 
 const notfound = () => <h1>404 Not Found.</h1>;
 
-const Home = ({ editor, resetAll }) => {
+const Home = ({ editor, resetAll, needAuth }) => {
   const [currentActiveTab, setCurrentActiveTab] = useState('html');
   const [errorMsg, setErrorMsg] = useState(editor.errorMsg);
 
@@ -25,7 +26,7 @@ const Home = ({ editor, resetAll }) => {
 
   return (
     <div className="App">
-      {!errorMsg ? (
+      {!errorMsg || !needAuth ? (
         <React.Fragment>
           <AppHeader
             currentActiveTab={currentActiveTab}
@@ -43,6 +44,15 @@ const Home = ({ editor, resetAll }) => {
       )}
     </div>
   );
+};
+
+
+Home.propTypes = {
+  needAuth: PropTypes.bool,
+};
+
+Home.defaultProps = {
+  needAuth: true,
 };
 
 const mapStateToProps = (store) => ({

@@ -75,7 +75,7 @@ const CreateProject = ({
   };
   return (
     <div className="CreateProject">
-      <Index />
+      <Index needAuth={false} />
       <Modal
         isOpen
         shouldCloseOnEsc={false}
