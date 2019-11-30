@@ -12,7 +12,6 @@ import '../Index/index.scss';
 import '../ForgetPassword/index.scss';
 
 const ForgetPasswordModal = ({ location, history, forgetPassword }) => {
-  console.log('!!!!!!');
   const { state = {} } = location;
   const { modal } = state;
   const [email, setEmail] = useState('');

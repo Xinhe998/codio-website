@@ -14,7 +14,6 @@ import './index.scss';
 import mockup from '../../assets/smartmockups_jxfuqv8i.jpg';
 
 const ForgetPassword = (props) => {
-  console.log('!!!!!');
   const [email, setEmail] = useState('');
   const emailValidator = isRequired({ message: '請輸入E-mail' })(email);
   const emailValidator2 = isEmail({ message: '請輸入正確的Email' })(email);
