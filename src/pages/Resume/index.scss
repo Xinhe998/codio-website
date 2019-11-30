@@ -6,7 +6,7 @@
   .add_pdf_btn {
     max-width: 20%;
   }
-  
+
   .download_resume_btn {
     max-width: 150px;
     background-color: #ec5252;
@@ -31,13 +31,14 @@
     .left_sec {
       margin-right: 50px;
     }
+
     h3 {
       font-size: 14px;
       font-weight: normal;
     }
   }
 
-  
+
 
   h1 {
     font-size: 22px;
@@ -87,31 +88,38 @@
 
   .exp_block {
     border: solid 1px rgba(0, 0, 0, 0.16);
-    width: calc(100%/3);
     padding: 15px;
-    display: inline-block;
-    box-sizing: border-box;
+    margin-bottom: 15px;
+    display: flex;
+
+
+    .line {
+      border-left: 5pt solid #3597ec;
+      height: 50px;
+      height: 85px;
+      margin-top: 20px;
+      padding-right: 15px;
+    }
 
     h5 {
       font-size: 14px;
       font-weight: normal;
       margin: 0
     }
+
   }
 
   .project_block {
     display: flex;
     margin-bottom: 15px;
+  }
 
-    .project_time {
-      width: 20%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      h4 {
-        margin: 0;
-      }
-    }
+  .skills,
+  .user_exp,
+  .user_project {
+    margin-bottom: 80px;
+  }
+  .main_section{
+    padding-bottom: 0px;
   }
 }

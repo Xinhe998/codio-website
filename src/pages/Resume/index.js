@@ -7,6 +7,7 @@ import Layout from '../../components/Layout';
 import LayoutBtn from '../../components/LayoutBtn';
 import Button from '../../components/Button';
 import EditProjectList from '../../components/EditProjectList';
+import Label from '../../components/Label';
 
 import './index.scss';
 import userImg from '../../assets/userImg.png';
@@ -31,7 +32,8 @@ const Resume = (props) => {
   const [userBg, setUserBg] = useState(
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam voluptua. At vero eos et accusam et justduo dolores et ea rebum.',
   );
-  const [skill, setSkill] = useState('HTMLHTML');
+  // const [skill, setSkill] = useState('HTMLHTML');
+  const text = ['標籤'];
   const [expJob, setExpJob] = useState('網頁前端開發');
   const [expChar, setExpChar] = useState('實習生');
   const [expCompany, setExpCompany] = useState('研華科技');
@@ -44,10 +46,6 @@ const Resume = (props) => {
   const [expDetail, setExpDetail] = useState(
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam.',
   );
-  const [projectStartYear, setProjectStartYear] = useState('2018');
-  const [projectStartMonth, setProjectStartMonth] = useState('12');
-  const [projectExistYear, setProjectExistYear] = useState('2018');
-  const [projectExistMonth, setProjectExistMonth] = useState('12');
   const [projectName, setProjectName] = useState('公開專題');
   const [projectDescription, setProjectDescription] = useState(
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diamnonumy eirmod tempor invidunt ut labore et dolore magnaaliquyam erat, sed diam voluptua. At vero eos et accusam et justduo dolores et ea rebum.',
@@ -91,96 +89,41 @@ const Resume = (props) => {
               <h3>{`${userSchool} ${userMajor}`}</h3>
               <h3>{userGraduateYear}</h3>
               <p>{userBg}</p>
-              <div className="skills">
-                <div className="skills_block">
-                  <span>1</span>
-                  <h4>{skill}</h4>
-                </div>
-                <div className="skills_block">
-                  <span>1</span>
-                  <h4>CSS</h4>
-                </div>
-                <div className="skills_block">
-                  <span>1</span>
-                  <h4>HTML&CSS</h4>
-                </div>
-                <div className="skills_block">
-                  <span>1</span>
-                  <h4>HTML&CSS</h4>
-                </div>
-                <div className="skills_block">
-                  <span>1</span>
-                  <h4>HTML&CSS</h4>
-                </div>
-                <div className="skills_block">
-                  <span>1</span>
-                  <h4>HTML&CSS</h4>
-                </div>
-              </div>
             </div>
+          </div>
+          <div className="skills">
+            <h2 className="title">技術</h2>
+            <Label
+              className="label"
+              labels={text}
+            />
           </div>
           <div className="user_exp">
             <h2 className="title">經歷</h2>
             <div className="exp_block">
-              <span>1</span>
-              <h4>{`${expJob} ${expChar}`}</h4>
-              <h5>{`${expCompany} ${expPlace}`}</h5>
-              <h5>
-                {`${expStartYear}  ${expStartMonth}～${expExistYear} ${expExistMonth} 共${expTotal}`}
-              </h5>
-              <p>
-                <h5>工作內容：</h5>
-                {expDetail}
-              </p>
-            </div>
-            <div className="exp_block">
-              <span>1</span>
-              <h4>網頁前端開發 實習生</h4>
-              <h5>研華科技 台北市</h5>
-              <h5>
-                2018年1月～2018年7月
-                <span>7個月</span>
-              </h5>
-              <p>
-                <h5>工作內容：</h5>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed.
-              </p>
-            </div>
-            <div className="exp_block">
-              <span>1</span>
-              <h4>網頁前端開發 實習生</h4>
-              <h5>研華科技 台北市</h5>
-              <h5>
-                2018年1月～2018年7月
-                <span>7個月</span>
-              </h5>
-              <p>
-                <h5>工作內容：</h5>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed.
-              </p>
+              <span className="line" />
+              <div className="exp_block_wrapper">
+                <h4>{`${expJob} ${expChar}`}</h4>
+                <h5>{`${expCompany} ${expPlace}`}</h5>
+                <h5>
+                  {`${expStartYear}  ${expStartMonth}～${expExistYear} ${expExistMonth} 共${expTotal}`}
+                </h5>
+                <p>
+                  <h5>工作內容：</h5>
+                  {expDetail}
+                </p>
+              </div>
             </div>
           </div>
           <div className="user_project">
             <h2 className="title">作品</h2>
             <div className="project_block">
-              <div className="project_time">
-                <h4>{`${projectStartYear}  ${projectStartMonth}`}</h4>
-                <h4>{`${projectExistYear}  ${projectExistMonth}`}</h4>
-              </div>
               <EditProjectList
                 projectName={projectName}
                 projectDescription={projectDescription}
               />
             </div>
             <div className="project_block">
-              <div className="project_time">
-                <h4>2019 12月</h4>
-                <h4>2019 12月</h4>
-              </div>
               <EditProjectList
                 projectName={projectName}
                 projectDescription={projectDescription}
