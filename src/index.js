@@ -52,7 +52,7 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-const notfound = () => <h1>404 Not Found.</h1>;
+const notfound = () => <h1>敬請期待！</h1>;
 
 const CodioSwitch = ({ location }) => {
   const previousLocation = usePrevious(location);
@@ -61,7 +61,6 @@ const CodioSwitch = ({ location }) => {
     location.state.modal &&
     previousLocation
   );
-  console.log(location.state);
   return (
     <Router history={history}>
       <Switch location={isModal ? previousLocation : location}>
