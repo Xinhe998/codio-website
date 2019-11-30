@@ -71,11 +71,11 @@ const CodioSwitch = ({ location }) => {
         <Route path="/admin" component={Admin} />
         <Route path="/p/:id" component={App} />
         <Route exact path="/homePage" component={HomePage} />
+        <Route path="/portfolio" component={Portfolio} />
         <Route path="/resume/edit" component={EditResume} />
         <Route path="/resume" component={Resume} />
         <Route path="/search" component={Search} />
         <Route path="/settings" component={Settings} />
-        <Route path="/portfolio" component={Portfolio} />
         <PrivateRoute path="/create_project" component={CreateProject} />
         <Route component={notfound} />
         <Route exact path="/" component={App} />

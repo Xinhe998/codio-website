@@ -16,12 +16,11 @@ export const createPortfolio = (payload, history) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(postData);
     axios(postData)
       .then((res) => {
-        console.log(res);
         dispatch({ type: 'CREATE_PORTFOLIO', res });
-        history.push(`/portfolio/${payload.mp_no}`);
+        console.log(res);
+        // history.push(`/portfolio/${payload.mp_no}`);
       })
       .catch((err) => {
         console.log(err);
@@ -43,10 +42,8 @@ export const getPortfolioById = (payload) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(postData);
     axios(postData)
       .then((res) => {
-        console.log(res);
         dispatch({ type: 'GET_PORTFOLIO', res });
       })
       .catch((err) => {

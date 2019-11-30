@@ -11,9 +11,8 @@ import EditProjectList from '../../components/EditProjectList';
 import './index.scss';
 import userImg from '../../assets/userImg.png';
 
-import Doc from '../../../utils/DocService';
-import { defineFont } from '@progress/kendo-drawing/pdf';
-
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import ExportResume from '../ExportResume';
 
 const Resume = (props) => {
   const [id, setID] = useState('');
@@ -69,16 +68,15 @@ const Resume = (props) => {
     <div className="resume">
       <Layout userImg={userImg} userName={userName} list={list}>
         <LayoutBtn>
-          <Button
-            className="add_pdf_btn"
-            text="輸出PDF"
-            type="primary"
-            size="small"
-            theme="red"
-            onClick={() => {
-              createPdf(bodyRef.current);
-            }}
-          />
+          <PDFDownloadLink
+            className="download_resume_btn"
+            document={<ExportResume />}
+            fileName={`${props.user.m_name}-resume.pdf`}
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? '載入PDF履歷中...' : '下載PDF履歷'
+            }
+          </PDFDownloadLink>
         </LayoutBtn>
         <div className="main_section" ref={bodyRef}>
           <div className="user_info">
@@ -89,7 +87,7 @@ const Resume = (props) => {
               <h3>{userUrl}</h3>
             </div>
             <div className="right_sec">
-              <h1>{`Hi, I'm ${userName}`}</h1>
+              <h1>{userName}</h1>
               <h3>{`${userSchool} ${userMajor}`}</h3>
               <h3>{userGraduateYear}</h3>
               <p>{userBg}</p>
@@ -200,9 +198,4 @@ const mapStateToProps = (store) => ({
   editor: store.editor,
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    action,
-  )(Resume),
-);
+export default withRouter(connect(mapStateToProps, action)(Resume));

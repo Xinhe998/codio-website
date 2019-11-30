@@ -1,10 +1,5 @@
 import React, { useState, useRef, createRef, useEffect } from 'react';
-import {
-  Route,
-  useParams,
-  useRouteMatch,
-  withRouter,
-} from 'react-router-dom';
+import { Route, useParams, useRouteMatch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../../actions';
 
@@ -24,7 +19,6 @@ import userImg from '../../assets/userImg.png';
 import dafaulrAvatar from '../../assets/default_avatar.jpg';
 
 const RenderPortfolioPage = ({
-  match,
   history,
   user,
   portfolio,
@@ -32,15 +26,13 @@ const RenderPortfolioPage = ({
   getPortfolioById,
   createPortfolio,
 }) => {
-  const { id } = useParams();
+  const { id, mode } = useParams();
   const { path, url } = useRouteMatch();
 
-  const isEditMode = match.params.mode && match.params.mode === 'edit';
-  const [userName, setUserName] = useState('Alice');
+  const isEditMode = mode && mode === 'edit';
   const [list, setList] = useState(['會員管理', '圖表分析', '帳戶設定']);
-  const [projectDesc, setProjectDesc] = useState(
-    'Meracle 憶想奇機是個，其使用 Neurosky的頭戴式腦波耳機擷取腦波生理訊號，以量化工作記憶力之演算法得出記憶力指數，並為家長提供豐富多元的圖表及數據分析 。Meracle憶想奇機的目標及宗旨在於提升學童的工作記憶力。',
-  );
+  const [projectTitle, setProjectTitle] = useState(portfolio.mp_name);
+  const [projectDesc, setProjectDesc] = useState(portfolio.mp_desc);
   const [editorCurrentType, setEditorCurrentType] = useState('text');
   const [editorCurrentValue, setEditorCurrentValue] = useState('');
   const [contents, setContents] = useState([]);
@@ -61,49 +53,83 @@ const RenderPortfolioPage = ({
   }, []);
 
   useEffect(() => {
-    setContents(portfolio);
+    setContents(portfolio.contents);
   }, [portfolio]);
 
-  const editContentValueById = (id, type, value) => {
+  const editContentValueById = (contentId, type, value) => {
     let temp;
     let newC = [];
     contents.map((content) => {
-      if (content.id !== id) {
+      if (content.content_order !== contentId) {
         temp = content;
       } else {
-        temp = { id, type, value };
+        temp = {
+          mp_no: id,
+          m_no: user.m_no,
+          content_order: contentId,
+          content_type: type,
+          work_content: value,
+        };
       }
       newC = [...newC, temp];
     });
     setContents(newC);
   };
 
-  const insertNewBlockBelow = (id) => {
+  const insertNewBlockBelow = (contentId) => {
     let isInserted = false;
     let temp;
     let insertContent;
     let newC = [];
     contents.map((content) => {
-      if (!isInserted && content.id !== id) {
+      if (!isInserted && content.content_order !== contentId) {
         temp = content;
-      } else if (!isInserted && content.id === id) {
+      } else if (!isInserted && content.content_order === contentId) {
         temp = content;
-        insertContent = { id: id + 1, type: 'text', value: '' };
+        insertContent = {
+          mp_no: id,
+          m_no: user.m_no,
+          content_order: contentId + 1,
+          content_type: 'text',
+          work_content: '',
+        };
         isInserted = true;
       } else {
-        temp = { id: content.id + 1, type: content.type, value: content.value };
+        temp = {
+          mp_no: id,
+          m_no: user.m_no,
+          content_order: content.content_order + 1,
+          content_type: content.content_type,
+          work_content: content.work_content,
+        };
       }
       newC = [...newC, temp];
     });
-    newC.splice(id, 0, insertContent);
+    newC.splice(contentId, 0, insertContent);
     setContents(newC);
   };
 
-  const focusById = (id) => {
-    elRef[id - 1].current.focus();
+  const focusById = (contentId) => {
+    if (elRef[contentId - 1]) elRef[contentId - 1].current.focus();
   };
 
-  console.log(contents);
+  const handleSubmit = () => {
+    createPortfolio({
+      token: user.token,
+      mp_no: id,
+      data: [
+        ...contents,
+        {
+          mp_no: id,
+          m_no: user.m_no,
+          content_order: contentsLength + 1,
+          content_type: editorCurrentType,
+          work_content: editorCurrentValue,
+        },
+      ],
+    });
+    history.push(`/portfolio/${id}`);
+  };
 
   return (
     <Layout userImg={dafaulrAvatar} userName={user.m_name} list={list}>
@@ -133,29 +159,31 @@ const RenderPortfolioPage = ({
             type="primary"
             size="small"
             theme="red"
-            onClick={() => {
-              // createPortfolio({
-              //   mp_no: id,
-              //   Data: 
-              // });
-              history.push(`/portfolio/${id}`);
-            }}
+            onClick={handleSubmit}
           />
         </LayoutBtn>
       )}
       <div className="main_section">
         <div className="portfolio_titlebar">
           {isEditMode ? (
-            <TextInput className="project_title" text="My Project" />
+            <TextInput
+              className="project_title"
+              text={projectTitle}
+              onChange={(e) => setProjectTitle(e.target.value)}
+            />
           ) : (
-            <h1 className="project_title">{'Xinhe'}</h1>
+            <h1 className="project_title">{projectTitle}</h1>
           )}
           <Like isLiked={false} likeCount={300} />
         </div>
         <hr />
         <div className="portfolio_tags_wrapper">
-          <span className="tag">React</span>
-          <span className="tag">Vue.js</span>
+          {portfolio.mp_hashtag &&
+            portfolio.mp_hashtag.split(',').map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
         </div>
         <div className="portfolio_desc">
           {isEditMode ? (
@@ -166,12 +194,7 @@ const RenderPortfolioPage = ({
               }}
             />
           ) : (
-            <React.Fragment>
-              Meracle 憶想奇機是個，其使用 Neurosky
-              的頭戴式腦波耳機擷取腦波生理訊號，以量化工作記憶力之演算法得出記憶力指數
-              ，並為家長提供豐富多元的圖表及數據分析 。Meracle
-              憶想奇機的目標及宗旨在於提升學童的工作記憶力。
-            </React.Fragment>
+            <React.Fragment>{projectDesc}</React.Fragment>
           )}
         </div>
         <div className="portfolio_collaborator">
@@ -181,23 +204,43 @@ const RenderPortfolioPage = ({
           <img src={userImg} alt="collaborator" />
         </div>
         <div className="portfolio_article_wrapper">
+          {!isEditMode &&
+            contentsLength > 0 &&
+            contents.map((content) => {
+              if (content.content_type === 'text')
+                return <div className="text_block">{content.work_content}</div>;
+              else if (content.content_type === 'image')
+                return (
+                  <div className="img_block">
+                    <img src={content.work_content} />
+                  </div>
+                );
+            })}
           {isEditMode &&
             contentsLength > 0 &&
             contents.map((content, index) => (
               <ArticleEditors
-                key={content.id}
-                selectedType={content.type}
+                key={content.content_order}
+                selectedType={content.content_type}
                 changeType={(type) => {
-                  editContentValueById(content.id, type, content.value);
+                  editContentValueById(
+                    content.content_order,
+                    type,
+                    content.work_content,
+                  );
                 }}
-                value={content.value}
-                isrenderAddBtn={!content.value}
+                value={content.work_content}
+                isrenderAddBtn={!content.work_content}
                 changeValue={(val) => {
-                  editContentValueById(content.id, content.type, val);
+                  editContentValueById(
+                    content.content_order,
+                    content.content_type,
+                    val,
+                  );
                 }}
                 onEnter={() => {
-                  insertNewBlockBelow(content.id);
-                  focusById(content.id + 1);
+                  insertNewBlockBelow(content.content_order);
+                  focusById(content.content_order + 1);
                 }}
                 textRef={elRef[index]}
               />
@@ -217,9 +260,11 @@ const RenderPortfolioPage = ({
               onEnter={() => {
                 let newContent = {};
                 newContent = {
-                  id: contentsLength + 1,
-                  type: editorCurrentType,
-                  value: editorCurrentValue,
+                  mp_no: id,
+                  m_no: user.m_no,
+                  content_order: contentsLength + 1,
+                  content_type: editorCurrentType,
+                  work_content: editorCurrentValue,
                 };
                 setContents([...contents, newContent]);
                 setEditorCurrentType('text');
@@ -270,9 +315,4 @@ const mapStateToProps = (store) => ({
   portfolio: store.portfolio,
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    action,
-  )(Portfolio),
-);
+export default withRouter(connect(mapStateToProps, action)(Portfolio));
