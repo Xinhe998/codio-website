@@ -57,8 +57,10 @@ export const getCodeByProjectId = (payload, history) => {
     method: 'POST',
     url: URL,
     data: {
-      mp_no: payload.projectId,
-      m_no: payload.m_no,
+      mProject: {
+        mp_no: payload.projectId,
+        m_no: payload.m_no,
+      },
     },
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -73,8 +75,8 @@ export const getCodeByProjectId = (payload, history) => {
       .then((res) => {
         console.log(res);
         const result = {};
-        if (res.data.length) {
-          res.data.map((item) => {
+        if (res.data.mPDetail.length) {
+          res.data.mPDetail.map((item) => {
             switch (item.mpd_name) {
               case 'HTML':
                 result.html = item.mpd_content;
@@ -90,6 +92,14 @@ export const getCodeByProjectId = (payload, history) => {
             }
           });
         }
+        result.mp_name = res.data.mProject.mp_name;
+        result.mp_no = res.data.mProject.mp_no;
+        result.mp_isPublic = res.data.mProject.mp_isPublic;
+        result.mp_hashtag = res.data.mProject.mp_hashtag;
+        result.mp_desc = res.data.mProject.mp_desc;
+
+        console.log(result);
+
         dispatch({ type: 'UPDATE_CODE', payload: result });
         dispatch({ type: 'GET_CODE_SUCCESS' });
       })

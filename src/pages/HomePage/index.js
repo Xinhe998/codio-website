@@ -13,6 +13,9 @@ import ResumeBtn from '../../components/ResumeBtn';
 import ProjectList from '../../components/ProjectList';
 import Checkbox from '../../components/Checkbox';
 import dafaulrAvatar from '../../assets/default_avatar.jpg';
+import Modal from '../../components/Modal';
+import TextInput from '../../components/TextInput';
+import RadioButtonGroup from '../../components/RadioButtonGroup';
 
 import './index.scss';
 
@@ -29,7 +32,17 @@ const HomePage = (props) => {
   const [isChecked, setIsChecked] = useState([]);
   const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
   // const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [number, setNumber] = useState(0);
+  const [permission, setPermission] = useState('編輯');
+  const permissionOptions = ['編輯', '檢視'];
+  const [currentDeleteId, setCurrentDeleteId] = useState('');
+
+  console.log('!!!!!', props.project);
+  Object.values(props.project).map((item) => {
+    console.log('item', item);
+  });
 
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
@@ -39,6 +52,17 @@ const HomePage = (props) => {
       setIsChecked([choice, ...isChecked]);
     }
   };
+
+  const deleteProjectHandler = () => {
+    const deleteProjectData = {
+      token: props.user.token,
+      mp_no: currentDeleteId,
+    };
+    props.deleteProject(deleteProjectData, props.history);
+    setCurrentDeleteId('');
+    setIsDeleteModalOpen(false);
+  };
+  const ShareUrlInputRef = React.createRef();
 
   return (
     <div className="home_page">
@@ -66,8 +90,8 @@ const HomePage = (props) => {
             shouldCloseOnClickOutside
             shouldCloseOnEsc
           >
-            <span>編輯履歷</span>
-            <span>查看履歷</span>
+            <span onClick={() => props.history.push('/resume/edit')}>編輯履歷</span>
+            <span onClick={() => props.history.push('/resume')}>查看履歷</span>
           </ResumeBtn>
           <Button
             text="新增專案"
@@ -132,17 +156,10 @@ const HomePage = (props) => {
             </Filter>
           </div>
           {Object.values(props.project).map(
-            item => item.mp_no && (
+            item => item && item.mp_no && (
               <ProjectList
                 projectName={item.mp_name}
                 projectDescription={item.mp_desc}
-                // isOpen={isProjectDropDownOpen}
-                // onClick={() => {
-                //   setIsProjectDropDownOpen(true);
-                // }}
-                // onClose={() => {
-                //   setIsProjectDropDownOpen(false);
-                // }}
                 shouldCloseOnClickOutside
                 shouldCloseOnEsc
                 number={number}
@@ -155,16 +172,68 @@ const HomePage = (props) => {
                     props.history.push(`/portfolio/${item.mp_no}`);
                   }}
                 >
-                    查看作品集
+                  查看作品集
                 </span>
                 <span>編輯程式碼</span>
-                <span>分享</span>
-                <span>設定</span>
-                <span style={{ color: '#ec5252' }}>刪除</span>
+                <span onClick={() => setIsShareModalOpen(true)}>分享</span>
+                <span
+                  style={{ color: '#ec5252' }}
+                  onClick={() => { 
+                    setIsDeleteModalOpen(true);
+                    setCurrentDeleteId(item.mp_no)
+                  }}
+                >
+                  刪除
+                </span>
               </ProjectList>
             ),
           )}
         </div>
+        <Modal
+          isOpen={isShareModalOpen}
+          className="shareModal"
+          title="與他人共用"
+          onClose={() => setIsShareModalOpen(false)}
+          shouldCloseOnEsc
+          shouldCloseOnClickOutside
+          showControlBtn
+          confirmBtnText="儲存"
+          cancelBtnText="取消"
+        >
+          <TextInput
+            text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+            showPostBtn
+            postBtnText="複製連結"
+            ref={ShareUrlInputRef}
+            postBtnOnClick={() => {
+              ShareUrlInputRef.current.select();
+              document.execCommand('copy');
+            }}
+            readonly
+          />
+          <p>知道連結的人可以</p>
+          <RadioButtonGroup
+            name="permission"
+            options={permissionOptions}
+            value={permission}
+          // onChange={()=> {}}
+          />
+        </Modal>
+        <Modal
+          isOpen={isDeleteModalOpen}
+          title="確定刪除專案"
+          onClose={() => { 
+              isDeleteModalOpen(false)
+              setCurrentDeleteId('');
+          }}
+          shouldCloseOnEsc
+          shouldCloseOnClickOutside
+          showControlBtn
+          cancelBtnText="取消"
+          confirmBtnText="確定"
+          Confirm={deleteProjectHandler}
+
+        />
       </Layout>
     </div>
   );

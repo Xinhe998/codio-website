@@ -10,37 +10,30 @@ import Label from '../Label';
 import './index.scss';
 
 const text = ['標籤'];
-const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
+
 const ProjectList = ({
-  shouldCloseOnClickOutside,
   shouldCloseOnEsc,
   projectName,
-  isOpen,
-  // onClick,
-  onClose,
   projectDescription,
   onDoubleClick,
   children,
   number,
 }) => {
   const dropDownRef = useRef();
-  if (shouldCloseOnClickOutside) useClickOutside(isOpen, dropDownRef, onClose);
-  if (shouldCloseOnEsc) useEscCloseModal(onClose);
+  const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
+  useClickOutside(isProjectDropDownOpen, dropDownRef, () => setIsProjectDropDownOpen(false));
+  if (shouldCloseOnEsc) useEscCloseModal(() => setIsProjectDropDownOpen(false));
   return (
     <div className="project_list">
       <div className="project_title">
         <h3>{projectName}</h3>
         <FaEllipsisH
           className="ellipsis_icon"
-          isOpen={isProjectDropDownOpen}
           onClick={() => {
             setIsProjectDropDownOpen(true);
           }}
-          onClose={() => {
-            setIsProjectDropDownOpen(false);
-          }}
         />
-        {isOpen ? <div className="project_dropDown" ref={dropDownRef}>{children}</div> : null}
+        {isProjectDropDownOpen ? <div className="project_dropDown" ref={dropDownRef}>{children}</div> : null}
       </div>
       <Label
         className="label"
@@ -64,11 +57,7 @@ const ProjectList = ({
 
 ProjectList.propTypes = {
   shouldCloseOnEsc: PropTypes.bool,
-  shouldCloseOnClickOutside: PropTypes.bool,
   projectName: PropTypes.string,
-  isOpen: PropTypes.bool,
-  // onClick: PropTypes.func,
-  onClose: PropTypes.func,
   projectDescription: PropTypes.string,
   onDoubleClick: PropTypes.func,
   children: PropTypes.node,
@@ -78,8 +67,6 @@ ProjectList.propTypes = {
 ProjectList.defaultProps = {
   shouldCloseOnEsc: true,
   projectName: '',
-  isOpen: false,
-  onClose: null,
   projectDescription: '',
   children: null,
   number: 0,
