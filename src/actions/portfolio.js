@@ -38,7 +38,7 @@ export const getPortfolioById = (payload) => {
         mp_no: payload.mp_no,
       },
       headers: {
-        Authorization: `bearer ${payload.token}`,
+        // Authorization: `bearer ${payload.token}`,
         'Content-Type': 'application/json',
       },
     };

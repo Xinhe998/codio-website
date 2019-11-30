@@ -49,7 +49,6 @@ const RenderPortfolioPage = ({
   useEffect(() => {
     resetPortfolio();
     getPortfolioById({
-      token: user.token,
       mp_no: id,
     });
   }, []);
