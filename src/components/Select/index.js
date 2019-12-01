@@ -35,7 +35,11 @@ const Select = ({
             {options.map((option, index) => (
               <li
                 key={index}
-                onClick={() => { switchOptionHandler(false); }}
+                onClick={(e) => {
+                  switchOptionHandler(false);
+                  e.stopPropagation();
+                  setSelectedOption(option);
+                }}
                 className={selectedOption === option ? 'select_dropDown_option active' : 'select_dropDown_option'}
               >
                 {option}
