@@ -100,12 +100,12 @@ const Login = (props) => {
                 onClick={loginHandler}
                 disabled={emailValidator !== null || passwordValidator !== null}
               />
-              <Button
+              {/* <Button
                 className="github_login_btn"
                 text="Github 登入"
                 type="outline"
                 size="small"
-              />
+              /> */}
             </div>
             <div
               className="photo-section"

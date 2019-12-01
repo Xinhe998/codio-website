@@ -65,7 +65,7 @@ const CodioSwitch = ({ location }) => {
     <Router history={history}>
       <Switch location={isModal ? previousLocation : location}>
         <Route path="/forget_password" component={ForgetPassword} />
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={notfound} />
         <Route exact path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/create_project" component={CreateProject} />
