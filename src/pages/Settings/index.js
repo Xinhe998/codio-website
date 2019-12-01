@@ -25,7 +25,10 @@ const Settings = (props) => {
   const [editNewPwpassword, setPassword] = useState('');
 
   const [userName, setUserName] = useState('Alice');
-  const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
+  const layoutOptions = [
+    { text: '作品集', link: '/homePage' },
+    { text: '帳戶設定', link: '/settings' },
+  ];
   const [userAccount, setUserAccount] = useState('alice0050722@gmail.com');
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -140,7 +143,7 @@ const Settings = (props) => {
 
   return (
     <div className="settings">
-      <Layout userImg={userImg} userName={userName} list={list}>
+      <Layout userImg={userImg} userName={userName} list={layoutOptions}>
         <div className="main_section">
           <div className="edit_info">
             <h2 className="title">個人資料</h2>

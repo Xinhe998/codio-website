@@ -23,7 +23,9 @@ const Admin = (props) => {
   const [password, setPassword] = useState('');
 
   const [userName, setUserName] = useState('Alice');
-  const [list, setList] = useState(['會員管理']);
+  const layoutOptions = [
+    { text: '會員管理', link: '/admin' },
+  ];
   const displayPagesOptions = ['5', '10', '15', '20'];
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -35,7 +37,7 @@ const Admin = (props) => {
   const charNameValidator = isRequired({ message: '請輸入角色名稱' })(charName);
   const [isChecked, setIsChecked] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
     if (index !== -1) {
@@ -44,13 +46,6 @@ const Admin = (props) => {
       setIsChecked([choice, ...isChecked]);
     }
   };
-  const loginHandler = () => {
-    const loginData = {
-      id,
-      password,
-    };
-    props.login(loginData, props.history);
-  };
 
   const addChar = () => {
     setIsModalOpen(true);
@@ -58,7 +53,7 @@ const Admin = (props) => {
 
   return (
     <div className="Admin">
-      <Layout userImg={userImg} userName={userName} list={list}>
+      <Layout userImg={userImg} userName={userName} list={layoutOptions}>
         <LayoutBtn>
           <Button
             className="add_user_btn"
