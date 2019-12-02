@@ -68,12 +68,10 @@ export const getCodeByProjectId = (payload, history) => {
       Authorization: `bearer ${payload.token}`,
     },
   };
-  console.log(postData);
   return (dispatch) => {
     dispatch({ type: 'GET_CODE_REQUEST' });
     axios(postData)
       .then((res) => {
-        console.log(res);
         const result = {};
         if (res.data.mPDetail.length) {
           res.data.mPDetail.map((item) => {
