@@ -96,8 +96,6 @@ export const getCodeByProjectId = (payload, history) => {
         result.mp_hashtag = res.data.mProject.mp_hashtag;
         result.mp_desc = res.data.mProject.mp_desc;
 
-        console.log(result);
-
         dispatch({ type: 'UPDATE_CODE', payload: result });
         dispatch({ type: 'GET_CODE_SUCCESS' });
       })
