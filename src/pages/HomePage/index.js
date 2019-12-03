@@ -18,10 +18,13 @@ import './index.scss';
 
 const HomePage = (props) => {
   useEffect(() => {
-    props.getUserAllProjects({
-      token: props.user.token,
-      m_no: props.user.m_no,
-    });
+    props.getUserAllProjects(
+      {
+        token: props.user.token,
+        m_no: props.user.m_no,
+      },
+      props.history,
+    );
   }, []);
   const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
 
@@ -34,7 +37,7 @@ const HomePage = (props) => {
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
     if (index !== -1) {
-      setIsChecked(isChecked.filter(item => item !== choice));
+      setIsChecked(isChecked.filter((item) => item !== choice));
     } else {
       setIsChecked([choice, ...isChecked]);
     }
@@ -132,37 +135,38 @@ const HomePage = (props) => {
             </Filter>
           </div>
           {Object.values(props.project).map(
-            item => item.mp_no && (
-              <ProjectList
-                projectName={item.mp_name}
-                projectDescription={item.mp_desc}
-                isOpen={isProjectDropDownOpen}
-                onClick={() => {
-                  setIsProjectDropDownOpen(true);
-                }}
-                onClose={() => {
-                  setIsProjectDropDownOpen(false);
-                }}
-                shouldCloseOnClickOutside
-                shouldCloseOnEsc
-                number={number}
-                onDoubleClick={() => {
-                  setNumber(number + 1);
-                }}
-              >
-                <span
+            (item) =>
+              item.mp_no && (
+                <ProjectList
+                  projectName={item.mp_name}
+                  projectDescription={item.mp_desc}
+                  isOpen={isProjectDropDownOpen}
                   onClick={() => {
-                    props.history.push(`/portfolio/${item.mp_no}`);
+                    setIsProjectDropDownOpen(true);
+                  }}
+                  onClose={() => {
+                    setIsProjectDropDownOpen(false);
+                  }}
+                  shouldCloseOnClickOutside
+                  shouldCloseOnEsc
+                  number={number}
+                  onDoubleClick={() => {
+                    setNumber(number + 1);
                   }}
                 >
+                  <span
+                    onClick={() => {
+                      props.history.push(`/portfolio/${item.mp_no}`);
+                    }}
+                  >
                     查看作品集
-                </span>
-                <span>編輯程式碼</span>
-                <span>分享</span>
-                <span>設定</span>
-                <span style={{ color: '#ec5252' }}>刪除</span>
-              </ProjectList>
-            ),
+                  </span>
+                  <span>編輯程式碼</span>
+                  <span>分享</span>
+                  <span>設定</span>
+                  <span style={{ color: '#ec5252' }}>刪除</span>
+                </ProjectList>
+              ),
           )}
         </div>
       </Layout>
@@ -170,14 +174,9 @@ const HomePage = (props) => {
   );
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: store.user,
   project: store.project,
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    action,
-  )(HomePage),
-);
+export default withRouter(connect(mapStateToProps, action)(HomePage));

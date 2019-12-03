@@ -76,7 +76,7 @@ export const updatePersonalInfo = (payload, history) => {
       .then((res) => {
         console.log(res);
         dispatch({ type: 'UPDATE_PERSONAL_INFO', res });
-        history.push('/homepage');
+        if (history) history.push('/homepage');
       })
       .catch((err) => {
         console.log(err);

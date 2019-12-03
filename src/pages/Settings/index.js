@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { isRequired, isNumber, hasDigit, isEqual } from 'calidators';
 import { useDropzone } from 'react-dropzone';
+import axios from 'axios';
 
 import action from '../../actions';
 import Layout from '../../components/Layout';
@@ -19,7 +20,6 @@ import './index.scss';
 import defaultAvatar from '../../assets/default_avatar.jpg';
 
 const Settings = (props) => {
-  console.log(props.user.m_birthday);
   const [id, setID] = useState('');
   const [editNewPwpassword, setPassword] = useState('');
 
@@ -29,7 +29,7 @@ const Settings = (props) => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [editUserName, setEditUserName] = useState(props.user.m_name);
-  const [editUrl, setEditUrl] = useState('');
+  const [editUrl, setEditUrl] = useState(props.user.m_website);
   const [editJob, setEditJob] = useState(props.user.m_position);
   const [editBirth, setEditBirth] = useState(
     props.user.m_birthday
@@ -96,30 +96,64 @@ const Settings = (props) => {
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
 
+  // upload image to imgur
+  const uploadImage = (img) => {
+    if (process.env.NODE_ENV === 'production' || process.env.CIRCLECI) {
+      var { imgurClient } = process.env;
+    } else {
+      var { imgurClient } = require('../../../config/project_config');
+    }
+    const formData = new FormData();
+    formData.append('image', img); // required
+    axios({
+      method: 'POST',
+      url: 'https://api.imgur.com/3/image',
+      data: formData,
+      headers: {
+        'Content-Type': 'text',
+        Authorization: `Client-ID ${imgurClient}`,
+      },
+      mimeType: 'multipart/form-data',
+    })
+      .then((res) => {
+        console.log(res);
+        seAvatartIsUplaoding(false);
+        setAvatar(res.data.data);
+        const settingsData = {
+          token: props.user.token,
+          data: {
+            m_no: props.user.m_no,
+            m_sex: props.user.m_sex,
+            m_account: props.user.m_account,
+            m_name: props.user.m_name,
+            m_address: props.user.m_address,
+            // m_address_title:
+            m_phone: props.user.m_phone,
+            m_birthday: props.user.m_birthday,
+            m_position: props.user.m_position,
+            m_like: props.user.m_like,
+            m_website: props.user.m_website,
+            m_avatar: res.data.data.link,
+            role_no: props.user.role_no,
+          },
+        };
+        props.updatePersonalInfo(settingsData);
+      })
+      .catch((e) => {
+        console.log(e);
+        seAvatartIsUplaoding(false);
+      });
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     multiple: false,
     onDrop: (acceptedFiles) => {
       seAvatartIsUplaoding(true);
-      setAvatar(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
-        ),
-      );
+      uploadImage(acceptedFiles[0]);
     },
   });
-
-  const ImgPreview = avatar.map((img) => (
-    <div key={img.name}>
-      <div className="imgupload_preview">
-        <img src={img.preview} alt="avatar" />
-      </div>
-    </div>
-  ));
-
-  const imgPreviewUrl = avatar.map((img) => img.preview);
+  const imgPreviewUrl = avatar.link;
   const handleEditInfo = () => {
     const settingsData = {
       token: props.user.token,
@@ -134,6 +168,7 @@ const Settings = (props) => {
         m_birthday: editBirth,
         m_position: editJob,
         m_like: props.user.m_like,
+        m_website: editUrl,
       },
     };
     props.updatePersonalInfo(settingsData, props.history);
@@ -178,7 +213,11 @@ const Settings = (props) => {
 
   return (
     <div className="settings">
-      <Layout userImg={userImg} userName={userName} list={list}>
+      <Layout
+        userImg={props.user.m_avatar || defaultAvatar}
+        userName={props.user.m_name}
+        list={list}
+      >
         <div className="main_section">
           <div className="edit_info">
             <h2 className="title">個人資料</h2>
@@ -187,12 +226,12 @@ const Settings = (props) => {
                 className="avatar_dropzone"
                 {...getRootProps()}
                 style={
-                  avatar.length === 0
+                  props.user.m_avatar.length === 0
                     ? {
                         backgroundImage: `url("${defaultAvatar}")`,
                       }
                     : {
-                        backgroundImage: `url("${imgPreviewUrl}")`,
+                        backgroundImage: `url("${imgPreviewUrl || props.user.m_avatar || defaultAvatar}")`,
                       }
                 }
               >
