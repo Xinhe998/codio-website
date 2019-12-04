@@ -157,25 +157,12 @@ const HomePage = (props) => {
             </Filter>
           </div>
           {Object.values(props.project).map(
-            item => item.mp_no && (
-              <ProjectList
-                projectName={item.mp_name}
-                projectDescription={item.mp_desc}
-                isOpen={isProjectDropDownOpen}
-                onClick={() => {
-                  setIsProjectDropDownOpen(true);
-                }}
-                onClose={() => {
-                  setIsProjectDropDownOpen(false);
-                }}
-                shouldCloseOnClickOutside
-                shouldCloseOnEsc
-                number={number}
-                onDoubleClick={() => {
-                  setNumber(number + 1);
-                }}
-              >
-                <span
+            (item) =>
+              item && item.mp_no && (
+                <ProjectList
+                  projectName={item.mp_name}
+                  projectDescription={item.mp_desc}
+                  isOpen={isProjectDropDownOpen}
                   onClick={() => {
                     props.history.push(`/portfolio/${item.mp_no}`);
                   }}

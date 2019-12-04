@@ -224,7 +224,7 @@ const Settings = (props) => {
                 className="avatar_dropzone"
                 {...getRootProps()}
                 style={
-                  props.user.m_avatar.length === 0
+                  props.user.m_avatar
                     ? {
                       backgroundImage: `url("${defaultAvatar}")`,
                     }
