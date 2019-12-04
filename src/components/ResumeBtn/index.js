@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { FaAlignLeft } from 'react-icons/fa';
+import { IoMdArrowDropdown } from 'react-icons/io';
 import action from '../../actions';
 import Button from '../Button';
 import useClickOutside from '../../hooks/useClickOutside';
@@ -29,7 +29,7 @@ const ResumeBtn = ({
         type="outline"
         size="small"
         theme="red"
-        // icon={<FaAlignLeft />}
+        icon={<IoMdArrowDropdown />}
         onClick={onClick}
       />
       {isOpen ? <div className="resumeBtn_dropDown" ref={resumeBtnRef}>{children}</div> : null}

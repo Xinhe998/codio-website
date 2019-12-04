@@ -21,10 +21,13 @@ import './index.scss';
 
 const HomePage = (props) => {
   useEffect(() => {
-    props.getUserAllProjects({
-      token: props.user.token,
-      m_no: props.user.m_no,
-    });
+    props.getUserAllProjects(
+      {
+        token: props.user.token,
+        m_no: props.user.m_no,
+      },
+      props.history,
+    );
   }, []);
 
   const layoutOptions = [
@@ -36,6 +39,7 @@ const HomePage = (props) => {
   const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
   const [number, setNumber] = useState(0);
   const [permission, setPermission] = useState('編輯');
   const permissionOptions = ['編輯', '檢視'];
@@ -71,7 +75,7 @@ const HomePage = (props) => {
         <UserInfo
           userImg={props.user.m_avatar || dafaulrAvatar}
           userName={props.user.m_name}
-          userJob="前端工程師"
+          userJob={props.user.m_position}
           userAddress="台中市"
           userLink="www.alice0050722.com.tw"
         />
@@ -153,10 +157,17 @@ const HomePage = (props) => {
             </Filter>
           </div>
           {Object.values(props.project).map(
-            item => item && item.mp_no && (
+            item => item.mp_no && (
               <ProjectList
                 projectName={item.mp_name}
                 projectDescription={item.mp_desc}
+                isOpen={isProjectDropDownOpen}
+                onClick={() => {
+                  setIsProjectDropDownOpen(true);
+                }}
+                onClose={() => {
+                  setIsProjectDropDownOpen(false);
+                }}
                 shouldCloseOnClickOutside
                 shouldCloseOnEsc
                 number={number}
@@ -169,19 +180,12 @@ const HomePage = (props) => {
                     props.history.push(`/portfolio/${item.mp_no}`);
                   }}
                 >
-                  查看作品集
+                    查看作品集
                 </span>
                 <span>編輯程式碼</span>
-                <span onClick={() => setIsShareModalOpen(true)}>分享</span>
-                <span
-                  style={{ color: '#ec5252' }}
-                  onClick={() => {
-                    setIsDeleteModalOpen(true);
-                    setCurrentDeleteId(item.mp_no);
-                  }}
-                >
-                  刪除
-                </span>
+                <span>分享</span>
+                <span>設定</span>
+                <span style={{ color: '#ec5252' }}>刪除</span>
               </ProjectList>
             ),
           )}
@@ -241,9 +245,4 @@ const mapStateToProps = store => ({
   project: store.project,
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    action,
-  )(HomePage),
-);
+export default withRouter(connect(mapStateToProps, action)(HomePage));

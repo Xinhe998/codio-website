@@ -9,9 +9,10 @@ export const login = (payload, history) => {
       .post(URL, { m_account: payload.id, m_pasword: payload.password })
       .then((res) => {
         dispatch({ type: 'LOGIN_SUCCESS', res });
+        console.log(res);
         history.push('/homePage');
       })
-      .catch(err => dispatch({ type: 'LOGIN_FAILED', err }));
+      .catch((err) => dispatch({ type: 'LOGIN_FAILED', err }));
   };
 };
 
@@ -35,7 +36,7 @@ export const register = (payload, history) => {
         dispatch({ type: 'REGISTER_SUCCESS', res });
         history.push('/login');
       })
-      .catch(err => dispatch({ type: 'REGISTER_FAILED', err }));
+      .catch((err) => dispatch({ type: 'REGISTER_FAILED', err }));
   };
 };
 
@@ -55,23 +56,58 @@ export const forgetPassword = (payload) => {
         dispatch({ type: 'FORGET_PASSWORD_SUCCESS', res });
         history.goBack();
       })
-      .catch(err => dispatch({ type: 'FORGET_PASSWORD_FAILED', err }));
+      .catch((err) => dispatch({ type: 'FORGET_PASSWORD_FAILED', err }));
   };
 };
 
 export const updatePersonalInfo = (payload, history) => {
   const URL = API.update_personal_info;
+  const postData = {
+    method: 'POST',
+    url: URL,
+    data: payload.data,
+    headers: {
+      Authorization: `bearer ${payload.token}`,
+      'Content-Type': 'application/json',
+    },
+  };
   return (dispatch) => {
-    dispatch({ type: 'UPDATE_PERSONAL_INFO_REQUEST', payload });
-    axios
-      .post(URL, {
-        m_account: payload,
-      })
+    axios(postData)
       .then((res) => {
-        dispatch({ type: 'UPDATE_PERSONAL_INFO_SUCCESS', res });
-        history.goBack();
+        console.log(res);
+        dispatch({ type: 'UPDATE_PERSONAL_INFO', res });
+        if (history) history.push('/homepage');
       })
-      .catch(err => dispatch({ type: 'UPDATE_PERSONAL_INFO_FAILED', err }));
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const updatePassword = (payload, history) => {
+  const URL = API.update_password;
+  return (dispatch) => {
+    const postData = {
+      method: 'POST',
+      url: URL,
+      data: {
+        Email: payload.m_account,
+        oldPassword: payload.oldPassword,
+        newPassword: payload.newPassword,
+      },
+      headers: {
+        Authorization: `bearer ${payload.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    axios(postData)
+      .then((res) => {
+        dispatch({ type: 'UPDATE_PASSWORD', res });
+        history.push('/homepage');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 

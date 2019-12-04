@@ -68,12 +68,10 @@ export const getCodeByProjectId = (payload, history) => {
       Authorization: `bearer ${payload.token}`,
     },
   };
-  console.log(postData);
   return (dispatch) => {
     dispatch({ type: 'GET_CODE_REQUEST' });
     axios(postData)
       .then((res) => {
-        console.log(res);
         const result = {};
         if (res.data.mPDetail.length) {
           res.data.mPDetail.map((item) => {
@@ -97,8 +95,6 @@ export const getCodeByProjectId = (payload, history) => {
         result.mp_isPublic = res.data.mProject.mp_isPublic;
         result.mp_hashtag = res.data.mProject.mp_hashtag;
         result.mp_desc = res.data.mProject.mp_desc;
-
-        console.log(result);
 
         dispatch({ type: 'UPDATE_CODE', payload: result });
         dispatch({ type: 'GET_CODE_SUCCESS' });

@@ -22,4 +22,5 @@ module.exports = {
   get_user_all_projects: `${API_URL}/Project/GetMemberAllProject`,
   create_resume: `${API_URL}/Personal/CRresume`,
   update_resume: `${API_URL}/Personal/UPDresume`,
+  update_password: `${API_URL}/Members/updateNewPassword`,
 };

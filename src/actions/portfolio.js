@@ -38,7 +38,7 @@ export const getPortfolioById = (payload) => {
         mp_no: payload.mp_no,
       },
       headers: {
-        Authorization: `bearer ${payload.token}`,
+        // Authorization: `bearer ${payload.token}`,
         'Content-Type': 'application/json',
       },
     };
@@ -50,4 +50,8 @@ export const getPortfolioById = (payload) => {
         console.log(err);
       });
   };
+};
+
+export const resetPortfolio = () => (dispatch) => {
+  dispatch({ type: 'RESET_PORTFOLIO' });
 };

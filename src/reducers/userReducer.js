@@ -72,7 +72,23 @@ export default function (state = userInitialState, action) {
   }
   case 'FORGET_PASSWORD_FAILED':
     return { ...state, errorMsg: 'Register Failed', isLoading: false };
-
+  case 'UPDATE_PASSWORD':
+    return state;
+  case 'UPDATE_PERSONAL_INFO': {
+    const {
+      status,
+      config: { data },
+    } = action.res;
+    const postData = JSON.parse(data);
+    return status === 200
+      ? {
+        ...state,
+        ...postData,
+        isLoading: false,
+        errorMsg: null,
+      }
+      : state;
+  }
   default:
     return state;
   }
