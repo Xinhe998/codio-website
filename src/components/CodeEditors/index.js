@@ -66,6 +66,7 @@ import 'codemirror-colorpicker/dist/codemirror-colorpicker.css';
 import 'codemirror-colorpicker';
 
 import './index.scss';
+import defaultAvatar from '../../assets/default_avatar.jpg';
 
 const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
@@ -347,9 +348,9 @@ class CodeEditors extends Component {
       line: e.doc.getCursor().line + 1,
       ch: e.doc.getCursor().ch,
     });
-    this.sendMessage(JSON.stringify({
-      type: 'cursor change',
-    }));
+    // this.sendMessage(JSON.stringify({
+    //   type: 'cursor change',
+    // }));
   };
 
   switchDropdown = (isOpen) => {
@@ -453,7 +454,11 @@ class CodeEditors extends Component {
   };
 
   handleWebSocketOnMessage = (msg) => {
-    const message = JSON.parse(JSON.parse(msg).Message);
+    var message;
+    console.log("msg", msg);
+    console.log("JSON.parse(msg)", JSON.parse(msg));
+    if (msg && JSON.parse(msg).Message !== 'Accepted') message = JSON.parse(JSON.parse(msg).Message);
+    else message = JSON.parse(msg).Message;
     console.log("收到訊息===>",message);
     if (
       message.type === 'new client' &&
@@ -461,7 +466,7 @@ class CodeEditors extends Component {
     ) {
       store.addNotification({
         content: (
-          <CodioNotification name={message.m_name} avatar={message.m_avatar}  />
+          <CodioNotification name={message.m_name} avatar={message.m_avatar} />
         ),
         container: 'bottom-right',
         animationIn: ['animated', 'fadeIn'],
@@ -475,7 +480,7 @@ class CodeEditors extends Component {
           type: 'old client',
           m_no: this.props.user.m_no,
           m_name: this.props.user.m_name,
-          m_avatar: this.props.user.m_avatar,
+          m_avatar: this.props.user.m_avatar || defaultAvatar,
         },
       ));
     }
