@@ -76,7 +76,7 @@ const HomePage = (props) => {
           userImg={props.user.m_avatar || dafaulrAvatar}
           userName={props.user.m_name}
           userJob={props.user.m_position}
-          userAddress={props.user.m_address}
+          userAddress={props.user.m_address_title}
           userLink={props.user.m_website}
         />
         <LayoutBtn>

@@ -36,7 +36,9 @@ const EditResume = ({
   ];
   const fakeOptions = ['React', 'Vue', 'Angular', 'jQuery', 'CSS', 'HTML'];
   const educateEntryOptions = ['1900', '1901', '', '', '', ''];
+  const [selectedOption, setSelectedOption] = useState(educateEntryOptions[0]);
   const educateExistOptions = ['1900', '1901', '', '', '', ''];
+  const [educateExistOption, setEducateExistOption] = useState(educateExistOptions[0]);
   const [experience, setExperience] = useState([{
     expJob: '', expCompany: '', expPlace: '', expDesc: '',
   }]);
@@ -183,6 +185,8 @@ const EditResume = ({
                   isOpen={isEntryYearOpen}
                   switchOptionHandler={setIsEntryYearOpen}
                   options={educateEntryOptions}
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
                 />
                 <Select
                   title="畢業年份"
@@ -190,6 +194,8 @@ const EditResume = ({
                   isOpen={isExistYearOpen}
                   switchOptionHandler={setIsExistYearOpen}
                   options={educateExistOptions}
+                  selectedOption={educateExistOption}
+                  setSelectedOption={setEducateExistOption}
                 />
               </div>
             </div>

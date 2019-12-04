@@ -90,7 +90,7 @@ const Settings = (props) => {
     '金門縣',
     '連江縣',
   ];
-
+  const [selectedOption, setSelectedOption] = useState(props.user.m_address_title);
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
 
@@ -125,7 +125,7 @@ const Settings = (props) => {
             m_account: userAccount,
             m_name: props.user.m_name,
             m_address: props.user.m_address,
-            // m_address_title:
+            m_address_title: selectedOption,
             m_phone: props.user.m_phone,
             m_birthday: props.user.m_birthday,
             m_position: props.user.m_position,
@@ -161,7 +161,7 @@ const Settings = (props) => {
         m_account: userAccount,
         m_name: editUserName,
         m_address: editAddress,
-        // m_address_title:
+        m_address_title: selectedOption,
         m_phone: editTel,
         m_birthday: editBirth,
         m_position: editJob,
@@ -226,11 +226,11 @@ const Settings = (props) => {
                 style={
                   props.user.m_avatar.length === 0
                     ? {
-                        backgroundImage: `url("${defaultAvatar}")`,
-                      }
+                      backgroundImage: `url("${defaultAvatar}")`,
+                    }
                     : {
-                        backgroundImage: `url("${imgPreviewUrl || props.user.m_avatar || defaultAvatar}")`,
-                      }
+                      backgroundImage: `url("${imgPreviewUrl || props.user.m_avatar || defaultAvatar}")`,
+                    }
                 }
               >
                 <input {...getInputProps()} />
@@ -257,6 +257,8 @@ const Settings = (props) => {
                     isOpen={isDropdownOpen}
                     switchOptionHandler={setIsDropdownOpen}
                     required
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
                   />
                   <TextInput
                     title="地址"

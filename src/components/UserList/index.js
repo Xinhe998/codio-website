@@ -26,6 +26,7 @@ const UserList = ({
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const userCharOptions = ['VIP', 'VVIP'];
+  const [selectedOption, setSelectedOption] = useState(userCharOptions[0]);
   return (
 
     <React.Fragment>
@@ -77,6 +78,8 @@ const UserList = ({
           required
           isOpen={isDropdownOpen}
           switchOptionHandler={setIsDropdownOpen}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
         />
         <div className="user_uses">
           <div className="title">使用功能</div>

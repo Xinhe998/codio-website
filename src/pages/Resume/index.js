@@ -19,7 +19,7 @@ const Resume = (props) => {
     { text: '帳戶設定', link: '/settings' },
   ];
 
-  const [userCounty, setUserCounty] = useState(props.user.m_address);
+  const [userCounty, setUserCounty] = useState(props.user.m_address_title);
   const [userJob, setUserJob] = useState(props.user.m_position);
   const [userUrl, setUserUrl] = useState(props.user.m_website);
   const [userSchool, setUserSchool] = useState('國立臺中科技大學');
