@@ -136,7 +136,7 @@ const HomePage = (props) => {
           </div>
           {Object.values(props.project).map(
             (item) =>
-              item.mp_no && (
+              item && item.mp_no && (
                 <ProjectList
                   projectName={item.mp_name}
                   projectDescription={item.mp_desc}

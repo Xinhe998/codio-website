@@ -74,7 +74,16 @@ const beautify_html = require('js-beautify').html;
 
 // const [isModalOpen, setIsModalOpen] = useState(false);
 
-const colorArr = ['#FF5511', '#00AA00', '#009FCC', '#7700BB', '#FF77FF', '#8B4513', ' #00FFFF', '#00FF00'];
+const colorArr = [
+  '#FF5511',
+  '#00AA00',
+  '#009FCC',
+  '#7700BB',
+  '#FF77FF',
+  '#8B4513',
+  ' #00FFFF',
+  '#00FF00',
+];
 
 class CodeEditors extends Component {
   constructor(props) {
@@ -443,6 +452,12 @@ class CodeEditors extends Component {
 
   handleWebSocketOnOpen = (msg) => {
     console.log('onOpen', msg);
+    // console.log(JSON.stringify({
+    //   type: 'new client',
+    //   m_no: this.props.user.m_no,
+    //   m_name: this.props.user.m_name,
+    //   m_avatar: this.props.user.m_avatar.replace('https://i.imgur.com/', '').substring(0,7) || 'SiRVSp2',
+    // }));
     this.sendMessage(
       JSON.stringify({
         type: 'new client',
@@ -455,11 +470,12 @@ class CodeEditors extends Component {
 
   handleWebSocketOnMessage = (msg) => {
     var message;
-    console.log("msg", msg);
-    console.log("JSON.parse(msg)", JSON.parse(msg));
-    if (msg && JSON.parse(msg).Message !== 'Accepted') message = JSON.parse(JSON.parse(msg).Message);
+    console.log('msg', msg);
+    console.log('JSON.parse(msg)', JSON.parse(msg));
+    if (msg && JSON.parse(msg).Message !== 'Accepted')
+      message = JSON.parse(JSON.parse(msg).Message);
     else message = JSON.parse(msg).Message;
-    console.log("收到訊息===>",message);
+    console.log('收到訊息===>', message);
     if (
       message.type === 'new client' &&
       message.m_no !== this.props.user.m_no
@@ -475,22 +491,29 @@ class CodeEditors extends Component {
           duration: 3000,
         },
       });
-      this.sendMessage(JSON.stringify(
-        {
+      this.sendMessage(
+        JSON.stringify({
           type: 'old client',
           m_no: this.props.user.m_no,
           m_name: this.props.user.m_name,
-          m_avatar: this.props.user.m_avatar || 'https://i.imgur.com/SiRVSp2.jpg',
-        },
-      ));
+          m_avatar:
+            this.props.user.m_avatar || 'https://i.imgur.com/SiRVSp2.jpg',
+        }),
+      );
     }
-    if (message.type === 'old client' && message.m_no !== this.props.user.m_no) {
+    if (
+      message.type === 'old client' &&
+      message.m_no !== this.props.user.m_no
+    ) {
       this.setState({
-        currentCollabarators: [...this.state.currentCollabarators, {
-          m_no: message.m_no,
-          m_name: message.m_name,
-          m_avatar: message.m_avatar,
-        }]
+        currentCollabarators: [
+          ...this.state.currentCollabarators,
+          {
+            m_no: message.m_no,
+            m_name: message.m_name,
+            m_avatar: message.m_avatar,
+          },
+        ],
       });
     }
     console.log(this.state.currentCollabarators);
@@ -602,8 +625,8 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
-              {this.state.currentCollabarators.map((item, index)=> (
-                <img className="user_img" key={item.m_no} src={item.m_avatar} />
+              {this.state.currentCollabarators.map((item, index) => (
+                <img className="user_img" key={index} src={item.m_avatar} />
               ))}
               {/*<Modal
                 isOpen={isModalOpen}
