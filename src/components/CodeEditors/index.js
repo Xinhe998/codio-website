@@ -456,7 +456,8 @@ class CodeEditors extends Component {
     const message = JSON.parse(JSON.parse(msg).Message);
     console.log("收到訊息===>",message);
     if (
-      message.type === 'new client'
+      message.type === 'new client' &&
+      message.m_no !== this.props.user.m_no
     ) {
       store.addNotification({
         content: (
@@ -473,12 +474,12 @@ class CodeEditors extends Component {
         {
           type: 'old client',
           m_no: this.props.user.m_no,
-          m_name: this.props.m_name,
-          m_avatar: this.props.m_avatar,
-        }
-      ))
+          m_name: this.props.user.m_name,
+          m_avatar: this.props.user.m_avatar,
+        },
+      ));
     }
-    if (message.type === 'old client') {
+    if (message.type === 'old client' && message.m_no !== this.props.user.m_no) {
       this.setState({
         currentCollabarators: [...this.state.currentCollabarators, {
           m_no: message.m_no,
@@ -487,6 +488,7 @@ class CodeEditors extends Component {
         }]
       });
     }
+    console.log(this.state.currentCollabarators);
   };
 
   sendMessage(message) {
@@ -595,9 +597,9 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
-              {this.state.currentCollabarators.map((item, index)=> {
-                <img src={item.m_avatar} />
-              })}
+              {this.state.currentCollabarators.map((item, index)=> (
+                <img className="user_img" key={item.m_no} src={item.m_avatar} />
+              ))}
               {/*<Modal
                 isOpen={isModalOpen}
                 title="確定刪除專案"
