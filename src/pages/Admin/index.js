@@ -16,20 +16,15 @@ import SearchBar from '../../components/SearchBar';
 import Filter from '../../components/Filter';
 
 import './index.scss';
-import userImg from '../../assets/userImg.png';
+import defaultAvatar from '../../assets/default_avatar.jpg';
 
 const Admin = (props) => {
-  const [id, setID] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [userName, setUserName] = useState('Alice');
-  const [list, setList] = useState(['會員管理']);
+  const layoutOptions = [
+    { text: '會員管理', link: '/admin' },
+  ];
   const displayPagesOptions = ['5', '10', '15', '20'];
-
+  const [selectedOption, setSelectedOption] = useState(displayPagesOptions[0]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [selectValue, setSelectValue] = useState('25');
-  const options = ['0'];
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [charName, setCharName] = useState('');
   const charNameValidator = isRequired({ message: '請輸入角色名稱' })(charName);
@@ -44,13 +39,6 @@ const Admin = (props) => {
       setIsChecked([choice, ...isChecked]);
     }
   };
-  const loginHandler = () => {
-    const loginData = {
-      id,
-      password,
-    };
-    props.login(loginData, props.history);
-  };
 
   const addChar = () => {
     setIsModalOpen(true);
@@ -58,7 +46,11 @@ const Admin = (props) => {
 
   return (
     <div className="Admin">
-      <Layout userImg={userImg} userName={userName} list={list}>
+      <Layout
+        userImg={props.user.m_avatar || defaultAvatar}
+        userName={props.user.m_name}
+        list={layoutOptions}
+      >
         <LayoutBtn>
           <Button
             className="add_user_btn"
@@ -79,6 +71,8 @@ const Admin = (props) => {
                     options={displayPagesOptions}
                     isOpen={isDropdownOpen}
                     switchOptionHandler={setIsDropdownOpen}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
                   />
                   筆
                 </span>
@@ -129,7 +123,7 @@ const Admin = (props) => {
                 <tr>
                   <UserList
                     userNumber={0}
-                    userImg={userImg}
+                    userImg={defaultAvatar}
                     userName="Alice"
                     userType="一般"
                   />

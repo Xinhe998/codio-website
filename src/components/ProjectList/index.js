@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,34 +9,35 @@ import useEscCloseModal from '../../hooks/useEscCloseModal';
 import Label from '../Label';
 import './index.scss';
 
+const text = ['標籤'];
+
 const ProjectList = ({
-  shouldCloseOnClickOutside,
   shouldCloseOnEsc,
   projectName,
-  isOpen,
-  onClick,
-  onClose,
   projectDescription,
   onDoubleClick,
   children,
   number,
 }) => {
   const dropDownRef = useRef();
-  if (shouldCloseOnClickOutside) useClickOutside(isOpen, dropDownRef, onClose);
-  if (shouldCloseOnEsc) useEscCloseModal(onClose);
+  const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
+  useClickOutside(isProjectDropDownOpen, dropDownRef, () => setIsProjectDropDownOpen(false));
+  if (shouldCloseOnEsc) useEscCloseModal(() => setIsProjectDropDownOpen(false));
   return (
     <div className="project_list">
       <div className="project_title">
         <h3>{projectName}</h3>
         <FaEllipsisH
           className="ellipsis_icon"
-          onClick={onClick}
+          onClick={() => {
+            setIsProjectDropDownOpen(true);
+          }}
         />
-        {isOpen ? <div className="project_dropDown" ref={dropDownRef}>{children}</div> : null}
+        {isProjectDropDownOpen ? <div className="project_dropDown" ref={dropDownRef}>{children}</div> : null}
       </div>
       <Label
         className="label"
-        text="標籤"
+        labels={text}
 
       />
       <p className="project_description">{projectDescription}</p>
@@ -56,11 +57,7 @@ const ProjectList = ({
 
 ProjectList.propTypes = {
   shouldCloseOnEsc: PropTypes.bool,
-  shouldCloseOnClickOutside: PropTypes.bool,
   projectName: PropTypes.string,
-  isOpen: PropTypes.bool,
-  onClick: PropTypes.func,
-  onClose: PropTypes.func,
   projectDescription: PropTypes.string,
   onDoubleClick: PropTypes.func,
   children: PropTypes.node,
@@ -70,8 +67,6 @@ ProjectList.propTypes = {
 ProjectList.defaultProps = {
   shouldCloseOnEsc: true,
   projectName: '',
-  isOpen: false,
-  onClose: null,
   projectDescription: '',
   children: null,
   number: 0,

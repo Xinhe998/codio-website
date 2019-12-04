@@ -46,16 +46,17 @@
 
   .selects {
     display: flex;
+    justify-content: space-between;
 
-    .select {
-      width: 50%;
+    .DateInput {
+      width: 48%;
     }
   }
 
 
   .add_btn,
   .delete_btn {
-    max-width: 12%;
+    max-width: 16%;
   }
 
   .exp_button {

@@ -31,7 +31,10 @@ const RenderPortfolioPage = ({
   const { path, url } = useRouteMatch();
 
   const isEditMode = mode && mode === 'edit';
-  const [list, setList] = useState(['會員管理', '圖表分析', '帳戶設定']);
+  const layoutOptions = [
+    { text: '作品集', link: '/homePage' },
+    { text: '帳戶設定', link: '/settings' },
+  ];
   const [projectTitle, setProjectTitle] = useState(portfolio.mp_name);
   const [projectDesc, setProjectDesc] = useState(portfolio.mp_desc);
   const [editorCurrentType, setEditorCurrentType] = useState('text');
@@ -133,7 +136,7 @@ const RenderPortfolioPage = ({
   };
 
   return (
-    <Layout userImg={dafaulrAvatar} userName={user.m_name} list={list}>
+    <Layout userImg={dafaulrAvatar} userName={user.m_name} list={layoutOptions}>
       <div className="score_circle_wrapper">
         <ScoreCircle score={5} theme="yellow" text="介面很美" />
         <ScoreCircle score={6.3} theme="red" text="程式碼好閱讀" />

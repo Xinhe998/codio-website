@@ -11,8 +11,9 @@ const Select = ({
   title,
   required,
   options,
+  selectedOption,
+  setSelectedOption,
 }) => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
   const selectRef = useRef();
   useClickOutside(isOpen, selectRef, () => switchOptionHandler(false));
   return (
@@ -35,7 +36,12 @@ const Select = ({
             {options.map((option, index) => (
               <li
                 key={index}
-                onClick={() => { switchOptionHandler(false); }}
+                onClick={(e) => {
+                  switchOptionHandler(false);
+                  e.stopPropagation();
+                  setSelectedOption(option);
+                }}
+                
                 className={selectedOption === option ? 'select_dropDown_option active' : 'select_dropDown_option'}
               >
                 {option}
@@ -60,6 +66,8 @@ Select.propTypes = {
   required: PropTypes.bool,
   options: PropTypes.array,
   switchOptionHandler: PropTypes.func,
+  selectedOption: PropTypes.string,
+  setSelectedOption: PropTypes.string,
 };
 
 Select.defaultProps = {

@@ -50,15 +50,25 @@
 
     ul {
       padding: 0;
-    }
 
-    ul li {
-      list-style: none;
-      border-left: solid 3px $blue;
-      color: $blue;
-      margin-bottom: 45px;
-      font-size: 18px;
+      a {
+        text-decoration: none;
+        color: $light-gray;
+      }
+      li {
+        list-style: none;
+        // border-left: solid 3px $blue;     
+        margin-bottom: 45px;
+        font-size: 18px;
+        cursor: pointer;
+      }
     }
+    
+    .active{
+      // border-left: solid 3px $blue;
+      color: $blue;
+    }
+    
 
     .logout {
       color: $white;

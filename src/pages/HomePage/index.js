@@ -13,6 +13,9 @@ import ResumeBtn from '../../components/ResumeBtn';
 import ProjectList from '../../components/ProjectList';
 import Checkbox from '../../components/Checkbox';
 import dafaulrAvatar from '../../assets/default_avatar.jpg';
+import Modal from '../../components/Modal';
+import TextInput from '../../components/TextInput';
+import RadioButtonGroup from '../../components/RadioButtonGroup';
 
 import './index.scss';
 
@@ -26,36 +29,55 @@ const HomePage = (props) => {
       props.history,
     );
   }, []);
-  const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
 
+  const layoutOptions = [
+    { text: '作品集', link: '/homePage' },
+    { text: '帳戶設定', link: '/settings' },
+  ];
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isChecked, setIsChecked] = useState([]);
   const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
   const [number, setNumber] = useState(0);
+  const [permission, setPermission] = useState('編輯');
+  const permissionOptions = ['編輯', '檢視'];
+  const [currentDeleteId, setCurrentDeleteId] = useState('');
 
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
     if (index !== -1) {
-      setIsChecked(isChecked.filter((item) => item !== choice));
+      setIsChecked(isChecked.filter(item => item !== choice));
     } else {
       setIsChecked([choice, ...isChecked]);
     }
   };
+
+  const deleteProjectHandler = () => {
+    const deleteProjectData = {
+      token: props.user.token,
+      mp_no: currentDeleteId,
+    };
+    props.deleteProject(deleteProjectData, props.history);
+    setCurrentDeleteId('');
+    setIsDeleteModalOpen(false);
+  };
+  const ShareUrlInputRef = React.createRef();
 
   return (
     <div className="home_page">
       <Layout
         userImg={props.user.m_avatar || dafaulrAvatar}
         userName={props.user.m_name}
-        list={list}
+        list={layoutOptions}
       >
         <UserInfo
           userImg={props.user.m_avatar || dafaulrAvatar}
           userName={props.user.m_name}
           userJob={props.user.m_position}
-          userAddress="台中市"
-          userLink="www.alice0050722.com.tw"
+          userAddress={props.user.m_address_title}
+          userLink={props.user.m_website}
         />
         <LayoutBtn>
           <ResumeBtn
@@ -69,8 +91,8 @@ const HomePage = (props) => {
             shouldCloseOnClickOutside
             shouldCloseOnEsc
           >
-            <span>編輯履歷</span>
-            <span>查看履歷</span>
+            <span onClick={() => props.history.push('/resume/edit')}>編輯履歷</span>
+            <span onClick={() => props.history.push('/resume')}>查看履歷</span>
           </ResumeBtn>
           <Button
             text="新增專案"
@@ -142,23 +164,10 @@ const HomePage = (props) => {
                   projectDescription={item.mp_desc}
                   isOpen={isProjectDropDownOpen}
                   onClick={() => {
-                    setIsProjectDropDownOpen(true);
-                  }}
-                  onClose={() => {
-                    setIsProjectDropDownOpen(false);
-                  }}
-                  shouldCloseOnClickOutside
-                  shouldCloseOnEsc
-                  number={number}
-                  onDoubleClick={() => {
-                    setNumber(number + 1);
+                    props.history.push(`/portfolio/${item.mp_no}`);
                   }}
                 >
-                  <span
-                    onClick={() => {
-                      props.history.push(`/portfolio/${item.mp_no}`);
-                    }}
-                  >
+                  <span>
                     查看作品集
                   </span>
                   <span>編輯程式碼</span>
@@ -169,12 +178,57 @@ const HomePage = (props) => {
               ),
           )}
         </div>
+        <Modal
+          isOpen={isShareModalOpen}
+          className="shareModal"
+          title="與他人共用"
+          onClose={() => setIsShareModalOpen(false)}
+          shouldCloseOnEsc
+          shouldCloseOnClickOutside
+          showControlBtn
+          confirmBtnText="儲存"
+          cancelBtnText="取消"
+        >
+          <TextInput
+            text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+            showPostBtn
+            postBtnText="複製連結"
+            ref={ShareUrlInputRef}
+            postBtnOnClick={() => {
+              ShareUrlInputRef.current.select();
+              document.execCommand('copy');
+            }}
+            readonly
+          />
+          <p>知道連結的人可以</p>
+          <RadioButtonGroup
+            name="permission"
+            options={permissionOptions}
+            value={permission}
+          // onChange={()=> {}}
+          />
+        </Modal>
+        <Modal
+          isOpen={isDeleteModalOpen}
+          title="確定刪除專案"
+          onClose={() => {
+            isDeleteModalOpen(false);
+            setCurrentDeleteId('');
+          }}
+          shouldCloseOnEsc
+          shouldCloseOnClickOutside
+          showControlBtn
+          cancelBtnText="取消"
+          confirmBtnText="確定"
+          Confirm={deleteProjectHandler}
+
+        />
       </Layout>
     </div>
   );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   user: store.user,
   project: store.project,
 });

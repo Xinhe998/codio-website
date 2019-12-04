@@ -14,17 +14,15 @@ import Select from '../../components/Select';
 import RadioButtonGroup from '../../components/RadioButtonGroup';
 import Button from '../../components/Button';
 // import CheckboxGroup from '../../components/CheckboxGroup';
-import userImg from '../../assets/userImg.png';
-
 import './index.scss';
 import defaultAvatar from '../../assets/default_avatar.jpg';
 
 const Settings = (props) => {
-  const [id, setID] = useState('');
-  const [editNewPwpassword, setPassword] = useState('');
 
-  const [userName, setUserName] = useState(props.user.m_name);
-  const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
+  const layoutOptions = [
+    { text: '作品集', link: '/homePage' },
+    { text: '帳戶設定', link: '/settings' },
+  ];
   const [userAccount, setUserAccount] = useState(props.user.m_account);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -92,7 +90,7 @@ const Settings = (props) => {
     '金門縣',
     '連江縣',
   ];
-
+  const [selectedOption, setSelectedOption] = useState(props.user.m_address_title);
   const [isAvatarUploading, seAvatartIsUplaoding] = useState(false);
   const [avatar, setAvatar] = useState([]);
 
@@ -124,10 +122,10 @@ const Settings = (props) => {
           data: {
             m_no: props.user.m_no,
             m_sex: props.user.m_sex,
-            m_account: props.user.m_account,
+            m_account: userAccount,
             m_name: props.user.m_name,
             m_address: props.user.m_address,
-            // m_address_title:
+            m_address_title: selectedOption,
             m_phone: props.user.m_phone,
             m_birthday: props.user.m_birthday,
             m_position: props.user.m_position,
@@ -160,10 +158,10 @@ const Settings = (props) => {
       data: {
         m_no: props.user.m_no,
         m_sex: props.user.m_sex,
-        m_account: props.user.m_account,
+        m_account: userAccount,
         m_name: editUserName,
         m_address: editAddress,
-        // m_address_title:
+        m_address_title: selectedOption,
         m_phone: editTel,
         m_birthday: editBirth,
         m_position: editJob,
@@ -176,7 +174,7 @@ const Settings = (props) => {
   const handleEditPw = () => {
     const passwordData = {
       token: props.user.token,
-      m_account: props.user.m_account,
+      m_account: userAccount,
       oldPassword: editOldPw,
       newPassword: editNewPw,
     };
@@ -188,7 +186,7 @@ const Settings = (props) => {
       data: {
         m_no: props.user.m_no,
         m_sex: props.user.m_sex,
-        m_account: props.user.m_account,
+        m_account: userAccount,
         m_like: themeColor,
       },
     };
@@ -216,7 +214,7 @@ const Settings = (props) => {
       <Layout
         userImg={props.user.m_avatar || defaultAvatar}
         userName={props.user.m_name}
-        list={list}
+        list={layoutOptions}
       >
         <div className="main_section">
           <div className="edit_info">
@@ -228,11 +226,11 @@ const Settings = (props) => {
                 style={
                   props.user.m_avatar
                     ? {
-                        backgroundImage: `url("${defaultAvatar}")`,
-                      }
+                      backgroundImage: `url("${defaultAvatar}")`,
+                    }
                     : {
-                        backgroundImage: `url("${imgPreviewUrl || props.user.m_avatar || defaultAvatar}")`,
-                      }
+                      backgroundImage: `url("${imgPreviewUrl || props.user.m_avatar || defaultAvatar}")`,
+                    }
                 }
               >
                 <input {...getInputProps()} />
@@ -259,6 +257,8 @@ const Settings = (props) => {
                     isOpen={isDropdownOpen}
                     switchOptionHandler={setIsDropdownOpen}
                     required
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
                   />
                   <TextInput
                     title="地址"
