@@ -167,14 +167,15 @@ const HomePage = (props) => {
                     props.history.push(`/portfolio/${item.mp_no}`);
                   }}
                 >
+                  <span>
                     查看作品集
-                </span>
-                <span>編輯程式碼</span>
-                <span>分享</span>
-                <span>設定</span>
-                <span style={{ color: '#ec5252' }}>刪除</span>
-              </ProjectList>
-            ),
+                  </span>
+                  <span>編輯程式碼</span>
+                  <span>分享</span>
+                  <span>設定</span>
+                  <span style={{ color: '#ec5252' }}>刪除</span>
+                </ProjectList>
+              ),
           )}
         </div>
         <Modal
