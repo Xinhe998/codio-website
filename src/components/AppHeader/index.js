@@ -61,13 +61,15 @@ const AppHeader = ({
       ) : null}
       <div className="AppHeader__btnGroup">
         {isUserBtnVisible &&
-          collaborators.length &&
+          collaborators &&
+          collaborators.length > 0 &&
           collaborators.map((item, index) => (
             <div
               className="userinfo"
               key={`collaborator_${index}`}
               style={{
                 backgroundImage: `url(${item.m_avatar})`,
+                border: `2px solid ${item.color}`,
               }}
             ></div>
           ))}

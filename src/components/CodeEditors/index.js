@@ -72,7 +72,6 @@ const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
 const beautify_html = require('js-beautify').html;
 
-
 const colorArr = [
   '#FF5511',
   '#00AA00',
@@ -305,7 +304,7 @@ class CodeEditors extends Component {
       });
       this.setState({ logs: updatedLogs });
       this.props.addLogs(updatedLogs);
-      window.alert = function () { }; // 讓alert不要執行兩次
+      window.alert = function() {}; // 讓alert不要執行兩次
       eval(js);
       this.runCode();
     } catch (e) {
@@ -316,10 +315,10 @@ class CodeEditors extends Component {
   jsEditorOnChange = (e, changeObj) => {
     this.props.updateJs(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]'
-      && JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '[" "]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '[" "]' &&
+      JSON.stringify(changeObj.text) !== '["",""]'
     ) {
       this.autoComplete(this.refs.jsEditor.codeMirror, 'javascript');
     }
@@ -328,12 +327,12 @@ class CodeEditors extends Component {
   cssEditorOnChange = (e, changeObj) => {
     this.props.updateCss(e);
     if (
-      JSON.stringify(changeObj.text) !== '[";"]'
-      && JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
-      && JSON.stringify(changeObj.text) !== '["{"]'
-      && JSON.stringify(changeObj.text) !== '["}"]'
-      && JSON.stringify(changeObj.text) !== '["{}"]'
+      JSON.stringify(changeObj.text) !== '[";"]' &&
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["{"]' &&
+      JSON.stringify(changeObj.text) !== '["}"]' &&
+      JSON.stringify(changeObj.text) !== '["{}"]'
     ) {
       this.autoComplete(this.refs.cssEditor.codeMirror, 'css');
     }
@@ -342,24 +341,13 @@ class CodeEditors extends Component {
   htmlEditorOnChange = (e, changeObj) => {
     this.props.updateHtml(e);
     if (
-      JSON.stringify(changeObj.text) !== '[""]'
-      && JSON.stringify(changeObj.text) !== '["",""]'
-      && JSON.stringify(changeObj.text) !== '["  "]'
-      && JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+      JSON.stringify(changeObj.text) !== '[""]' &&
+      JSON.stringify(changeObj.text) !== '["",""]' &&
+      JSON.stringify(changeObj.text) !== '["  "]' &&
+      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
     ) {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
-  };
-  // 游標位置改變
-  cursorOnChange = (e, mode) => {
-    this.props.updateCursor({
-      mode,
-      line: e.doc.getCursor().line + 1,
-      ch: e.doc.getCursor().ch,
-    });
-    // this.sendMessage(JSON.stringify({
-    //   type: 'cursor change',
-    // }));
   };
 
   switchDropdown = (isOpen) => {
@@ -379,9 +367,9 @@ class CodeEditors extends Component {
     if (text.length > 0) {
       for (let i = 0; i < text.length; i++) {
         if (
-          /^[A-Za-z0-9]*$/.test(text.charAt(i))
-          || /[.!?\\-]/.test(text.charAt(i))
-          || text.charAt(i) === ' '
+          /^[A-Za-z0-9]*$/.test(text.charAt(i)) ||
+          /[.!?\\-]/.test(text.charAt(i)) ||
+          text.charAt(i) === ' '
         ) {
           // number
           inputSize++;
@@ -399,11 +387,30 @@ class CodeEditors extends Component {
     }
   };
 
+  // 游標位置改變事件
+  cursorOnChange = (e, mode) => {
+    this.props.updateCursor({
+      mode,
+      line: e.doc.getCursor().line + 1,
+      ch: e.doc.getCursor().ch,
+    });
+    this.sendMessage(
+      JSON.stringify({
+        type: 'cursor change',
+        m_no: this.props.user.m_no,
+        m_name: this.props.user.m_name,
+        line: this.state.cursor_line,
+        ch: this.state.cursor_ch,
+      }),
+    );
+  };
+
+  // 根據行數和格數計算css position
   coord = (cm, line, ch) =>
     cm.codeMirror.charCoords(
       {
-        line: line,
-        ch: ch,
+        line,
+        ch,
       },
       'windows',
     );
@@ -434,19 +441,6 @@ class CodeEditors extends Component {
         });
       },
     );
-    let cursorbar = document.createElement('div');
-    cursorbar.innerHTML = ' ';
-    cursorbar.setAttribute(
-      'style',
-      `height: 22px; border-left: 2px solid rgb(179, 216, 78); position: absolute; left: ${
-        this.coord(this.refs.htmlEditor, 0, 1).left
-      }px; top: ${this.coord(this.refs.htmlEditor, 0, 1).top}px`,
-    );
-    cursorbar.classList.add('cursorbar');
-    this.refs.htmlEditor.codeMirror.doc.setBookmark(
-      { line: 0, ch: 1 },
-      cursorbar,
-    );
   };
 
   // 自己上線
@@ -461,15 +455,20 @@ class CodeEditors extends Component {
       }),
     );
   };
+
   // 收到socket訊息
   handleWebSocketOnMessage = (msg) => {
-    var message;
+    let message;
     console.log('msg', msg);
     console.log('JSON.parse(msg)', JSON.parse(msg));
-    if (msg && JSON.parse(msg).Message !== 'Accepted')
+    // 剛連線會發送Accepted訊息
+    if (msg && JSON.parse(msg).Message !== 'Accepted') {
       message = JSON.parse(JSON.parse(msg).Message);
-    else message = JSON.parse(msg).Message;
+    } else message = JSON.parse(msg).Message;
+
     console.log('收到訊息===>', message);
+
+    // 當接收到有新使用者加入時要跳出通知，並通知他人自己是舊使用者
     if (
       message.type === 'new client' &&
       message.m_no !== this.props.user.m_no
@@ -495,30 +494,48 @@ class CodeEditors extends Component {
         }),
       );
     }
+    // 當得知原本就在線上的使用者要加到redux editor.clients中
     if (
       message.type === 'old client' &&
       message.m_no !== this.props.user.m_no
     ) {
-      // this.setState({
-      //   currentCollabarators: [
-      //     ...this.state.currentCollabarators,
-      //     {
-      //       m_no: message.m_no,
-      //       m_name: message.m_name,
-      //       m_avatar: message.m_avatar,
-      //     },
-      //   ],
-      // });
       this.props.updateClient([
         ...this.props.editor.clients,
         {
           m_no: message.m_no,
           m_name: message.m_name,
           m_avatar: message.m_avatar,
+          color: colorArr[this.props.editor.length - 1],
         },
-      ])
+      ]);
     }
-    // console.log(this.state.currentCollabarators);
+    // 當收到別人的游標有改動時，要先根據收到的m_no找出他的color，之後建立新的假游標
+    if (
+      message.type === 'cursor change' &&
+      message.m_no !== this.props.user.m_no
+    ) {
+      var ownColor;
+      this.props.editor.clients.map((item, index)=>{
+        if (item.m_no === message.m_no) {
+          ownColor = item.color;
+        }
+      });
+      const cursorbar = document.createElement('div');
+      cursorbar.innerHTML = ' ';
+      cursorbar.setAttribute(
+        'style',
+        `height: 22px; border-left: 2px solid ${ownColor}; position: absolute; left: ${
+          this.coord(this.refs.htmlEditor, message.line, message.ch).left
+        }px; top: ${
+          this.coord(this.refs.htmlEditor, message.line, message.ch).top
+        }px`,
+      );
+      cursorbar.classList.add('cursorbar');
+      this.refs.htmlEditor.codeMirror.doc.setBookmark(
+        { line: message.line, ch: message.ch },
+        cursorbar,
+      );
+    }
   };
 
   sendMessage(message) {
@@ -536,8 +553,8 @@ class CodeEditors extends Component {
         'Ctrl-Q': (cm) => {
           cm.foldCode(cm.getCursor());
         },
-        'Ctrl-E': cm => this.autoFormat(cm),
-        'Ctrl-H': cm => this.autoComplete(cm),
+        'Ctrl-E': (cm) => this.autoFormat(cm),
+        'Ctrl-H': (cm) => this.autoComplete(cm),
       },
       theme: 'one-dark',
       foldGutter: true,
@@ -559,7 +576,7 @@ class CodeEditors extends Component {
         isDeleteModalOpen: true,
       });
     };
-    
+
     const deleteProjectHandler = () => {
       const { id } = this.props.match.params;
       const deleteProjectData = {
@@ -629,7 +646,7 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
-              {/*<Modal
+              {/* <Modal
                 isOpen={isModalOpen}
                 title="確定刪除專案"
                 onClose={() => {
@@ -668,10 +685,11 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() => this.autoFormat(
-                    this.refs.htmlEditor.codeMirror,
-                    'htmlmixed',
-                  )
+                  onClick={() =>
+                    this.autoFormat(
+                      this.refs.htmlEditor.codeMirror,
+                      'htmlmixed',
+                    )
                   }
                 />
               </div>
@@ -747,7 +765,8 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() => this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
+                  onClick={() =>
+                    this.autoFormat(this.refs.cssEditor.codeMirror, 'css')
                   }
                 />
               </div>
@@ -826,7 +845,8 @@ class CodeEditors extends Component {
                   shape="square"
                   className="formatBtn"
                   icon={<MdFormatAlignLeft />}
-                  onClick={() => this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
+                  onClick={() =>
+                    this.autoFormat(this.refs.jsEditor.codeMirror, 'javascript')
                   }
                 />
               </div>
@@ -932,7 +952,7 @@ class CodeEditors extends Component {
             name="permission"
             options={permissionOptions}
             value={this.state.permission}
-          // onChange={()=> {}}
+            // onChange={()=> {}}
           />
         </Modal>
         <Modal
@@ -957,7 +977,7 @@ class CodeEditors extends Component {
 CodeEditors.propTypes = {
   currentActiveTab: PropTypes.string,
 };
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   editor: store.editor,
   user: store.user,
   project: store.project,
