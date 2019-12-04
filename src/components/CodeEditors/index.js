@@ -3,6 +3,10 @@
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
+import Websocket from 'react-websocket';
+import { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css';
 import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -18,6 +22,7 @@ import Resizer from '../Resizer';
 import Modal from '../Modal';
 import TextInput from '../TextInput';
 import RadioButtonGroup from '../RadioButtonGroup';
+import CodioNotification from '../CodioNotification';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -68,6 +73,8 @@ const beautify_html = require('js-beautify').html;
 
 // const [isModalOpen, setIsModalOpen] = useState(false);
 
+const colorArr = ['#FF5511', '#00AA00', '#009FCC', '#7700BB', '#FF77FF', '#8B4513', ' #00FFFF', '#00FF00'];
+
 class CodeEditors extends Component {
   constructor(props) {
     super(props);
@@ -79,6 +86,7 @@ class CodeEditors extends Component {
       projectTitleInputSize: 0,
       isShareModalOpen: false,
       permission: '編輯',
+      currentCollabarators: [],
     };
     this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
     this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
@@ -245,6 +253,7 @@ class CodeEditors extends Component {
       completeSingle: false,
       completeOnSingleClick: true,
       closeOnUnfocus: true,
+      matchInMiddle: true,
     };
     switch (lang || cm.getMode().name) {
       case 'htmlmixed':
@@ -332,6 +341,17 @@ class CodeEditors extends Component {
     }
   };
 
+  cursorOnChange = (e, mode) => {
+    this.props.updateCursor({
+      mode,
+      line: e.doc.getCursor().line + 1,
+      ch: e.doc.getCursor().ch,
+    });
+    this.sendMessage(JSON.stringify({
+      type: 'cursor change',
+    }));
+  };
+
   switchDropdown = (isOpen) => {
     this.setState({
       isDropdownOpen: isOpen,
@@ -369,17 +389,109 @@ class CodeEditors extends Component {
     }
   };
 
+  coord = (cm, line, ch) =>
+    cm.codeMirror.charCoords(
+      {
+        line: line,
+        ch: ch,
+      },
+      'windows',
+    );
+
+  // 儲存程式碼
   saveCode = () => {
     const { id } = this.props.match.params;
     const { html, css, js } = this.props.editor;
-    this.props.updateCode({
-      token: this.props.user.token,
-      projectId: id,
-      html,
-      css,
-      js,
-    });
+    this.props.updateCode(
+      {
+        token: this.props.user.token,
+        projectId: id,
+        projectName: this.state.project_title,
+        html,
+        css,
+        js,
+      },
+      () => {
+        store.addNotification({
+          message: '儲存成功！',
+          type: 'default', // 'default', 'success', 'info', 'warning'
+          container: 'bottom-left', // where to position the notifications
+          animationIn: ['animated', 'fadeIn'], // animate.css classes that's applied
+          animationOut: ['animated', 'fadeOut'], // animate.css classes that's applied
+          dismiss: {
+            duration: 3000,
+          },
+        });
+      },
+    );
+    let cursorbar = document.createElement('div');
+    cursorbar.innerHTML = ' ';
+    cursorbar.setAttribute(
+      'style',
+      `height: 22px; border-left: 2px solid rgb(179, 216, 78); position: absolute; left: ${
+        this.coord(this.refs.htmlEditor, 0, 1).left
+      }px; top: ${this.coord(this.refs.htmlEditor, 0, 1).top}px`,
+    );
+    cursorbar.classList.add('cursorbar');
+    this.refs.htmlEditor.codeMirror.doc.setBookmark(
+      { line: 0, ch: 1 },
+      cursorbar,
+    );
+    // console.log(this.refs.htmlEditor.codeMirror.doc);
   };
+
+  handleWebSocketOnOpen = (msg) => {
+    console.log('onOpen', msg);
+    this.sendMessage(
+      JSON.stringify({
+        type: 'new client',
+        m_no: this.props.user.m_no,
+        m_name: this.props.user.m_name,
+        m_avatar: this.props.user.m_avatar,
+      }),
+    );
+  };
+
+  handleWebSocketOnMessage = (msg) => {
+    const message = JSON.parse(JSON.parse(msg).Message);
+    console.log("收到訊息===>",message);
+    if (
+      message.type === 'new client'
+    ) {
+      store.addNotification({
+        content: (
+          <CodioNotification name={message.m_name} avatar={message.m_avatar}  />
+        ),
+        container: 'bottom-right',
+        animationIn: ['animated', 'fadeIn'],
+        animationOut: ['animated', 'fadeOut'],
+        dismiss: {
+          duration: 3000,
+        },
+      });
+      this.sendMessage(JSON.stringify(
+        {
+          type: 'old client',
+          m_no: this.props.user.m_no,
+          m_name: this.props.m_name,
+          m_avatar: this.props.m_avatar,
+        }
+      ))
+    }
+    if (message.type === 'old client') {
+      this.setState({
+        currentCollabarators: [...this.state.currentCollabarators, {
+          m_no: message.m_no,
+          m_name: message.m_name,
+          m_avatar: message.m_avatar,
+        }]
+      });
+    }
+  };
+
+  sendMessage(message) {
+    this.refWebSocket.sendMessage(message);
+  }
 
   render() {
     const { html, css, js } = this.props.editor;
@@ -408,6 +520,7 @@ class CodeEditors extends Component {
       showHint: true,
       styleActiveLine: true,
       tabSize: 2,
+      lineWiseCopyCut: true,
     };
 
     // const confirmFunc = () => {
@@ -423,7 +536,10 @@ class CodeEditors extends Component {
     };
 
     const dropdownOptions = [
-      { text: '另開新專案' },
+      {
+        text: '另開新專案',
+        action: () => this.props.history.push('/create_project'),
+      },
       { text: '刪除此專案', action: deleteProjectHandler },
       {
         text: '分享此專案',
@@ -442,6 +558,16 @@ class CodeEditors extends Component {
 
     return (
       <div className="playground">
+        <Websocket
+          url="ws://Codio_backend.hsc.nutc.edu.tw/content"
+          onOpen={this.handleWebSocketOnOpen}
+          onMessage={this.handleWebSocketOnMessage}
+          reconnect
+          debug
+          ref={(Websocket) => {
+            this.refWebSocket = Websocket;
+          }}
+        />
         <Resizer
           direction="x"
           elementWidth={this.state.editorWidth}
@@ -469,6 +595,9 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
+              {this.state.currentCollabarators.map((item, index)=> {
+                <img src={item.m_avatar} />
+              })}
               {/*<Modal
                 isOpen={isModalOpen}
                 title="確定刪除專案"
@@ -481,7 +610,7 @@ class CodeEditors extends Component {
                 cancelBtnText="取消"
                 confirmBtnText="新增"
                 Confirm={deleteProjectHandler}
-              />*/}
+              /> */}
               <div className="titlebar_btnGroup">
                 {/* <Button
                   type="primary"
@@ -530,6 +659,11 @@ class CodeEditors extends Component {
                 }}
                 onChange={(e, changeObj) => {
                   this.delayHtmlOnChange(e, changeObj);
+                }}
+                onCursorActivity={(e) => {
+                  if (this.refs.htmlEditor !== undefined) {
+                    this.cursorOnChange(e, 'html');
+                  }
                 }}
               />
             </div>
@@ -607,6 +741,11 @@ class CodeEditors extends Component {
                 onChange={(e, changeObj) => {
                   this.delayCssOnChange(e, changeObj);
                 }}
+                onCursorActivity={(e) => {
+                  if (this.refs.cssEditor !== undefined) {
+                    this.cursorOnChange(e, 'css');
+                  }
+                }}
               />
             </div>
           </TabPanel>
@@ -679,6 +818,11 @@ class CodeEditors extends Component {
                 onChange={(e, changeObj) => {
                   this.delayJsOnChange(e, changeObj);
                 }}
+                onCursorActivity={(e) => {
+                  if (this.refs.jsEditor !== undefined) {
+                    this.cursorOnChange(e, 'js');
+                  }
+                }}
               />
             </div>
           </TabPanel>
@@ -693,6 +837,10 @@ class CodeEditors extends Component {
                 aria-haspopup="true"
                 placeholder=""
                 size={this.state.projectTitleInputSize}
+                onChange={(e) => {
+                  this.setState({ project_title: e.target.value });
+                  this.autoSizeInput(e.target.value);
+                }}
               />
               <Dropdown
                 icon={<IoIosArrowDown />}
@@ -756,7 +904,7 @@ class CodeEditors extends Component {
             name="permission"
             options={permissionOptions}
             value={this.state.permission}
-            onChange={()=> {}}
+            onChange={() => {}}
           />
         </Modal>
       </div>
@@ -771,9 +919,4 @@ const mapStateToProps = (store) => ({
   user: store.user,
   project: store.project,
 });
-export default withRouter(
-  connect(
-    mapStateToProps,
-    action,
-  )(CodeEditors),
-);
+export default withRouter(connect(mapStateToProps, action)(CodeEditors));

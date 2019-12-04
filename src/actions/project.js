@@ -20,7 +20,6 @@ export const createProject = (payload, history) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(postData);
     axios(postData)
       .then((res) => {
         console.log(res);
@@ -30,6 +29,9 @@ export const createProject = (payload, history) => {
       .catch((err) => {
         console.log(err);
         dispatch({ type: 'CREATE_PROJECT_FAILED', err });
+        if (err.includes('401')) {
+          history.push('/login');
+        }
       });
   };
 };
@@ -55,7 +57,7 @@ export const deleteProject = (payload, history) => {
   };
 };
 
-export const getUserAllProjects = (payload) => {
+export const getUserAllProjects = (payload, history) => {
   const URL = API.get_user_all_projects;
   return (dispatch) => {
     const postData = {
@@ -77,6 +79,9 @@ export const getUserAllProjects = (payload) => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.toString().includes('status code 401')) {
+          // history.push('/login');
+        }
       });
   };
 };
