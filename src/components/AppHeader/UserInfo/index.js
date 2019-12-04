@@ -19,7 +19,7 @@ const UserInfo = withRouter(({ history, user }) => {
       }}
       style={{
         backgroundImage: isAuthed
-          ? `url(${user.mp_avatar || defaultAvatar})`
+          ? `url(${user.m_avatar || defaultAvatar})`
           : `url(${notAuth})`,
       }}
     >
