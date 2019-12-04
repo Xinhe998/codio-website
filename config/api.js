@@ -20,4 +20,6 @@ module.exports = {
   create_portfolio: `${API_URL}/Personal/CRcollection`,
   get_portfolio: `${API_URL}/Personal/GetCollection`,
   get_user_all_projects: `${API_URL}/Project/GetMemberAllProject`,
+  create_resume: `${API_URL}/Personal/CRresume`,
+  update_resume: `${API_URL}/Personal/UPDresume`,
 };

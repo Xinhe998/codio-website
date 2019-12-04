@@ -20,7 +20,10 @@ const Resume = (props) => {
   const [password, setPassword] = useState('');
 
   const [userName, setUserName] = useState('Alice');
-  const [list, setList] = useState(['會員管理']);
+  const layoutOptions = [
+    { text: '作品集', link: '/homePage' },
+    { text: '帳戶設定', link: '/settings' },
+  ];
 
   const [charName, setCharName] = useState('');
   const [userCounty, setUserCounty] = useState('台中市');
@@ -64,7 +67,7 @@ const Resume = (props) => {
 
   return (
     <div className="resume">
-      <Layout userImg={userImg} userName={userName} list={list}>
+      <Layout userImg={userImg} userName={userName} list={layoutOptions}>
         <LayoutBtn>
           <PDFDownloadLink
             className="download_resume_btn"

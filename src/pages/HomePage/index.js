@@ -26,23 +26,20 @@ const HomePage = (props) => {
       m_no: props.user.m_no,
     });
   }, []);
-  const [list, setList] = useState(['作品集', '圖表分析', '帳戶設定']);
 
+  const layoutOptions = [
+    { text: '作品集', link: '/homePage' },
+    { text: '帳戶設定', link: '/settings' },
+  ];
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isChecked, setIsChecked] = useState([]);
   const [isResumeBtnOpen, setIsResumeBtnOpen] = useState(false);
-  // const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [number, setNumber] = useState(0);
   const [permission, setPermission] = useState('編輯');
   const permissionOptions = ['編輯', '檢視'];
   const [currentDeleteId, setCurrentDeleteId] = useState('');
-
-  console.log('!!!!!', props.project);
-  Object.values(props.project).map((item) => {
-    console.log('item', item);
-  });
 
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
@@ -69,7 +66,7 @@ const HomePage = (props) => {
       <Layout
         userImg={props.user.m_avatar || dafaulrAvatar}
         userName={props.user.m_name}
-        list={list}
+        list={layoutOptions}
       >
         <UserInfo
           userImg={props.user.m_avatar || dafaulrAvatar}
@@ -178,9 +175,9 @@ const HomePage = (props) => {
                 <span onClick={() => setIsShareModalOpen(true)}>分享</span>
                 <span
                   style={{ color: '#ec5252' }}
-                  onClick={() => { 
+                  onClick={() => {
                     setIsDeleteModalOpen(true);
-                    setCurrentDeleteId(item.mp_no)
+                    setCurrentDeleteId(item.mp_no);
                   }}
                 >
                   刪除
@@ -222,9 +219,9 @@ const HomePage = (props) => {
         <Modal
           isOpen={isDeleteModalOpen}
           title="確定刪除專案"
-          onClose={() => { 
-              isDeleteModalOpen(false)
-              setCurrentDeleteId('');
+          onClose={() => {
+            isDeleteModalOpen(false);
+            setCurrentDeleteId('');
           }}
           shouldCloseOnEsc
           shouldCloseOnClickOutside

@@ -16,64 +16,64 @@ const userInitialState = {
   errorMsg: null,
 };
 
-export default function(state = userInitialState, action) {
+export default function (state = userInitialState, action) {
   switch (action.type) {
-    case 'LOGOUT': {
-      return { isLoading: false, errorMsg: null };
-    }
-    case 'LOGIN_REQUEST': {
-      return { ...state, isLoading: true, errorMsg: null };
-    }
-    case 'LOGIN_SUCCESS': {
-      const {
-        data: { token, data },
-        status,
-      } = action.res;
-      return status === 200
-        ? {
-            ...state,
-            isLoading: false,
-            token,
-            ...data,
-            errorMsg: null,
-          }
-        : state;
-    }
-    case 'LOGIN_FAILED':
-      return { ...state, errorMsg: 'Login Failed', isLoading: false };
-    case 'REGISTER_REQUEST': {
-      return { ...state, isLoading: true, errorMsg: null };
-    }
-    case 'REGISTER_SUCCESS': {
-      const { status } = action.res;
-      return status === 200
-        ? {
-            ...state,
-            isLoading: false,
-            errorMsg: null,
-          }
-        : state;
-    }
-    case 'REGISTER_FAILED':
-      return { ...state, errorMsg: 'Register Failed', isLoading: false };
+  case 'LOGOUT': {
+    return { isLoading: false, errorMsg: null };
+  }
+  case 'LOGIN_REQUEST': {
+    return { ...state, isLoading: true, errorMsg: null };
+  }
+  case 'LOGIN_SUCCESS': {
+    const {
+      data: { token, data },
+      status,
+    } = action.res;
+    return status === 200
+      ? {
+        ...state,
+        isLoading: false,
+        token,
+        ...data,
+        errorMsg: null,
+      }
+      : state;
+  }
+  case 'LOGIN_FAILED':
+    return { ...state, errorMsg: 'Login Failed', isLoading: false };
+  case 'REGISTER_REQUEST': {
+    return { ...state, isLoading: true, errorMsg: null };
+  }
+  case 'REGISTER_SUCCESS': {
+    const { status } = action.res;
+    return status === 200
+      ? {
+        ...state,
+        isLoading: false,
+        errorMsg: null,
+      }
+      : state;
+  }
+  case 'REGISTER_FAILED':
+    return { ...state, errorMsg: 'Register Failed', isLoading: false };
 
-    case 'FORGET_PASSWORD_REQUEST': {
-      return { ...state, isLoading: true, errorMsg: null };
-    }
-    case 'FORGET_PASSWORD_SUCCESS': {
-      const { status } = action.res;
-      return status === 200
-        ? {
-            ...state,
-            isLoading: false,
-            errorMsg: null,
-          }
-        : state;
-    }
-    case 'FORGET_PASSWORD_FAILED':
-      return { ...state, errorMsg: 'Register Failed', isLoading: false };
+  case 'FORGET_PASSWORD_REQUEST': {
+    return { ...state, isLoading: true, errorMsg: null };
+  }
+  case 'FORGET_PASSWORD_SUCCESS': {
+    const { status } = action.res;
+    return status === 200
+      ? {
+        ...state,
+        isLoading: false,
+        errorMsg: null,
+      }
+      : state;
+  }
+  case 'FORGET_PASSWORD_FAILED':
+    return { ...state, errorMsg: 'Register Failed', isLoading: false };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }
