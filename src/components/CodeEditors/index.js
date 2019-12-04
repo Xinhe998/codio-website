@@ -448,7 +448,7 @@ class CodeEditors extends Component {
         type: 'new client',
         m_no: this.props.user.m_no,
         m_name: this.props.user.m_name,
-        m_avatar: this.props.user.m_avatar || defaultAvatar,
+        m_avatar: this.props.user.m_avatar || 'https://i.imgur.com/SiRVSp2.jpg',
       }),
     );
   };
@@ -480,7 +480,7 @@ class CodeEditors extends Component {
           type: 'old client',
           m_no: this.props.user.m_no,
           m_name: this.props.user.m_name,
-          m_avatar: this.props.user.m_avatar || defaultAvatar,
+          m_avatar: this.props.user.m_avatar || 'https://i.imgur.com/SiRVSp2.jpg',
         },
       ));
     }
