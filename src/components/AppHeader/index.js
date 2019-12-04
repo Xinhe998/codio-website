@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TabList from '../TabList';
 import Tab from '../Tab';
@@ -8,6 +10,7 @@ import Modal from '../Modal';
 import TextInput from '../TextInput';
 import RadioButtonGroup from '../RadioButtonGroup';
 import { MdShare } from 'react-icons/md';
+import action from '../../actions';
 import './index.scss';
 
 const AppHeader = ({
@@ -69,7 +72,8 @@ const AppHeader = ({
               key={`collaborator_${index}`}
               style={{
                 backgroundImage: `url(${item.m_avatar})`,
-                border: `2px solid ${item.color}`,
+                border: `3px solid ${item.color}`,
+                margin: '2px',
               }}
             ></div>
           ))}
@@ -132,4 +136,14 @@ AppHeader.defaultProps = {
   isUserBtnVisible: true,
 };
 
-export default AppHeader;
+const mapStateToProps = (store) => ({
+  user: store.user,
+  editor: store.editor,
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    action,
+  )(AppHeader),
+);

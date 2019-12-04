@@ -13,7 +13,7 @@ import './index.scss';
 
 const notfound = () => <h1>404 Not Found.</h1>;
 
-const Home = ({ editor, resetAll, needAuth }) => {
+const Home = ({ editor, resetAll, needAuth, updateMode }) => {
   const [currentActiveTab, setCurrentActiveTab] = useState('html');
   const [errorMsg, setErrorMsg] = useState(editor.errorMsg);
 
@@ -31,14 +31,14 @@ const Home = ({ editor, resetAll, needAuth }) => {
       {!errorMsg || !needAuth ? (
         <React.Fragment>
           <AppHeader
-            currentActiveTab={currentActiveTab}
-            handleTabClick={(target) => setCurrentActiveTab(target)}
+            currentActiveTab={editor.mode}
+            handleTabClick={(target) => updateMode(target)}
             isTabVisible
             isShareBtnVisible
             collaborators={editor.clients}
           />
           <div className="AppContent">
-            <CodeEditors currentActiveTab={currentActiveTab} />
+            <CodeEditors currentActiveTab={editor.mode} />
           </div>
           <AppFooter />
         </React.Fragment>

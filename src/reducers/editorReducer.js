@@ -22,7 +22,7 @@ const editorInitialState = {
   mp_name: '',
   mp_no: '',
   isLoading: false,
-  mode: '',
+  mode: 'html',
   line: 0,
   ch: 0,
   clients: [],
@@ -59,6 +59,9 @@ export default function(state = editorInitialState, action) {
     }
     case 'UPDATE_SOCKET_CLIENT': {
       return { ...state, clients: action.payload };
+    }
+    case 'UPDATE_MODE': {
+      return { ...state, mode: action.payload };
     }
     case 'RESET': {
       return editorInitialState;

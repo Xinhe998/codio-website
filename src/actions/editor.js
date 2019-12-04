@@ -115,6 +115,7 @@ export const updateCss = (payload) => ({ type: 'UPDATE_CSS', payload });
 export const updateJs = (payload) => ({ type: 'UPDATE_JS', payload });
 export const updateCursor = (payload) => ({ type: 'UPDATE_CURSOR', payload });
 export const updateClient = (payload) => ({ type: 'UPDATE_SOCKET_CLIENT', payload });
+export const updateMode = (payload) => ({ type: 'UPDATE_MODE', payload });
 
 export const addLogs = (payload) => ({ type: 'ADD_LOGS', payload });
 

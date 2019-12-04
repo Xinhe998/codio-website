@@ -120,4 +120,23 @@
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
+  height: 22px;
+}
+
+.cursorbar {
+  height: 22px;
+  position: absolute;
+  top: 0px;
+}
+
+.cursor_usertag {
+  width: auto;
+  padding: 3px 7px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  opacity: 0.9;
+  position: absolute;
+  top: -25px;
+  z-index: 9000;
+  color: white;
 }

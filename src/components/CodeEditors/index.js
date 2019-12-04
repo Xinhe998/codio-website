@@ -1,6 +1,6 @@
 /* eslint-disable no-eval */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
 import Websocket from 'react-websocket';
@@ -79,7 +79,7 @@ const colorArr = [
   '#7700BB',
   '#FF77FF',
   '#8B4513',
-  ' #00FFFF',
+  '#00FFFF',
   '#00FF00',
 ];
 
@@ -97,9 +97,9 @@ class CodeEditors extends Component {
       permission: '編輯',
       currentCollabarators: [],
     };
-    this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 3000);
-    this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 3000);
-    this.delayJsOnChange = _.throttle(this.jsEditorOnChange, 3000, {
+    this.delayHtmlOnChange = _.throttle(this.htmlEditorOnChange, 1000);
+    this.delayCssOnChange = _.throttle(this.cssEditorOnChange, 1000);
+    this.delayJsOnChange = _.throttle(this.jsEditorOnChange, 1000, {
       leading: false,
     });
   }
@@ -314,6 +314,15 @@ class CodeEditors extends Component {
 
   jsEditorOnChange = (e, changeObj) => {
     this.props.updateJs(e);
+    this.sendMessage(
+      JSON.stringify({
+        type: 'on change',
+        mode: 'js',
+        m_no: this.props.user.m_no,
+        m_name: this.props.user.m_name,
+        code: e,
+      }),
+    );
     if (
       JSON.stringify(changeObj.text) !== '[";"]' &&
       JSON.stringify(changeObj.text) !== '[""]' &&
@@ -326,6 +335,15 @@ class CodeEditors extends Component {
 
   cssEditorOnChange = (e, changeObj) => {
     this.props.updateCss(e);
+    this.sendMessage(
+      JSON.stringify({
+        type: 'on change',
+        mode: 'css',
+        m_no: this.props.user.m_no,
+        m_name: this.props.user.m_name,
+        code: e,
+      }),
+    );
     if (
       JSON.stringify(changeObj.text) !== '[";"]' &&
       JSON.stringify(changeObj.text) !== '[""]' &&
@@ -340,11 +358,21 @@ class CodeEditors extends Component {
 
   htmlEditorOnChange = (e, changeObj) => {
     this.props.updateHtml(e);
+    this.sendMessage(
+      JSON.stringify({
+        type: 'on change',
+        mode: 'html',
+        m_no: this.props.user.m_no,
+        m_name: this.props.user.m_name,
+        code: e,
+      }),
+    );
     if (
       JSON.stringify(changeObj.text) !== '[""]' &&
       JSON.stringify(changeObj.text) !== '["",""]' &&
       JSON.stringify(changeObj.text) !== '["  "]' &&
-      JSON.stringify(changeObj.text) !== '[">","","</div>"]'
+      JSON.stringify(changeObj.text) !== '[">","","</div>"]' &&
+      JSON.stringify(changeObj.text) === '["<"]'
     ) {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
@@ -399,8 +427,9 @@ class CodeEditors extends Component {
         type: 'cursor change',
         m_no: this.props.user.m_no,
         m_name: this.props.user.m_name,
-        line: this.state.cursor_line,
-        ch: this.state.cursor_ch,
+        mode: this.props.editor.mode,
+        line: this.props.editor.line,
+        ch: this.props.editor.ch,
       }),
     );
   };
@@ -445,7 +474,6 @@ class CodeEditors extends Component {
 
   // 自己上線
   handleWebSocketOnOpen = (msg) => {
-    console.log('onOpen', msg);
     this.sendMessage(
       JSON.stringify({
         type: 'new client',
@@ -459,16 +487,16 @@ class CodeEditors extends Component {
   // 收到socket訊息
   handleWebSocketOnMessage = (msg) => {
     let message;
-    console.log('msg', msg);
-    console.log('JSON.parse(msg)', JSON.parse(msg));
+    // console.log('msg', msg);
+    // console.log('JSON.parse(msg)', JSON.parse(msg));
     // 剛連線會發送Accepted訊息
     if (msg && JSON.parse(msg).Message !== 'Accepted') {
       message = JSON.parse(JSON.parse(msg).Message);
     } else message = JSON.parse(msg).Message;
 
-    console.log('收到訊息===>', message);
+    // console.log('收到訊息===>', message);
 
-    // 當接收到有新使用者加入時要跳出通知，並通知他人自己是舊使用者
+    // 當接收到有新使用者加入時要跳出通知，並通知他人自己是舊使用者，還要把新使用者加進redux
     if (
       message.type === 'new client' &&
       message.m_no !== this.props.user.m_no
@@ -484,6 +512,15 @@ class CodeEditors extends Component {
           duration: 15000,
         },
       });
+      this.props.updateClient([
+        ...this.props.editor.clients,
+        {
+          m_no: message.m_no,
+          m_name: message.m_name,
+          m_avatar: message.m_avatar,
+          color: colorArr[this.props.editor.clients.length  || 1],
+        },
+      ]);
       this.sendMessage(
         JSON.stringify({
           type: 'old client',
@@ -505,7 +542,7 @@ class CodeEditors extends Component {
           m_no: message.m_no,
           m_name: message.m_name,
           m_avatar: message.m_avatar,
-          color: colorArr[this.props.editor.length - 1],
+          color: colorArr[this.props.editor.clients.length || 1],
         },
       ]);
     }
@@ -515,26 +552,55 @@ class CodeEditors extends Component {
       message.m_no !== this.props.user.m_no
     ) {
       var ownColor;
-      this.props.editor.clients.map((item, index)=>{
+      this.props.editor.clients.map((item, index) => {
         if (item.m_no === message.m_no) {
           ownColor = item.color;
         }
       });
       const cursorbar = document.createElement('div');
-      cursorbar.innerHTML = ' ';
-      cursorbar.setAttribute(
-        'style',
-        `height: 22px; border-left: 2px solid ${ownColor}; position: absolute; left: ${
-          this.coord(this.refs.htmlEditor, message.line, message.ch).left
-        }px; top: ${
-          this.coord(this.refs.htmlEditor, message.line, message.ch).top
-        }px`,
-      );
-      cursorbar.classList.add('cursorbar');
-      this.refs.htmlEditor.codeMirror.doc.setBookmark(
-        { line: message.line, ch: message.ch },
+      var cm;
+      switch (message.mode) {
+        case 'html':
+          cm = this.refs.htmlEditor;
+          break;
+          case 'css':
+            cm = this.refs.cssEditor;
+            break;
+            case 'js':
+              cm = this.refs.jsEditor;
+              break;
+            }
+      cursorbar.innerHTML = `<div class="cursor_usertag" style="background: ${ownColor}; left: ${this.coord(cm, message.line - 1, message.ch).left < 4? 4: this.coord(cm, message.line - 1, message.ch).left}px;">${message.m_name}</div><div class="cursorbar" style="border-left: 2px solid ${ownColor}; left: ${this.coord(cm, message.line - 1, message.ch).left < 4? 4: this.coord(cm, message.line - 1, message.ch).left}px;"> </div>`;
+      // cursorbar.setAttribute(
+      //   'style',
+      //   `border-left: 2px solid ${ownColor}; left: ${
+      //     this.coord(cm, message.line - 1, message.ch).left < 4
+      //       ? 4
+      //       : this.coord(cm, message.line - 1, message.ch).left
+      //   }px;`,
+      // );
+      // cursorbar.classList.add('cursorbar');
+      cm.codeMirror.doc.setBookmark(
+        { line: message.line - 1, ch: message.ch },
         cursorbar,
       );
+    }
+    // 收到code有變化
+    if (message.type === 'on change' && message.m_no !== this.props.user.m_no) {
+      switch (message.mode) {
+        case 'html':
+          this.props.updateHtml(message.code);
+          this.refs.htmlEditor.codeMirror.doc.setValue(message.code);
+          break;
+        case 'css':
+          this.props.updateCss(message.code);
+          this.refs.cssEditor.codeMirror.doc.setValue(message.code);
+          break;
+        case 'js':
+          this.props.updateJs(message.code);
+          this.refs.jsEditor.codeMirror.doc.setValue(message.code);
+          break;
+      }
     }
   };
 
@@ -614,7 +680,6 @@ class CodeEditors extends Component {
           onOpen={this.handleWebSocketOnOpen}
           onMessage={this.handleWebSocketOnMessage}
           reconnect
-          debug
           ref={(Websocket) => {
             this.refWebSocket = Websocket;
           }}
