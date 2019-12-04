@@ -76,8 +76,8 @@ const HomePage = (props) => {
           userImg={props.user.m_avatar || dafaulrAvatar}
           userName={props.user.m_name}
           userJob={props.user.m_position}
-          userAddress="台中市"
-          userLink="www.alice0050722.com.tw"
+          userAddress={props.user.m_address}
+          userLink={props.user.m_website}
         />
         <LayoutBtn>
           <ResumeBtn

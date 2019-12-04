@@ -12,7 +12,7 @@ import MultiSelect from '../../components/MultiSelect';
 import EditProjectList from '../../components/EditProjectList';
 import Button from '../../components/Button';
 import Experience from '../../components/Experience';
-import userImg from '../../assets/userImg.png';
+import defaultAvatar from '../../assets/default_avatar.jpg';
 
 import './index.scss';
 
@@ -30,8 +30,6 @@ const EditResume = ({
   //   });
   // });
 
-  // console.log(props);
-  const [userName, setUserName] = useState('Alice');
   const layoutOptions = [
     { text: '作品集', link: '/homePage' },
     { text: '帳戶設定', link: '/settings' },
@@ -136,8 +134,8 @@ const EditResume = ({
   return (
     <div className="editResume">
       <Layout
-        userImg={userImg}
-        userName={userName}
+        userImg={user.m_avatar || defaultAvatar}
+        userName={user.m_name}
         list={layoutOptions}
       >
         <div className="main_section">

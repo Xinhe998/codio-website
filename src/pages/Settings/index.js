@@ -14,21 +14,16 @@ import Select from '../../components/Select';
 import RadioButtonGroup from '../../components/RadioButtonGroup';
 import Button from '../../components/Button';
 // import CheckboxGroup from '../../components/CheckboxGroup';
-import userImg from '../../assets/userImg.png';
-
 import './index.scss';
 import defaultAvatar from '../../assets/default_avatar.jpg';
 
 const Settings = (props) => {
-  const [id, setID] = useState('');
-  const [editNewPwpassword, setPassword] = useState('');
 
-  const [userName, setUserName] = useState('Alice');
   const layoutOptions = [
     { text: '作品集', link: '/homePage' },
     { text: '帳戶設定', link: '/settings' },
   ];
-  const [userAccount, setUserAccount] = useState('alice0050722@gmail.com');
+  const [userAccount, setUserAccount] = useState(props.user.m_account);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [editUserName, setEditUserName] = useState(props.user.m_name);
@@ -127,7 +122,7 @@ const Settings = (props) => {
           data: {
             m_no: props.user.m_no,
             m_sex: props.user.m_sex,
-            m_account: props.user.m_account,
+            m_account: userAccount,
             m_name: props.user.m_name,
             m_address: props.user.m_address,
             // m_address_title:
@@ -163,7 +158,7 @@ const Settings = (props) => {
       data: {
         m_no: props.user.m_no,
         m_sex: props.user.m_sex,
-        m_account: props.user.m_account,
+        m_account: userAccount,
         m_name: editUserName,
         m_address: editAddress,
         // m_address_title:
@@ -179,7 +174,7 @@ const Settings = (props) => {
   const handleEditPw = () => {
     const passwordData = {
       token: props.user.token,
-      m_account: props.user.m_account,
+      m_account: userAccount,
       oldPassword: editOldPw,
       newPassword: editNewPw,
     };
@@ -191,7 +186,7 @@ const Settings = (props) => {
       data: {
         m_no: props.user.m_no,
         m_sex: props.user.m_sex,
-        m_account: props.user.m_account,
+        m_account: userAccount,
         m_like: themeColor,
       },
     };
