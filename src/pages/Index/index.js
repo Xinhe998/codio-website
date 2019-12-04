@@ -35,6 +35,7 @@ const Home = ({ editor, resetAll, needAuth }) => {
             handleTabClick={(target) => setCurrentActiveTab(target)}
             isTabVisible
             isShareBtnVisible
+            collaborators={editor.clients}
           />
           <div className="AppContent">
             <CodeEditors currentActiveTab={currentActiveTab} />

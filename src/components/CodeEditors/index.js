@@ -350,7 +350,7 @@ class CodeEditors extends Component {
       this.autoComplete(this.refs.htmlEditor.codeMirror, 'htmlmixed');
     }
   };
-
+  // 游標位置改變
   cursorOnChange = (e, mode) => {
     this.props.updateCursor({
       mode,
@@ -447,17 +447,11 @@ class CodeEditors extends Component {
       { line: 0, ch: 1 },
       cursorbar,
     );
-    // console.log(this.refs.htmlEditor.codeMirror.doc);
   };
 
+  // 自己上線
   handleWebSocketOnOpen = (msg) => {
     console.log('onOpen', msg);
-    // console.log(JSON.stringify({
-    //   type: 'new client',
-    //   m_no: this.props.user.m_no,
-    //   m_name: this.props.user.m_name,
-    //   m_avatar: this.props.user.m_avatar.replace('https://i.imgur.com/', '').substring(0,7) || 'SiRVSp2',
-    // }));
     this.sendMessage(
       JSON.stringify({
         type: 'new client',
@@ -467,7 +461,7 @@ class CodeEditors extends Component {
       }),
     );
   };
-
+  // 收到socket訊息
   handleWebSocketOnMessage = (msg) => {
     var message;
     console.log('msg', msg);
@@ -488,7 +482,7 @@ class CodeEditors extends Component {
         animationIn: ['animated', 'fadeIn'],
         animationOut: ['animated', 'fadeOut'],
         dismiss: {
-          duration: 3000,
+          duration: 15000,
         },
       });
       this.sendMessage(
@@ -505,18 +499,26 @@ class CodeEditors extends Component {
       message.type === 'old client' &&
       message.m_no !== this.props.user.m_no
     ) {
-      this.setState({
-        currentCollabarators: [
-          ...this.state.currentCollabarators,
-          {
-            m_no: message.m_no,
-            m_name: message.m_name,
-            m_avatar: message.m_avatar,
-          },
-        ],
-      });
+      // this.setState({
+      //   currentCollabarators: [
+      //     ...this.state.currentCollabarators,
+      //     {
+      //       m_no: message.m_no,
+      //       m_name: message.m_name,
+      //       m_avatar: message.m_avatar,
+      //     },
+      //   ],
+      // });
+      this.props.updateClient([
+        ...this.props.editor.clients,
+        {
+          m_no: message.m_no,
+          m_name: message.m_name,
+          m_avatar: message.m_avatar,
+        },
+      ])
     }
-    console.log(this.state.currentCollabarators);
+    // console.log(this.state.currentCollabarators);
   };
 
   sendMessage(message) {
@@ -627,9 +629,6 @@ class CodeEditors extends Component {
                 isOpen={this.state.isDropdownOpen}
                 swichOptionHandler={this.switchDropdown}
               />
-              {this.state.currentCollabarators.map((item, index) => (
-                <img className="user_img" key={index} src={item.m_avatar} />
-              ))}
               {/*<Modal
                 isOpen={isModalOpen}
                 title="確定刪除專案"

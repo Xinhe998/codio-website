@@ -16,6 +16,7 @@ const AppHeader = ({
   isTabVisible,
   isShareBtnVisible,
   isUserBtnVisible,
+  collaborators,
 }) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [permission, setPermission] = useState('編輯');
@@ -59,6 +60,17 @@ const AppHeader = ({
         </TabList>
       ) : null}
       <div className="AppHeader__btnGroup">
+        {isUserBtnVisible &&
+          collaborators.length &&
+          collaborators.map((item, index) => (
+            <div
+              className="userinfo"
+              key={`collaborator_${index}`}
+              style={{
+                backgroundImage: `url(${item.m_avatar})`,
+              }}
+            ></div>
+          ))}
         {isShareBtnVisible ? (
           <MdShare
             className="shareBtn"

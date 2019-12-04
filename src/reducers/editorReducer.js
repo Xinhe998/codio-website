@@ -25,41 +25,45 @@ const editorInitialState = {
   mode: '',
   line: 0,
   ch: 0,
+  clients: [],
 };
 
-export default function (state = editorInitialState, action) {
+export default function(state = editorInitialState, action) {
   switch (action.type) {
-  case 'UPDATE_CODE': {
-    return Object.assign({}, state, action.payload);
-  }
-  case 'ADD_LOGS': {
-    return Object.assign({}, state, { logs: action.payload });
-  }
-  case 'UPDATE_HTML': {
-    return Object.assign({}, state, { html: action.payload });
-  }
-  case 'UPDATE_CSS': {
-    return Object.assign({}, state, { css: action.payload });
-  }
-  case 'UPDATE_JS': {
-    return Object.assign({}, state, { js: action.payload });
-  }
-  case 'UPDATE_CURSOR': {
-    return Object.assign({}, state, action.payload);
-  }
-  case 'GET_CODE_REQUEST': {
-    return { ...state, isLoading: true, errorMsg: null };
-  }
-  case 'GET_CODE_SUCCESS': {
-    return { ...state, isLoading: false, errorMsg: null };
-  }
-  case 'GET_CODE_FAILED': {
-    return { ...state, isLoading: false, errorMsg: action.err };
-  }
-  case 'RESET': {
-    return editorInitialState;
-  }
-  default:
-    return state;
+    case 'UPDATE_CODE': {
+      return Object.assign({}, state, action.payload);
+    }
+    case 'ADD_LOGS': {
+      return Object.assign({}, state, { logs: action.payload });
+    }
+    case 'UPDATE_HTML': {
+      return Object.assign({}, state, { html: action.payload });
+    }
+    case 'UPDATE_CSS': {
+      return Object.assign({}, state, { css: action.payload });
+    }
+    case 'UPDATE_JS': {
+      return Object.assign({}, state, { js: action.payload });
+    }
+    case 'UPDATE_CURSOR': {
+      return Object.assign({}, state, action.payload);
+    }
+    case 'GET_CODE_REQUEST': {
+      return { ...state, isLoading: true, errorMsg: null };
+    }
+    case 'GET_CODE_SUCCESS': {
+      return { ...state, isLoading: false, errorMsg: null };
+    }
+    case 'GET_CODE_FAILED': {
+      return { ...state, isLoading: false, errorMsg: action.err };
+    }
+    case 'UPDATE_SOCKET_CLIENT': {
+      return { ...state, clients: action.payload };
+    }
+    case 'RESET': {
+      return editorInitialState;
+    }
+    default:
+      return state;
   }
 }
