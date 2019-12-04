@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReactNotifications from 'react-notifications-component';
 
 import AppHeader from '../../components/AppHeader';
 import CodeEditors from '../../components/CodeEditors';
@@ -26,6 +27,7 @@ const Home = ({ editor, resetAll, needAuth }) => {
 
   return (
     <div className="App">
+      <ReactNotifications />
       {!errorMsg || !needAuth ? (
         <React.Fragment>
           <AppHeader

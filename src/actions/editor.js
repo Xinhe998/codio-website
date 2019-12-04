@@ -1,7 +1,7 @@
 import axios from 'axios';
 import API from '../../config/api';
 
-export const updateCode = (payload) => {
+export const updateCode = (payload, callback) => {
   const URL = API.save_code;
   const postData = {
     method: 'POST',
@@ -35,15 +35,18 @@ export const updateCode = (payload) => {
   return (dispatch) => {
     axios(postData)
       .then((res) => {
-        if (res.data === '儲存成功')
+        if (res.data === '儲存成功') {
           dispatch({
             type: 'UPDATE_CODE',
             payload: {
               html: payload.html,
               css: payload.css,
               js: payload.js,
+              mp_name: payload.projectName,
             },
           });
+          callback();
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -110,6 +113,7 @@ export const getCodeByProjectId = (payload, history) => {
 export const updateHtml = (payload) => ({ type: 'UPDATE_HTML', payload });
 export const updateCss = (payload) => ({ type: 'UPDATE_CSS', payload });
 export const updateJs = (payload) => ({ type: 'UPDATE_JS', payload });
+export const updateCursor = (payload) => ({ type: 'UPDATE_CURSOR', payload });
 
 export const addLogs = (payload) => ({ type: 'ADD_LOGS', payload });
 
