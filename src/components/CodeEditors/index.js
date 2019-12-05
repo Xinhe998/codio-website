@@ -518,7 +518,7 @@ class CodeEditors extends Component {
           m_no: message.m_no,
           m_name: message.m_name,
           m_avatar: message.m_avatar,
-          color: colorArr[this.props.editor.clients.length  || 1],
+          color: colorArr[this.props.editor.clients.length || 1],
         },
       ]);
       this.sendMessage(
@@ -557,20 +557,36 @@ class CodeEditors extends Component {
           ownColor = item.color;
         }
       });
+      const elements = document.getElementsByClassName(`${message.m_no}`);
+      if (elements.length > 0) {
+        for (let i = 0; i <= elements.length; i++) {
+          elements[i].remove();
+        }
+      }
       const cursorbar = document.createElement('div');
       var cm;
       switch (message.mode) {
         case 'html':
           cm = this.refs.htmlEditor;
           break;
-          case 'css':
-            cm = this.refs.cssEditor;
-            break;
-            case 'js':
-              cm = this.refs.jsEditor;
-              break;
-            }
-      cursorbar.innerHTML = `<div class="cursor_usertag" style="background: ${ownColor}; left: ${this.coord(cm, message.line - 1, message.ch).left < 4? 4: this.coord(cm, message.line - 1, message.ch).left}px;">${message.m_name}</div><div class="cursorbar" style="border-left: 2px solid ${ownColor}; left: ${this.coord(cm, message.line - 1, message.ch).left < 4? 4: this.coord(cm, message.line - 1, message.ch).left}px;"> </div>`;
+        case 'css':
+          cm = this.refs.cssEditor;
+          break;
+        case 'js':
+          cm = this.refs.jsEditor;
+          break;
+      }
+      cursorbar.innerHTML = `<div class="cursor_usertag" style="background: ${ownColor}; left: ${
+        this.coord(cm, message.line - 1, message.ch).left < 4
+          ? 4
+          : this.coord(cm, message.line - 1, message.ch).left
+      }px;">${
+        message.m_name
+      }</div><div class="cursorbar" style="border-left: 2px solid ${ownColor}; left: ${
+        this.coord(cm, message.line - 1, message.ch).left < 4
+          ? 4
+          : this.coord(cm, message.line - 1, message.ch).left
+      }px;"> </div>`;
       // cursorbar.setAttribute(
       //   'style',
       //   `border-left: 2px solid ${ownColor}; left: ${
@@ -579,7 +595,7 @@ class CodeEditors extends Component {
       //       : this.coord(cm, message.line - 1, message.ch).left
       //   }px;`,
       // );
-      // cursorbar.classList.add('cursorbar');
+      cursorbar.classList.add(`${message.m_no}`);
       cm.codeMirror.doc.setBookmark(
         { line: message.line - 1, ch: message.ch },
         cursorbar,
