@@ -530,6 +530,33 @@ class CodeEditors extends Component {
             this.props.user.m_avatar || 'https://i.imgur.com/SiRVSp2.jpg',
         }),
       );
+      this.sendMessage(
+        JSON.stringify({
+          type: 'on change',
+          mode: 'html',
+          m_no: this.props.user.m_no,
+          m_name: this.props.user.m_name,
+          code: this.props.editor.html,
+        }),
+      );
+      this.sendMessage(
+        JSON.stringify({
+          type: 'on change',
+          mode: 'css',
+          m_no: this.props.user.m_no,
+          m_name: this.props.user.m_name,
+          code: this.props.editor.css,
+        }),
+      );
+      this.sendMessage(
+        JSON.stringify({
+          type: 'on change',
+          mode: 'js',
+          m_no: this.props.user.m_no,
+          m_name: this.props.user.m_name,
+          code: this.props.editor.js,
+        }),
+      );
     }
     // 當得知原本就在線上的使用者要加到redux editor.clients中
     if (
