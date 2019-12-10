@@ -95,6 +95,7 @@
 
 .CodeMirror {
   height: inherit;
+  overflow: visible !important;
 }
 
 .editor-header {
@@ -120,13 +121,11 @@
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
-  height: 22px;
 }
 
 .cursorbar {
   height: 22px;
-  position: absolute;
-  top: 0px;
+  margin-top: -3px;
 }
 
 .cursor_usertag {
@@ -135,8 +134,16 @@
   box-sizing: border-box;
   border-radius: 3px;
   opacity: 0.9;
-  position: absolute;
-  top: -25px;
-  z-index: 9000;
   color: white;
+}
+
+.CodeMirror-widget.collaborative_widget {
+  position: absolute;
+  width: auto;
+  top: -24px;
+  z-index: 1000;
+}
+
+.CodeMirror-scroll {
+  overflow: visible !important;
 }

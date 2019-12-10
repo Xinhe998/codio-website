@@ -40,10 +40,9 @@ const Layout = ({ userImg, userName, list, children, history, logout, resetPortf
             className="logout"
             key="登出"
             onClick={() => {
-              logout();
               resetPortfolio();
               resetAll();
-              history.push('/login');
+              logout(history);
             }}
           >
             登出

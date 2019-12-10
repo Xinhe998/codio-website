@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import CodeMirror from 'react-codemirror';
 import Websocket from 'react-websocket';
 import { store } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
-import 'animate.css';
 import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -65,8 +63,20 @@ import 'codemirror/addon/comment/comment';
 import 'codemirror-colorpicker/dist/codemirror-colorpicker.css';
 import 'codemirror-colorpicker';
 
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css';
 import './index.scss';
-import defaultAvatar from '../../assets/default_avatar.jpg';
+
+let WS_URL = '';
+if (
+  process.env.NODE_ENV === 'production' ||
+  process.env.CIRCLECI ||
+  process.env.CI
+) {
+  WS_URL = process.env.WS_URL;
+} else {
+  WS_URL = require('../../../config/project_config').wsURL;
+}
 
 const beautify_js = require('js-beautify'); // also available under "js" export
 const beautify_css = require('js-beautify').css;
@@ -88,7 +98,7 @@ class CodeEditors extends Component {
     super(props);
     this.state = {
       logs: [],
-      project_title: '專案名稱',
+      project_title: this.props.editor.mp_name || '專案名稱',
       isDropdownOpen: false,
       editorWidth: 650,
       projectTitleInputSize: 0,
@@ -614,34 +624,32 @@ class CodeEditors extends Component {
           ? 4
           : this.coord(cm, message.line - 1, message.ch).left
       }px;"> </div>`;
-      // cursorbar.setAttribute(
-      //   'style',
-      //   `border-left: 2px solid ${ownColor}; left: ${
-      //     this.coord(cm, message.line - 1, message.ch).left < 4
-      //       ? 4
-      //       : this.coord(cm, message.line - 1, message.ch).left
-      //   }px;`,
-      // );
       cursorbar.classList.add(`${message.m_no}`);
       cm.codeMirror.doc.setBookmark(
         { line: message.line - 1, ch: message.ch },
         cursorbar,
       );
+      for (let i = 0; i < document.querySelectorAll('.cursor_usertag').length; i++) {
+        document.querySelectorAll('.cursor_usertag')[i].closest('.CodeMirror-widget').classList.add('collaborative_widget');
+      }
     }
     // 收到code有變化
     if (message.type === 'on change' && message.m_no !== this.props.user.m_no) {
       switch (message.mode) {
         case 'html':
           this.props.updateHtml(message.code);
-          this.refs.htmlEditor.codeMirror.doc.setValue(message.code);
+          this.refs.htmlEditor &&
+            this.refs.htmlEditor.codeMirror.doc.setValue(message.code);
           break;
         case 'css':
           this.props.updateCss(message.code);
-          this.refs.cssEditor.codeMirror.doc.setValue(message.code);
+          this.refs.cssEditor &&
+            this.refs.cssEditor.codeMirror.doc.setValue(message.code);
           break;
         case 'js':
           this.props.updateJs(message.code);
-          this.refs.jsEditor.codeMirror.doc.setValue(message.code);
+          this.refs.jsEditor &&
+            this.refs.jsEditor.codeMirror.doc.setValue(message.code);
           break;
       }
     }
@@ -719,7 +727,7 @@ class CodeEditors extends Component {
     return (
       <div className="playground">
         <Websocket
-          url="ws://Codio_backend.hsc.nutc.edu.tw/content"
+          url={WS_URL}
           onOpen={this.handleWebSocketOnOpen}
           onMessage={this.handleWebSocketOnMessage}
           reconnect

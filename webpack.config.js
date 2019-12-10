@@ -15,6 +15,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 const EnvironmentPlugin = new webpack.EnvironmentPlugin({
   API_URL: process.env.API_URL,
   imgurClient: process.env.imgurClient,
+  WS_URL: process.env.WS_URL,
 });
 
 const CopyPluginConfig = new CopyPlugin([

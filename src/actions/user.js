@@ -111,4 +111,9 @@ export const updatePassword = (payload, history) => {
   };
 };
 
-export const logout = () => ({ type: 'LOGOUT' });
+export const logout = (history) => {
+  return (dispatch) => {
+    dispatch({ type: 'LOUGOUT' });
+    history.push('/login');
+  };
+};
