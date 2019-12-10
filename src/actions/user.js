@@ -113,7 +113,7 @@ export const updatePassword = (payload, history) => {
 
 export const logout = (history) => {
   return (dispatch) => {
-    dispatch({ type: 'LOUGOUT' });
+    dispatch({ type: 'LOGOUT' });
     history.push('/login');
   };
 };

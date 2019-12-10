@@ -81,13 +81,11 @@ const Login = (props) => {
                   required
                 />
               </form>
-              {/* <Button className="forget_password_btn" text="忘記密碼？" type="link" theme="red" /> */}
               <Link
                 to={{
                   pathname: '/forget_password',
                   state: { modal: true },
                 }}
-                // onClick={() => props.history.push('/forget_password')}
                 className="forget_password_btn"
               >
                 忘記密碼？

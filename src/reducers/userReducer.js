@@ -19,7 +19,7 @@ const userInitialState = {
 export default function (state = userInitialState, action) {
   switch (action.type) {
   case 'LOGOUT': {
-    return { isLoading: false, errorMsg: null };
+    return userInitialState;
   }
   case 'LOGIN_REQUEST': {
     return { ...state, isLoading: true, errorMsg: null };
