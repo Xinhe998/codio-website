@@ -48,7 +48,7 @@ const HomePage = (props) => {
   const handleSelectCheckbox = (choice) => {
     const index = isChecked.indexOf(choice);
     if (index !== -1) {
-      setIsChecked(isChecked.filter(item => item !== choice));
+      setIsChecked(isChecked.filter((item) => item !== choice));
     } else {
       setIsChecked([choice, ...isChecked]);
     }
@@ -91,7 +91,9 @@ const HomePage = (props) => {
             shouldCloseOnClickOutside
             shouldCloseOnEsc
           >
-            <span onClick={() => props.history.push('/resume/edit')}>編輯履歷</span>
+            <span onClick={() => props.history.push('/resume/edit')}>
+              編輯履歷
+            </span>
             <span onClick={() => props.history.push('/resume')}>查看履歷</span>
           </ResumeBtn>
           <Button
@@ -158,19 +160,24 @@ const HomePage = (props) => {
           </div>
           {Object.values(props.project).map(
             (item) =>
-              item && item.mp_no && (
+              item &&
+              item.mp_no && (
                 <ProjectList
+                  key={item.mp_no}
                   projectName={item.mp_name}
                   projectDescription={item.mp_desc}
                   isOpen={isProjectDropDownOpen}
-                  onClick={() => {
-                    props.history.push(`/portfolio/${item.mp_no}`);
-                  }}
                 >
-                  <span>
+                  <span
+                    onClick={() => {
+                      props.history.push(`/portfolio/${item.mp_no}`);
+                    }}
+                  >
                     查看作品集
                   </span>
-                  <span>編輯程式碼</span>
+                  <span onClick={() => props.history.push(`/p/${item.mp_no}`)}>
+                    編輯程式碼
+                  </span>
                   <span>分享</span>
                   <span>設定</span>
                   <span style={{ color: '#ec5252' }}>刪除</span>
@@ -205,7 +212,7 @@ const HomePage = (props) => {
             name="permission"
             options={permissionOptions}
             value={permission}
-          // onChange={()=> {}}
+            // onChange={()=> {}}
           />
         </Modal>
         <Modal
@@ -221,14 +228,13 @@ const HomePage = (props) => {
           cancelBtnText="取消"
           confirmBtnText="確定"
           Confirm={deleteProjectHandler}
-
         />
       </Layout>
     </div>
   );
 };
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: store.user,
   project: store.project,
 });

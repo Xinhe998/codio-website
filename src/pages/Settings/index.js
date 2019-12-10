@@ -114,7 +114,6 @@ const Settings = (props) => {
       mimeType: 'multipart/form-data',
     })
       .then((res) => {
-        console.log(res);
         seAvatartIsUplaoding(false);
         setAvatar(res.data.data);
         const settingsData = {

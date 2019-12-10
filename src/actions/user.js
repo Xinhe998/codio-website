@@ -9,7 +9,6 @@ export const login = (payload, history) => {
       .post(URL, { m_account: payload.id, m_pasword: payload.password })
       .then((res) => {
         dispatch({ type: 'LOGIN_SUCCESS', res });
-        console.log(res);
         history.push('/homePage');
       })
       .catch((err) => dispatch({ type: 'LOGIN_FAILED', err }));
@@ -74,7 +73,6 @@ export const updatePersonalInfo = (payload, history) => {
   return (dispatch) => {
     axios(postData)
       .then((res) => {
-        console.log(res);
         dispatch({ type: 'UPDATE_PERSONAL_INFO', res });
         if (history) history.push('/homepage');
       })

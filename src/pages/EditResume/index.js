@@ -122,8 +122,6 @@ const EditResume = ({
       // experience[i].expPlace = e.target.value;
       // experience[i].expDesc = e.target.value;
     }
-
-    console.log(experience);
   };
   const deleteExpBtn = (id) => {
     experience.filter(index => id !== index);

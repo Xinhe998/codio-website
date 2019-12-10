@@ -14,10 +14,8 @@ export const createResume = (payload, history) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(postData);
     axios(postData)
       .then((res) => {
-        console.log(res);
         dispatch({ type: 'CREATE_RESUME_SUCCESS', res });
         history.push('/resume');
       })

@@ -18,6 +18,7 @@ const ProjectList = ({
   onDoubleClick,
   children,
   number,
+  onClick,
 }) => {
   const dropDownRef = useRef();
   const [isProjectDropDownOpen, setIsProjectDropDownOpen] = useState(false);

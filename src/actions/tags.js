@@ -35,7 +35,6 @@ export const addTag = (payload) => {
   return (dispatch) => {
     axios(getData)
       .then((res) => {
-        console.log(res);
         dispatch({ type: 'ADD_TAG', res });
       })
       .catch((err) => {

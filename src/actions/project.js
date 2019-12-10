@@ -71,10 +71,8 @@ export const getUserAllProjects = (payload, history) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(postData);
     axios(postData)
       .then((res) => {
-        console.log(res);
         dispatch({ type: 'GET_ALL_USER_PROJECTS', res });
       })
       .catch((err) => {

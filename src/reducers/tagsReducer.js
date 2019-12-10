@@ -5,7 +5,6 @@ export default function (state = projectInitialState, action) {
   case 'GET_ALL_TAGS': {
     const { data, status } = action.res;
     const newData = data.split(',');
-    console.log(newData);
     return status === 200
       ? newData : state;
   }
