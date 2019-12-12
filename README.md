@@ -5,4 +5,4 @@
 
 Codio lets you collaborate in real-time with HTML, CSS and JavaScript.
 
-[Imgur](https://i.imgur.com/jB5xKQp.png)
+![Codio Screenshot](https://i.imgur.com/jB5xKQp.png)
