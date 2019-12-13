@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -31,6 +31,20 @@ const Login = (props) => {
 
   const userData = window.localStorage.getItem('persist:root');
   const isAuthed = userData && JSON.parse(JSON.parse(userData).user).token;
+  const diffFromLastLoginTime = Math.abs(
+    new Date() - new Date(props.user.last_login_timestamp),
+  );
+  const diffFromLastLoginTime_hours =
+    (diffFromLastLoginTime / (1000 * 60 * 60)) % 24;
+
+  useEffect(() => {
+    if (diffFromLastLoginTime_hours >= 2 || !props.user.last_login_timestamp) {
+      console.log('logout');
+      props.resetAll();
+      props.logout(props.history);
+    }
+  }, []);
+
   const loginHandler = () => {
     const loginData = {
       id,
@@ -43,7 +57,7 @@ const Login = (props) => {
     <div>
       <Route exact path="/" component={App} />
       {isAuthed ? (
-        <Redirect to="/" />
+        <Redirect to="/homepage" />
       ) : (
         <div className="Login">
           <AppHeader

@@ -12,6 +12,7 @@ const userInitialState = {
   m_position: null,
   m_like: null,
   role_no: '',
+  last_login_timestamp: '',
   isLoading: false,
   errorMsg: null,
 };
@@ -36,6 +37,7 @@ export default function (state = userInitialState, action) {
         token,
         ...data,
         errorMsg: null,
+        last_login_timestamp: new Date(),
       }
       : state;
   }
