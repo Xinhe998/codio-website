@@ -26,6 +26,9 @@ import Settings from './pages/Settings';
 import Portfolio from './pages/Portfolio';
 import EditResume from './pages/EditResume';
 import Resume from './pages/Resume';
+import MyDashboard from './pages/MyDashboard';
+import Quiz from './pages/Quiz';
+import QuizResult from './pages/QuizResult';
 
 import usePrevious from './hooks/usePrevious';
 import Admin from './pages/Admin';
@@ -77,6 +80,9 @@ const CodioSwitch = ({ location }) => {
         <Route path="/search" component={Search} />
         <Route path="/settings" component={Settings} />
         <Route exact path="/homePage" component={HomePage} />
+        <Route exact path="/dashboard" component={MyDashboard} />
+        <Route exact path="/quiz" component={Quiz} />
+        <Route exact path="/quiz/:id" component={QuizResult} />
         <Route component={notfound} />
       </Switch>
       {isModal ? (

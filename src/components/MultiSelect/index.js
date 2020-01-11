@@ -21,7 +21,7 @@ const renderSelectedTags = (selectedOptions, selectedOptionOnClick) => {
   return <ul className="MultiSelect__tags">{tags.reverse()}</ul>;
 };
 
-const renderDropDown = (options, optionOnClick, newInput) => {
+const renderDropDown = (options, optionOnClick, newInput, allowCreate) => {
   const DropdownOptions = [];
   if (options.length) {
     options.map((option, index) => {
@@ -34,7 +34,7 @@ const renderDropDown = (options, optionOnClick, newInput) => {
         </li>,
       );
     });
-  } else if (newInput) {
+  } else if (newInput && allowCreate) {
     DropdownOptions.push(
       <li onClick={() => optionOnClick(newInput)}>
           建立「
@@ -47,7 +47,7 @@ const renderDropDown = (options, optionOnClick, newInput) => {
   return DropdownOptions.length && <ul className="MultiSelect__dropdown">{DropdownOptions}</ul>;
 };
 
-const MultiSelect = ({ title, options, selectedItems, onChange }) => {
+const MultiSelect = ({ title, options, selectedItems, onChange, allowCreate }) => {
   const [newInput, setNewInput] = useState('');
   const [currentOptions, setCurrentOptions] = useState(options);
   // const [selectedOptions, setSelectedOptions] = useState([]);
@@ -108,7 +108,7 @@ const MultiSelect = ({ title, options, selectedItems, onChange }) => {
           size={newInput.length < 20 ? newInput.length + 2 : 20}
         />
       </div>
-      {isInputOnFocus && renderDropDown(searchResult, optionOnClick, newInput)}
+      {isInputOnFocus && renderDropDown(searchResult, optionOnClick, newInput, allowCreate)}
     </div>
   );
 };

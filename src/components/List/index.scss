@@ -1,0 +1,43 @@
+.list-item {
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 30px;
+  outline: none;
+  align-items: center;
+  div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  div.list-item-actions {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  &:hover {
+    background: #f7f7f7;
+  }
+  a {
+    color: #3597ec;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  span {
+    color: #707070;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  button {
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+    font-size: 12px;
+    background: none;
+    margin-left: 10px;
+  }
+}

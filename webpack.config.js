@@ -35,6 +35,7 @@ module.exports = {
     publicPath: '/',
   },
   mode: 'development',
+  // productionSourceMap: false,
   module: {
     rules: [
       {

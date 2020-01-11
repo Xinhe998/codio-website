@@ -27,6 +27,7 @@ describe('AppHeader', function() {
       handleTabClick: jest.fn(),
       isTabVisible: true,
       isShareBtnVisible: true,
+      isUserBtnVisible: true,
     };
 
     this.makeSubject = () => {
@@ -35,6 +36,7 @@ describe('AppHeader', function() {
         handleTabClick,
         isTabVisible,
         isShareBtnVisible,
+        isUserBtnVisible,
       } = this.params;
 
       testComp = mount(
@@ -45,6 +47,7 @@ describe('AppHeader', function() {
               handleTabClick={handleTabClick}
               isTabVisible={isTabVisible}
               isShareBtnVisible={isShareBtnVisible}
+              isUserBtnVisible={isUserBtnVisible}
             />
           </Provider>
         </Router>,

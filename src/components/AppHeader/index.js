@@ -96,7 +96,7 @@ const AppHeader = ({
             cancelBtnText="取消"
           >
             <TextInput
-              text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+              text={window.location.href}
               showPostBtn
               postBtnText="複製連結"
               ref={ShareUrlInputRef}

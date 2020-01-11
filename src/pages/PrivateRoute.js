@@ -13,7 +13,7 @@ const PrivateRoute = ({ component, ...rest }) => {
       render={props => (isAuthed ? (
         <div>{React.createElement(component, props)}</div>
       ) : (
-        <Router>
+        // <Router>
           <div>
             <Route exact path="/login" component={Login} />
             <Redirect
@@ -24,7 +24,7 @@ const PrivateRoute = ({ component, ...rest }) => {
               }}
             />
           </div>
-        </Router>
+        // </Router>
       ))
       }
     />

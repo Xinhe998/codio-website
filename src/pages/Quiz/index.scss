@@ -1,0 +1,20 @@
+.Quiz {
+  .main_section {
+    h2.title {
+      font-size: 22px;
+      font-weight: normal;
+      color: #263238;
+    }
+  }
+}
+.create_quiz_btn {
+  width: 120px !important;
+}
+.CreateQuizModal {
+  .Modal__wrapper {
+    width: 70%;
+  }
+  .Modal__content {
+    padding: 0 80px 30px;
+  }
+}

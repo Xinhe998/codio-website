@@ -1,0 +1,29 @@
+.codio-table {
+  width: 100%;
+  text-align: left;
+  border-radius: 4px 4px 0 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  thead {
+    color: #000000;
+    tr {
+      th {
+        padding: 16px 16px;
+        overflow-wrap: break-word;
+        font-weight: 500;
+      }
+    }
+  }
+  tbody {
+    color: #2a2f42;
+    tr td{
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background-color: #f7f7f7;
+    }
+  }
+  td, tr {
+    text-align: center;
+  }
+}

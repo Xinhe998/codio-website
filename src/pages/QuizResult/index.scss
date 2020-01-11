@@ -1,0 +1,62 @@
+.QuizResult {
+  .main_section {
+    h2.title {
+      font-size: 22px;
+      font-weight: normal;
+      color: #263238;
+    }
+  }
+  table {
+    margin-top: 40px;
+    tbody tr td:first-child, thead tr td:first-child {
+      width: 10%;
+    }
+    tbody tr td:nth-child(3) {
+      padding: 0 20px;
+    }
+    a {
+      text-decoration:  none;
+      color: #3597ec;
+    }
+  }
+  textarea {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .quiz-title {
+    color: #3597ec;
+    font-size: 18px;
+  }
+  .quiz-desc {
+    color: #707070;
+    font-size: 14px;
+  }
+  .save-btn-wrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    button {
+      width: 150px;
+    }
+  }
+  .member_detail_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    div:last-child {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      span:last-child {
+        color: #707070;
+        font-size: 13px;
+        margin-top: 5px;
+      }
+    }
+    .userinfo {
+      border: 1px solid #e4e4e4;
+    }
+  }
+}

@@ -8,7 +8,7 @@ import { store } from 'react-notifications-component';
 import { Hook, Decode } from 'console-feed';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { IoIosArrowDown, IoIosCloud } from 'react-icons/io';
 import { MdCompare, MdFormatAlignLeft } from 'react-icons/md';
 import action from '../../actions';
@@ -18,8 +18,6 @@ import Button from '../Button';
 import Dropdown from './Dropdown';
 import Resizer from '../Resizer';
 import Modal from '../Modal';
-import TextInput from '../TextInput';
-import RadioButtonGroup from '../RadioButtonGroup';
 import CodioNotification from '../CodioNotification';
 
 import 'codemirror/lib/codemirror';
@@ -497,14 +495,10 @@ class CodeEditors extends Component {
   // 收到socket訊息
   handleWebSocketOnMessage = (msg) => {
     let message;
-    // console.log('msg', msg);
-    // console.log('JSON.parse(msg)', JSON.parse(msg));
     // 剛連線會發送Accepted訊息
     if (msg && JSON.parse(msg).Message !== 'Accepted') {
       message = JSON.parse(JSON.parse(msg).Message);
     } else message = JSON.parse(msg).Message;
-
-    // console.log('收到訊息===>', message);
 
     // 當接收到有新使用者加入時要跳出通知，並通知他人自己是舊使用者，還要把新使用者加進redux
     if (
@@ -629,8 +623,15 @@ class CodeEditors extends Component {
         { line: message.line - 1, ch: message.ch },
         cursorbar,
       );
-      for (let i = 0; i < document.querySelectorAll('.cursor_usertag').length; i++) {
-        document.querySelectorAll('.cursor_usertag')[i].closest('.CodeMirror-widget').classList.add('collaborative_widget');
+      for (
+        let i = 0;
+        i < document.querySelectorAll('.cursor_usertag').length;
+        i++
+      ) {
+        document
+          .querySelectorAll('.cursor_usertag')
+          [i].closest('.CodeMirror-widget')
+          .classList.add('collaborative_widget');
       }
     }
     // 收到code有變化
@@ -661,8 +662,6 @@ class CodeEditors extends Component {
 
   render() {
     const { html, css, js } = this.props.editor;
-    const ShareUrlInputRef = React.createRef();
-    const permissionOptions = ['編輯', '檢視'];
     const codeMirrorOptions = {
       autoCloseBrackets: true,
       autoCloseTags: true,
@@ -726,15 +725,17 @@ class CodeEditors extends Component {
 
     return (
       <div className="playground">
-        <Websocket
-          url={WS_URL}
-          onOpen={this.handleWebSocketOnOpen}
-          onMessage={this.handleWebSocketOnMessage}
-          reconnect
-          ref={(Websocket) => {
-            this.refWebSocket = Websocket;
-          }}
-        />
+        {this.props.settings.collborative_mode ? (
+          <Websocket
+            url={WS_URL}
+            onOpen={this.handleWebSocketOnOpen}
+            onMessage={this.handleWebSocketOnMessage}
+            reconnect
+            ref={(Websocket) => {
+              this.refWebSocket = Websocket;
+            }}
+          />
+        ) : null}
         <Resizer
           direction="x"
           elementWidth={this.state.editorWidth}
@@ -1038,40 +1039,6 @@ class CodeEditors extends Component {
           <iframe title="result" className="iframe" ref="iframe" />
         </div>
         <Modal
-          isOpen={this.state.isShareModalOpen}
-          className="shareModal"
-          title="與他人共用"
-          onClose={() => {
-            this.setState({
-              isShareModalOpen: false,
-            });
-          }}
-          shouldCloseOnEsc
-          shouldCloseOnClickOutside
-          showControlBtn
-          confirmBtnText="儲存"
-          cancelBtnText="取消"
-        >
-          <TextInput
-            text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
-            showPostBtn
-            postBtnText="複製連結"
-            ref={ShareUrlInputRef}
-            postBtnOnClick={() => {
-              ShareUrlInputRef.current.select();
-              document.execCommand('copy');
-            }}
-            readonly
-          />
-          <p>知道連結的人可以</p>
-          <RadioButtonGroup
-            name="permission"
-            options={permissionOptions}
-            value={this.state.permission}
-            // onChange={()=> {}}
-          />
-        </Modal>
-        <Modal
           isOpen={this.state.isDeleteModalOpen}
           title="確定刪除專案"
           onClose={() => {
@@ -1097,5 +1064,6 @@ const mapStateToProps = (store) => ({
   editor: store.editor,
   user: store.user,
   project: store.project,
+  settings: store.settings,
 });
 export default withRouter(connect(mapStateToProps, action)(CodeEditors));

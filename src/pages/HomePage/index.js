@@ -33,6 +33,7 @@ const HomePage = (props) => {
   const layoutOptions = [
     { text: '作品集', link: '/homePage' },
     { text: '帳戶設定', link: '/settings' },
+    { text: '測驗管理', link: '/quiz' },
   ];
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isChecked, setIsChecked] = useState([]);

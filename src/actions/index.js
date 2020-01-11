@@ -4,6 +4,7 @@ import * as projectActions from './project';
 import * as tagsActions from './tags';
 import * as portfolioActions from './portfolio';
 import * as resumeActions from './resume';
+import * as settingsAction from './settings';
 
 export default {
   ...userActions,
@@ -12,4 +13,5 @@ export default {
   ...tagsActions,
   ...portfolioActions,
   ...resumeActions,
+  ...settingsAction,
 };
