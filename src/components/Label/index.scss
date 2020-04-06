@@ -1,17 +1,13 @@
 .labels {
-
   .label {
-    padding: 3px;
+    padding: 4px 12px;
     border-radius: 5px;
-    width: 40px;
-    height: 20px;
     font-size: 12px;
     text-align: center;
     line-height: 20px;
-    margin-right: 3px;
+    margin-right: 7px;
     margin-bottom: 3px;
     display: inline-block;
-
     background: #e8f0fb;
     color: #3597ec;
 
@@ -24,6 +20,5 @@
     //   background: #e8f0fb;
     //   color: #3597ec;
     // }
-
   }
 }

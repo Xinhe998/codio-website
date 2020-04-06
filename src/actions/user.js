@@ -9,6 +9,7 @@ export const login = (payload, history) => {
       .post(URL, { m_account: payload.id, m_pasword: payload.password })
       .then((res) => {
         dispatch({ type: 'LOGIN_SUCCESS', res });
+        localStorage.setItem('accessToken', res.data.token);
         history.push('/homePage');
       })
       .catch((err) => dispatch({ type: 'LOGIN_FAILED', err }));
@@ -112,6 +113,7 @@ export const updatePassword = (payload, history) => {
 export const logout = (history) => {
   return (dispatch) => {
     dispatch({ type: 'LOGOUT' });
+    localStorage.clear();
     history.push('/login');
   };
 };

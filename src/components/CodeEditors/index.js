@@ -1053,7 +1053,7 @@ class CodeEditors extends Component {
           cancelBtnText="取消"
         >
           <TextInput
-            text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+            text={`http://www.codio.team/p/${this.props.editor.mp_no}`}
             showPostBtn
             postBtnText="複製連結"
             ref={ShareUrlInputRef}

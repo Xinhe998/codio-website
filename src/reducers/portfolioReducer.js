@@ -18,7 +18,7 @@ export default function (state = portfolioInitialState, action) {
     const { status, data } = action.res;
     const portfolio = {
       contents: data.data,
-      m_no: data.datatitle.mp_no, // 作者
+      m_no: data.datatitle.m_no,
       mp_desc: data.datatitle.mp_desc,
       mp_func: data.datatitle.mp_func,
       mp_hashtag: data.datatitle.mp_hashtag,

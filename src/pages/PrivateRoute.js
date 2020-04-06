@@ -4,8 +4,7 @@ import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import Login from './Login';
 
 const PrivateRoute = ({ component, ...rest }) => {
-  const userData = window.localStorage.getItem('persist:root');
-  const isAuthed = userData && JSON.parse(JSON.parse(userData).user).token;
+  const isAuthed = !!localStorage.getItem('accessToken');
   return (
     <Route
       {...rest}

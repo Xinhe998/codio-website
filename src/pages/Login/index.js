@@ -29,8 +29,7 @@ const Login = (props) => {
   const emailValidator = isRequired({ message: '請輸入帳號' })(id);
   const passwordValidator = isRequired({ message: '請輸入密碼' })(password);
 
-  const userData = window.localStorage.getItem('persist:root');
-  const isAuthed = userData && JSON.parse(JSON.parse(userData).user).token;
+  const isAuthed = !!localStorage.getItem('accessToken');
   const diffFromLastLoginTime = Math.abs(
     new Date() - new Date(props.user.last_login_timestamp),
   );
@@ -39,7 +38,6 @@ const Login = (props) => {
 
   useEffect(() => {
     if (diffFromLastLoginTime_hours >= 2 || !props.user.last_login_timestamp) {
-      console.log('logout');
       props.resetAll();
       props.logout(props.history);
     }

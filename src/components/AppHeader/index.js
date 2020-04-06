@@ -20,6 +20,7 @@ const AppHeader = ({
   isShareBtnVisible,
   isUserBtnVisible,
   collaborators,
+  editor,
 }) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [permission, setPermission] = useState('編輯');
@@ -96,7 +97,7 @@ const AppHeader = ({
             cancelBtnText="取消"
           >
             <TextInput
-              text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+              text={`http://www.codio.team/p/${editor.mp_no}`}
               showPostBtn
               postBtnText="複製連結"
               ref={ShareUrlInputRef}

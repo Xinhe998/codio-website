@@ -164,8 +164,7 @@ const HomePage = (props) => {
               item.mp_no && (
                 <ProjectList
                   key={item.mp_no}
-                  projectName={item.mp_name}
-                  projectDescription={item.mp_desc}
+                  project={item}
                   isOpen={isProjectDropDownOpen}
                 >
                   <span
@@ -197,7 +196,7 @@ const HomePage = (props) => {
           cancelBtnText="取消"
         >
           <TextInput
-            text="http://www.qwertyuiopzjqwmdhsuabxsjx.."
+            text={`http://www.codio.team/p/${props.editor.mp_no}`}
             showPostBtn
             postBtnText="複製連結"
             ref={ShareUrlInputRef}
@@ -235,6 +234,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (store) => ({
+  editor: store.editor,
   user: store.user,
   project: store.project,
 });
