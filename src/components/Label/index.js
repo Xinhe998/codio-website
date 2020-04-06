@@ -11,20 +11,19 @@ class Label extends Component {
       labels,
     } = this.props;
     return (
-
       <div className="labels">
-
-        {labels.map((text, index) => (
-          <div
-            className={classNames(
-              className,
-            // color,
-            )}
-            key={index}
-          >
-            {text}
-          </div>
-        ))}
+        {labels.length > 0
+          ? labels.map((text, index) => (
+              <div
+                className={classNames(
+                  className,
+                )}
+                key={index}
+              >
+                {text}
+              </div>
+            ))
+          : null}
       </div>
     );
   }

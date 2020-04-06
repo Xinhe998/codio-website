@@ -192,6 +192,7 @@ const RenderPortfolioPage = ({
         <div className="portfolio_desc">
           {isEditMode ? (
             <TextArea
+              title="專案描述"
               text={projectDesc}
               onChange={(e) => {
                 setProjectDesc(e.target.value);
@@ -201,12 +202,12 @@ const RenderPortfolioPage = ({
             <React.Fragment>{projectDesc}</React.Fragment>
           )}
         </div>
-        <div className="portfolio_collaborator">
+        {/* <div className="portfolio_collaborator">
           <img src={userImg} alt="collaborator" />
           <img src={userImg} alt="collaborator" />
           <img src={userImg} alt="collaborator" />
           <img src={userImg} alt="collaborator" />
-        </div>
+        </div> */}
         <div className="portfolio_article_wrapper">
           {!isEditMode &&
             contentsLength > 0 &&
